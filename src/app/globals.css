@@ -7,7 +7,7 @@
   --font-body: "Poppins", sans-serif;
 
   --site-primary: #00a63e;
-  --site-accent: #02a1c8;
+  --site-accent:  #02a1c8;
   --site-dark: #333333;
   --site-light: #ffffff;
 }
@@ -47,5 +47,34 @@ h6 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+.footer-bg-secondary {
+  background-image: url("/images/footer-bg-overlay.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: var(--swiper-pagination-bullet-opacity, 1);
+  width: 30px !important;
+  border-radius: 10px !important;
+  background: var(--swiper-pagination-color, var(--swiper-theme-color));
+}
+.swiper-pagination-bullet {
+    background: rgb(255, 255, 255) !important;
+    border-radius: 10px !important;
+    width: 30px !important;
+    margin-bottom: 30px !important;
+    padding: 5px !important;
+}
+@media screen and (max-width: 600px) {
+  .top-bar {
+    display: none !important;
+  }
+  .header-container {
+    display: flex;
+    justify-content: center;
+  }
 }
 /* Custom Css End */

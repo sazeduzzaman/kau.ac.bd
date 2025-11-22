@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Poppins } from "next/font/google";
+import { Space_Grotesk, Poppins, Rajdhani } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Shared/Header/Header";
 import Footer from "@/components/Shared/Footer/Footer";
+import BottomBar from "@/components/Shared/Footer/BottomBar";
 
 const merriweather = Space_Grotesk({
   variable: "--font-heading",
@@ -15,6 +16,13 @@ const roboto = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
 });
+// Initialize the font
+const rajdhani = Rajdhani({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-rajdhani',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: "খুলনা কৃষি বিশ্ববিদ্যালয় | Khulna Agricultural University",
@@ -63,11 +71,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${merriweather.variable} ${roboto.variable} antialiased`}
+        className={`${merriweather.variable} ${roboto.variable} ${rajdhani.variable} antialiased`}
       >
         <Header />
         {children}
         <Footer />
+        <BottomBar />
       </body>
     </html>
   );

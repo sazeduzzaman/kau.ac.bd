@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022", // Modern JS target
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": true, // Allow JS files if needed
     "skipLibCheck": true, // Skip type checking of node_modules
     "strict": true, // Enable strict type-checking
@@ -20,9 +16,7 @@
     "jsx": "react-jsx",
     "incremental": true, // Faster rebuilds
     "paths": {
-      "@/*": [
-        "./src/*"
-      ] // Allows import like "@/components/Navbar"
+      "@/*": ["./src/*"] // Allows import like "@/components/Navbar"
     },
     "plugins": [
       {
@@ -30,16 +24,15 @@
       }
     ]
   },
+  // "include": ["src", "src/types"],
   "include": [
+    "src",
+    "src/types",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "out"
-  ]
+  "exclude": ["node_modules", "dist", "out"]
 }

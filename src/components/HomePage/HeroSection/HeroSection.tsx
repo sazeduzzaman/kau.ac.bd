@@ -1,170 +1,201 @@
-import React from "react";
+"use client";
 
-const HeroSection = () => {
+import React, { useState, useEffect, useCallback } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperType } from "swiper";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { motion } from "framer-motion"; // For animation
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+const slides = [
+  {
+    id: 1,
+    title: "BUILD YOUR DIGITAL PRESENCE",
+    subtitle:
+      "We create beautiful websites & powerful strategies to grow your business.",
+    buttonText: "Start Your Project",
+    buttonLink: "#",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1500",
+  },
+  {
+    id: 2,
+    title: "DESIGN THAT CONNECTS",
+    subtitle:
+      "Captivating visuals, seamless UX, and meaningful storytelling — all in one place.",
+    buttonText: "View Our Work",
+    buttonLink: "#",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1480&fit=crop",
+  },
+  {
+    id: 3,
+    title: "WE CRAFT BRANDS THAT MATTER",
+    subtitle:
+      "From identity to launch — we’re your partner in every step of the journey.",
+    buttonText: "Book a Free Call",
+    buttonLink: "#",
+    image:
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600&fit=crop",
+  },
+];
+
+const HeroSection: React.FC = () => {
+  const [isMounted, setIsMounted] = useState(false);
+  const [swiperRef, setSwiperRef] = useState<SwiperType | null>(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const INTERLEAVE_OFFSET = 0.5;
+
+  const handleProgress = useCallback((swiper: SwiperType) => {
+    for (let i = 0; i < swiper.slides.length; i++) {
+      const slide = swiper.slides[i];
+      const slideProgress = (slide as any).progress;
+      const innerOffset = swiper.width * INTERLEAVE_OFFSET;
+      const innerTranslate = slideProgress * innerOffset;
+
+      const slideInner = slide.querySelector(".slide-inner") as HTMLElement;
+      if (slideInner) {
+        slideInner.style.transform = `translate3d(${innerTranslate}px, 0, 0)`;
+      }
+    }
+  }, []);
+
+  const handleTouchStart = useCallback((swiper: SwiperType) => {
+    for (let i = 0; i < swiper.slides.length; i++) {
+      const slide = swiper.slides[i];
+      slide.style.transition = "";
+      const slideInner = slide.querySelector(".slide-inner") as HTMLElement;
+      if (slideInner) slideInner.style.transition = "";
+    }
+  }, []);
+
+  const handleSetTransition = useCallback(
+    (swiper: SwiperType, speed: number) => {
+      for (let i = 0; i < swiper.slides.length; i++) {
+        const slide = swiper.slides[i];
+        slide.style.transition = `${speed}ms`;
+        const slideInner = slide.querySelector(".slide-inner") as HTMLElement;
+        if (slideInner) slideInner.style.transition = `${speed}ms`;
+      }
+    },
+    []
+  );
+
+  if (!isMounted)
+    return <div className="w-full h-[850px] bg-[#1a1a2e] animate-pulse" />;
+
+  // Animation variants for framer-motion
+  const textVariants: Variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  };
+
   return (
-    <div className="container mx-auto py-[100]">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo repellendus
-      quas velit totam ut nulla corporis corrupti saepe ullam, fugiat inventore
-      veniam explicabo porro doloremque ea incidunt consequatur praesentium
-      aliquid aspernatur! Sint excepturi nesciunt labore eaque repellendus saepe
-      autem omnis blanditiis eos aperiam consectetur illo eveniet voluptatibus
-      reprehenderit veniam veritatis laborum voluptate, eum assumenda. Eligendi
-      aliquam totam non delectus fuga distinctio assumenda, quod dolore
-      molestias, dolorem magnam error! Laboriosam ex maiores illum fuga. Quidem,
-      consectetur fuga quas iste porro dolore molestiae veniam? Atque dolorum
-      iure libero, rerum porro aut aspernatur tempora. Dignissimos beatae illum
-      fugit, vitae amet obcaecati corporis sunt nihil, libero molestiae alias
-      dolor quod ut tempore illo vero iste ea culpa. Unde beatae fugiat sunt.
-      Soluta nisi culpa saepe eveniet? Sapiente eius molestias quasi placeat
-      nulla voluptatibus ratione dolores rem ducimus amet fugiat illum odit
-      mollitia ullam, reiciendis fugit dicta esse. Quod delectus quos ad!
-      Veritatis amet cum veniam, velit quasi totam. Fuga suscipit nulla quia
-      maxime minima hic repellat numquam sapiente, quas, excepturi laborum
-      voluptatem magni cum quibusdam praesentium aut! Optio, ut illum veniam
-      expedita impedit placeat doloremque at adipisci aut quia facere earum
-      officiis inventore asperiores soluta! Dolores nemo magnam accusantium
-      omnis optio perferendis dolorum provident molestias et excepturi, vero
-      alias sed eaque iusto. Voluptate recusandae dolore nam aliquid iste. Omnis
-      quasi vero, quaerat similique ut dignissimos dolores perferendis enim
-      tempora deserunt cupiditate, optio eum placeat. Architecto adipisci
-      molestias excepturi, officia perferendis iusto corporis sit reprehenderit
-      rem magnam, asperiores quos voluptate aliquid dicta error nesciunt ut enim
-      aspernatur inventore voluptatem magni repellendus necessitatibus odit.
-      Commodi voluptate nemo eaque amet, doloremque numquam reprehenderit
-      accusamus error voluptas molestiae. Quia vitae velit aperiam eaque sequi,
-      ad numquam sapiente excepturi voluptate nostrum hic sit dolore tenetur
-      illum? Soluta, consectetur incidunt ad distinctio unde aliquam. Iste autem
-      nulla saepe delectus incidunt dolore minus! Fugit laborum sint natus
-      debitis eaque. Explicabo laudantium fugiat id, quaerat accusantium
-      asperiores quis debitis? Deleniti sunt reprehenderit suscipit eveniet
-      repellendus! Architecto eligendi autem cupiditate ea, voluptatibus quos
-      voluptate corporis facilis illo reprehenderit, amet debitis nihil
-      molestiae, quod laudantium perspiciatis. Inventore eaque voluptate ipsa
-      facere quos rerum expedita, placeat veniam doloribus ut officia! Expedita
-      rerum eveniet cumque, sequi dicta ad repellendus quibusdam, adipisci
-      facilis libero eligendi? Dignissimos quaerat sapiente reprehenderit culpa,
-      doloribus quo rerum neque illum ipsa fugit fuga provident et aspernatur
-      suscipit quas dicta accusantium libero sit, earum exercitationem.
-      Blanditiis minima quo facilis ab veritatis alias itaque, pariatur
-      consequatur in. Aspernatur, tenetur autem? Atque maxime qui sequi eaque
-      doloremque perspiciatis quod perferendis, temporibus officia quia in nulla
-      necessitatibus fugit quaerat delectus repudiandae animi nemo excepturi
-      cupiditate quo illo nisi rem. Non voluptate fugiat nihil accusamus,
-      asperiores eos incidunt accusantium explicabo officiis inventore modi
-      vitae doloribus dolorem, minima, illo error sunt ea tenetur consequatur
-      reiciendis? Iure natus, exercitationem aliquid iusto aperiam odit nulla
-      totam eos optio dolore incidunt sapiente delectus. Maxime hic veritatis ad
-      eos reiciendis doloribus. Cupiditate neque corrupti voluptates minima!
-      Quibusdam vitae pariatur vero iste explicabo sit magnam illum dolores
-      tenetur nam. Architecto fuga officia labore? Lorem ipsum dolor sit amet
-      consectetur adipisicing elit. Nemo repellendus quas velit totam ut nulla
-      corporis corrupti saepe ullam, fugiat inventore veniam explicabo porro
-      doloremque ea incidunt consequatur praesentium aliquid aspernatur! Sint
-      excepturi nesciunt labore eaque repellendus saepe autem omnis blanditiis
-      eos aperiam consectetur illo eveniet voluptatibus reprehenderit veniam
-      veritatis laborum voluptate, eum assumenda. Eligendi aliquam totam non
-      delectus fuga distinctio assumenda, quod dolore molestias, dolorem magnam
-      error! Laboriosam ex maiores illum fuga. Quidem, consectetur fuga quas
-      iste porro dolore molestiae veniam? Atque dolorum iure libero, rerum porro
-      aut aspernatur tempora. Dignissimos beatae illum fugit, vitae amet
-      obcaecati corporis sunt nihil, libero molestiae alias dolor quod ut
-      tempore illo vero iste ea culpa. Unde beatae fugiat sunt. Soluta nisi
-      culpa saepe eveniet? Sapiente eius molestias quasi placeat nulla
-      voluptatibus ratione dolores rem ducimus amet fugiat illum odit mollitia
-      ullam, reiciendis fugit dicta esse. Quod delectus quos ad! Veritatis amet
-      cum veniam, velit quasi totam. Fuga suscipit nulla quia maxime minima hic
-      repellat numquam sapiente, quas, excepturi laborum voluptatem magni cum
-      quibusdam praesentium aut! Optio, ut illum veniam expedita impedit placeat
-      doloremque at adipisci aut quia facere earum officiis inventore asperiores
-      soluta! Dolores nemo magnam accusantium omnis optio perferendis dolorum
-      provident molestias et excepturi, vero alias sed eaque iusto. Voluptate
-      recusandae dolore nam aliquid iste. Omnis quasi vero, quaerat similique ut
-      dignissimos dolores perferendis enim tempora deserunt cupiditate, optio
-      eum placeat. Architecto adipisci molestias excepturi, officia perferendis
-      iusto corporis sit reprehenderit rem magnam, asperiores quos voluptate
-      aliquid dicta error nesciunt ut enim aspernatur inventore voluptatem magni
-      repellendus necessitatibus odit. Commodi voluptate nemo eaque amet,
-      doloremque numquam reprehenderit accusamus error voluptas molestiae. Quia
-      vitae velit aperiam eaque sequi, ad numquam sapiente excepturi voluptate
-      nostrum hic sit dolore tenetur illum? Soluta, consectetur incidunt ad
-      distinctio unde aliquam. Iste autem nulla saepe delectus incidunt dolore
-      minus! Fugit laborum sint natus debitis eaque. Explicabo laudantium fugiat
-      id, quaerat accusantium asperiores quis debitis? Deleniti sunt
-      reprehenderit suscipit eveniet repellendus! Architecto eligendi autem
-      cupiditate ea, voluptatibus quos voluptate corporis facilis illo
-      reprehenderit, amet debitis nihil molestiae, quod laudantium perspiciatis.
-      Inventore eaque voluptate ipsa facere quos rerum expedita, placeat veniam
-      doloribus ut officia! Expedita rerum eveniet cumque, sequi dicta ad
-      repellendus quibusdam, adipisci facilis libero eligendi? Dignissimos
-      quaerat sapiente reprehenderit culpa, doloribus quo rerum neque illum ipsa
-      fugit fuga provident et aspernatur suscipit quas dicta accusantium libero
-      sit, earum exercitationem. Blanditiis minima quo facilis ab veritatis
-      alias itaque, pariatur consequatur in. Aspernatur, tenetur autem? Atque
-      maxime qui sequi eaque doloremque perspiciatis quod perferendis,
-      temporibus officia quia in nulla necessitatibus fugit quaerat delectus
-      repudiandae animi nemo excepturi cupiditate quo illo nisi rem. Non
-      voluptate fugiat nihil accusamus, asperiores eos incidunt accusantium
-      explicabo officiis inventore modi vitae doloribus dolorem, minima, illo
-      error sunt ea tenetur consequatur reiciendis? Iure natus, exercitationem
-      aliquid iusto aperiam odit nulla totam eos optio dolore incidunt sapiente
-      delectus. Maxime hic veritatis ad eos reiciendis doloribus. Cupiditate
-      neque corrupti voluptates minima! Quibusdam vitae pariatur vero iste
-      explicabo sit magnam illum dolores tenetur nam. Architecto fuga officia
-      labore? Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-      repellendus quas velit totam ut nulla corporis corrupti saepe ullam,
-      fugiat inventore veniam explicabo porro doloremque ea incidunt consequatur
-      praesentium aliquid aspernatur! Sint excepturi nesciunt labore eaque
-      repellendus saepe autem omnis blanditiis eos aperiam consectetur illo
-      eveniet voluptatibus reprehenderit veniam veritatis laborum voluptate, eum
-      assumenda. Eligendi aliquam totam non delectus fuga distinctio assumenda,
-      quod dolore molestias, dolorem magnam error! Laboriosam ex maiores illum
-      fuga. Quidem, consectetur fuga quas iste porro dolore molestiae veniam?
-      Atque dolorum iure libero, rerum porro aut aspernatur tempora. Dignissimos
-      beatae illum fugit, vitae amet obcaecati corporis sunt nihil, libero
-      molestiae alias dolor quod ut tempore illo vero iste ea culpa. Unde beatae
-      fugiat sunt. Soluta nisi culpa saepe eveniet? Sapiente eius molestias
-      quasi placeat nulla voluptatibus ratione dolores rem ducimus amet fugiat
-      illum odit mollitia ullam, reiciendis fugit dicta esse. Quod delectus quos
-      ad! Veritatis amet cum veniam, velit quasi totam. Fuga suscipit nulla quia
-      maxime minima hic repellat numquam sapiente, quas, excepturi laborum
-      voluptatem magni cum quibusdam praesentium aut! Optio, ut illum veniam
-      expedita impedit placeat doloremque at adipisci aut quia facere earum
-      officiis inventore asperiores soluta! Dolores nemo magnam accusantium
-      omnis optio perferendis dolorum provident molestias et excepturi, vero
-      alias sed eaque iusto. Voluptate recusandae dolore nam aliquid iste. Omnis
-      quasi vero, quaerat similique ut dignissimos dolores perferendis enim
-      tempora deserunt cupiditate, optio eum placeat. Architecto adipisci
-      molestias excepturi, officia perferendis iusto corporis sit reprehenderit
-      rem magnam, asperiores quos voluptate aliquid dicta error nesciunt ut enim
-      aspernatur inventore voluptatem magni repellendus necessitatibus odit.
-      Commodi voluptate nemo eaque amet, doloremque numquam reprehenderit
-      accusamus error voluptas molestiae. Quia vitae velit aperiam eaque sequi,
-      ad numquam sapiente excepturi voluptate nostrum hic sit dolore tenetur
-      illum? Soluta, consectetur incidunt ad distinctio unde aliquam. Iste autem
-      nulla saepe delectus incidunt dolore minus! Fugit laborum sint natus
-      debitis eaque. Explicabo laudantium fugiat id, quaerat accusantium
-      asperiores quis debitis? Deleniti sunt reprehenderit suscipit eveniet
-      repellendus! Architecto eligendi autem cupiditate ea, voluptatibus quos
-      voluptate corporis facilis illo reprehenderit, amet debitis nihil
-      molestiae, quod laudantium perspiciatis. Inventore eaque voluptate ipsa
-      facere quos rerum expedita, placeat veniam doloribus ut officia! Expedita
-      rerum eveniet cumque, sequi dicta ad repellendus quibusdam, adipisci
-      facilis libero eligendi? Dignissimos quaerat sapiente reprehenderit culpa,
-      doloribus quo rerum neque illum ipsa fugit fuga provident et aspernatur
-      suscipit quas dicta accusantium libero sit, earum exercitationem.
-      Blanditiis minima quo facilis ab veritatis alias itaque, pariatur
-      consequatur in. Aspernatur, tenetur autem? Atque maxime qui sequi eaque
-      doloremque perspiciatis quod perferendis, temporibus officia quia in nulla
-      necessitatibus fugit quaerat delectus repudiandae animi nemo excepturi
-      cupiditate quo illo nisi rem. Non voluptate fugiat nihil accusamus,
-      asperiores eos incidunt accusantium explicabo officiis inventore modi
-      vitae doloribus dolorem, minima, illo error sunt ea tenetur consequatur
-      reiciendis? Iure natus, exercitationem aliquid iusto aperiam odit nulla
-      totam eos optio dolore incidunt sapiente delectus. Maxime hic veritatis ad
-      eos reiciendis doloribus. Cupiditate neque corrupti voluptates minima!
-      Quibusdam vitae pariatur vero iste explicabo sit magnam illum dolores
-      tenetur nam. Architecto fuga officia labore?
-    </div>
+    <section className="relative w-full h-[850px] font-rajdhani bg-[#1a1a2e] text-[#f0f0f0] group">
+      <Swiper
+        modules={[Autoplay, Pagination, Navigation]}
+        onSwiper={setSwiperRef}
+        speed={1000}
+        loop={true}
+        watchSlidesProgress={true}
+        autoplay={{ delay: 6500, disableOnInteraction: false }}
+        pagination={{
+          clickable: true,
+          bulletClass: `swiper-pagination-bullet !bg-white !opacity-40 !w-3 !h-3 !transition-opacity !duration-200`,
+          bulletActiveClass: `swiper-pagination-bullet-active !opacity-100`,
+        }}
+        navigation={false}
+        on={{
+          progress: handleProgress,
+          touchStart: handleTouchStart,
+          setTransition: handleSetTransition,
+        }}
+        className="h-full"
+      >
+        {slides.map((slide) => (
+          <SwiperSlide key={slide.id} className="overflow-hidden">
+            <div
+              className="relative flex items-center justify-center w-full h-full bg-center bg-cover slide-inner"
+              style={{
+                backgroundImage: `url(${slide.image})`,
+                transform: "translate3d(0,0,0)",
+              }}
+            >
+              <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#1a1a2e99] to-[#1a1a2ee6]" />
+
+              <div className="container relative z-20 max-w-[1200px] px-[15px] mx-auto text-left">
+                <motion.div
+                  custom={0}
+                  initial="hidden"
+                  animate="visible"
+                  variants={textVariants}
+                  className="max-w-[690px]"
+                  data-swiper-parallax="300"
+                >
+                  <h2 className="mb-10 text-[60px] md:text-[100px] font-semibold leading-[1.1] text-white uppercase drop-shadow-[1px_2px_4px_rgba(0,0,0,0.6)]">
+                    {slide.title}
+                  </h2>
+                </motion.div>
+
+                <motion.div
+                  custom={1}
+                  initial="hidden"
+                  animate="visible"
+                  variants={textVariants}
+                  className="max-w-[690px]"
+                  data-swiper-parallax="400"
+                >
+                  <p className="mb-10 text-[24px] md:text-[32px] font-medium text-[#f0f0f0] opacity-85 drop-shadow-[1px_2px_4px_rgba(0,0,0,0.6)]">
+                    {slide.subtitle}
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  custom={2}
+                  initial="hidden"
+                  animate="visible"
+                  variants={textVariants}
+                  className="max-w-[690px]"
+                  data-swiper-parallax="500"
+                >
+                  <a
+                    href={slide.buttonLink}
+                    className="inline-block px-8 py-[10px] text-[20px] font-medium uppercase transition-all duration-300 rounded bg-white/85 text-[#1a1a2e] hover:bg-[#d4574e] hover:text-white"
+                  >
+                    {slide.buttonText}
+                  </a>
+                </motion.div>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      {/* Custom Arrows */}
+      <button
+        onClick={() => swiperRef?.slidePrev()}
+        className="absolute z-30 left-[25px] top-1/2 -translate-y-1/2 w-[55px] h-[55px] rounded-full border-2 border-[#f0f0f0] text-[#f0f0f0] flex items-center justify-center opacity-0 invisible translate-x-[50px] transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-x-0 hover:bg-white/10"
+        aria-label="Previous Slide"
+      >
+        <FaArrowLeft size={15} />
+      </button>
+
+      <button
+        onClick={() => swiperRef?.slideNext()}
+        className="absolute z-30 right-[25px] top-1/2 -translate-y-1/2 w-[55px] h-[55px] rounded-full border-2 border-[#f0f0f0] text-[#f0f0f0] flex items-center justify-center opacity-0 invisible -translate-x-[50px] transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-x-0 hover:bg-white/10"
+        aria-label="Next Slide"
+      >
+        <FaArrowRight size={15} />
+      </button>
+    </section>
   );
 };
 

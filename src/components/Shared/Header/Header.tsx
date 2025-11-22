@@ -22,13 +22,15 @@ const Header: React.FC = () => {
 
   return (
     <header className="z-50 w-full">
-      <Topbar isSticky={isSticky} />
+      <div className="top-bar">
+        <Topbar isSticky={isSticky} />
+      </div>
       <div
         className={`bg-white shadow-sm border-b border-green-100 w-full transition-all duration-300 ${
           isSticky ? "fixed top-0 left-0 right-0 z-50" : "relative"
         }`}
       >
-        <div className="container flex items-center justify-between px-4 py-3 mx-auto">
+        <div className="container flex items-center justify-between px-4 py-3 mx-auto header-container">
           <Logo />
           <DesktopMenu />
           <div className="items-center hidden space-x-3 lg:flex">
@@ -43,13 +45,13 @@ const Header: React.FC = () => {
             {/* Join Button as a pill */}
             <a
               href="/join"
-              className="px-6 border-0 rounded-full btn btn-primary btn-sm bg-site-accent"
+              className="px-6 border-0 rounded-full btn btn-primary btn-sm bg-site-primary"
             >
               Join
             </a>
           </div>
 
-          <div className="lg:hidden">
+          {/* <div className="lg:hidden">
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="btn btn-ghost"
@@ -69,12 +71,8 @@ const Header: React.FC = () => {
                 />
               </svg>
             </button>
-          </div>
+          </div> */}
         </div>
-        <MobileDrawer
-          isOpen={mobileOpen}
-          closeDrawer={() => setMobileOpen(false)}
-        />
       </div>
     </header>
   );
