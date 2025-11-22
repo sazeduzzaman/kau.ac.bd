@@ -1,25 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
+    "target": "ES2022",                  // Modern JS target
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": true,                     // Allow JS files if needed
+    "skipLibCheck": true,                // Skip type checking of node_modules
+    "strict": true,                      // Enable strict type-checking
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,  
+    "outDir": "dist", // ✅ Output directory                     // Next.js handles build, no need to emit JS
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "jsx": "preserve",
+    "incremental": true,                  // Faster rebuilds
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"]                  // Allows import like "@/components/Navbar"
     }
   },
   "include": [
@@ -27,8 +24,11 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "out"
+  ]
 }
