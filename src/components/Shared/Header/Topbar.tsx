@@ -26,30 +26,30 @@ const Topbar: React.FC<TopbarProps> = ({ isSticky }) => {
       <div className="container flex items-center justify-between px-4 py-1 mx-auto">
         {/* Social Icons */}
         <div className="flex space-x-2">
-          <a
+          <Link
             href="#"
             className="flex items-center justify-center w-6 h-6 text-black transition bg-white rounded-full hover:bg-blue-700"
           >
             <FaFacebookF size={12} />
-          </a>
-          <a
+          </Link>
+          <Link
             href="#"
             className="flex items-center justify-center w-6 h-6 text-black transition bg-white rounded-full hover:bg-blue-500"
           >
             <FaTwitter size={12} />
-          </a>
-          <a
+          </Link>
+          <Link
             href="#"
             className="flex items-center justify-center w-6 h-6 text-black transition bg-white rounded-full hover:bg-pink-600"
           >
             <FaInstagram size={12} />
-          </a>
-          <a
+          </Link>
+          <Link
             href="#"
             className="flex items-center justify-center w-6 h-6 text-black transition bg-white rounded-full hover:bg-blue-800"
           >
             <FaLinkedinIn size={12} />
-          </a>
+          </Link>
         </div>
 
         {/* Right Links */}

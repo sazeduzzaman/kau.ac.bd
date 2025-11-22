@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 import "swiper/css";
@@ -56,16 +56,6 @@ const slides: Slide[] = [
 const HeroSection: React.FC = () => {
   const [swiperRef, setSwiperRef] = useState<SwiperType | null>(null);
 
-  // Framer Motion variants
-  const textVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
-
   return (
     <section className="relative w-full h-[850px] font-rajdhani bg-[#1a1a2e] text-[#f0f0f0] group overflow-hidden">
       <Swiper
@@ -94,18 +84,18 @@ const HeroSection: React.FC = () => {
 
               <div className="container relative z-20 max-w-[1200px] px-[15px] mx-auto text-left">
                 <motion.h2
-                  initial="hidden"
-                  animate="visible"
-                  variants={textVariants}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
                   className="mb-10 text-[60px] md:text-[100px] font-semibold leading-[1.1] text-white uppercase drop-shadow-[1px_2px_4px_rgba(0,0,0,0.6)]"
                 >
                   {slide.title}
                 </motion.h2>
 
                 <motion.p
-                  initial="hidden"
-                  animate="visible"
-                  variants={textVariants}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
                   className="mb-10 text-[24px] md:text-[32px] font-medium text-[#f0f0f0] opacity-85 drop-shadow-[1px_2px_4px_rgba(0,0,0,0.6)]"
                 >
                   {slide.subtitle}
@@ -114,7 +104,7 @@ const HeroSection: React.FC = () => {
                 <motion.a
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6, duration: 0.8 }}
+                  transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
                   href={slide.buttonLink}
                   className="inline-block px-8 py-[10px] text-[20px] font-medium uppercase transition-all duration-300 rounded bg-white/85 text-[#1a1a2e] hover:bg-[#d4574e] hover:text-white"
                 >

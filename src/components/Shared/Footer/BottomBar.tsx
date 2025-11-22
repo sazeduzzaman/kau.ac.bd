@@ -21,12 +21,12 @@ const BottomBar = () => {
             >
               <FaBars className="mb-1 text-2xl" />
             </button>
-            <a
+            <Link
               href="/search"
               className="flex flex-col items-center text-sm text-gray-700 transition-all hover:text-site-primary hover:scale-110"
             >
               <FaSearch className="mb-1 text-2xl" />
-            </a>
+            </Link>
           </div>
 
           {/* Center Home */}

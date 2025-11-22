@@ -18,11 +18,11 @@ const roboto = Poppins({
 });
 // Initialize the font
 const rajdhani = Rajdhani({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-rajdhani',
-  display: 'swap',
-})
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-rajdhani",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "খুলনা কৃষি বিশ্ববিদ্যালয় | Khulna Agricultural University",

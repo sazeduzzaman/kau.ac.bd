@@ -6,6 +6,7 @@ import Logo from "./Logo";
 import DesktopMenu from "./DesktopMenu";
 import MobileDrawer from "./MobileDrawer";
 import { TfiSearch } from "react-icons/tfi";
+import Link from "next/link";
 
 const Header: React.FC = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -43,12 +44,12 @@ const Header: React.FC = () => {
             </button>
             <span className="text-site-primary">|</span>
             {/* Join Button as a pill */}
-            <a
+            <Link
               href="/join"
               className="px-6 border-0 rounded-full btn btn-primary btn-sm bg-site-primary"
             >
               Join
-            </a>
+            </Link>
           </div>
 
           {/* <div className="lg:hidden">

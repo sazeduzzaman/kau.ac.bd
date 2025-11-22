@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
+import React from "react";
 
 interface MobileDrawerProps {
   isOpen: boolean;
@@ -15,62 +15,74 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, closeDrawer }) => {
         isOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
-      <div className="flex justify-between items-center p-4 border-b">
-        <h2 className="font-bold text-lg">Menu</h2>
-        <button onClick={closeDrawer} className="text-gray-700 text-xl">
+      <div className="flex items-center justify-between p-4 border-b">
+        <h2 className="text-lg font-bold">Menu</h2>
+        <button onClick={closeDrawer} className="text-xl text-gray-700">
           ✕
         </button>
       </div>
       <ul className="flex flex-col p-4 space-y-2">
         <li>
-          <Link href="/" className="block px-2 py-2 hover:bg-gray-100 rounded">
+          <Link href="/" className="block px-2 py-2 rounded hover:bg-gray-100">
             Home
           </Link>
         </li>
 
         <li>
           <details>
-            <summary className="cursor-pointer px-2 py-2 hover:bg-gray-100 rounded">
+            <summary className="px-2 py-2 rounded cursor-pointer hover:bg-gray-100">
               Service
             </summary>
-            <ul className="pl-4 mt-1 flex flex-col space-y-1">
+            <ul className="flex flex-col pl-4 mt-1 space-y-1">
               <li>
                 <details>
-                  <summary className="cursor-pointer px-2 py-2 hover:bg-gray-100 rounded">
+                  <summary className="px-2 py-2 rounded cursor-pointer hover:bg-gray-100">
                     Category 1
                   </summary>
-                  <ul className="pl-4 flex flex-col space-y-1">
+                  <ul className="flex flex-col pl-4 space-y-1">
                     <li>
                       <details>
-                        <summary className="cursor-pointer px-2 py-2 hover:bg-gray-100 rounded">
+                        <summary className="px-2 py-2 rounded cursor-pointer hover:bg-gray-100">
                           Subcategory 1
                         </summary>
-                        <ul className="pl-4 flex flex-col space-y-1">
+                        <ul className="flex flex-col pl-4 space-y-1">
                           <li>
-                            <a className="px-2 py-2 hover:bg-gray-100 rounded block">
+                            <Link
+                              href="/"
+                              className="block px-2 py-2 rounded hover:bg-gray-100"
+                            >
                               Sub Subcategory 1
-                            </a>
+                            </Link>
                           </li>
                           <li>
-                            <a className="px-2 py-2 hover:bg-gray-100 rounded block">
+                            <Link
+                              href="/"
+                              className="block px-2 py-2 rounded hover:bg-gray-100"
+                            >
                               Sub Subcategory 2
-                            </a>
+                            </Link>
                           </li>
                         </ul>
                       </details>
                     </li>
                     <li>
-                      <a className="px-2 py-2 hover:bg-gray-100 rounded block">
+                      <Link
+                        href="/"
+                        className="block px-2 py-2 rounded hover:bg-gray-100"
+                      >
                         Subcategory 2
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </details>
               </li>
               <li>
-                <a className="px-2 py-2 hover:bg-gray-100 rounded block">
+                <Link
+                  href="/"
+                  className="block px-2 py-2 rounded hover:bg-gray-100"
+                >
                   Category 2
-                </a>
+                </Link>
               </li>
             </ul>
           </details>
@@ -79,7 +91,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, closeDrawer }) => {
         <li>
           <Link
             href="/about"
-            className="block px-2 py-2 hover:bg-gray-100 rounded"
+            className="block px-2 py-2 rounded hover:bg-gray-100"
           >
             About
           </Link>
@@ -87,13 +99,13 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, closeDrawer }) => {
         <li>
           <Link
             href="/contact"
-            className="block px-2 py-2 hover:bg-gray-100 rounded"
+            className="block px-2 py-2 rounded hover:bg-gray-100"
           >
             Contact
           </Link>
         </li>
         <li>
-          <Link href="/apply" className="btn btn-primary w-full mt-2">
+          <Link href="/apply" className="w-full mt-2 btn btn-primary">
             Apply
           </Link>
         </li>

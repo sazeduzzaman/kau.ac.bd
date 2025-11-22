@@ -11,6 +11,7 @@ import {
   FaAngleDoubleRight,
 } from "react-icons/fa";
 import BottomBar from "./BottomBar";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -43,12 +44,12 @@ const Footer = () => {
 
               <div className="flex items-center gap-3">
                 <FaEnvelope className="shrink-0" />
-                <a
+                <Link
                   href="mailto:admission@kau.edu.bd"
                   className="hover:underline"
                 >
                   admission@kau.edu.bd
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -71,12 +72,12 @@ const Footer = () => {
                   "Textile Engineering",
                 ].map((item, index) => (
                   <li key={index}>
-                    <a
+                    <Link
                       href="#"
                       className="flex items-center gap-2 transition-all duration-300 hover:ml-2"
                     >
                       <FaAngleDoubleRight className="text-xs" /> {item}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -97,12 +98,12 @@ const Footer = () => {
                   "Forms",
                 ].map((item, index) => (
                   <li key={index}>
-                    <a
+                    <Link
                       href="#"
                       className="flex items-center gap-2 transition-all duration-300 hover:ml-2"
                     >
                       <FaAngleDoubleRight className="text-xs" /> {item}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -117,12 +118,12 @@ const Footer = () => {
                 {["Contact Us", "Campus Map", "Photo Gallery"].map(
                   (item, index) => (
                     <li key={index}>
-                      <a
+                      <Link
                         href="#"
                         className="flex items-center gap-2 transition-all duration-300 hover:ml-2"
                       >
                         <FaAngleDoubleRight className="text-xs" /> {item}
-                      </a>
+                      </Link>
                     </li>
                   )
                 )}
@@ -130,36 +131,36 @@ const Footer = () => {
 
               <h6 className="mb-4 font-serif text-lg font-bold">Follow Us</h6>
               <div className="flex gap-3">
-                <a
+                <Link
                   href="#"
                   className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
                 >
                   <FaFacebookF />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
                 >
                   <FaYoutube />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
                 >
                   <FaTwitter />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
                 >
                   <FaLinkedinIn />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
                 >
                   <FaInstagram />
-                </a>
+                </Link>
               </div>
             </div>
           </div>

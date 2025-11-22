@@ -18,6 +18,7 @@ const menuItems: MenuItemType[] = [
     label: "About Us",
     href: "/about",
     children: [
+      { label: "About", href: "/about" },
       { label: "History", href: "/about/history" },
       { label: "Mission", href: "/about/mission" },
     ],
