@@ -1,11 +1,12 @@
-import React from 'react';
+import HeroSection from "@/components/HomePage/HeroSection/HeroSection";
+import React from "react";
 
 const page = () => {
   return (
-    <div>
-      ku page is live
-    </div>
+    <>
+      <HeroSection />
+    </>
   );
 };
-  
+
 export default page;

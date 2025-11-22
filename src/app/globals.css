@@ -1,2 +1,51 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+:root {
+  /* Fonts */
+  --font-heading: "Merriweather", serif;
+  --font-body: "Poppins", sans-serif;
+
+  --site-primary: #00a63e;
+  --site-accent: #02a1c8;
+  --site-dark: #333333;
+  --site-light: #ffffff;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+.bg-site-primary {
+  background-color: var(--site-primary) !important;
+}
+
+.bg-site-accent {
+  background-color: var(--site-accent) !important;
+}
+
+.text-site-primary {
+  color: var(--site-primary) !important;
+}
+
+.text-site-accent {
+  color: var(--site-accent) !important;
+}
+
+/* Custom Css */
+.top-bar {
+  background-image: url("/images/topbar-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* Custom Css End */

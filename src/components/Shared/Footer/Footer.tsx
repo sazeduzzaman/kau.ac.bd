@@ -1,43 +1,178 @@
 import React from "react";
+import {
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaFacebookF,
+  FaYoutube,
+  FaTwitter,
+  FaLinkedinIn,
+  FaInstagram,
+  FaAngleDoubleRight,
+} from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
-      <nav>
-        <h6 className="footer-title">Services</h6>
-        <a className="link link-hover">Branding</a>
-        <a className="link link-hover">Design</a>
-        <a className="link link-hover">Marketing</a>
-        <a className="link link-hover">Advertisement</a>
-      </nav>
-      <nav>
-        <h6 className="footer-title">Company</h6>
-        <a className="link link-hover">About us</a>
-        <a className="link link-hover">Contact</a>
-        <a className="link link-hover">Jobs</a>
-        <a className="link link-hover">Press kit</a>
-      </nav>
-      <nav>
-        <h6 className="footer-title">Legal</h6>
-        <a className="link link-hover">Terms of use</a>
-        <a className="link link-hover">Privacy policy</a>
-        <a className="link link-hover">Cookie policy</a>
-      </nav>
-      <form>
-        <h6 className="footer-title">Newsletter</h6>
-        <fieldset className="w-80">
-          <label>Enter your email address</label>
-          <div className="join">
-            <input
-              type="text"
-              placeholder="username@site.com"
-              className="input input-bordered join-item"
-            />
-            <button className="btn btn-primary join-item">Subscribe</button>
+    // Using a specific kau hex code to match the image, or use your 'bg-site-primary'
+    <div className="bg-[#006837] text-white">
+      <footer className="container px-4 mx-auto py-14">
+        <div className="grid grid-cols-1 gap-8 text-sm md:grid-cols-2 lg:grid-cols-4">
+          {/* Column 1: Find Us */}
+          <div className="flex flex-col gap-4">
+            <h6 className="mb-2 font-serif text-lg font-bold">Find Us</h6>
+
+            <div className="flex gap-3">
+              <FaMapMarkerAlt className="mt-1 text-lg shrink-0" />
+              <p>
+                Purbachal American City, Kanchan, Rupganj, Narayanganj-1461,
+                Dhaka, Bangladesh
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <FaPhoneAlt className="shrink-0" />
+              <p>+880 9614482482</p>
+            </div>
+
+            <div className="text-gray-200 pl-7">
+              <p>01324713503, 01324713502, 01324713504,</p>
+              <p>01324713505, 01324713506, 01324713507,</p>
+              <p>01324713508</p>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <FaEnvelope className="shrink-0" />
+              <a href="mailto:admission@kau.edu.bd" className="hover:underline">
+                admission@kau.edu.bd
+              </a>
+            </div>
           </div>
-        </fieldset>
-      </form>
-    </footer>
+
+          {/* Column 2: Departmental Sites */}
+          <div>
+            <h6 className="mb-4 font-serif text-lg font-bold">
+              Departmental Sites
+            </h6>
+            <ul className="space-y-2">
+              {[
+                "Business Administration",
+                "Computer Science And Engineering",
+                "Software Engineering",
+                "Artificial Intelligence & Data Science",
+                "Electrical And Electronic Engineering",
+                "English",
+                "Journalism And Media Communication",
+                "Law",
+                "Sociology And Anthropology",
+                "Textile Engineering",
+              ].map((item, index) => (
+                <li key={index}>
+                  <a
+                    href="#"
+                    className="flex items-center gap-2 transition-all duration-300 hover:ml-2"
+                  >
+                    <FaAngleDoubleRight className="text-xs" /> {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Useful Links */}
+          <div>
+            <h6 className="mb-4 font-serif text-lg font-bold">Useful Links</h6>
+            <ul className="space-y-2">
+              {[
+                "Convocation",
+                "Archived Website",
+                "STI",
+                "ITD",
+                "FAQ",
+                "Forms",
+              ].map((item, index) => (
+                <li key={index}>
+                  <a
+                    href="#"
+                    className="flex items-center gap-2 transition-all duration-300 hover:ml-2"
+                  >
+                    <FaAngleDoubleRight className="text-xs" /> {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Get in touch & Follow Us */}
+          <div>
+            <h6 className="mb-4 font-serif text-lg font-bold">Get in touch</h6>
+            <ul className="mb-8 space-y-2">
+              {["Contact Us", "Campus Map", "Photo Gallery"].map(
+                (item, index) => (
+                  <li key={index}>
+                    <a
+                      href="#"
+                      className="flex items-center gap-2 transition-all duration-300 hover:ml-2"
+                    >
+                      <FaAngleDoubleRight className="text-xs" /> {item}
+                    </a>
+                  </li>
+                )
+              )}
+            </ul>
+
+            <h6 className="mb-4 font-serif text-lg font-bold">Follow Us</h6>
+            <div className="flex gap-3">
+              <a
+                href="#"
+                className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
+              >
+                <FaFacebookF />
+              </a>
+              <a
+                href="#"
+                className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
+              >
+                <FaYoutube />
+              </a>
+              <a
+                href="#"
+                className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
+              >
+                <FaTwitter />
+              </a>
+              <a
+                href="#"
+                className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
+              >
+                <FaLinkedinIn />
+              </a>
+              <a
+                href="#"
+                className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
+              >
+                <FaInstagram />
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* Bottom Copyright Section */}
+      <div className="border-t border-white/30">
+        <div className="container flex flex-col items-center justify-between px-4 py-6 mx-auto text-sm md:flex-row">
+          <p>
+            © 2003-2025{" "}
+            <span className="text-[#4ade80]">
+              Khulna Agricultural University
+            </span>
+            . All Rights Reserved.
+          </p>
+          <p>
+            Developed By <span className="text-[#4ade80]">Digixsolve</span>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 
