@@ -1,17 +1,26 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { motion } from "framer-motion"; // For animation
+import { motion, Variants } from "framer-motion";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-const slides = [
+interface Slide {
+  id: number;
+  title: string;
+  subtitle: string;
+  buttonText: string;
+  buttonLink: string;
+  image: string;
+}
+
+const slides: Slide[] = [
   {
     id: 1,
     title: "BUILD YOUR DIGITAL PRESENCE",
@@ -45,141 +54,79 @@ const slides = [
 ];
 
 const HeroSection: React.FC = () => {
-  const [isMounted, setIsMounted] = useState(false);
   const [swiperRef, setSwiperRef] = useState<SwiperType | null>(null);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  const INTERLEAVE_OFFSET = 0.5;
-
-  const handleProgress = useCallback((swiper: SwiperType) => {
-    for (let i = 0; i < swiper.slides.length; i++) {
-      const slide = swiper.slides[i];
-      const slideProgress = (slide as any).progress;
-      const innerOffset = swiper.width * INTERLEAVE_OFFSET;
-      const innerTranslate = slideProgress * innerOffset;
-
-      const slideInner = slide.querySelector(".slide-inner") as HTMLElement;
-      if (slideInner) {
-        slideInner.style.transform = `translate3d(${innerTranslate}px, 0, 0)`;
-      }
-    }
-  }, []);
-
-  const handleTouchStart = useCallback((swiper: SwiperType) => {
-    for (let i = 0; i < swiper.slides.length; i++) {
-      const slide = swiper.slides[i];
-      slide.style.transition = "";
-      const slideInner = slide.querySelector(".slide-inner") as HTMLElement;
-      if (slideInner) slideInner.style.transition = "";
-    }
-  }, []);
-
-  const handleSetTransition = useCallback(
-    (swiper: SwiperType, speed: number) => {
-      for (let i = 0; i < swiper.slides.length; i++) {
-        const slide = swiper.slides[i];
-        slide.style.transition = `${speed}ms`;
-        const slideInner = slide.querySelector(".slide-inner") as HTMLElement;
-        if (slideInner) slideInner.style.transition = `${speed}ms`;
-      }
-    },
-    []
-  );
-
-  if (!isMounted)
-    return <div className="w-full h-[850px] bg-[#1a1a2e] animate-pulse" />;
-
-  // Animation variants for framer-motion
+  // Framer Motion variants
   const textVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
   };
 
   return (
-    <section className="relative w-full h-[850px] font-rajdhani bg-[#1a1a2e] text-[#f0f0f0] group">
+    <section className="relative w-full h-[850px] font-rajdhani bg-[#1a1a2e] text-[#f0f0f0] group overflow-hidden">
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         onSwiper={setSwiperRef}
         speed={1000}
-        loop={true}
-        watchSlidesProgress={true}
+        loop
+        watchSlidesProgress
         autoplay={{ delay: 6500, disableOnInteraction: false }}
         pagination={{
           clickable: true,
-          bulletClass: `swiper-pagination-bullet !bg-white !opacity-40 !w-3 !h-3 !transition-opacity !duration-200`,
-          bulletActiveClass: `swiper-pagination-bullet-active !opacity-100`,
+          bulletClass:
+            "swiper-pagination-bullet !bg-white !opacity-40 !w-3 !h-3 !transition-opacity !duration-200",
+          bulletActiveClass: "swiper-pagination-bullet-active !opacity-100",
         }}
         navigation={false}
-        on={{
-          progress: handleProgress,
-          touchStart: handleTouchStart,
-          setTransition: handleSetTransition,
-        }}
         className="h-full"
       >
         {slides.map((slide) => (
-          <SwiperSlide key={slide.id} className="overflow-hidden">
+          <SwiperSlide key={slide.id}>
             <div
-              className="relative flex items-center justify-center w-full h-full bg-center bg-cover slide-inner"
-              style={{
-                backgroundImage: `url(${slide.image})`,
-                transform: "translate3d(0,0,0)",
-              }}
+              className="relative flex items-center justify-center w-full h-full bg-center bg-cover"
+              style={{ backgroundImage: `url(${slide.image})` }}
             >
               <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#1a1a2e99] to-[#1a1a2ee6]" />
 
               <div className="container relative z-20 max-w-[1200px] px-[15px] mx-auto text-left">
-                <motion.div
-                  custom={0}
+                <motion.h2
                   initial="hidden"
                   animate="visible"
                   variants={textVariants}
-                  className="max-w-[690px]"
-                  data-swiper-parallax="300"
+                  className="mb-10 text-[60px] md:text-[100px] font-semibold leading-[1.1] text-white uppercase drop-shadow-[1px_2px_4px_rgba(0,0,0,0.6)]"
                 >
-                  <h2 className="mb-10 text-[60px] md:text-[100px] font-semibold leading-[1.1] text-white uppercase drop-shadow-[1px_2px_4px_rgba(0,0,0,0.6)]">
-                    {slide.title}
-                  </h2>
-                </motion.div>
+                  {slide.title}
+                </motion.h2>
 
-                <motion.div
-                  custom={1}
+                <motion.p
                   initial="hidden"
                   animate="visible"
                   variants={textVariants}
-                  className="max-w-[690px]"
-                  data-swiper-parallax="400"
+                  className="mb-10 text-[24px] md:text-[32px] font-medium text-[#f0f0f0] opacity-85 drop-shadow-[1px_2px_4px_rgba(0,0,0,0.6)]"
                 >
-                  <p className="mb-10 text-[24px] md:text-[32px] font-medium text-[#f0f0f0] opacity-85 drop-shadow-[1px_2px_4px_rgba(0,0,0,0.6)]">
-                    {slide.subtitle}
-                  </p>
-                </motion.div>
+                  {slide.subtitle}
+                </motion.p>
 
-                <motion.div
-                  custom={2}
-                  initial="hidden"
-                  animate="visible"
-                  variants={textVariants}
-                  className="max-w-[690px]"
-                  data-swiper-parallax="500"
+                <motion.a
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.8 }}
+                  href={slide.buttonLink}
+                  className="inline-block px-8 py-[10px] text-[20px] font-medium uppercase transition-all duration-300 rounded bg-white/85 text-[#1a1a2e] hover:bg-[#d4574e] hover:text-white"
                 >
-                  <a
-                    href={slide.buttonLink}
-                    className="inline-block px-8 py-[10px] text-[20px] font-medium uppercase transition-all duration-300 rounded bg-white/85 text-[#1a1a2e] hover:bg-[#d4574e] hover:text-white"
-                  >
-                    {slide.buttonText}
-                  </a>
-                </motion.div>
+                  {slide.buttonText}
+                </motion.a>
               </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
 
-      {/* Custom Arrows */}
+      {/* Custom Navigation Arrows */}
       <button
         onClick={() => swiperRef?.slidePrev()}
         className="absolute z-30 left-[25px] top-1/2 -translate-y-1/2 w-[55px] h-[55px] rounded-full border-2 border-[#f0f0f0] text-[#f0f0f0] flex items-center justify-center opacity-0 invisible translate-x-[50px] transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-x-0 hover:bg-white/10"
