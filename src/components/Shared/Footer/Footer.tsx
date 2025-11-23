@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import BottomBar from "./BottomBar";
 import Link from "next/link";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -25,30 +26,29 @@ const Footer = () => {
 
               <div className="flex gap-3">
                 <FaMapMarkerAlt className="mt-1 text-lg shrink-0" />
-                <p>
-                  Khulna Agricultural University, Bangladesh
-                </p>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <FaPhoneAlt className="shrink-0" />
-                <p>+880 9614482482</p>
-              </div>
-
-              <div className="text-gray-200 pl-7">
-                <p>01324713503, 01324713502, 01324713504,</p>
-                <p>01324713505, 01324713506, 01324713507,</p>
-                <p>01324713508</p>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <FaEnvelope className="shrink-0" />
-                <Link
-                  href="mailto:admission@kau.edu.bd"
-                  className="hover:underline"
-                >
-                  admission@kau.edu.bd
-                </Link>
+                <div>
+                  <p>
+                    <strong>Temporary Campus:</strong> <br />
+                    <span>
+                      Khulna Agricultural University Daulatpur Collegiate
+                      School, Deyana Daulatpur, Khulna, Bangladesh.
+                    </span>
+                  </p>
+                  <p className="mt-2">
+                    <strong>Khulna Office:</strong> <br />
+                    <span>
+                      Khulna Agricultural University House # 200 (First Phase)
+                      Road # 12, Sonadanga R/A Sonadanga, Khulna, Bangladesh.
+                    </span>
+                  </p>
+                  <p className="mt-2">
+                    <strong>Guest house:</strong> <br />
+                    <span>
+                      Khulna Agricultural University House # 495 (1st Floor)
+                      Road # 32 Mohakhali DOHS, Dhaka, Bangladesh.
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -81,7 +81,6 @@ const Footer = () => {
                 ))}
               </ul>
             </div>
-
             {/* Column 3: Useful Links */}
             <div>
               <h6 className="mb-4 font-serif text-lg font-bold">
@@ -89,12 +88,11 @@ const Footer = () => {
               </h6>
               <ul className="space-y-2">
                 {[
-                  "Convocation",
-                  "Archived Website",
-                  "STI",
-                  "ITD",
-                  "FAQ",
-                  "Forms",
+                  "Leave Application",
+                  "খুকৃবি পর্যায়োন্নয়ন আবেদনপত্র ফরম",
+                  "যৌন নিপীড়ন প্রতিরোধকল্পে গঠিত অভিযোগ কমিটি",
+                  "Tender",
+                  "Ethical Approval Application",
                 ].map((item, index) => (
                   <li key={index}>
                     <Link
@@ -110,56 +108,75 @@ const Footer = () => {
 
             {/* Column 4: Get in touch & Follow Us */}
             <div>
-              <h6 className="mb-4 font-serif text-lg font-bold">
-                Get in touch
-              </h6>
-              <ul className="mb-8 space-y-2">
-                {["Contact Us", "Campus Map", "Photo Gallery"].map(
-                  (item, index) => (
-                    <li key={index}>
-                      <Link
-                        href="#"
-                        className="flex items-center gap-2 transition-all duration-300 hover:ml-2"
-                      >
-                        <FaAngleDoubleRight className="text-xs" /> {item}
-                      </Link>
-                    </li>
-                  )
-                )}
-              </ul>
+              <div>
+                <h6 className="mb-4 font-serif text-lg font-bold">
+                  Get in touch
+                </h6>
+                <span>
+                  Md. Rezaul Islam <br /> <span>Registrar (In Charge)</span>
+                </span>
+                <div className="flex items-center gap-3 mt-2">
+                  <FaPhoneAlt className="shrink-0" />
+                  <p>
+                    <a href="call:+880 9614482482">+880 9614482482</a>
+                  </p>
+                </div>
 
-              <h6 className="mb-4 font-serif text-lg font-bold">Follow Us</h6>
-              <div className="flex gap-3">
-                <Link
-                  href="#"
-                  className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
-                >
-                  <FaFacebookF />
-                </Link>
-                <Link
-                  href="#"
-                  className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
-                >
-                  <FaYoutube />
-                </Link>
-                <Link
-                  href="#"
-                  className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
-                >
-                  <FaTwitter />
-                </Link>
-                <Link
-                  href="#"
-                  className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
-                >
-                  <FaLinkedinIn />
-                </Link>
-                <Link
-                  href="#"
-                  className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
-                >
-                  <FaInstagram />
-                </Link>
+                <div className="flex items-center gap-3">
+                  <FaEnvelope className="shrink-0" />
+                  <Link
+                    href="mailto:admission@kau.edu.bd"
+                    className="hover:underline"
+                  >
+                    admission@kau.edu.bd
+                  </Link>
+                </div>
+              </div>
+
+              <div className="mt-5">
+                <h6 className="mb-4 font-serif text-lg font-bold">Follow Us</h6>
+                <div className="flex gap-3">
+                  <Link
+                    href="#"
+                    className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
+                  >
+                    <FaFacebookF />
+                  </Link>
+                  <Link
+                    href="#"
+                    className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
+                  >
+                    <FaYoutube />
+                  </Link>
+                  <Link
+                    href="#"
+                    className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
+                  >
+                    <FaTwitter />
+                  </Link>
+                  <Link
+                    href="#"
+                    className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
+                  >
+                    <FaLinkedinIn />
+                  </Link>
+                  <Link
+                    href="#"
+                    className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
+                  >
+                    <FaInstagram />
+                  </Link>
+                </div>
+                <div className="mt-5">
+                  <Image
+                    width={200}
+                    height={50}
+                    style={{ objectFit: "contain" }}
+                    priority
+                    src="/images/footer-call.jpg"
+                    alt="QR Code"
+                  ></Image>
+                </div>
               </div>
             </div>
           </div>
@@ -181,7 +198,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      
     </>
   );
 };
