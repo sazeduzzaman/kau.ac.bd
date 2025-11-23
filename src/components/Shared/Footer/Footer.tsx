@@ -26,8 +26,7 @@ const Footer = () => {
               <div className="flex gap-3">
                 <FaMapMarkerAlt className="mt-1 text-lg shrink-0" />
                 <p>
-                  Purbachal American City, Kanchan, Rupganj, Narayanganj-1461,
-                  Dhaka, Bangladesh
+                  Khulna Agricultural University, Bangladesh
                 </p>
               </div>
 
