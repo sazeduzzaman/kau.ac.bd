@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { FaBullhorn } from "react-icons/fa";
 
 const BreakingMarquee = ({ items }) => {
@@ -12,7 +11,7 @@ const BreakingMarquee = ({ items }) => {
         </div>
 
         {/* Gradient Fade Left */}
-        <div className=" bg-gradient-to-r from-[#498dbd] to-transparent z-10" />
+        <div className="bg-gradient-to-r from-[#498dbd] to-transparent z-10" />
 
         {/* Marquee Area */}
         <div className="overflow-hidden whitespace-nowrap">
