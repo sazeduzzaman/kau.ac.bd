@@ -83,6 +83,17 @@ h6 {
   margin-bottom: 30px !important;
   padding: 5px !important;
 }
+
+.faculty-icon {
+  font-size: 130px !important;
+  opacity: 0.1;
+  position: relative;
+  bottom: -118px;
+  left: 232px;
+}
+.faculty-cards:hover .faculty-icon {
+  opacity: 0.2;
+}
 @media screen and (max-width: 600px) {
   .top-bar {
     display: none !important;
