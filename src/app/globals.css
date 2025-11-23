@@ -6,8 +6,9 @@
   --font-heading: "Merriweather", serif;
   --font-body: "Poppins", sans-serif;
 
-  --site-primary: #00a63e;
-  --site-accent:  #02a1c8;
+  --site-primary: #498dbd;
+  --site-secondary: #8b5e3b;
+  --site-accent: #00a63e;
   --site-dark: #333333;
   --site-light: #ffffff;
 }
@@ -40,16 +41,20 @@ h6 {
 .text-site-accent {
   color: var(--site-accent) !important;
 }
+.text-site-secondary {
+  color: var(--site-secondary) !important;
+}
 
 /* Custom Css */
 .top-bar {
-  background-image: url("/images/topbar-bg.png");
+  /* background-image: url("/images/topbar-bg.png"); */
+  background-color: var(--site-primary);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 .footer-bg-secondary {
-  background-image: url("/images/footer-bg-overlay.png");
+  background-image: url("/images/skyblue-footer-bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -62,11 +67,11 @@ h6 {
   background: var(--swiper-pagination-color, var(--swiper-theme-color));
 }
 .swiper-pagination-bullet {
-    background: rgb(255, 255, 255) !important;
-    border-radius: 10px !important;
-    width: 30px !important;
-    margin-bottom: 30px !important;
-    padding: 5px !important;
+  background: rgb(255, 255, 255) !important;
+  border-radius: 10px !important;
+  width: 30px !important;
+  margin-bottom: 30px !important;
+  padding: 5px !important;
 }
 @media screen and (max-width: 600px) {
   .top-bar {

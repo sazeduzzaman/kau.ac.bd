@@ -15,69 +15,116 @@ interface MenuItemType {
 const menuItems: MenuItemType[] = [
   { label: "Home", href: "/" },
   {
-    label: "About Us",
+    label: "About",
     href: "/about",
     children: [
-      { label: "About", href: "/about" },
-      { label: "History", href: "/about/history" },
-      { label: "Mission", href: "/about/mission" },
+      { label: "KAU at a Glance", href: "/about" },
+      { label: "Chancellor", href: "/about/history" },
+      { label: "Vice-Chancellor", href: "/about/mission" },
+      { label: "Pro Vice-Chancellor", href: "/about/mission" },
+      { label: "Treasurer", href: "/about/mission" },
+      { label: "Mission and Vision", href: "/about/mission" },
     ],
   },
-  { label: "Administration", href: "/admin" },
+  {
+    label: "Administration",
+    href: "#",
+    children: [
+      {
+        label: "Authorities",
+        href: "#",
+        children: [
+          { label: "Syndicate", href: "/ug" },
+          { label: "Academic Council", href: "/ug" },
+          { label: "Committees", href: "/pg" },
+        ],
+      },
+      {
+        label: "Administrative",
+        href: "#",
+        children: [
+          { label: "Office of the VC", href: "/ug" },
+          { label: "Office of the Registrar", href: "/ug" },
+          { label: "Council Section", href: "/ug" },
+          { label: "Public Relations & Publications Office", href: "/ug" },
+          { label: "Central Despas", href: "/ug" },
+          { label: "Finance & Accounts Division", href: "/ug" },
+          { label: "ICT Cell", href: "/ug" },
+          { label: "Engineering Division", href: "/pg" },
+          { label: "Office of the Treasurer", href: "/pg" },
+          { label: "Transport Pool", href: "/pg" },
+          { label: "Academic Section", href: "/pg" },
+          { label: "Central Store", href: "/pg" },
+          { label: "Liaison Officer For Academics", href: "/pg" },
+          { label: "Planning, Developments & Works Division", href: "/pg" },
+          { label: "Controller Section", href: "/pg" },
+        ],
+      },
+      {
+        label: "Directorates",
+        href: "#",
+        children: [
+          { label: "Director of Student Affairs", href: "/ug" },
+          { label: "Director of Planning", href: "/pg" },
+          { label: "Director of Finance", href: "/pg" },
+          { label: "Director of IQAC", href: "/pg" },
+          { label: "Director of ICT", href: "/pg" },
+        ],
+      },
+    ],
+  },
   {
     label: "Academics",
     href: "#",
     children: [
-      { label: "Schools", href: "/schools" },
-      { label: "Admission", href: "/admission" },
-      {
-        label: "Ordinances",
-        href: "#",
-        children: [
-          { label: "Undergraduate", href: "/ug" },
-          { label: "Masters", href: "/pg" },
-          {
-            label: "Doctor of Philosophy",
-            href: "#",
-            children: [
-              {
-                label: "Ordinance for the Degree of PhD",
-                href: "/phd-ordinance",
-              },
-            ],
-          },
-        ],
-      },
+      { label: "Faculty", href: "/schools" },
+      { label: "Institutes", href: "/admission" },
     ],
   },
   {
-    label: "Others",
+    label: "Admission",
     href: "#",
     children: [
-      { label: "Schools", href: "/schools" },
-      { label: "Admission", href: "/admission" },
-      {
-        label: "Ordinances",
-        href: "#",
-        children: [
-          { label: "Undergraduate", href: "/ug" },
-          { label: "Masters", href: "/pg" },
-          {
-            label: "Doctor of Philosophy",
-            href: "#",
-            children: [
-              {
-                label: "Ordinance for the Degree of PhD",
-                href: "/phd-ordinance",
-              },
-            ],
-          },
-        ],
-      },
+      { label: "Undergraduate Programs", href: "/schools" },
+      { label: "Graduate Programs", href: "/admission" },
+      { label: "International Students", href: "/admission" },
     ],
   },
-  { label: "Admission", href: "/admission", highlight: true },
-  { label: "Centers & Cells", href: "/centers" },
+  {
+    label: "Research & Innovation",
+    href: "#",
+    children: [
+      { label: "KAURES", href: "/schools" },
+      { label: "CASR", href: "/admission" },
+      { label: "Central Laboratory", href: "/admission" },
+      { label: "Research News", href: "/admission" },
+      { label: "Publications", href: "/admission" },
+      { label: "Center and Institute", href: "/admission" },
+      { label: "Research Collaboration", href: "/admission" },
+      { label: "Innovation", href: "/admission" },
+    ],
+  },
+  {
+    label: "Life at KAU",
+    href: "#",
+    children: [
+      { label: "Students' Dormitory", href: "/schools" },
+      { label: "Teachers' Residence", href: "/admission" },
+      { label: "TSC", href: "/admission" },
+      { label: "Transport", href: "/admission" },
+      { label: "Bank", href: "/admission" },
+      { label: "Student Affairs", href: "/admission" },
+      { label: "Guest House", href: "/admission" },
+      { label: "Cultural Organization and Club", href: "/admission" },
+      { label: "Gymnasium and Sports", href: "/admission" },
+      { label: "Telephone Directory", href: "/admission" },
+      { label: "Library", href: "/admission" },
+      { label: "Central Cafeteria", href: "/admission" },
+      { label: "Central Auditorium", href: "/admission" },
+      { label: "Conference Hall", href: "/admission" },
+    ],
+  },
+  { label: "Desk", href: "/admission", highlight: true },
 ];
 
 const DesktopMenu: React.FC = () => {
@@ -110,7 +157,7 @@ const MenuItem: React.FC<{ item: MenuItemType }> = ({ item }) => {
     >
       <Link
         href={item.href}
-        className={`flex items-center px-4 py-2 transition-all duration-200 mx-1
+        className={`flex items-center px-2 py-2 transition-all duration-200 mx-1
           ${item.highlight ? "text-accent-color" : "text-dark"} 
           ${
             open || isActive
@@ -124,7 +171,7 @@ const MenuItem: React.FC<{ item: MenuItemType }> = ({ item }) => {
 
       {hasChildren && (
         <ul
-          className={`absolute top-full left-0 bg-white shadow-sm  rounded-md transition-all duration-200 z-50 py-2 w-48 ${
+          className={`absolute top-full left-0 bg-white shadow-sm  rounded-md transition-all duration-200 z-50 py-2 w-60 ${
             open ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
         >

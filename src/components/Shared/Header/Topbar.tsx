@@ -19,7 +19,7 @@ const Topbar: React.FC<TopbarProps> = ({ isSticky }) => {
   return (
     <div
       ref={topbarRef}
-      className={`bg-site-primary  text-white text-sm transition-all duration-300 top-bar ${
+      className={`bg-site-primary text-white text-sm transition-all duration-300 top-bar ${
         isSticky ? "opacity-0 h-0 overflow-hidden" : "opacity-100 h-auto"
       }`}
     >
@@ -53,30 +53,73 @@ const Topbar: React.FC<TopbarProps> = ({ isSticky }) => {
         </div>
 
         {/* Right Links */}
-        <div className="flex space-x-3 text-[12px] font-medium">
-          <div className="flex">
-            <div className="flex items-center text-white hover:text-black ">
-              <Link href="/handbook">HANDBOOK</Link>
-            </div>
-            <span className="pb-1 ps-3">|</span>
+        <div className="flex space-x-3 text-[12px] font-medium items-center">
+          {/* APA Link */}
+          <div className="flex items-center">
+            <Link href="/handbook" className="text-white hover:text-black">
+              APA
+            </Link>
+            <span className="ps-2">|</span>
           </div>
-          <div className="flex">
-            <div className="flex items-center text-white hover:text-black ">
-              <Link href="/career">CAREER</Link>
+          {/* Download Dropdown */}
+          <div className="relative group">
+            <Link href="#" className="inline-block text-white hover:text-black">
+              Download
+            </Link>
+            <div className="absolute left-0 z-50 invisible w-40 mt-2 text-black transition-all duration-300 bg-white rounded shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible">
+              <Link
+                href="/downloads/file1.pdf"
+                className="block px-4 py-2 hover:bg-gray-200"
+              >
+                All necessary forms
+              </Link>
+              <Link
+                href="/downloads/file2.pdf"
+                className="block px-4 py-2 hover:bg-gray-200"
+              >
+                For faculty
+              </Link>
+              <Link
+                href="/downloads/file3.pdf"
+                className="block px-4 py-2 hover:bg-gray-200"
+              >
+                For students
+              </Link>
+              <Link
+                href="/downloads/file3.pdf"
+                className="block px-4 py-2 hover:bg-gray-200"
+              >
+                For staff
+              </Link>
             </div>
-            <span className="pb-1 ps-3">|</span>
+            <span className="ps-2">|</span>
           </div>
-          <div className="flex">
-            <div className="flex items-center text-white hover:text-black ">
-              <Link href="/NOC/GO">NOC/GO</Link>
+          <div className="relative group">
+            <Link href="#" className="inline-block text-white hover:text-black">
+              KAU Job
+            </Link>
+            <div className="absolute left-0 z-50 invisible w-40 mt-2 text-black transition-all duration-300 bg-white rounded shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible">
+              <Link
+                href="/downloads/file1.pdf"
+                className="block px-4 py-2 hover:bg-gray-200"
+              >
+                Contractual Job
+              </Link>
+              <Link
+                href="/downloads/file2.pdf"
+                className="block px-4 py-2 hover:bg-gray-200"
+              >
+                Teacher & Officer
+              </Link>
             </div>
-            <span className="pb-1 ps-3">|</span>
+            <span className="ps-2">|</span>
           </div>
-          <div className="flex">
-            <div className="flex items-center text-white hover:text-black ">
-              <Link href="/login">LOGIN</Link>
-            </div>
-            {/* <span className="pb-1 ps-3">|</span> */}
+
+          {/* Login Link */}
+          <div className="flex items-center">
+            <Link href="/login" className="text-white hover:text-black">
+              LOGIN
+            </Link>
           </div>
         </div>
       </div>
