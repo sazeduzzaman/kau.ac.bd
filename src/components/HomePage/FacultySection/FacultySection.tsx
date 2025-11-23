@@ -1,61 +1,89 @@
 import React from "react";
+import {
+  FaLeaf,
+  FaPiggyBank,
+  FaFish,
+  FaChartLine,
+  FaTools,
+  FaSeedling,
+} from "react-icons/fa";
 
 const FacultySection = () => {
   const faculties = [
     {
       title: "Veterinary, Animal and Biomedical Sciences",
       description:
-        "Welcome to the website of the faculty of Veterinary, Animal and Biomedical Sciences of KAU",
+        "Explore the faculty of Veterinary, Animal and Biomedical Sciences, dedicated to advancing animal health and biomedical research.",
+      icon: <FaPiggyBank className="text-4xl text-" />,
       btnText: "Go To VABS",
     },
     {
       title: "Agriculture",
       description:
-        "Welcome to the website of the faculty of Agriculture of KAU",
+        "Join the faculty of Agriculture and learn modern farming techniques, crop science, and sustainable agriculture practices.",
+      icon: <FaLeaf className="text-4xl text-" />,
       btnText: "Go To AG",
     },
     {
       title: "Fisheries & Ocean Sciences",
       description:
-        "Welcome to the website of the faculty of Fisheries & Ocean Sciences of KAU",
+        "Dive into marine biology, fisheries management, and ocean sciences at our dedicated faculty.",
+      icon: <FaFish className="text-4xl text-" />,
       btnText: "Go To FOS",
     },
     {
       title: "Agricultural Economics & Agribusiness Studies",
       description:
-        "Welcome to the website of the faculty of Agricultural Economics & Agribusiness Studies of KAU",
+        "Learn the economics of agriculture, market trends, and business strategies in our AEAS faculty.",
+      icon: <FaChartLine className="text-4xl text-" />,
       btnText: "Go To AEAS",
     },
     {
       title: "Agricultural Engineering & Technology",
       description:
-        "Welcome to the website of the faculty of Agricultural Engineering & Technology of KAU",
+        "Innovate with agricultural machinery, irrigation systems, and sustainable tech in AET faculty.",
+      icon: <FaTools className="text-4xl text-" />,
       btnText: "Go To AET",
+    },
+    {
+      title: "Horticulture & Crop Science",
+      description:
+        "Explore horticulture, crop improvement, and plant biotechnology for sustainable agriculture.",
+      icon: <FaSeedling className="text-4xl text-" />,
+      btnText: "Go To HCS",
     },
   ];
 
   return (
-    <section className="px-4 py-16 bg-slate-50">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center text-[#004d40] mb-12">
-          Faculty of KAU
+    <section className="px-4 py-16 bg-gradient-to-b from-slate-50 to-white">
+      <div className="mx-auto max-w-7xl">
+        <h2 className="mb-12 text-4xl font-extrabold text-center text-site-secondary text-">
+          Faculties of KAU
+          <div className="w-32 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-[#fff] to-[#498dbd]" />
         </h2>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {faculties.map((faculty, index) => (
             <div
               key={index}
-              className="flex flex-col items-start h-full p-8 transition-shadow bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-md"
+              className="flex flex-col items-start h-full p-8 transition-transform transform bg-white border border-gray-100 shadow-lg rounded-xl hover:shadow-2xl hover:scale-105"
             >
-              <h3 className="text-xl font-bold text-[#004d40] mb-4 min-h-[3.5rem]">
+              {/* Icon */}
+              <div className="mb-4 text-site-accent">{faculty.icon}</div>
+
+              <h3 className="text-2xl font-bold text- mb-4 min-h-[3.5rem] uppercase">
                 {faculty.title}
               </h3>
-              <p className="flex-grow mb-8 text-gray-600">
+
+              <p className="flex-grow mb-6 text-gray-600">
                 {faculty.description}
               </p>
-              <button className="px-6 py-2 rounded-full border border-[#004d40] text-[#004d40] font-medium hover:bg-[#004d40] hover:text-white transition-colors duration-300">
-                {faculty.btnText}
-              </button>
+              <a
+                href="#"
+                className="inline-flex items-center gap-2 py-2 transition-all pe-6 text-site-primary "
+              >
+                {faculty.btnText} <span className="text-lg">→</span>
+              </a>
             </div>
           ))}
         </div>

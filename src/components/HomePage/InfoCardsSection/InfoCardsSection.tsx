@@ -27,18 +27,24 @@ const InfoCardsSection = () => {
   ];
 
   return (
-    <section className="relative px-4 py-16 bg-gradient-to-br from-[#eaf2f7] to-[#d6e7f1]">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-[#498dbd] mb-12">
-          Explore KAU
-        </h2>
+    <section className="relative px-4 py-16 bg-gradient-to-br from-[#eaf2f7] to-[#d6e7f1] explore-section">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-10 text-center">
+          <h2 className="text-3xl font-bold text-center text-white md:text-4xl">
+            Explore KAU
+            <div className="w-32 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-[#fff] to-[#498dbd]" />
+          </h2>
+          <p className="pt-3 text-white">
+            Get to know more about KAU. Chek it out{" "}
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((card, index) => (
             <a
               key={index}
               href={card.link}
-              className="flex flex-col items-center justify-center p-8 text-center transition-all duration-500 bg-white/60 backdrop-blur-md cursor-pointer group rounded-3xl hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#498dbd]/20"
+              className="flex flex-col items-center justify-center p-8 text-center transition-all duration-500 bg-white/100 backdrop-blur-md cursor-pointer group rounded-lg hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#498dbd]/20"
             >
               {/* Icon container with gradient & hover effect */}
               <div className="mb-6 flex items-center justify-center w-20 h-20 text-white rounded-full bg-gradient-to-tr from-[#498dbd] to-[#346f96] text-3xl transition-all duration-500 group-hover:scale-110">

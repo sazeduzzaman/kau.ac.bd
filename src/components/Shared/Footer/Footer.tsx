@@ -1,79 +1,86 @@
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import {
+  FaAngleDoubleRight,
+  FaEnvelope,
   FaMapMarkerAlt,
   FaPhoneAlt,
-  FaEnvelope,
+} from "react-icons/fa";
+import {
   FaFacebookF,
   FaYoutube,
   FaTwitter,
   FaLinkedinIn,
   FaInstagram,
-  FaAngleDoubleRight,
 } from "react-icons/fa";
-import BottomBar from "./BottomBar";
-import Link from "next/link";
-import Image from "next/image";
 
 const Footer = () => {
   return (
-    <>
-      <div className="text-white bg-site-primary footer-bg-secondary">
-        <footer className="container px-4 mx-auto py-14">
-          <div className="grid grid-cols-1 gap-8 text-sm md:grid-cols-2 lg:grid-cols-4">
-            {/* Column 1: Find Us */}
-            <div className="flex flex-col gap-4">
-              <h6 className="mb-2 font-serif text-lg font-bold">Find Us</h6>
+    <div>
+      {/* <div className="text-white  bg-[#00382E] footer-bg-secondary"> */}
+      <div className="text-white bg-site-primary">
+        <footer className="container px-4 py-16 mx-auto">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+            {/* COLUMN 1 */}
+            <div>
+              <h6 className="relative inline-block mb-6 font-serif text-xl font-bold">
+                Find Us
+                <span className="absolute bottom-0 left-0 w-10 h-[3px] bg-gradient-to-r from-[#fff] to-[#37b46e] rounded-full"></span>
+              </h6>
 
-              <div className="flex gap-3">
-                <FaMapMarkerAlt className="mt-1 text-lg shrink-0" />
-                <div>
+              <div className="space-y-5 text-sm leading-relaxed opacity-90">
+                <div className="flex gap-3">
+                  <FaMapMarkerAlt className="text-lg mt-1 shrink-0 text-[#fff]" />
                   <p>
                     <strong>Temporary Campus:</strong> <br />
-                    <span>
-                      Khulna Agricultural University Daulatpur Collegiate
-                      School, Deyana Daulatpur, Khulna, Bangladesh.
-                    </span>
+                    Khulna Agricultural University Daulatpur Collegiate School,
+                    Deyana Daulatpur, Khulna, Bangladesh.
                   </p>
-                  <p className="mt-2">
+                </div>
+
+                <div className="flex gap-3">
+                  <FaMapMarkerAlt className="text-lg mt-1 shrink-0 text-[#fff]" />
+                  <p>
                     <strong>Khulna Office:</strong> <br />
-                    <span>
-                      Khulna Agricultural University House # 200 (First Phase)
-                      Road # 12, Sonadanga R/A Sonadanga, Khulna, Bangladesh.
-                    </span>
+                    House #200 (1st Phase), Road #12, Sonadanga R/A, Khulna.
                   </p>
-                  <p className="mt-2">
-                    <strong>Guest house:</strong> <br />
-                    <span>
-                      Khulna Agricultural University House # 495 (1st Floor)
-                      Road # 32 Mohakhali DOHS, Dhaka, Bangladesh.
-                    </span>
+                </div>
+
+                <div className="flex gap-3">
+                  <FaMapMarkerAlt className="text-lg mt-1 shrink-0 text-[#fff]" />
+                  <p>
+                    <strong>Guest House:</strong> <br />
+                    House #495 (1st Floor), Road #32, Mohakhali DOHS, Dhaka.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Column 2: Departmental Sites */}
+            {/* COLUMN 2 */}
             <div>
-              <h6 className="mb-4 font-serif text-lg font-bold">
+              <h6 className="relative inline-block mb-6 font-serif text-xl font-bold">
                 Departmental Sites
+                <span className="absolute bottom-0 left-0 w-10 h-[3px] bg-gradient-to-r from-[#fff] to-[#37b46e] rounded-full"></span>
               </h6>
-              <ul className="space-y-2">
+
+              <ul className="space-y-3 text-sm opacity-90">
                 {[
                   "Business Administration",
-                  "Computer Science And Engineering",
+                  "Computer Science & Engineering",
                   "Software Engineering",
-                  "Artificial Intelligence & Data Science",
-                  "Electrical And Electronic Engineering",
+                  "AI & Data Science",
+                  "Electrical & Electronic Engineering",
                   "English",
-                  "Journalism And Media Communication",
+                  "Journalism & Media Communication",
                   "Law",
-                  "Sociology And Anthropology",
+                  "Sociology & Anthropology",
                   "Textile Engineering",
-                ].map((item, index) => (
-                  <li key={index}>
+                ].map((item, i) => (
+                  <li key={i}>
                     <Link
                       href="#"
-                      className="flex items-center gap-2 transition-all duration-300 hover:ml-2"
+                      className="flex items-center gap-2 transition-all hover:translate-x-1 hover:text-[#fff]"
                     >
                       <FaAngleDoubleRight className="text-xs" /> {item}
                     </Link>
@@ -81,23 +88,26 @@ const Footer = () => {
                 ))}
               </ul>
             </div>
-            {/* Column 3: Useful Links */}
+
+            {/* COLUMN 3 */}
             <div>
-              <h6 className="mb-4 font-serif text-lg font-bold">
+              <h6 className="relative inline-block mb-6 font-serif text-xl font-bold">
                 Useful Links
+                <span className="absolute bottom-0 left-0 w-10 h-[3px] bg-gradient-to-r from-[#fff] to-[#37b46e] rounded-full"></span>
               </h6>
-              <ul className="space-y-2">
+
+              <ul className="space-y-3 text-sm opacity-90">
                 {[
                   "Leave Application",
                   "খুকৃবি পর্যায়োন্নয়ন আবেদনপত্র ফরম",
                   "যৌন নিপীড়ন প্রতিরোধকল্পে গঠিত অভিযোগ কমিটি",
                   "Tender",
                   "Ethical Approval Application",
-                ].map((item, index) => (
-                  <li key={index}>
+                ].map((item, i) => (
+                  <li key={i}>
                     <Link
                       href="#"
-                      className="flex items-center gap-2 transition-all duration-300 hover:ml-2"
+                      className="flex items-center gap-2 transition-all hover:translate-x-1 hover:text-[#fff]"
                     >
                       <FaAngleDoubleRight className="text-xs" /> {item}
                     </Link>
@@ -106,99 +116,88 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Column 4: Get in touch & Follow Us */}
+            {/* COLUMN 4 */}
             <div>
-              <div>
-                <h6 className="mb-4 font-serif text-lg font-bold">
-                  Get in touch
-                </h6>
-                <span>
-                  Md. Rezaul Islam <br /> <span>Registrar (In Charge)</span>
-                </span>
-                <div className="flex items-center gap-3 mt-2">
-                  <FaPhoneAlt className="shrink-0" />
-                  <p>
-                    <a href="call:+880 9614482482">+880 9614482482</a>
-                  </p>
+              <h6 className="relative inline-block mb-6 font-serif text-xl font-bold">
+                Get in Touch
+                <span className="absolute bottom-0 left-0 w-10 h-[3px] bg-gradient-to-r from-[#fff] to-[#37b46e] rounded-full"></span>
+              </h6>
+
+              <p className="text-sm opacity-90">
+                Md. Rezaul Islam <br />
+                <span>Registrar (In Charge)</span>
+              </p>
+
+              <div className="mt-4 space-y-3 text-sm">
+                <div className="flex gap-3">
+                  <FaPhoneAlt className="text-[#fff]" />
+                  <a href="tel:+8809614482482" className="hover:text-[#fff]">
+                    +880 9614482482
+                  </a>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <FaEnvelope className="shrink-0" />
+                <div className="flex gap-3">
+                  <FaEnvelope className="text-[#fff]" />
                   <Link
                     href="mailto:admission@kau.edu.bd"
-                    className="hover:underline"
+                    className="hover:underline hover:text-[#fff]"
                   >
                     admission@kau.edu.bd
                   </Link>
                 </div>
               </div>
 
-              <div className="mt-5">
-                <h6 className="mb-4 font-serif text-lg font-bold">Follow Us</h6>
-                <div className="flex gap-3">
+              <h6 className="mt-8 mb-4 font-serif text-lg font-bold">
+                Follow Us
+              </h6>
+              <div className="flex gap-3">
+                {[
+                  FaFacebookF,
+                  FaYoutube,
+                  FaTwitter,
+                  FaLinkedinIn,
+                  FaInstagram,
+                ].map((Icon, i) => (
                   <Link
+                    key={i}
                     href="#"
-                    className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
+                    className="p-2 border border-white/40 rounded-md hover:bg-white hover:text-[#004d40] transition"
                   >
-                    <FaFacebookF />
+                    <Icon size={15} />
                   </Link>
-                  <Link
-                    href="#"
-                    className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
-                  >
-                    <FaYoutube />
-                  </Link>
-                  <Link
-                    href="#"
-                    className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
-                  >
-                    <FaTwitter />
-                  </Link>
-                  <Link
-                    href="#"
-                    className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
-                  >
-                    <FaLinkedinIn />
-                  </Link>
-                  <Link
-                    href="#"
-                    className="border border-white p-2 hover:bg-white hover:text-[#006837] transition-colors"
-                  >
-                    <FaInstagram />
-                  </Link>
-                </div>
-                <div className="mt-5">
-                  <Image
-                    width={200}
-                    height={50}
-                    style={{ objectFit: "contain" }}
-                    priority
-                    src="/images/footer-call.jpg"
-                    alt="QR Code"
-                  ></Image>
-                </div>
+                ))}
+              </div>
+
+              <div className="mt-6">
+                <Image
+                  width={200}
+                  height={60}
+                  src="/images/footer-call.jpg"
+                  alt="QR Code"
+                  className="rounded-md shadow-md"
+                />
               </div>
             </div>
           </div>
         </footer>
 
-        {/* Bottom Copyright Section */}
-        <div className="border-t border-white/30">
-          <div className="container flex flex-col items-center justify-between px-4 py-6 mx-auto text-sm md:flex-row">
+        {/* Bottom Bar */}
+        <div className="border-t border-white/20">
+          <div className="container flex flex-col items-center justify-between px-4 py-6 mx-auto text-sm md:flex-row opacity-80">
             <p>
               © 2003-2025{" "}
-              <span className="text-[#4ade80]">
+              <span className="text-[#fff]">
                 Khulna Agricultural University
               </span>
               . All Rights Reserved.
             </p>
             <p>
-              Developed By <span className="text-[#4ade80]">Digixsolve</span>
+              Developed By <span className="text-[#fff]">Digixsolve</span>
             </p>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

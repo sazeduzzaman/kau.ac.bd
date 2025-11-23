@@ -161,7 +161,7 @@ const MenuItem: React.FC<{ item: MenuItemType }> = ({ item }) => {
           ${item.highlight ? "text-accent-color" : "text-dark"} 
           ${
             open || isActive
-              ? "border-b border-site-primary text-site-primary"
+              ? "border-b border-site-primary text-site-secondary"
               : "hover:bg-site-primary hover:text-white"
           }`}
       >

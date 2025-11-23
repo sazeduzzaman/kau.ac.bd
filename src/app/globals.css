@@ -8,7 +8,7 @@
 
   --site-primary: #498dbd;
   --site-secondary: #8b5e3b;
-  --site-accent: #00a63e;
+  --site-accent: #1d7233;
   --site-dark: #333333;
   --site-light: #ffffff;
 }
@@ -32,6 +32,9 @@ h6 {
 
 .bg-site-accent {
   background-color: var(--site-accent) !important;
+}
+.bg-site-secondary {
+  background-color: var(--site-secondary) !important;
 }
 
 .text-site-primary {
@@ -60,6 +63,13 @@ h6 {
   background-repeat: no-repeat;
 }
 
+.explore-section {
+  background-image: url("/images/skyblue-footer-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 .swiper-pagination-bullet-active {
   opacity: var(--swiper-pagination-bullet-opacity, 1);
   width: 30px !important;
@@ -81,5 +91,22 @@ h6 {
     display: flex;
     justify-content: center;
   }
+}
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  display: inline-flex;
+  animation: scroll 90s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
 }
 /* Custom Css End */

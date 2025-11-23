@@ -1,41 +1,36 @@
 import React from "react";
+import { FaLinkedin, FaTwitter, FaResearchgate } from "react-icons/fa";
 
 const ChancellorSection = () => {
   return (
-    <section className="relative flex items-center justify-center w-full px-4 py-10 overflow-hidden ">
-      {/* Soft Decorative Background Shapes */}
-      <div className="absolute top-0 left-0 w-64 h-64 rounded-full opacity-20 bg-[#498dbd] blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full opacity-20 bg-[#346f96] blur-3xl"></div>
+    <section className="relative flex items-center justify-center w-full px-4 py-12 overflow-hidden bg-gray-50">
+      {/* Decorative Background */}
+      <div className="absolute top-0 left-0 w-64 h-64 rounded-full opacity-20 bg-[#498dbd] blur-3xl animate-pulse-slow"></div>
+      <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full opacity-20 bg-[#346f96] blur-3xl animate-pulse-slow"></div>
 
-      {/* Main Glass Card */}
-      <div className="relative z-10 w-full max-w-6xl p-8 border shadow-xl bg-white/40 backdrop-blur-xl border-white/40 rounded-2xl">
-        <div className="flex flex-col items-center gap-10 md:flex-row">
+      {/* Glass Card */}
+      <div className="relative z-10 w-full p-8 border max-w-7xl bg-white/50 backdrop-blur-lg border-white/30 rounded-3xl">
+        <div className="flex flex-col gap-10 md:flex-row">
           {/* Left Column — Profile */}
-          <div className="flex flex-col items-center md:w-1/3">
-            <div className="w-48 h-56 overflow-hidden border-4 shadow-lg rounded-xl border-white/70">
+          <div className="flex flex-col items-center text-start md:w-1/3 md:text-start">
+            <div className="flex items-center w-full h-full overflow-hidden transition-transform duration-300 border-4 shadow-2xl rounded-xl border-white/40 hover:scale-105">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&h=350&fit=crop"
+                src="/images/Prof.-Dr.-Md.-Nazmul-Ahsan.jpg"
                 alt="Prof. Dr. Md. Nazmul Ahsan"
                 className="object-cover w-full h-full"
               />
             </div>
-
-            <h3 className="mt-5 text-2xl font-bold text-center text-gray-800">
-              Prof. Dr. Md. Nazmul Ahsan
-            </h3>
-
-            <p className="mt-1 text-sm font-semibold tracking-wide text-[#498dbd] uppercase text-center">
-              Vice Chancellor
-            </p>
           </div>
 
           {/* Right Column — Message */}
           <div className="md:w-2/3">
-            <h2 className="inline-block pb-3 mb-6 text-3xl font-bold text-gray-900 border-b-4 border-[#498dbd]">
-              Message from the Vice Chancellor
-            </h2>
+            <div className="flex items-center gap-3 mb-6">
+              <h2 className="text-3xl font-bold text-site-secondary">
+                Chancellor Vice
+              </h2>
+            </div>
 
-            <div className="space-y-4 text-[17px] leading-relaxed text-gray-700">
+            <div className="space-y-4 text-gray-700 text-[17px] leading-relaxed">
               <p>
                 It is with immense pride and gratitude that I welcome you all to
                 Khulna Agricultural University (KAU), Khulna. We stand on the
@@ -53,17 +48,53 @@ const ChancellorSection = () => {
                 “Second Victory of Bangladesh.” We honor over 1,500 martyrs and
                 extend heartfelt condolences to their families...
               </p>
+              <div className="w-full text-start ">
+                <h3 className="mt-5 text-2xl font-bold text-gray-900 text-start">
+                  Prof. Dr. Md. Nazmul Ahsan
+                </h3>
+                <p className="mt-1 text-sm font-semibold tracking-wider text-gray-500 uppercase">
+                  Vice Chancellor
+                </p>
+              </div>
+
+              {/* Additional Details */}
+              <div className="w-full mt-4 space-y-2 text-sm text-gray-700 ">
+                <p>
+                  Ph.D. in Agricultural Science, XYZ University, <br /> 25+
+                  years in research & teaching, National Agricultural Award 2018
+                </p>
+              </div>
             </div>
 
             {/* Read More Button */}
-            <div className="mt-6">
+            <div className="flex items-center justify-start mt-6">
               <a
                 href="#"
-                className="inline-flex items-center gap-2 px-6 py-2 font-semibold text-white transition-all rounded-full shadow-md bg-[#498dbd] hover:bg-[#3a719a] hover:shadow-lg"
+                className="inline-flex items-center gap-2 px-6 py-2 font-semibold text-white rounded-full bg-gradient-to-r from-[#498dbd] to-[#346f96] shadow-lg hover:shadow-xl transition-all"
               >
-                Read More
-                <span className="text-lg">→</span>
+                Read More <span className="text-lg">→</span>
               </a>
+              {/* Social Icons */}
+              <div className="flex justify-center gap-4 ps-5">
+                <a
+                  href="#"
+                  className="p-2 text-white bg-[#0077B5] rounded-full hover:scale-110 transition-transform"
+                >
+                  <FaLinkedin size={18} />
+                </a>
+                <a
+                  href="#"
+                  className="p-2 text-white bg-[#1DA1F2] rounded-full hover:scale-110 transition-transform"
+                >
+                  <FaTwitter size={18} />
+                </a>
+                <a
+                  href="#"
+                  className="p-2 text-white bg-[#006699] rounded-full hover:scale-110 transition-transform"
+                >
+                  <FaResearchgate size={18} />
+                </a>
+              </div>
             </div>
           </div>
         </div>
