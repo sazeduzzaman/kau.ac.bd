@@ -1,3 +1,4 @@
+import AboutSummitSection from "@/components/HomePage/AboutSummitSection/AboutSummitSection";
 import ChancellorSection from "@/components/HomePage/ChancellorSection/ChancellorSection";
 import FacultySection from "@/components/HomePage/FacultySection/FacultySection";
 import HeroSection from "@/components/HomePage/HeroSection/HeroSection";
@@ -15,6 +16,7 @@ const page = () => {
       <InfoCardsSection />
       <FacultySection />
       <KauAtAGlanceSection/>
+      <AboutSummitSection />
       <ImportantLinksSection />
       <NewsNoticeSection />
     </>
