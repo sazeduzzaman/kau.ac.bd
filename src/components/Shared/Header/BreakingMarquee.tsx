@@ -1,11 +1,11 @@
 "use client";
 import { FaBullhorn } from "react-icons/fa";
 
-interface CounterProps {
-  items: number;
+interface BreakingMarqueeProps {
+  items: string[]; // <-- array of strings
 }
 
-const BreakingMarquee: React.FC<CounterProps> = ({ items }) => {
+const BreakingMarquee: React.FC<BreakingMarqueeProps> = ({ items }) => {
   return (
     <div className="relative w-full bg-[#498dbd] text-white  overflow-hidden">
       <div className="container flex items-center mx-auto">
