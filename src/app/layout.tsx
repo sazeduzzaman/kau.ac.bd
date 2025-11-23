@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Shared/Header/Header";
 import Footer from "@/components/Shared/Footer/Footer";
 import BottomBar from "@/components/Shared/Footer/BottomBar";
+import SonarButton from "@/components/Shared/SonarButton/SonarButton";
 
 const merriweather = Space_Grotesk({
   variable: "--font-heading",
@@ -75,6 +76,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
+        <SonarButton />
         <Footer />
         <BottomBar />
       </body>

@@ -1,15 +1,19 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { FaGraduationCap, FaLandmark, FaUserSlash } from "react-icons/fa";
 import { RiBuilding2Fill, RiPresentationFill } from "react-icons/ri";
 
 // Reusable Counter Component
-const Counter = ({ end }) => {
+interface CounterProps {
+  end: number;
+}
+
+const Counter: React.FC<CounterProps> = ({ end }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     let start = 0;
-    const duration = 2000; // animation duration
+    const duration = 2000; // animation duration in ms
     const step = Math.ceil(end / (duration / 16)); // 60fps approx
 
     const timer = setInterval(() => {
@@ -27,13 +31,40 @@ const Counter = ({ end }) => {
   return <span>{count.toLocaleString()}</span>;
 };
 
-const KauAtAGlanceSection = () => {
-  const stats = [
-    { title: "FACULTIES", icon: <FaLandmark className="w-12 h-12" />, value: 5 },
-    { title: "DEPARTMENTS", icon: <RiBuilding2Fill className="w-12 h-12" />, value: 32 },
-    { title: "TEACHERS", icon: <RiPresentationFill className="w-12 h-12" />, value: 180 },
-    { title: "STUDENTS", icon: <FaGraduationCap className="w-12 h-12" />, value: 2300 },
-    { title: "OFFICER & STAFF", icon: <FaUserSlash className="w-12 h-12" />, value: 350 },
+// Type for each stat item
+interface StatItem {
+  title: string;
+  icon: React.ReactNode;
+  value: number;
+}
+
+const KauAtAGlanceSection: React.FC = () => {
+  const stats: StatItem[] = [
+    {
+      title: "FACULTIES",
+      icon: <FaLandmark className="w-12 h-12" />,
+      value: 5,
+    },
+    {
+      title: "DEPARTMENTS",
+      icon: <RiBuilding2Fill className="w-12 h-12" />,
+      value: 32,
+    },
+    {
+      title: "TEACHERS",
+      icon: <RiPresentationFill className="w-12 h-12" />,
+      value: 180,
+    },
+    {
+      title: "STUDENTS",
+      icon: <FaGraduationCap className="w-12 h-12" />,
+      value: 2300,
+    },
+    {
+      title: "OFFICER & STAFF",
+      icon: <FaUserSlash className="w-12 h-12" />,
+      value: 350,
+    },
   ];
 
   return (
@@ -44,13 +75,13 @@ const KauAtAGlanceSection = () => {
           className="w-full h-full animate-wave bg-[length:300%_300%] rounded-lg"
           style={{
             backgroundImage: `linear-gradient(to right top,
-            #498dbd, #5aa0d1, #417fb0, #5c9dd1, #3a75a1, #498dbd,
-            #3e7bbf, #4fa1d5, #356a9c, #498dbd, #417fb0, #498dbd)`,
+              #498dbd, #5aa0d1, #417fb0, #5c9dd1, #3a75a1, #498dbd,
+              #3e7bbf, #4fa1d5, #356a9c, #498dbd, #417fb0, #498dbd)`,
           }}
         ></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10 mx-auto max-w-7xl">
         <h2 className="mb-16 text-3xl font-bold tracking-wider text-center text-white uppercase md:text-4xl">
           KAU At A Glance
         </h2>
