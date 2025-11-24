@@ -154,7 +154,7 @@ const NewsNoticeSection = () => {
           </p>
         </div>
         {/* ------- NEW MODERN LAYOUT ------- */}
-        <div className="grid grid-cols-2 gap-10 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
           {/* ------------ FEATURED NEWS (BIG CARD) ------------ */}
           <div className="col-span-1">
             <div className="flex flex-col overflow-hidden transition-all bg-white rounded-none shadow-sm hover:shadow-lg">

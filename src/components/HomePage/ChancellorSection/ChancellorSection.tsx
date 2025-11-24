@@ -8,7 +8,7 @@ const ChancellorSection = () => {
       {/* Main Card Container */}
       <div className="relative  max-w-7xl bg-white  min-h-[700px] flex flex-col md:flex-row overflow-hidden rounded-lg">
         {/* --- Left Column (Purple Background) --- */}
-        <div className="w-full md:w-[35%] bg-site-primary text-white p-8 md:p-12 flex flex-col justify-between relative z-0">
+        <div className="w-full md:w-[35%] bg-site-primary text-white p-8 md:p-12 flex flex-col d-m-none justify-between relative z-0">
           {/* Top: Logo / Brand Placeholder */}
           <div>
             {/* Blurry logo effect from image */}
