@@ -27,7 +27,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #498dbd, #2c6ca1); /* Theme gradient */
+  background: linear-gradient(180deg, #00695c, #2c6ca1); /* Theme gradient */
   border-radius: 10px;
   border: 3px solid transparent; /* creates padding effect */
   background-clip: content-box;  /* ensures border is outside thumb */
@@ -35,13 +35,13 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #2c6ca1, #498dbd);
+  background: linear-gradient(180deg, #2c6ca1, #00695c);
 }
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #498dbd transparent; /* thumb and track */
+  scrollbar-color: #00695c transparent; /* thumb and track */
 }
 
 
@@ -119,8 +119,6 @@ h6 {
   z-index: 0;
 }
 
-.footer-container {
-}
 .explore-section {
   background-image: url("/images/skyblue-footer-bg.png");
   background-size: cover;

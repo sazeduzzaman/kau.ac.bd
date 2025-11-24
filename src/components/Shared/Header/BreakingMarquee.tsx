@@ -7,7 +7,7 @@ interface BreakingMarqueeProps {
 
 const BreakingMarquee: React.FC<BreakingMarqueeProps> = ({ items }) => {
   return (
-    <div className="relative w-full bg-[#0D1117] text-white overflow-hidden border-b border-white/10">
+    <div className="relative w-full bg-[#0D1117] text-white overflow-hidden ">
       <div className="flex items-center">
         {/* Left Label */}
         <div className="flex items-center gap-2 px-5 py-3 text-sm font-semibold text-white shadow-lg bg-site-primary">

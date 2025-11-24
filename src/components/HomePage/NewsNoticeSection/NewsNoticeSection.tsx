@@ -154,10 +154,10 @@ const NewsNoticeSection = () => {
           </p>
         </div>
         {/* ------- NEW MODERN LAYOUT ------- */}
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-10 lg:grid-cols-2">
           {/* ------------ FEATURED NEWS (BIG CARD) ------------ */}
-          <div className="lg:col-span-2">
-            <div className="flex flex-col overflow-hidden transition-all bg-white shadow-md rounded-xl hover:shadow-lg">
+          <div className="col-span-1">
+            <div className="flex flex-col overflow-hidden transition-all bg-white rounded-none shadow-sm hover:shadow-lg">
               <img
                 src={featured.image}
                 className="object-cover w-full h-full"
@@ -174,75 +174,93 @@ const NewsNoticeSection = () => {
             </div>
 
             {/* ------ LATEST NEWS SMALL CARDS ------ */}
-            <div className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
-              {latestNews.map((news) => (
-                <div
-                  key={news.id}
-                  className="flex items-center overflow-hidden transition bg-white rounded-lg shadow cursor-pointer hover:shadow-md"
-                >
-                  <img src={news.image} className="object-cover w-32 h-40" />
-                  <div className="p-4">
-                    <h4 className="text-sm font-semibold text-gray-800 leading-snug hover:text-[#00695c]">
-                      {news.title}
-                    </h4>
-                    <div className="flex items-center mt-2 text-xs text-gray-500">
-                      <Calendar size={12} className="mr-1" />
-                      {news.date}
+            <div className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-1">
+              <div className="border border-gray-200 rounded-t-none rounded-b-none shadow-md card">
+                <div className="card-body max-h-[302px] overflow-y-auto px-0">
+                  {latestNews.map((news) => (
+                    <div key={news.id} className="">
+                      <div className="flex items-center overflow-hidden transition bg-white shadow cursor-pointer hover:shadow-md">
+                        <img
+                          src={news.image}
+                          className="object-cover w-32 h-32"
+                        />
+                        <div className="p-4">
+                          <h4 className="text-sm font-semibold text-gray-800 leading-snug hover:text-[#00695c]">
+                            {news.title}
+                          </h4>
+                          <div className="flex items-center mt-2 text-xs text-gray-500">
+                            <Calendar size={12} className="mr-1" />
+                            {news.date}
+                          </div>
+                        </div>
+                      </div>
                     </div>
+                  ))}
+                </div>
+                <div className=" card-footer">
+                  <div className="py-3 text-lg font-bold text-center text-white  bg-gradient-to-r from-[#00695c] to-[#004d40]">
+                    <button className="text-sm font-semibold text-white hover:underline">
+                      View All Notices
+                    </button>
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
 
           {/* ------------ NOTICE BOARD (NEW DESIGN) ------------ */}
-          <div className="overflow-hidden bg-white shadow-md rounded-xl">
+          <div className="col-span-1 overflow-hidden ">
             <div className="py-3 text-lg font-bold text-center text-white bg-gradient-to-r from-[#00695c] to-[#004d40]">
               Notice Board
             </div>
 
-            {/* SCROLL AREA */}
-            <div className="max-h-[937px] overflow-y-auto p-4 space-y-4 custom-scrollbar">
-              {noticeData.map((notice) => (
-                <div
-                  key={notice.id}
-                  className="flex items-start gap-4 p-3 transition border border-gray-200 rounded-lg cursor-pointer bg-gray-50 hover:bg-teal-50/50"
-                >
-                  {/* DATE BOX */}
-                  <div className="flex flex-col items-center justify-center h-16 text-gray-800 bg-white border border-gray-300 rounded shadow-sm w-14">
-                    <span className="text-sm font-bold">{notice.day}</span>
-                    <span className="text-[10px] uppercase text-gray-600">
-                      {notice.month}
-                    </span>
-                    <span className="text-[9px] text-gray-400">
-                      {notice.year}
-                    </span>
-                  </div>
-
-                  {/* TEXT */}
-                  <div className="flex-1">
-                    <p
-                      className={`text-sm font-medium leading-snug ${
-                        notice.isRed
-                          ? "text-red-600"
-                          : "text-gray-800 hover:text-[#00695c]"
-                      }`}
+            <div className="border border-gray-200 rounded-t-none rounded-b-none shadow-md card">
+              <div className="card-body max-h-[825px] overflow-y-auto px-0 pt-2">
+                {/* SCROLL AREA */}
+                <div className="p-4 space-y-4 custom-scrollbar">
+                  {noticeData.map((notice) => (
+                    <div
+                      key={notice.id}
+                      className="flex items-start gap-4 p-3 transition border border-gray-200 cursor-pointer bg-gray-50 hover:bg-teal-50/50"
                     >
-                      {notice.text}
-                    </p>
-                  </div>
+                      {/* DATE BOX */}
+                      <div className="flex flex-col items-center justify-center h-16 text-gray-800 bg-white border border-gray-300 rounded shadow-sm w-14">
+                        <span className="text-sm font-bold">{notice.day}</span>
+                        <span className="text-[10px] uppercase text-gray-600">
+                          {notice.month}
+                        </span>
+                        <span className="text-[9px] text-gray-400">
+                          {notice.year}
+                        </span>
+                      </div>
 
-                  <div className="p-2 text-red-600 rounded-full bg-red-50">
-                    <FileText size={16} />
-                  </div>
+                      {/* TEXT */}
+                      <div className="flex-1">
+                        <p
+                          className={`text-sm font-medium leading-snug ${
+                            notice.isRed
+                              ? "text-red-600"
+                              : "text-gray-800 hover:text-[#00695c]"
+                          }`}
+                        >
+                          {notice.text}
+                        </p>
+                      </div>
+
+                      <div className="p-2 text-red-600 rounded-full bg-red-50">
+                        <FileText size={16} />
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-
-            <div className="py-3 text-lg font-bold text-center text-white bg-gradient-to-r from-[#00695c] to-[#004d40]">
-              <button className="text-sm font-semibold text-white hover:underline">
-                View All Notices
-              </button>
+              </div>
+              <div className="card-footer">
+                <div className="py-3 text-lg font-bold text-center text-white  bg-gradient-to-r from-[#00695c] to-[#004d40]">
+                  <button className="text-sm font-semibold text-white hover:underline">
+                    View All Notices
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

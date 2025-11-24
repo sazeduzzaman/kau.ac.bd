@@ -6,7 +6,7 @@ const ChancellorSection = () => {
   return (
     <section className="flex items-center justify-center min-h-screen font-sans bg-gray-100 md:p-8">
       {/* Main Card Container */}
-      <div className="relative  max-w-7xl bg-white  min-h-[800px] flex flex-col md:flex-row overflow-hidden rounded-lg">
+      <div className="relative  max-w-7xl bg-white  min-h-[700px] flex flex-col md:flex-row overflow-hidden rounded-lg">
         {/* --- Left Column (Purple Background) --- */}
         <div className="w-full md:w-[35%] bg-site-primary text-white p-8 md:p-12 flex flex-col justify-between relative z-0">
           {/* Top: Logo / Brand Placeholder */}
@@ -54,16 +54,19 @@ const ChancellorSection = () => {
               student led mass movement, a watershed moment in our nation’s
               history, ignited a fire of hope and resistance among millions who
               have been fighting for a democratic Bangladesh for the last 15
-              years. Thousands of courageous young souls, inspired by the spirit
-              of movements against all forms of discrimination, took to the
-              streets to the historic ouster of the fascist regime that will
-              forever be etched in our collective memory as the “Second Victory
-              of Bangladesh.” We honor the memory of the over 1,500 martyrs who
+              years.
+            </p>
+            <p className="mb-6 text-justify text-gray-700">
+              Thousands of courageous young souls, inspired by the spirit of
+              movements against all forms of discrimination, took to the streets
+              to the historic ouster of the fascist regime that will forever be
+              etched in our collective memory as the “Second Victory of
+              Bangladesh.” We honor the memory of the over 1,500 martyrs who
               laid down their lives for our nation’s future and express our
               deepest condolences to the families of the bereaved.
             </p>
             {/* Button + Social Icons */}
-            <div className="flex items-center justify-start gap-5 mt-8">
+            <div className="flex items-center justify-start gap-5 mt-2">
               <a
                 href="#"
                 className="inline-flex items-center gap-2 px-6 py-2 font-semibold text-white rounded-full bg-gradient-to-r from-[#498dbd] to-[#346f96] shadow-md hover:shadow-lg transition-all"

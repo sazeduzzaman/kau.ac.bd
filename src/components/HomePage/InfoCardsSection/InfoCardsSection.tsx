@@ -4,56 +4,49 @@ import { TfiTarget } from "react-icons/tfi";
 
 const InfoCardsSection = () => {
   const cards = [
-    {
-      title: "About KAU",
-      icon: <FaInfo className="w-10 h-10 md:w-12 md:h-12" />,
-      link: "#",
-    },
-    {
-      title: "Administration",
-      icon: <FaUsers className="w-10 h-10 md:w-12 md:h-12" />,
-      link: "#",
-    },
-    {
-      title: "Mission & Vision",
-      icon: <TfiTarget className="w-10 h-10 md:w-12 md:h-12" />,
-      link: "#",
-    },
-    {
-      title: "APA",
-      icon: <FaCircleCheck className="w-10 h-10 md:w-12 md:h-12" />,
-      link: "#",
-    },
+    { title: "About KAU", icon: <FaInfo />, link: "#" },
+    { title: "Administration", icon: <FaUsers />, link: "#" },
+    { title: "Mission & Vision", icon: <TfiTarget />, link: "#" },
+    { title: "APA", icon: <FaCircleCheck />, link: "#" },
   ];
 
   return (
-    <section className="relative px-4 py-16 bg-gradient-to-br from-[#eaf2f7] to-[#d6e7f1] explore-section">
+    <section className="relative px-6 py-20 explore-section">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-10 text-center">
-          <h2 className="text-5xl font-bold text-center text-white md:text-5xl">
+        {/* Section Header */}
+        <div className="text-center mb-14">
+          <h2 className="relative inline-block text-5xl font-extrabold text-white">
             Explore KAU
-            <div className="w-32 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-[#fff] to-[#498dbd]" />
+            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-28 h-1 rounded-full bg-gradient-to-r from-[#fff] to-[#498dbd]" />
           </h2>
-          <p className="pt-3 leading-tight text-white">
-            Get to know more about KAU. Chek it out{" "}
+          <p className="mt-4 text-lg text-white md:text-xl">
+            Discover the different aspects of Khulna Agriculture University.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((card, index) => (
             <a
               key={index}
               href={card.link}
-              className="flex flex-col items-center justify-center p-8 text-center transition-all duration-500 bg-white/100 backdrop-blur-md cursor-pointer group rounded-lg hover:-translate-y-3 hover:shadow-2xl hover:shadow-[#498dbd]/20"
+              className="relative flex flex-col items-center p-8 overflow-hidden text-center transition-all duration-500 rounded-lg shadow-lg cursor-pointer group bg-white/20 backdrop-blur-md hover:shadow-2xl"
             >
-              {/* Icon container with gradient & hover effect */}
-              <div className="mb-6 flex items-center justify-center w-20 h-20 text-white rounded-full bg-gradient-to-tr from-[#498dbd] to-[#346f96] text-3xl transition-all duration-500 group-hover:scale-110">
+              {/* Gradient Icon */}
+              <div className="relative z-10 flex items-center justify-center w-20 h-20 mb-6 text-4xl text-white rounded-full bg-gradient-to-tr from-[#498dbd] to-[#346f96] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500 shadow-lg">
                 {card.icon}
               </div>
 
-              <h3 className="text-[#333] font-semibold text-lg md:text-xl group-hover:text-[#498dbd] transition-colors duration-300">
+              {/* Card Title */}
+              <h3 className="relative z-10 text-white font-bold text-lg md:text-xl group-hover:text-[#fffc] transition-colors duration-300">
                 {card.title}
               </h3>
+
+              {/* Hover Glow */}
+              <span className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-[#498dbd]/20 to-[#346f96]/20 opacity-0 group-hover:opacity-50 transition-opacity duration-500"></span>
+
+              {/* Floating Glow */}
+              <span className="absolute -bottom-10 w-32 h-32 bg-gradient-to-tr from-[#498dbd] to-[#346f96] opacity-20 rounded-full blur-3xl animate-pulse-slow"></span>
             </a>
           ))}
         </div>

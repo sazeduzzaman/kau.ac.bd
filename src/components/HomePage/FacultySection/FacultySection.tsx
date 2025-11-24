@@ -56,7 +56,7 @@ const FacultySection = () => {
   ];
 
   return (
-    <section className="px-4 py-24 bg-gradient-to-b from-slate-50 to-white">
+    <section className="px-4 pt-10 pb-24 bg-gradient-to-b from-slate-50 to-white">
       <div className="mx-auto text-center max-w-7xl">
         {/* Title & Subtitle */}
         <motion.h2
