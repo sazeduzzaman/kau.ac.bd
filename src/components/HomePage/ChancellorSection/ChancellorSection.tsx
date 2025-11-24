@@ -69,7 +69,7 @@ const ChancellorSection = () => {
             <div className="flex items-center justify-start gap-5 mt-2">
               <a
                 href="#"
-                className="inline-flex items-center gap-2 px-6 py-2 font-semibold text-white rounded-full bg-gradient-to-r from-[#498dbd] to-[#346f96] shadow-md hover:shadow-lg transition-all"
+                className="inline-flex items-center gap-2 px-6 py-2 font-semibold text-white rounded-full bg-gradient-to-r from-[#438ABA] to-[#346f96] shadow-md hover:shadow-lg transition-all"
               >
                 Read More →
               </a>

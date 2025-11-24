@@ -148,7 +148,7 @@ const NewsNoticeSection = () => {
           <h2 className="text-5xl font-bold text-site-primary">
             Latest News & Notices
           </h2>
-          <div className="w-32 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-[#fff] to-[#498dbd]" />
+          <div className="w-32 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-[#fff] to-[#438ABA]" />
           <p className="pt-3 leading-tight text-black font-poppins">
             Stay updated with the latest happenings and important announcements
           </p>

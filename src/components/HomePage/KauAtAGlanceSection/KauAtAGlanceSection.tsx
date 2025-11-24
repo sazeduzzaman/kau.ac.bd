@@ -75,8 +75,8 @@ const KauAtAGlanceSection: React.FC = () => {
           className="w-full h-full animate-wave bg-[length:300%_300%] rounded-lg"
           style={{
             backgroundImage: `linear-gradient(to right top,
-              #498dbd, #5aa0d1, #417fb0, #5c9dd1, #3a75a1, #498dbd,
-              #3e7bbf, #4fa1d5, #356a9c, #498dbd, #417fb0, #498dbd)`,
+              #438ABA, #5aa0d1, #417fb0, #5c9dd1, #3a75a1, #438ABA,
+              #3e7bbf, #4fa1d5, #356a9c, #438ABA, #417fb0, #438ABA)`,
           }}
         ></div>
       </div>
@@ -92,16 +92,16 @@ const KauAtAGlanceSection: React.FC = () => {
               key={index}
               className="relative flex flex-col items-center justify-center h-48 p-6 text-center transition-all duration-300 border rounded-lg cursor-pointer group border-white/30 hover:bg-white hover:scale-105"
             >
-              <div className="mb-4 text-white group-hover:text-[#498dbd] transition-colors duration-300">
+              <div className="mb-4 text-white group-hover:text-[#438ABA] transition-colors duration-300">
                 {item.icon}
               </div>
 
-              <h3 className="text-white font-semibold text-sm md:text-base tracking-wide group-hover:text-[#498dbd] transition-colors duration-300 uppercase mb-2">
+              <h3 className="text-white font-semibold text-sm md:text-base tracking-wide group-hover:text-[#438ABA] transition-colors duration-300 uppercase mb-2">
                 {item.title}
               </h3>
 
               {/* Counter Value */}
-              <div className="text-2xl font-bold text-white group-hover:text-[#498dbd] transition-colors duration-300">
+              <div className="text-2xl font-bold text-white group-hover:text-[#438ABA] transition-colors duration-300">
                 <Counter end={item.value} />
               </div>
             </div>

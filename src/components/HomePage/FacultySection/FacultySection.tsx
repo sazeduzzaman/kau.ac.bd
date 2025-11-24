@@ -66,7 +66,7 @@ const FacultySection = () => {
           className="text-5xl font-extrabold text-site-primary md:text-5xl"
         >
           Faculties of KAU
-          <div className="w-32 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-[#fff] to-[#498dbd]" />
+          <div className="w-32 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-[#fff] to-[#438ABA]" />
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -91,7 +91,7 @@ const FacultySection = () => {
               className="flex flex-col h-full p-8 transition-all duration-300 bg-white border border-gray-100 rounded-lg shadow-sm hover:shadow-2xl hover:-translate-y-2"
             >
               {/* Icon */}
-              <div className="flex items-center justify-center w-20 h-20 mb-6 bg-gradient-to-br from-[#498dbd]/20 to-[#346f96]/20 rounded-full text-site-accent">
+              <div className="flex items-center justify-center w-20 h-20 mb-6 bg-gradient-to-br from-[#438ABA]/20 to-[#346f96]/20 rounded-full text-site-accent">
                 {faculty.icon}
               </div>
 
@@ -108,7 +108,7 @@ const FacultySection = () => {
               {/* Button */}
               <a
                 href="/"
-                className="inline-flex items-center gap-2 font-medium text-[#498dbd] hover:gap-3 hover:text-[#346f96] transition-all"
+                className="inline-flex items-center gap-2 font-medium text-[#438ABA] hover:gap-3 hover:text-[#346f96] transition-all"
               >
                 {faculty.btnText} <span className="text-xl">→</span>
               </a>

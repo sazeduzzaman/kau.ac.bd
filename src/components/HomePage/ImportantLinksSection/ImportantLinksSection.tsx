@@ -70,7 +70,7 @@ const ImportantLinksSection = () => {
         {/* Section Title */}
         <h2 className="mb-4 text-5xl font-bold text-center md:text-5xl text-site-primary font-surjo">
           গুরুত্বপূর্ণ লিংকসমূহ
-          <div className="w-32 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-[#fff] to-[#498dbd]" />
+          <div className="w-32 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-[#fff] to-[#438ABA]" />
         </h2>
 
         <p className="max-w-2xl mx-auto mb-10 text-center text-gray-600">
@@ -107,14 +107,14 @@ const ImportantLinksSection = () => {
                     key={idx}
                     className="flex items-start text-gray-600 hover:text-[#0a4d66] transition-colors cursor-pointer text-sm font-medium group/item"
                   >
-                    <span className="mt-[6px] mr-2 w-1.5 h-1.5 bg-[#498dbd] rounded-full transition-all duration-300 group-hover/item:scale-150"></span>
+                    <span className="mt-[6px] mr-2 w-1.5 h-1.5 bg-[#438ABA] rounded-full transition-all duration-300 group-hover/item:scale-150"></span>
                     {item}
                   </li>
                 ))}
               </ul>
 
               {/* Hover Glow Border */}
-              <div className="absolute inset-0 rounded-2xl pointer-events-none border-2 border-transparent group-hover:border-[#498dbd]/30 transition-all duration-300"></div>
+              <div className="absolute inset-0 rounded-2xl pointer-events-none border-2 border-transparent group-hover:border-[#438ABA]/30 transition-all duration-300"></div>
             </div>
           ))}
         </div>
