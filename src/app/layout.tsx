@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Poppins, Rajdhani } from "next/font/google";
+import localFont from "next/font/local";
+import {
+  Space_Grotesk,
+  Poppins,
+  Rajdhani,
+  Roboto_Serif,
+} from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Shared/Header/Header";
 import Footer from "@/components/Shared/Footer/Footer";
 import BottomBar from "@/components/Shared/Footer/BottomBar";
 import SonarButton from "@/components/Shared/SonarButton/SonarButton";
 
-const merriweather = Space_Grotesk({
+const spaceGrotesk = Space_Grotesk({
   variable: "--font-heading",
   subsets: ["latin"],
   weight: ["400", "700"],
@@ -24,6 +30,30 @@ const rajdhani = Rajdhani({
   variable: "--font-rajdhani",
   display: "swap",
 });
+// Initialize the font
+const robotoSerif = Roboto_Serif({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-roboto-serif",
+  display: "swap",
+});
+
+const shurjo = localFont({
+  display: "swap", // bonus tip: improves font loading
+  src: [
+    {
+      path: "./Font/Shurjo/Shurjo-bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./Font/Shurjo/Shurjo-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+});
+
 
 export const metadata: Metadata = {
   title: "খুলনা কৃষি বিশ্ববিদ্যালয় | Khulna Agricultural University",
@@ -64,6 +94,9 @@ export const metadata: Metadata = {
   },
 };
 
+
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -72,7 +105,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${merriweather.variable} ${roboto.variable} ${rajdhani.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${shurjo.className} ${roboto.variable} ${rajdhani.variable} ${robotoSerif.variable} antialiased`}
       >
         <Header />
         {children}

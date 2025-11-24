@@ -129,8 +129,8 @@ const menuItems: MenuItemType[] = [
 
 const DesktopMenu: React.FC = () => {
   return (
-    <nav className="hidden px-4 py-0 font-sans bg-white lg:block">
-      <ul className="flex items-center justify-start h-16 space-x-1 font-medium text-dark">
+    <nav className="hidden py-0 font-sans bg-white lg:block">
+      <ul className="flex items-center justify-start h-16 space-x-1 font-medium text-dark font-primary">
         {menuItems.map((item, index) => (
           <MenuItem key={index} item={item} />
         ))}
@@ -184,6 +184,8 @@ const MenuItem: React.FC<{ item: MenuItemType }> = ({ item }) => {
   );
 };
 
+import { FaLongArrowAltRight } from "react-icons/fa";
+
 const DropdownItem: React.FC<{ item: MenuItemType; pathname: string }> = ({
   item,
   pathname,
@@ -203,20 +205,31 @@ const DropdownItem: React.FC<{ item: MenuItemType; pathname: string }> = ({
     >
       <Link
         href={item.href}
-        className={`flex justify-between items-center px-6 py-3 transition-colors duration-200 text-sm text-dark rounded
+        className={`relative flex justify-between items-center px-6 py-3 transition-colors duration-200 text-sm group
           ${
             open || isActive
               ? "bg-site-primary text-white"
-              : "hover:bg-site-primary hover:text-white"
+              : "text-dark hover:bg-site-primary hover:text-white"
           }`}
       >
         <span>{item.label}</span>
-        {hasChildren && <FaChevronRight className="ml-2 text-xs opacity-70" />}
+
+        {/* Show arrow on hover or if active */}
+        <span
+          className={`transition-all duration-300 ${
+            open || isActive
+              ? "opacity-100 translate-x-0"
+              : "opacity-0 translate-x-[-5px]"
+          }`}
+        >
+          {/* <FaLongArrowAltRight size={18} /> */}
+          <span>→</span>
+        </span>
       </Link>
 
       {hasChildren && (
         <ul
-          className={`absolute left-full top-0 w-max min-w-[100px] max-w-[400px] bg-white shadow-sm rounded-md transition-all duration-200 z-50 py-2 ml-[1px]
+          className={`absolute left-full top-0 w-max min-w-[150px] max-w-[400px] bg-white shadow-sm rounded-md transition-all duration-200 z-50 py-2 ml-[1px]
             ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}
         >
           {item.children!.map((child, idx) => (

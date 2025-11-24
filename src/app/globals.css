@@ -3,8 +3,11 @@
 
 :root {
   /* Fonts */
+  --font-primary: "Roboto_Serif", serif;
   --font-heading: "Merriweather", serif;
+  --font-secondary: "Space Grotesk", serif;
   --font-body: "Poppins", sans-serif;
+  --font-surjo: "Shurjo", sans-serif;
 
   --site-primary: #498dbd;
   --site-secondary: #8b5e3b;
@@ -12,9 +15,38 @@
   --site-dark: #333333;
   --site-light: #ffffff;
 }
+/* Webkit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 12px;              /* Width of vertical scrollbar */
+  height: 12px;             /* Height of horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;   /* Track background */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #498dbd, #2c6ca1); /* Theme gradient */
+  border-radius: 10px;
+  border: 3px solid transparent; /* creates padding effect */
+  background-clip: content-box;  /* ensures border is outside thumb */
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2c6ca1, #498dbd);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #498dbd transparent; /* thumb and track */
+}
+
 
 body {
-  font-family: var(--font-body);
+  font-family: var(--font-body) !important;
 }
 
 h1,
@@ -25,7 +57,19 @@ h5,
 h6 {
   font-family: var(--font-heading);
 }
+.font-surjo {
+  font-family: var(--font-surjo) !important;
+}
+.font-poppins {
+  font-family: var(--font-body) !important;
+}
+.font-merriweather {
+  font-family: var(--font-heading) !important;
+}
 
+.font-primary {
+  font-family: var(--font-secondary) !important;
+}
 .bg-site-primary {
   background-color: var(--site-primary) !important;
 }
@@ -57,12 +101,26 @@ h6 {
   background-repeat: no-repeat;
 }
 .footer-bg-secondary {
+  position: relative; /* ensure overlay works correctly */
   background-image: url("/images/skyblue-footer-bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
+/* Glass overlay */
+.footer-bg-secondary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.1); /* semi-transparent white */
+  backdrop-filter: blur(20px); /* glassy effect */
+  -webkit-backdrop-filter: blur(20px); /* Safari support */
+  z-index: 0;
+}
+
+.footer-container {
+}
 .explore-section {
   background-image: url("/images/skyblue-footer-bg.png");
   background-size: cover;
@@ -94,6 +152,17 @@ h6 {
 .faculty-cards:hover .faculty-icon {
   opacity: 0.2;
 }
+
+/* Arrow hidden by default with opacity */
+.drop-icon {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Fade in arrow on hover of its parent link */
+.drop-link:hover .drop-icon {
+  opacity: 1;
+}
 @media screen and (max-width: 600px) {
   .top-bar {
     display: none !important;
@@ -105,16 +174,15 @@ h6 {
 }
 @keyframes scroll {
   0% {
-    transform: translateX(0);
+    transform: translateX(0%);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
 }
 
 .animate-scroll {
-  display: inline-flex;
-  animation: scroll 90s linear infinite;
+  animation: scroll 40s linear infinite;
 }
 
 .animate-scroll:hover {

@@ -14,11 +14,11 @@ const page = () => {
       <HeroSection />
       <ChancellorSection />
       <InfoCardsSection />
+      <NewsNoticeSection />
       <FacultySection />
       <KauAtAGlanceSection/>
       <AboutSummitSection />
       <ImportantLinksSection />
-      <NewsNoticeSection />
     </>
   );
 };

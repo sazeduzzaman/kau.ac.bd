@@ -145,12 +145,14 @@ const NewsNoticeSection = () => {
       <div className="mx-auto max-w-7xl">
         {/* ------- SECTION TITLE ------- */}
         <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold text-site-primary">
+          <h2 className="text-5xl font-bold text-site-primary">
             Latest News & Notices
           </h2>
           <div className="w-32 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-[#fff] to-[#498dbd]" />
+          <p className="pt-3 leading-tight text-black font-poppins">
+            Stay updated with the latest happenings and important announcements
+          </p>
         </div>
-
         {/* ------- NEW MODERN LAYOUT ------- */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
           {/* ------------ FEATURED NEWS (BIG CARD) ------------ */}

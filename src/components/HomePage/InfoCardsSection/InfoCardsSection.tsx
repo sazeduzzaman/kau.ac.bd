@@ -30,11 +30,11 @@ const InfoCardsSection = () => {
     <section className="relative px-4 py-16 bg-gradient-to-br from-[#eaf2f7] to-[#d6e7f1] explore-section">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 text-center">
-          <h2 className="text-3xl font-bold text-center text-white md:text-4xl">
+          <h2 className="text-5xl font-bold text-center text-white md:text-5xl">
             Explore KAU
             <div className="w-32 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-[#fff] to-[#498dbd]" />
           </h2>
-          <p className="pt-3 text-white">
+          <p className="pt-3 leading-tight text-white">
             Get to know more about KAU. Chek it out{" "}
           </p>
         </div>

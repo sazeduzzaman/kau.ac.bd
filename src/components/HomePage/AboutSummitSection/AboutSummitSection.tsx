@@ -44,19 +44,19 @@ const AboutUniversitySection = () => {
 
         {/* --- Images & Floating Circle Section --- */}
         <div className="relative mt-12">
-          {/* Floating Circle - Updated for University Context (Admissions) */}
+          {/* Floating Circle */}
           <div className="absolute z-20 transform -translate-x-1/2 left-1/2 -top-24 md:-top-32">
-            <div className="w-48 text-white h-48 md:w-64 md:h-64 bg-site-primary rounded-full flex flex-col items-center justify-center text-center p-6 shadow-2xl border-4 border-[#4ea5ff]">
-              <span className="mb-1 text-xs font-bold tracking-wider uppercase md:text-sm">
-                Admissions
+            <div className="w-48 h-48 md:w-64 md:h-64 bg-site-primary rounded-full flex flex-col items-center justify-center text-center p-6 shadow-2xl border-4 border-[#4ea5ff] group transition-all duration-300 hover:scale-105">
+              <span className="mb-1 text-xs font-bold tracking-wider text-white uppercase md:text-sm">
+                Experience
               </span>
-              <span className="mb-2 text-xs font-bold tracking-wider uppercase md:text-sm opacity-80">
-                Session 2024-25
+
+              <span className="mb-2 text-2xl font-bold text-white uppercase md:text-4xl">
+                15+ Years
               </span>
-              <span className="mb-2 text-2xl font-bold uppercase md:text-4xl">
-                Open Now
-              </span>
-              <ArrowUpRight className="w-6 h-6 text-yellow-400 md:w-8 md:h-8" />
+
+              {/* Arrow with hover animation */}
+              <ArrowUpRight className="w-6 h-6 text-yellow-400 transition-transform duration-300 transform md:w-8 md:h-8 group-hover:-translate-y-2 group-hover:rotate-12" />
             </div>
           </div>
 
@@ -65,7 +65,7 @@ const AboutUniversitySection = () => {
             {/* Image 1 - Tall */}
             <div className="relative w-full h-64 overflow-hidden md:h-96 rounded-2xl group">
               <Image
-                src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=1000&auto=format&fit=crop"
+                src="/images/work-1.jpg"
                 alt="University Campus Students"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -75,7 +75,7 @@ const AboutUniversitySection = () => {
             {/* Image 2 - Medium */}
             <div className="relative w-full h-48 overflow-hidden md:h-64 rounded-2xl group md:mb-8">
               <Image
-                src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1000&auto=format&fit=crop"
+                src="/images/work-3.png"
                 alt="University Hallway"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -85,7 +85,7 @@ const AboutUniversitySection = () => {
             {/* Image 3 - Short (Center under circle) */}
             <div className="relative w-full h-32 overflow-hidden md:h-48 rounded-2xl group">
               <Image
-                src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1000&auto=format&fit=crop"
+                src="/images/work-2.jpg"
                 alt="Research Lab"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -95,7 +95,7 @@ const AboutUniversitySection = () => {
             {/* Image 4 - Medium */}
             <div className="relative w-full h-48 overflow-hidden md:h-72 rounded-2xl group md:mb-4">
               <Image
-                src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1000&auto=format&fit=crop"
+                src="/images/work-4.png"
                 alt="Auditorium"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -105,7 +105,7 @@ const AboutUniversitySection = () => {
             {/* Image 5 - Tall */}
             <div className="relative w-full h-64 col-span-2 overflow-hidden md:h-96 rounded-2xl group md:col-span-1">
               <Image
-                src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1000&auto=format&fit=crop"
+                src="/images/work-5.webp"
                 alt="Graduation"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"

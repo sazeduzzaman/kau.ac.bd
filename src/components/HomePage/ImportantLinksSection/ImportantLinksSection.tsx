@@ -68,10 +68,14 @@ const ImportantLinksSection = () => {
     <section className="px-4 py-20 bg-gradient-to-br from-[#f5faff] to-[#e9f2f8]">
       <div className="mx-auto max-w-7xl">
         {/* Section Title */}
-        <h2 className="text-3xl font-bold text-center md:text-4xl text-site-primary mb-14">
+        <h2 className="mb-4 text-5xl font-bold text-center md:text-5xl text-site-primary font-surjo">
           গুরুত্বপূর্ণ লিংকসমূহ
           <div className="w-32 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-[#fff] to-[#498dbd]" />
         </h2>
+
+        <p className="max-w-2xl mx-auto mb-10 text-center text-gray-600">
+          খুলনা কৃষি বিশ্ববিদ্যালয়ের গুরুত্বপূর্ণ লিংকসমূহ এখানে প্রদান করা হলো।
+        </p>
 
         {/* Grid */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

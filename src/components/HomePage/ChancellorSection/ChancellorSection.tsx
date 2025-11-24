@@ -1,100 +1,100 @@
 import React from "react";
-import { FaLinkedin, FaTwitter, FaResearchgate } from "react-icons/fa";
+import Image from "next/image";
+import { Facebook, Twitter, Linkedin, Menu, AlignRight } from "lucide-react";
 
 const ChancellorSection = () => {
   return (
-    <section className="relative flex items-center justify-center w-full px-4 py-12 overflow-hidden bg-gray-50">
-      {/* Decorative Background */}
-      <div className="absolute top-0 left-0 w-64 h-64 rounded-full opacity-20 bg-[#498dbd] blur-3xl animate-pulse-slow"></div>
-      <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full opacity-20 bg-[#346f96] blur-3xl animate-pulse-slow"></div>
-
-      {/* Glass Card */}
-      <div className="relative z-10 w-full p-8 border max-w-7xl bg-white/50 backdrop-blur-lg border-white/30 rounded-3xl">
-        <div className="flex flex-col gap-10 md:flex-row">
-          {/* Left Column — Profile */}
-          <div className="flex flex-col items-center text-start md:w-1/3 md:text-start">
-            <div className="flex items-center w-full h-full overflow-hidden transition-transform duration-300 border-4 shadow-2xl rounded-xl border-white/40 hover:scale-105">
-              <img
-                src="/images/Prof.-Dr.-Md.-Nazmul-Ahsan.jpg"
-                alt="Prof. Dr. Md. Nazmul Ahsan"
-                className="object-cover w-full h-full"
+    <section className="flex items-center justify-center min-h-screen font-sans bg-gray-100 md:p-8">
+      {/* Main Card Container */}
+      <div className="relative  max-w-7xl bg-white  min-h-[800px] flex flex-col md:flex-row overflow-hidden rounded-lg">
+        {/* --- Left Column (Purple Background) --- */}
+        <div className="w-full md:w-[35%] bg-site-primary text-white p-8 md:p-12 flex flex-col justify-between relative z-0">
+          {/* Top: Logo / Brand Placeholder */}
+          <div>
+            {/* Blurry logo effect from image */}
+            <div className="flex justify-center h-full text-3xl text-center bg-white rounded-sm w-30">
+              <Image
+                src="/images/logo-main.png"
+                alt="Logo"
+                width={100}
+                height={40}
+                className="my-4 "
               />
             </div>
           </div>
 
-          {/* Right Column — Message */}
-          <div className="md:w-2/3">
-            <div className="flex items-center gap-3 mb-6">
-              <h2 className="text-3xl font-bold text-site-secondary">
-                Chancellor Vice
-              </h2>
-            </div>
+          {/* Bottom: Social Icons */}
+          <div className="flex gap-6 mt-auto">
+            <a href="#" className="transition-colors hover:text-blue-200">
+              <Facebook className="w-5 h-5 fill-current" />
+            </a>
+            <a href="#" className="transition-colors hover:text-blue-200">
+              <Twitter className="w-5 h-5 fill-current" />
+            </a>
+            <a href="#" className="transition-colors hover:text-blue-200">
+              <Linkedin className="w-5 h-5 fill-current" />
+            </a>
+          </div>
+        </div>
 
-            <div className="space-y-4 text-gray-700 text-[17px] leading-relaxed">
-              <p>
-                It is with immense pride and gratitude that I welcome you all to
-                Khulna Agricultural University (KAU), Khulna. We stand on the
-                shoulders of countless martyrs, whose sacrifices paved the way
-                for an independent Bangladesh in 1971. The July 2024 student-led
-                mass movement, a turning point in our nation's history, ignited
-                hope and renewed our commitment to building a just and
-                democratic Bangladesh.
-              </p>
+        {/* --- Right Column (White Background) --- */}
+        <div className="w-full md:w-[65%] bg-white p-8 md:p-16 flex flex-col relative z-0">
+          {/* Header: Menu Icon */}
 
-              <p className="hidden md:block">
-                Thousands of courageous young souls, inspired by the spirit of
-                unity against discrimination, joined the movement that
-                eventually led to historic change — widely remembered as the
-                “Second Victory of Bangladesh.” We honor over 1,500 martyrs and
-                extend heartfelt condolences to their families...
-              </p>
-              <div className="w-full text-start ">
-                <h3 className="mt-5 text-2xl font-bold text-gray-900 text-start">
-                  Prof. Dr. Md. Nazmul Ahsan
-                </h3>
-                <p className="mt-1 text-sm font-semibold tracking-wider text-gray-500 uppercase">
-                  Vice Chancellor
-                </p>
-              </div>
-
-              {/* Additional Details */}
-              <div className="w-full mt-4 space-y-2 text-sm text-gray-700 ">
-                <p>
-                  Ph.D. in Agricultural Science, XYZ University, <br /> 25+
-                  years in research & teaching, National Agricultural Award 2018
-                </p>
-              </div>
-            </div>
-
-            {/* Read More Button */}
-            <div className="flex items-center justify-start mt-6">
+          {/* Content Wrapper */}
+          <div className="flex flex-col justify-center flex-1 pr-8 md:pl-32 lg:pl-48 md:pr-12">
+            <h2 className="mb-6 font-serif text-1xl md:text-3xl text-site-primary">
+              Chancellor Voice
+            </h2>
+            <p className="mb-6 text-justify text-gray-700">
+              It is with immense pride and gratitude that I welcome you all to
+              Khulna Agricultural University (KAU), Khulna. We stand on the
+              shoulders of countless martyrs, whose sacrifices have paved the
+              way for an independent Bangladesh in 1971. The recent July 2024
+              student led mass movement, a watershed moment in our nation’s
+              history, ignited a fire of hope and resistance among millions who
+              have been fighting for a democratic Bangladesh for the last 15
+              years. Thousands of courageous young souls, inspired by the spirit
+              of movements against all forms of discrimination, took to the
+              streets to the historic ouster of the fascist regime that will
+              forever be etched in our collective memory as the “Second Victory
+              of Bangladesh.” We honor the memory of the over 1,500 martyrs who
+              laid down their lives for our nation’s future and express our
+              deepest condolences to the families of the bereaved.
+            </p>
+            {/* Button + Social Icons */}
+            <div className="flex items-center justify-start gap-5 mt-8">
               <a
                 href="#"
-                className="inline-flex items-center gap-2 px-6 py-2 font-semibold text-white rounded-full bg-gradient-to-r from-[#498dbd] to-[#346f96] shadow-lg hover:shadow-xl transition-all"
+                className="inline-flex items-center gap-2 px-6 py-2 font-semibold text-white rounded-full bg-gradient-to-r from-[#498dbd] to-[#346f96] shadow-md hover:shadow-lg transition-all"
               >
-                Read More <span className="text-lg">→</span>
+                Read More →
               </a>
-              {/* Social Icons */}
-              <div className="flex justify-center gap-4 ps-5">
-                <a
-                  href="#"
-                  className="p-2 text-white bg-[#0077B5] rounded-full hover:scale-110 transition-transform"
-                >
-                  <FaLinkedin size={18} />
-                </a>
-                <a
-                  href="#"
-                  className="p-2 text-white bg-[#1DA1F2] rounded-full hover:scale-110 transition-transform"
-                >
-                  <FaTwitter size={18} />
-                </a>
-                <a
-                  href="#"
-                  className="p-2 text-white bg-[#006699] rounded-full hover:scale-110 transition-transform"
-                >
-                  <FaResearchgate size={18} />
-                </a>
-              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* --- The Overlapping Image (Absolute Positioned) --- */}
+        <div className="relative md:absolute md:top-1/2 md:left-[35%] md:transform md:-translate-x-1/2 md:-translate-y-1/2 z-10 w-full md:w-[320px] lg:w-[380px] px-8 md:px-0 mb-8 md:mb-0">
+          <div className="relative aspect-[3/4] shadow-2xl bg-gray-200">
+            <Image
+              src="/images/Prof.-Dr.-Md.-Nazmul-Ahsan.jpg"
+              alt="Profile Portrait"
+              fill
+              className="object-cover filter grayscale contrast-110" // Grayscale to match reference
+            />
+
+            {/* Dark Gradient Overlay for Text Readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+
+            {/* Name Overlay */}
+            <div className="absolute text-white bottom-6 left-6">
+              <h3 className="text-2xl font-bold tracking-wide">
+                Prof. Dr. Md. Nazmul Ahsan
+              </h3>
+              <p className="mt-1 text-sm font-normal text-white">
+                Vice-Chancellor, KAU
+              </p>
             </div>
           </div>
         </div>

@@ -82,7 +82,7 @@ const KauAtAGlanceSection: React.FC = () => {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
-        <h2 className="mb-16 text-3xl font-bold tracking-wider text-center text-white uppercase md:text-4xl">
+        <h2 className="mb-16 text-5xl font-bold tracking-wider text-center text-white uppercase md:text-5xl">
           KAU At A Glance
         </h2>
 

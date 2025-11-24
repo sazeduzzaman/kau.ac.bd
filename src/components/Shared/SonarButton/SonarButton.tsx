@@ -35,16 +35,16 @@ const SonarButton = () => {
     >
       <button
         onClick={scrollToTop}
-        className="relative flex items-center justify-center w-16 h-16 rounded-full bg-[#004d4d] shadow-lg hover:bg-[#006666] transition-colors group"
+        className="relative flex items-center justify-center w-16 h-16 cursor-pointer rounded-full bg-site-primary shadow-lg hover:bg-[#006666] transition-colors group"
         aria-label="Scroll to top"
       >
         {/* --- The Sonar/Radar Ripples --- */}
         {/* Ripple 1 */}
-        <span className="absolute inline-flex h-full w-full rounded-full bg-[#004d4d] opacity-75 animate-ping"></span>
-        
+        <span className="absolute inline-flex w-full h-full rounded-full opacity-75 bg-site-primary animate-ping"></span>
+
         {/* Static Ring (Radar Grid) */}
-        <span className="absolute inline-flex h-[140%] w-[140%] rounded-full border border-[#004d4d]/30"></span>
-        
+        <span className="absolute inline-flex h-[140%] w-[140%] rounded-full border border-blue-400/30 animate-spin"></span>
+
         {/* --- The Fighter Jet Icon (SVG) --- */}
         <svg
           viewBox="0 0 24 24"
@@ -53,7 +53,7 @@ const SonarButton = () => {
         >
           {/* Simplified Fighter Jet Path */}
           <path d="M12 2L2 22l10-3 10 3L12 2z" />
-          <path d="M12 19l-3 3h6l-3-3z" fillOpacity="0.5" /> 
+          <path d="M12 19l-3 3h6l-3-3z" fillOpacity="0.5" />
         </svg>
       </button>
     </div>

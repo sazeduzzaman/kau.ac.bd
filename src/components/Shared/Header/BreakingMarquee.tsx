@@ -2,28 +2,29 @@
 import { FaBullhorn } from "react-icons/fa";
 
 interface BreakingMarqueeProps {
-  items: string[]; // <-- array of strings
+  items: string[];
 }
 
 const BreakingMarquee: React.FC<BreakingMarqueeProps> = ({ items }) => {
   return (
-    <div className="relative w-full bg-[#498dbd] text-white  overflow-hidden">
-      <div className="container flex items-center mx-auto">
-        {/* Label */}
-        <div className="z-10 flex items-center justify-center w-auto px-4 py-2 text-sm font-semibold shadow-md bg-site-secondary">
-          <FaBullhorn className="mr-2" /> Breaking
+    <div className="relative w-full bg-[#0D1117] text-white overflow-hidden border-b border-white/10">
+      <div className="flex items-center">
+        {/* Left Label */}
+        <div className="flex items-center gap-2 px-5 py-3 text-sm font-semibold text-white shadow-lg bg-site-primary">
+          <FaBullhorn className="text-lg" />
+          <span>Breaking News</span>
         </div>
 
-        {/* Gradient Fade Left */}
-        <div className="bg-gradient-to-r from-[#498dbd] to-transparent z-10" />
+        {/* Fade left gradient */}
+        {/* <div className="w-8 h-full bg-gradient-to-r from-[#0a59cf] to-transparent pointer-events-none" /> */}
 
-        {/* Marquee Area */}
-        <div className="overflow-hidden whitespace-nowrap">
-          <div className="inline-block px-4 animate-scroll">
-            {items.map((news, index) => (
+        {/* Marquee Content */}
+        <div className="relative flex-1 overflow-hidden">
+          <div className="whitespace-nowrap animate-scroll text-[15px] flex items-center pt-1">
+            {items.map((news, i) => (
               <span
-                key={index}
-                className="mx-5 text-sm transition-colors cursor-pointer hover:text-site-accent"
+                key={i}
+                className="mx-8 transition-colors cursor-pointer text-white/90 hover:text-site-primary"
               >
                 ● {news}
               </span>
@@ -31,8 +32,8 @@ const BreakingMarquee: React.FC<BreakingMarqueeProps> = ({ items }) => {
           </div>
         </div>
 
-        {/* Gradient Fade Right */}
-        <div className="absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-[#498dbd] to-transparent" />
+        {/* Fade right gradient */}
+        {/* <div className="w-12 h-full bg-gradient-to-l from-[#0D1117] to-transparent pointer-events-none" /> */}
       </div>
     </div>
   );
