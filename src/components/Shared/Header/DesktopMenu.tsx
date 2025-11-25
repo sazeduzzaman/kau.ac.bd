@@ -151,36 +151,38 @@ const MenuItem: React.FC<{ item: MenuItemType }> = ({ item }) => {
 
   return (
     <li
-      className="relative flex items-center h-full"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      <Link
-        href={item.href}
-        className={`flex items-center px-2 py-2 transition-all duration-200 mx-1
-          ${item.highlight ? "text-accent-color" : "text-dark"} 
-          ${
-            open || isActive
-              ? "border-b border-site-primary text-site-secondary"
-              : "hover:bg-site-primary hover:text-white"
-          }`}
-      >
-        {item.label}
-        {hasChildren && <FaChevronDown className="ml-1 text-xs" />}
-      </Link>
+  className="relative flex items-center h-full"
+  onMouseEnter={() => setOpen(true)}
+  onMouseLeave={() => setOpen(false)}
+>
+  <Link
+    href={item.href}
+    className={`flex items-center px-2 py-2 transition-all duration-200 mx-1 text-black
+      ${
+        open || isActive
+          ? "text-site-secondary !border-b !border-site-primary"
+          : "text-dark"
+      }
+      hover:bg-site-primary
+    `}
+  >
+    {item.label}
+    {hasChildren && <FaChevronDown className="ml-1 text-xs" />}
+  </Link>
 
-      {hasChildren && (
-        <ul
-          className={`absolute top-full left-0 bg-white shadow-sm  rounded-md transition-all duration-200 z-50 py-2 w-60 ${
-            open ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
-        >
-          {item.children!.map((child, idx) => (
-            <DropdownItem key={idx} item={child} pathname={pathname} />
-          ))}
-        </ul>
-      )}
-    </li>
+  {hasChildren && (
+    <ul
+      className={`absolute top-full left-0 bg-white text-black shadow-sm rounded-md transition-all duration-200 z-50 py-2 w-60 ${
+        open ? "opacity-100 visible" : "opacity-0 invisible"
+      }`}
+    >
+      {item.children!.map((child, idx) => (
+        <DropdownItem key={idx} item={child} pathname={pathname} />
+      ))}
+    </ul>
+  )}
+</li>
+
   );
 };
 

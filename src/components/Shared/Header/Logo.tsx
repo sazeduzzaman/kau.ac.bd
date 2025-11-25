@@ -16,7 +16,7 @@ const Logo: React.FC = () => {
           priority
         />
       </div>
-      <div className="flex flex-col leading-tight">
+      <div className="flex flex-col leading-tight logo-container">
         <h1 className="text-lg md:text-[35px] font-extrabold text-site-primary font-surjo">
           খুলনা কৃষি বিশ্ববিদ্যালয়
         </h1>

@@ -56,7 +56,6 @@ const HeroSection = () => {
 
   return (
     <>
-      {/* <section className="relative w-full h-[780px] md:h-[680px] overflow-hidden bg-black group"> */}
       <section className="relative w-full h-[780px] md:h-[680px] overflow-hidden bg-black group">
         <Swiper
           modules={[Autoplay, Pagination]}

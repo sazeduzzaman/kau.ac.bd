@@ -1,10 +1,10 @@
-import AboutPage from '@/components/AboutPage/AboutPage';
+import MissionVission from '@/components/MissionVission/MissionVission';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-            <AboutPage />
+            <MissionVission />
         </div>
     );
 };

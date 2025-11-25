@@ -9,20 +9,20 @@
   --font-body: "Poppins", sans-serif;
   --font-surjo: "Shurjo", sans-serif;
 
-  --site-primary: #438ABA;
-  --site-secondary: #8B5E3C;
-  --site-accent: #1B7232;
+  --site-primary: #438aba;
+  --site-secondary: #8b5e3c;
+  --site-accent: #1b7232;
   --site-dark: #333333;
   --site-light: #ffffff;
 }
 /* Webkit browsers (Chrome, Edge, Safari) */
 ::-webkit-scrollbar {
-  width: 12px;              /* Width of vertical scrollbar */
-  height: 12px;             /* Height of horizontal scrollbar */
+  width: 12px; /* Width of vertical scrollbar */
+  height: 12px; /* Height of horizontal scrollbar */
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;   /* Track background */
+  background: transparent; /* Track background */
   border-radius: 10px;
 }
 
@@ -30,7 +30,7 @@
   background: linear-gradient(180deg, #00695c, #2c6ca1); /* Theme gradient */
   border-radius: 10px;
   border: 3px solid transparent; /* creates padding effect */
-  background-clip: content-box;  /* ensures border is outside thumb */
+  background-clip: content-box; /* ensures border is outside thumb */
   transition: all 0.3s ease;
 }
 
@@ -43,7 +43,6 @@
   scrollbar-width: thin;
   scrollbar-color: #00695c transparent; /* thumb and track */
 }
-
 
 body {
   font-family: var(--font-body) !important;
@@ -126,6 +125,13 @@ h6 {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+.about-section {
+  background-image: url("/images/skyblue-footer-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 .swiper-pagination-bullet-active {
   opacity: var(--swiper-pagination-bullet-opacity, 1);
   width: 30px !important;
@@ -161,8 +167,14 @@ h6 {
 .drop-link:hover .drop-icon {
   opacity: 1;
 }
+
+@media screen and (max-width: 1366px) {
+  .logo-container h1 {
+    display: none !important;
+  }
+}
 @media screen and (max-width: 600px) {
-  .d-m-none{
+  .d-m-none {
     display: none !important;
   }
   .top-bar {

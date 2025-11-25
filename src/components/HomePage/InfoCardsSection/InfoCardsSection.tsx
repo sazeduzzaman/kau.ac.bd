@@ -1,12 +1,13 @@
+import Link from "next/link";
 import { FaInfo, FaUsers } from "react-icons/fa";
 import { FaCircleCheck } from "react-icons/fa6";
 import { TfiTarget } from "react-icons/tfi";
 
 const InfoCardsSection = () => {
   const cards = [
-    { title: "About KAU", icon: <FaInfo />, link: "#" },
-    { title: "Administration", icon: <FaUsers />, link: "#" },
-    { title: "Mission & Vision", icon: <TfiTarget />, link: "#" },
+    { title: "About KAU", icon: <FaInfo />, link: "/about" },
+    { title: "Administration", icon: <FaUsers />, link: "/administration" },
+    { title: "Mission & Vision", icon: <TfiTarget />, link: "/mission-vission" },
     { title: "APA", icon: <FaCircleCheck />, link: "#" },
   ];
 
@@ -27,7 +28,7 @@ const InfoCardsSection = () => {
         {/* Cards Grid */}
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((card, index) => (
-            <a
+            <Link
               key={index}
               href={card.link}
               className="relative flex flex-col items-center p-8 overflow-hidden text-center transition-all duration-500 rounded-lg shadow-lg cursor-pointer group bg-white/20 backdrop-blur-md hover:shadow-2xl"
@@ -47,7 +48,7 @@ const InfoCardsSection = () => {
 
               {/* Floating Glow */}
               <span className="absolute -bottom-10 w-32 h-32 bg-gradient-to-tr from-[#438ABA] to-[#346f96] opacity-20 rounded-full blur-3xl animate-pulse-slow"></span>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
