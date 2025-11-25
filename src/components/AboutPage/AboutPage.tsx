@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 
 const AboutPage = () => {
-  const [openFaculty, setOpenFaculty] = useState(null);
+  const [openFaculty, setOpenFaculty] = useState<number | null>(null);
 
-  const toggleFaculty = (index) => {
+  const toggleFaculty = (index: number) => {
     setOpenFaculty(openFaculty === index ? null : index);
   };
 
