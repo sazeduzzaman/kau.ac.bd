@@ -23,7 +23,7 @@ const menuItems: MenuItemType[] = [
       { label: "Vice-Chancellor", href: "/about/mission" },
       { label: "Pro Vice-Chancellor", href: "/about/mission" },
       { label: "Treasurer", href: "/about/mission" },
-      { label: "Mission and Vision", href: "/about/mission" },
+      { label: "Mission and Vision", href: "/mission-vission" },
     ],
   },
   {
@@ -151,13 +151,13 @@ const MenuItem: React.FC<{ item: MenuItemType }> = ({ item }) => {
 
   return (
     <li
-  className="relative flex items-center h-full"
-  onMouseEnter={() => setOpen(true)}
-  onMouseLeave={() => setOpen(false)}
->
-  <Link
-    href={item.href}
-    className={`flex items-center px-2 md:px-1 py-2 transition-all duration-200 mx-1 text-black
+      className="relative flex items-center h-full"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <Link
+        href={item.href}
+        className={`flex items-center px-2 md:px-1 py-2 transition-all duration-200 mx-1 text-black
       ${
         open || isActive
           ? "text-site-secondary !border-b !border-site-primary"
@@ -165,24 +165,23 @@ const MenuItem: React.FC<{ item: MenuItemType }> = ({ item }) => {
       }
       hover:bg-site-primary
     `}
-  >
-    {item.label}
-    {hasChildren && <FaChevronDown className="ml-1 text-xs" />}
-  </Link>
+      >
+       <span className="menu-link-title"> {item.label}</span>
+        {hasChildren && <FaChevronDown className="ml-1 text-xs" />}
+      </Link>
 
-  {hasChildren && (
-    <ul
-      className={`absolute top-full left-0 bg-white text-black shadow-sm rounded-md transition-all duration-200 z-50 py-2 w-60 ${
-        open ? "opacity-100 visible" : "opacity-0 invisible"
-      }`}
-    >
-      {item.children!.map((child, idx) => (
-        <DropdownItem key={idx} item={child} pathname={pathname} />
-      ))}
-    </ul>
-  )}
-</li>
-
+      {hasChildren && (
+        <ul
+          className={`absolute top-full left-0 bg-white text-black shadow-sm rounded-md transition-all duration-200 z-50 py-2 w-60 ${
+            open ? "opacity-100 visible" : "opacity-0 invisible"
+          }`}
+        >
+          {item.children!.map((child, idx) => (
+            <DropdownItem key={idx} item={child} pathname={pathname} />
+          ))}
+        </ul>
+      )}
+    </li>
   );
 };
 

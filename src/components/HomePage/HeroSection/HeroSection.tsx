@@ -85,7 +85,7 @@ const HeroSection = () => {
                 <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/95 via-black/60 to-transparent"></div>
 
                 {/* Text content */}
-                <div className="absolute inset-0 z-20 flex items-center">
+                <div className="absolute inset-0 z-50 flex items-center">
                   <div className="container px-10 mx-auto max-w-7xl md:px-12 lg:px-0">
                     <motion.h2
                       initial={{ opacity: 0, y: 40 }}

@@ -1,5 +1,11 @@
 import React from "react";
-import { Target, Compass, ChevronRight } from "lucide-react";
+import {
+  Target,
+  Compass,
+  ChevronRight,
+  GraduationCap,
+  Lightbulb,
+} from "lucide-react";
 
 const MissionVission = () => {
   // Content derived from the uploaded image
@@ -17,21 +23,30 @@ const MissionVission = () => {
 
   return (
     <div className="min-h-screen font-sans bg-slate-50 text-slate-800">
-      {/* Hero Section */}
-      <div className="relative px-4 py-20 overflow-hidden text-white bg-emerald-900 sm:px-6 lg:px-8">
-        {/* Decorative background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute rounded-full -top-1/2 -right-1/4 w-96 h-96 bg-emerald-800 opacity-20 blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-900 rounded-full opacity-20 blur-2xl"></div>
-        </div>
+      <div
+        className="relative px-4 py-10 text-white bg-emerald-900 sm:px-6 lg:px-8"
+        style={{
+          backgroundImage: 'url("/images/skyblue-footer-bg.png")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 opacity-100 bg-site-primary/50"></div>
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl">
-            Vision & Mission
+        <div className="relative z-10 max-w-5xl py-10 mx-auto text-center">
+          <div className="inline-flex items-center justify-center p-3 mb-6 rounded-full bg-emerald-800/80 backdrop-blur-sm">
+            <Lightbulb className="w-8 h-8 text-emerald-200" />
+          </div>
+          <h1 className="mb-6 text-3xl font-bold tracking-tight md:text-5xl">
+            Mission & Vision
           </h1>
-          <p className="text-xl font-light leading-relaxed text-emerald-100">
-            The guiding principles defining our path towards excellence in
-            agricultural education and research.
+          <p className="max-w-3xl mx-auto text-lg leading-relaxed text-white capitalize md:text-xl">
+            our mission and vision reflect our unwavering commitment to
+            excellence in agricultural education, research, and community
+            engagement.
           </p>
         </div>
       </div>
@@ -43,13 +58,13 @@ const MissionVission = () => {
           {/* Text Content (Left on Desktop) */}
           <div className="order-2 md:order-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 shadow-sm bg-emerald-100 rounded-xl">
+              <div className="p-3 rounded-full shadow-sm bg-emerald-100">
                 <Target className="w-8 h-8 text-emerald-700" />
               </div>
               <h2 className="text-3xl font-bold text-slate-900">Our Vision</h2>
             </div>
-            <div className="relative p-8 overflow-hidden bg-white border shadow-sm rounded-2xl border-slate-100">
-              <div className="absolute top-0 left-0 w-2 h-full bg-emerald-500"></div>
+            <div className="relative overflow-hidden bg-white border rounded-2xl border-slate-100">
+              {/* <div className="absolute top-0 left-0 w-2 h-full bg-emerald-500"></div> */}
               <p className="relative z-10 text-lg leading-relaxed text-justify text-slate-700">
                 {visionText}
               </p>
@@ -102,14 +117,14 @@ const MissionVission = () => {
           {/* Text Content (Right on Desktop) */}
           <div className="order-2 md:order-2">
             <div className="flex items-center justify-end gap-3 mb-6 md:justify-start">
-              <div className="p-3 bg-blue-100 shadow-sm rounded-xl">
+              <div className="p-3 bg-blue-100 rounded-full shadow-sm">
                 <Compass className="w-8 h-8 text-blue-700" />
               </div>
               <h2 className="text-3xl font-bold text-slate-900">Our Mission</h2>
             </div>
 
-            <div className="relative p-8 overflow-hidden bg-white border shadow-sm rounded-2xl border-slate-100">
-              <div className="absolute top-0 right-0 w-2 h-full bg-site-primary md:left-auto md:right-0"></div>
+            <div className="relative p-8 overflow-hidden border-slate-100">
+              {/* <div className="absolute top-0 right-0 w-2 h-full bg-site-primary md:left-auto md:right-0"></div> */}
               {/* On mobile, move accent border to left for consistency */}
               <div className="absolute top-0 left-0 w-2 h-full bg-site-primary md:hidden"></div>
 

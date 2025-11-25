@@ -47,7 +47,7 @@ const Topbar: React.FC<TopbarProps> = ({ isSticky }) => {
           {/* APA Link */}
           <div className="flex items-center">
             <Link
-              href="/handbook"
+              href="/apa"
               className="px-3 pt-[2px] text-white hover:text-black font-normal font-merriweather"
             >
               APA
