@@ -113,8 +113,8 @@ const AboutPage = () => {
         <div className="absolute inset-0 opacity-100 bg-site-primary/50"></div>
 
         <div className="relative z-10 max-w-5xl py-10 mx-auto text-center">
-          <div className="inline-flex items-center justify-center p-3 mb-6 rounded-full bg-emerald-800/80 backdrop-blur-sm">
-            <GraduationCap className="w-8 h-8 text-emerald-200" />
+          <div className="inline-flex items-center justify-center p-3 mb-6 rounded-full bg-site-primary backdrop-blur-sm">
+            <GraduationCap className="w-8 h-8 text-white" />
           </div>
           <h1 className="mb-6 text-3xl font-bold tracking-tight md:text-5xl">
             About KAU

@@ -34,7 +34,7 @@ const menuItems: MenuItemType[] = [
         label: "Authorities",
         href: "#",
         children: [
-          { label: "Syndicate", href: "/ug" },
+          { label: "Syndicate", href: "/syndicate" },
           { label: "Academic Council", href: "/ug" },
           { label: "Committees", href: "/pg" },
         ],
@@ -43,8 +43,8 @@ const menuItems: MenuItemType[] = [
         label: "Administrative",
         href: "#",
         children: [
-          { label: "Office of the VC", href: "/ug" },
-          { label: "Office of the Registrar", href: "/ug" },
+          { label: "Office of the VC", href: "/vc-office" },
+          { label: "Office of the Registrar", href: "/registrar-office" },
           { label: "Council Section", href: "/ug" },
           { label: "Public Relations & Publications Office", href: "/ug" },
           { label: "Central Despas", href: "/ug" },

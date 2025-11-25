@@ -46,7 +46,7 @@ const ChancellorSection = () => {
             <h4 className="mb-6 font-serif text-3xl font-semibold md:text-2xl text-site-primary">
               Message from the Vice Chancellor
             </h4>
-            <p className="mb-6 text-justify text-gray-700">
+            <p className="mb-6 text-justify text-gray-700 font-poppins">
               It is with immense pride and gratitude that I welcome you all to
               Khulna Agricultural University (KAU), Khulna. We stand on the
               shoulders of countless martyrs, whose sacrifices have paved the
@@ -56,7 +56,7 @@ const ChancellorSection = () => {
               have been fighting for a democratic Bangladesh for the last 15
               years.
             </p>
-            <p className="mb-6 text-justify text-gray-700">
+            <p className="mb-6 text-justify text-gray-700 font-poppins">
               Thousands of courageous young souls, inspired by the spirit of
               movements against all forms of discrimination, took to the streets
               to the historic ouster of the fascist regime that will forever be

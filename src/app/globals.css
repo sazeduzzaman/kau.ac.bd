@@ -98,6 +98,13 @@ h6 {
 }
 
 /* Custom Css */
+.badge-ribon {
+  transform: rotate(-83deg);
+  top: 50px;
+  left: -15px;
+  text-align: center;
+  width: 110px;
+}
 .top-bar {
   /* background-image: url("/images/topbar-bg.png"); */
   background-color: var(--site-primary);
