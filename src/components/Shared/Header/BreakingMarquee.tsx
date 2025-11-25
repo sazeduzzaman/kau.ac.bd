@@ -10,7 +10,7 @@ const BreakingMarquee: React.FC<BreakingMarqueeProps> = ({ items }) => {
     <div className="relative w-full bg-[#0D1117] text-white overflow-hidden ">
       <div className="flex items-center">
         {/* Left Label */}
-        <div className="flex items-center gap-2 px-5 py-3 text-sm font-semibold text-white shadow-lg bg-site-primary">
+        <div className="flex items-center gap-2 px-5 py-3 text-sm font-semibold text-white shadow-lg bg-site-primary breaking-tag">
           <FaBullhorn className="text-lg" />
           <span>Breaking News</span>
         </div>

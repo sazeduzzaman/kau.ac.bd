@@ -157,7 +157,7 @@ const MenuItem: React.FC<{ item: MenuItemType }> = ({ item }) => {
 >
   <Link
     href={item.href}
-    className={`flex items-center px-2 py-2 transition-all duration-200 mx-1 text-black
+    className={`flex items-center px-2 md:px-1 py-2 transition-all duration-200 mx-1 text-black
       ${
         open || isActive
           ? "text-site-secondary !border-b !border-site-primary"

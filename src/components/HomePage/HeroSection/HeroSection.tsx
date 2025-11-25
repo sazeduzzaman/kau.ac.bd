@@ -56,7 +56,7 @@ const HeroSection = () => {
 
   return (
     <>
-      <section className="relative w-full h-[780px] md:h-[680px] overflow-hidden bg-black group">
+      <section className="relative w-full h-[580px] md:h-[680px] overflow-hidden bg-black group">
         <Swiper
           modules={[Autoplay, Pagination]}
           onSwiper={setSwiperRef}
@@ -74,10 +74,10 @@ const HeroSection = () => {
         >
           {slides.map((slide) => (
             <SwiperSlide key={slide.id}>
-              <div className="relative w-full h-full overflow-hidden">
+              <section className="relative w-full h-full overflow-hidden bg-black group">
                 {/* Zoom wrapper */}
                 <div
-                  className="absolute inset-0 bg-center bg-cover scale-110 transition-transform duration-[6000ms] ease-out group-hover:scale-100"
+                  className="absolute inset-0 bg-center bg-cover slide-zoom"
                   style={{ backgroundImage: `url(${slide.image})` }}
                 ></div>
 
@@ -86,12 +86,12 @@ const HeroSection = () => {
 
                 {/* Text content */}
                 <div className="absolute inset-0 z-20 flex items-center">
-                  <div className="container px-6 mx-auto max-w-7xl">
+                  <div className="container px-10 mx-auto max-w-7xl md:px-12 lg:px-0">
                     <motion.h2
                       initial={{ opacity: 0, y: 40 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8 }}
-                      className="mb-6 text-white w-[500px] text-[75px] md:text-[55px] sm:text-[30px] font-bold leading-tight drop-shadow-xl"
+                      className="max-w-xl mb-6 text-3xl font-bold leading-tight text-white sm:max-w-2xl sm:text-4xl md:text-5xl lg:text-6xl drop-shadow-xl"
                     >
                       {slide.title}
                     </motion.h2>
@@ -100,7 +100,7 @@ const HeroSection = () => {
                       initial={{ opacity: 0, y: 40 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.15, duration: 0.8 }}
-                      className="max-w-3xl mb-10 w-2/4  text-[22px] md:text-[18px] text-white/90 leading-relaxed"
+                      className="max-w-lg mb-8 text-sm leading-relaxed sm:max-w-xl md:max-w-2xl sm:text-base md:text-lg lg:text-xl text-white/90"
                     >
                       {slide.subtitle}
                     </motion.p>
@@ -115,13 +115,13 @@ const HeroSection = () => {
                       href={slide.buttonLink}
                       className="flex items-center justify-start gap-5 mt-8"
                     >
-                      <div className="inline-flex items-center gap-2 px-6 py-2 font-semibold text-white rounded-full bg-gradient-to-r from-[#438ABA] to-[#346f96] shadow-md hover:shadow-lg transition-all">
+                      <div className="inline-flex items-center gap-2 px-6 py-2 font-normal text-white rounded-full bg-gradient-to-r from-[#438ABA] to-[#346f96] shadow-md hover:shadow-lg transition-all btn-one">
                         {slide.buttonText} <span className="ps-2">→</span>
                       </div>
                     </motion.a>
                   </div>
                 </div>
-              </div>
+              </section>
             </SwiperSlide>
           ))}
         </Swiper>
