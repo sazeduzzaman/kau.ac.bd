@@ -198,9 +198,9 @@ const NewsNoticeSection = () => {
                   ))}
                 </div>
                 <div className=" card-footer">
-                  <div className="py-3 text-lg font-bold text-center text-white  bg-gradient-to-r from-[#00695c] to-[#004d40]">
+                  <div className="py-3 text-lg font-bold text-center text-white bg-gradient-to-r from-[#438ABA] to-[#438ABA]">
                     <button className="text-sm font-semibold text-white hover:underline">
-                      View All Notices
+                      View All News
                     </button>
                   </div>
                 </div>

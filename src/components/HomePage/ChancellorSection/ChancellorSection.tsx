@@ -43,9 +43,9 @@ const ChancellorSection = () => {
 
           {/* Content Wrapper */}
           <div className="flex flex-col justify-center flex-1 pr-8 md:pl-32 lg:pl-48 md:pr-12">
-            <h2 className="mb-6 font-serif text-1xl md:text-3xl text-site-primary">
-              Chancellor Voice
-            </h2>
+            <h4 className="mb-6 font-serif text-3xl font-semibold md:text-2xl text-site-primary">
+              Message from the Vice Chancellor
+            </h4>
             <p className="mb-6 text-justify text-gray-700">
               It is with immense pride and gratitude that I welcome you all to
               Khulna Agricultural University (KAU), Khulna. We stand on the
