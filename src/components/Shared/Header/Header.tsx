@@ -20,17 +20,27 @@ const Header: React.FC = () => {
 
   return (
     <header className="w-full z-[9999]">
-      {/* Topbar */}
-      <div className="top-bar">
+
+      {/* ⭐ Smooth Topbar Animation */}
+      <div
+        className={`
+          overflow-hidden
+          transition-all duration-700 ease-in-out
+          ${isSticky ? "max-h-0 opacity-0" : "max-h-[48px] opacity-100"}
+        `}
+      >
         <Topbar isSticky={isSticky} />
       </div>
 
-      {/* Main Navbar */}
+      {/* ⭐ Main Navbar */}
       <div
-        className={`w-full border-b border-green-100 transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]
+        className={`
+          w-full border-b border-green-100
+          transition-all duration-700 ease-in-out
+
           ${
             isSticky
-              ? "fixed top-0 left-0 right-0 z-[9999] bg-white/80 sticky-menu backdrop-blur-[6px] shadow-md py-2"
+              ? "fixed top-0 left-0 right-0 z-[9999] sticky-menu bg-white/80 backdrop-blur-[6px] shadow-md py-2 translate-y-0"
               : "relative bg-white shadow-none py-4"
           }
         `}
