@@ -19,12 +19,12 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header className="w-full z-[9999]">
+    <header className="relative w-full">
       {/* ⭐ Smooth Topbar Animation */}
       <div
         className={`
-          overflow-hidden
-          transition-all duration-700 ease-in-out
+          
+          transition-all duration-700 ease-in-out 
           ${isSticky ? "max-h-0 opacity-0" : "max-h-[48px] opacity-100"}
         `}
       >

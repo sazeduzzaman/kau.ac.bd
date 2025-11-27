@@ -2,7 +2,6 @@
 
 import React, { useRef } from "react";
 import Link from "next/link";
-import { FaEnvelope } from "react-icons/fa6";
 import {
   FaFacebookF,
   FaInstagram,
@@ -13,13 +12,13 @@ interface TopbarProps {
   isSticky: boolean;
 }
 
-const Topbar: React.FC<TopbarProps> = ({isSticky}) => {
+const Topbar: React.FC<TopbarProps> = ({ isSticky }) => {
   const topbarRef = useRef<HTMLDivElement>(null);
 
   return (
     <div
       ref={topbarRef}
-      className={`bg-site-primary text-white text-sm transition-all duration-300 top-bar ${
+      className={`bg-site-primary z-[10000] text-white text-sm transition-all duration-300 top-bar ${
         isSticky ? "opacity-0 h-0 overflow-hidden" : "opacity-100 h-auto"
       }`}
     >
@@ -119,7 +118,8 @@ const Topbar: React.FC<TopbarProps> = ({isSticky}) => {
             <div className="absolute left-0 z-50 invisible mt-2 text-black transition-all duration-300 bg-white border border-gray-200 rounded shadow-lg opacity-0 w-60 group-hover:opacity-100 group-hover:visible">
               {/* Dropdown item 1 */}
               <Link
-                href="/downloads/file1.pdf"
+                target="_blank"
+                href="/images/pdf/Contractual-job-application-form.pdf"
                 className="flex items-center justify-between px-4 py-3 drop-link hover:bg-gray-200 group"
               >
                 <span>Contractual Job</span>
@@ -143,7 +143,7 @@ const Topbar: React.FC<TopbarProps> = ({isSticky}) => {
           {/* Login Link */}
           <div className="flex items-center">
             <Link
-              href="/login"
+              href="/auth/login"
               className="px-3 pt-[2px] text-white hover:text-black font-normal font-merriweather"
             >
               LOGIN

@@ -28,14 +28,17 @@ const Footer = () => {
   ];
 
   const usefulLinks = [
-    { label: "Leave Application", href: "/leave-application" },
-    { label: "খুকৃবি পর্যায়োন্নয়ন আবেদনপত্র ফরম", href: "/application-form" },
+    { label: "Leave Application", href: "/images/pdf/leave-application.pdf" },
+    { label: "খুকৃবি পর্যায়োন্নয়ন আবেদনপত্র ফরম", href: "/images/pdf/পর্যায়োন্নয়নের-আবেদনপত্র.pdf" },
     {
       label: "যৌন নিপীড়ন প্রতিরোধকল্পে গঠিত অভিযোগ কমিটি",
-      href: "/complaint-committee",
+      href: "/images/pdf/অভিযোগ-প্রতিকার.pdf",
     },
     { label: "Tender", href: "/tender-info" },
-    { label: "Ethical Approval Application", href: "/ethical-approval" },
+    {
+      label: "Ethical Approval Application",
+      href: "/images/pdf/Ethical-Approval-Application.pdf",
+    },
   ];
 
   const socialIcons = [
@@ -111,16 +114,23 @@ const Footer = () => {
                   <span className="absolute bottom-0 left-0 w-10 h-[3px] bg-gradient-to-r from-[#fff] to-[#37b46e] rounded-full"></span>
                 </h6>
                 <ul className="space-y-2 text-sm opacity-90">
-                  {usefulLinks.map((item, i) => (
-                    <li key={i}>
-                      <Link
-                        href={item.href}
-                        className="flex items-center gap-2 transition-all hover:text-white hover:translate-x-1"
-                      >
-                        <FaAngleDoubleRight className="text-xs" /> {item.label}
-                      </Link>
-                    </li>
-                  ))}
+                  {usefulLinks.map((item, i) => {
+                    const isPDF = item.href.toLowerCase().endsWith(".pdf");
+
+                    return (
+                      <li key={i}>
+                        <Link
+                          href={item.href}
+                          target={isPDF ? "_blank" : "_self"}
+                          rel={isPDF ? "noopener noreferrer" : ""}
+                          className="flex items-center gap-2 transition-all hover:text-white hover:translate-x-1"
+                        >
+                          <FaAngleDoubleRight className="text-xs" />{" "}
+                          {item.label}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
 

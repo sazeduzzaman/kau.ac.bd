@@ -44,20 +44,26 @@ const menuItems: MenuItemType[] = [
         href: "#",
         children: [
           { label: "Office of the VC", href: "/vc-office" },
-          { label: "Office of the Registrar", href: "/registrar-office" },
-          { label: "Council Section", href: "/ug" },
-          { label: "Public Relations & Publications Office", href: "/ug" },
-          { label: "Central Despas", href: "/ug" },
-          { label: "Finance & Accounts Division", href: "/ug" },
-          { label: "ICT Cell", href: "/ug" },
-          { label: "Engineering Division", href: "/pg" },
-          { label: "Office of the Treasurer", href: "/pg" },
-          { label: "Transport Pool", href: "/pg" },
-          { label: "Academic Section", href: "/pg" },
-          { label: "Central Store", href: "/pg" },
-          { label: "Liaison Officer For Academics", href: "/pg" },
-          { label: "Planning, Developments & Works Division", href: "/pg" },
-          { label: "Controller Section", href: "/pg" },
+          { label: "Office of the Registrar", href: "/register-office" },
+          { label: "Council Section", href: "/council-office" },
+          {
+            label: "Public Relations & Publications Office",
+            href: "/publications-office",
+          },
+          { label: "Central Despas", href: "/central-despas" },
+          { label: "Finance & Accounts Division", href: "/finance-division" },
+          { label: "ICT Cell", href: "/ict-cell" },
+          { label: "Engineering Division", href: "/engineering-division" },
+          { label: "Office of the Treasurer", href: "/office-treasurer" },
+          { label: "Transport Pool", href: "/transport-pool" },
+          { label: "Academic Section", href: "/academic-section" },
+          { label: "Central Store", href: "/central-store" },
+          { label: "Liaison Officer For Academics", href: "liaison-academics" },
+          {
+            label: "Planning, Developments & Works Division",
+            href: "/works-division",
+          },
+          { label: "Controller Section", href: "/controller-section" },
         ],
       },
       {
@@ -166,7 +172,7 @@ const MenuItem: React.FC<{ item: MenuItemType }> = ({ item }) => {
       hover:bg-site-primary
     `}
       >
-       <span className="menu-link-title"> {item.label}</span>
+        <span className="menu-link-title"> {item.label}</span>
         {hasChildren && <FaChevronDown className="ml-1 text-xs" />}
       </Link>
 
