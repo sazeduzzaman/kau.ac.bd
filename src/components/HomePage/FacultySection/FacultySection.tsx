@@ -8,6 +8,7 @@ import {
   FaSeedling,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const FacultySection = () => {
   const faculties = [
@@ -17,6 +18,7 @@ const FacultySection = () => {
         "Advancing animal health and biomedical research through quality education and innovation.",
       icon: <FaPiggyBank className="text-4xl text-site-accent" />,
       btnText: "Go To VABS",
+      link: "https://vabs.kau.ac.bd/",
     },
     {
       title: "Agriculture",
@@ -24,6 +26,7 @@ const FacultySection = () => {
         "Learn modern farming techniques, crop science, and sustainable agricultural practices.",
       icon: <FaLeaf className="text-4xl text-green-500" />,
       btnText: "Go To AG",
+      link: "https://ag.kau.ac.bd/",
     },
     {
       title: "Fisheries & Ocean Sciences",
@@ -31,6 +34,7 @@ const FacultySection = () => {
         "Explore marine biology, fisheries management, and ocean sciences in depth.",
       icon: <FaFish className="text-4xl text-sky-500" />,
       btnText: "Go To FOS",
+      link: "https://fos.kau.ac.bd/",
     },
     {
       title: "Agricultural Economics & Agribusiness Studies",
@@ -38,6 +42,7 @@ const FacultySection = () => {
         "Understand agricultural markets, economics, and business strategies.",
       icon: <FaChartLine className="text-4xl text-orange-500" />,
       btnText: "Go To AEAS",
+      link: "https://aeas.kau.ac.bd/",
     },
     {
       title: "Agricultural Engineering & Technology",
@@ -45,6 +50,7 @@ const FacultySection = () => {
         "Study irrigation systems, machinery, and sustainable agro-technology.",
       icon: <FaTools className="text-4xl text-indigo-500" />,
       btnText: "Go To AET",
+      link: "https://aet.kau.ac.bd/",
     },
     {
       title: "Horticulture & Crop Science",
@@ -52,6 +58,7 @@ const FacultySection = () => {
         "Dive into crop improvement, horticulture, and plant biotechnology.",
       icon: <FaSeedling className="text-4xl text-green-600" />,
       btnText: "Go To HCS",
+      link: "#",
     },
   ];
 
@@ -106,12 +113,13 @@ const FacultySection = () => {
               </p>
 
               {/* Button */}
-              <a
-                href="/"
+              <Link
+                href={faculty.link}
+                target="_blank"
                 className="inline-flex items-center gap-2 font-medium text-[#438ABA] hover:gap-3 hover:text-[#346f96] transition-all"
               >
                 {faculty.btnText} <span className="text-xl">→</span>
-              </a>
+              </Link>
             </motion.div>
           ))}
         </div>

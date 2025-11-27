@@ -68,7 +68,7 @@ const KauAtAGlanceSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative px-4 py-20 overflow-hidden font-sans">
+    <section className="relative px-4 py-20 overflow-hidden">
       {/* Waving Gradient Background */}
       <div className="absolute inset-0 -z-10">
         <div

@@ -1,19 +1,41 @@
+import { Target } from "lucide-react";
 import Link from "next/link";
-import { FaInfo, FaUsers } from "react-icons/fa";
+import { FaInfo, FaUniversity, FaUsers } from "react-icons/fa";
 import { FaCircleCheck } from "react-icons/fa6";
 import { TfiTarget } from "react-icons/tfi";
 
 const InfoCardsSection = () => {
-  const cards = [
-    { title: "About KAU", icon: <FaInfo />, link: "/about" },
-    { title: "Administration", icon: <FaUsers />, link: "/administration" },
-    { title: "Mission & Vision", icon: <TfiTarget />, link: "/mission-vission" },
-    { title: "APA", icon: <FaCircleCheck />, link: "#" },
+ const cards = [
+    {
+      title: "About KAU",
+      icon: <FaInfo className="w-12 h-12" />,
+      link: "/about",
+    },
+    {
+      title: "Administration",
+      icon: <FaUsers className="w-12 h-12" />,
+      link: "/vc-office",
+    },
+    {
+      title: "Mission & Vision",
+      icon: <Target className="w-12 h-12" />,
+      link: "/mission-vission",
+    },
+    {
+      title: "Academic Policy Agreement",
+      icon: <FaCircleCheck className="w-12 h-12" />,
+      link: "/apa",
+    },
+    {
+      title: "Admission",
+      icon: <FaUniversity className="w-12 h-12" />,
+      link: "/register-office",
+    },
   ];
 
   return (
     <section className="relative px-6 py-20 explore-section">
-      <div className="mx-auto max-w-7xl">
+      <div className="container mx-auto">
         {/* Section Header */}
         <div className="text-center mb-14">
           <h2 className="relative inline-block text-5xl font-extrabold text-white">
@@ -26,30 +48,26 @@ const InfoCardsSection = () => {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {cards.map((card, index) => (
-            <Link
-              key={index}
-              href={card.link}
-              className="relative flex flex-col items-center p-8 overflow-hidden text-center transition-all duration-500 rounded-lg shadow-lg cursor-pointer group bg-white/20 backdrop-blur-md hover:shadow-2xl"
-            >
-              {/* Gradient Icon */}
-              <div className="relative z-10 flex items-center justify-center w-20 h-20 mb-6 text-4xl text-white rounded-full bg-gradient-to-tr from-[#438ABA] to-[#346f96] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500 shadow-lg">
-                {card.icon}
-              </div>
+        <div className="relative z-10 mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            {cards.map((card, index) => (
+              <Link
+                key={index}
+                href={card.link}
+                className="relative flex flex-col items-center p-0 overflow-hidden text-center transition-all duration-500 rounded-lg cursor-pointer bg-white/20 backdrop-blur-md group"
+              >
+                <div className="relative flex flex-col items-center justify-center w-full h-48 text-center transition-all duration-300 border rounded-lg border-white/30 hover:bg-white hover:scale-105">
+                  <div className="mb-4 text-white group-hover:text-[#438ABA] transition-colors duration-300">
+                    {card.icon}
+                  </div>
 
-              {/* Card Title */}
-              <h3 className="relative z-10 text-white font-bold text-lg md:text-xl group-hover:text-[#fffc] transition-colors duration-300">
-                {card.title}
-              </h3>
-
-              {/* Hover Glow */}
-              <span className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-[#438ABA]/20 to-[#346f96]/20 opacity-0 group-hover:opacity-50 transition-opacity duration-500"></span>
-
-              {/* Floating Glow */}
-              <span className="absolute -bottom-10 w-32 h-32 bg-gradient-to-tr from-[#438ABA] to-[#346f96] opacity-20 rounded-full blur-3xl animate-pulse-slow"></span>
-            </Link>
-          ))}
+                  <h3 className="text-white font-semibold text-sm md:text-base tracking-wide group-hover:text-[#438ABA] transition-colors duration-300 uppercase mb-2">
+                    {card.title}
+                  </h3>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </section>
