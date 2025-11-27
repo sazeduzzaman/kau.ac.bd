@@ -1,5 +1,6 @@
 import React from "react";
 import { Calendar, FileText, Download } from "lucide-react";
+import Link from "next/link";
 
 const NewsNoticeSection = () => {
   const newsData = [
@@ -199,9 +200,9 @@ const NewsNoticeSection = () => {
                 </div>
                 <div className=" card-footer">
                   <div className="py-3 text-lg font-bold text-center text-white bg-gradient-to-r from-[#438ABA] to-[#438ABA]">
-                    <button className="text-sm font-semibold text-white hover:underline">
+                    <Link href={"#"} className="text-sm font-semibold text-white hover:underline">
                       View All News
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -256,9 +257,9 @@ const NewsNoticeSection = () => {
               </div>
               <div className="card-footer">
                 <div className="py-3 text-lg font-bold text-center text-white  bg-gradient-to-r from-[#00695c] to-[#004d40]">
-                  <button className="text-sm font-semibold text-white hover:underline">
+                  <Link href={"/all-notice"} className="text-sm font-semibold text-white hover:underline">
                     View All Notices
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
