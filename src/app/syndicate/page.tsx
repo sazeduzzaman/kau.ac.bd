@@ -1,4 +1,4 @@
-import SyndicatePage from "@/components/SyndicatePage";
+import SyndicatePage from "@/components/SyndicatePage/SyndicatePage";
 import React from "react";
 
 const page = () => {

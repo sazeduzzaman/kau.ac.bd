@@ -6,6 +6,7 @@ import { UserCheck } from "lucide-react";
 import OfficerCard from "./OfficerCard";
 
 interface Officer {
+  id: number;
   name: string;
   designation: string;
   phone: string;
@@ -20,12 +21,14 @@ interface Section {
   officers: Officer[];
 }
 
+// Sample data for sections and officers
 const registrarData: Section[] = [
   {
     id: "admin-1",
     title: "Registrar Office",
     officers: [
       {
+        id: 1,
         name: "Md. Rezaul Islam",
         badge: "Registrar",
         designation: "Registrar (In Charge)",
@@ -34,6 +37,7 @@ const registrarData: Section[] = [
         image: "/images/office-profile/MD-REZAUL-ISLAM.jpg",
       },
       {
+        id: 2,
         name: "Abdul Motin",
         badge: "Officer",
         designation: "Administrative officer",
@@ -42,6 +46,16 @@ const registrarData: Section[] = [
         image: "/images/office-profile/Abdul-Matin.jpg",
       },
       {
+        id: 3,
+        name: "Md. Nazmul Hassan",
+        badge: "Officer",
+        designation: "Administrative officer",
+        phone: "+880 1934 257863",
+        email: "nazmul@kau.edu.bd",
+        image: "/images/office-profile/man-in-suit-and-tie-no.png",
+      },
+      {
+        id: 4,
         name: "Md. Nazmul Hassan",
         badge: "Officer",
         designation: "Administrative officer",
@@ -56,6 +70,7 @@ const registrarData: Section[] = [
     title: "Administrative 1",
     officers: [
       {
+        id: 5,
         name: "Muhammad Ali",
         badge: "Section",
         designation: "Section Officer",
@@ -64,6 +79,7 @@ const registrarData: Section[] = [
         image: "/images/office-profile/Md.-Al-Mahmud.png",
       },
       {
+        id: 6,
         name: "Satyam Roy",
         badge: "Admin",
         designation: "Administrative Officer",
@@ -78,6 +94,7 @@ const registrarData: Section[] = [
     title: "Administrative 2",
     officers: [
       {
+        id: 7,
         name: "Sharmin Parvin",
         badge: "Officer",
         designation: "Section Officer",
@@ -86,6 +103,7 @@ const registrarData: Section[] = [
         image: "/images/office-profile/lady.png",
       },
       {
+        id: 8,
         name: "Satyam Roy",
         badge: "Admin",
         designation: "Administrative Officer",
@@ -94,6 +112,7 @@ const registrarData: Section[] = [
         image: "/images/office-profile/lady.png",
       },
       {
+        id: 9,
         name: "Shekhore Biswas",
         badge: "Admin",
         designation: "Administrative Officer",
@@ -106,12 +125,20 @@ const registrarData: Section[] = [
 ];
 
 export default function RegistrarTeamCards() {
+  // Track which section is active
   const [activeTab, setActiveTab] = useState(registrarData[0].id);
   const activeSection = registrarData.find((s) => s.id === activeTab);
 
+  // All officers in the active section
+  const rowItems = activeSection?.officers || [];
+  const rowCount = rowItems.length;
+
+  // Width of each card, used to center smaller rows
+  const cardWidth = "250px"; // Adjust to match OfficerCard width
+
   return (
     <>
-      {/* Header */}
+      {/* Header Section */}
       <div
         className="relative px-4 py-10 text-white bg-emerald-900 sm:px-6 lg:px-8"
         style={{
@@ -131,15 +158,23 @@ export default function RegistrarTeamCards() {
             Registered Office
           </h1>
           <p className="max-w-3xl mx-auto text-lg leading-relaxed capitalize md:text-xl">
-            Meet our dedicated team at the Registrar's Office, committed to
-            providing exceptional administrative support and services.
+            Meet our dedicated team at the Registrar's Office, <br /> committed
+            to providing exceptional administrative support and services.
           </p>
         </div>
       </div>
 
-      {/* Tabs + Cards */}
+      {/* Section: Office Team */}
       <div className="w-full px-4 py-16 mx-auto bg-white max-w-7xl">
-        {/* Tabs */}
+        {/* Section Heading */}
+        <div className="relative z-10 max-w-5xl py-10 mx-auto text-center">
+          <h1 className="mb-6 text-3xl font-bold md:text-5xl">Meet the Team</h1>
+          <p className="max-w-3xl mx-auto text-lg leading-relaxed capitalize md:text-xl">
+            Get to know the dedicated professionals
+          </p>
+        </div>
+
+        {/* Section Tabs */}
         <div className="flex justify-center gap-3 mb-12">
           {registrarData.map((section) => (
             <button
@@ -162,16 +197,21 @@ export default function RegistrarTeamCards() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
-          className={`grid gap-8 ${
-            activeSection?.officers.length === 1
-              ? "grid-cols-1 justify-items-center"
-              : activeSection?.officers.length === 2
-              ? "grid-cols-2 justify-items-center"
-              : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-          }`}
+          className="grid gap-8"
+          style={{
+            // If 4 or more items, use 4 columns (1fr each)
+            // If less than 4, create as many columns as items and center them
+            gridTemplateColumns:
+              rowCount >= 4
+                ? "repeat(4, 1fr)"
+                : `repeat(${rowCount}, ${cardWidth})`,
+            justifyContent: "center", // centers smaller rows
+          }}
         >
-          {activeSection?.officers.map((officer) => (
-            <OfficerCard key={officer.email} officer={officer} />
+          {rowItems.map((officer) => (
+            <div key={officer.id} className="flex justify-center">
+              <OfficerCard officer={officer} />
+            </div>
           ))}
         </motion.div>
       </div>

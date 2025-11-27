@@ -13,7 +13,7 @@ interface TopbarProps {
   isSticky: boolean;
 }
 
-const Topbar: React.FC<TopbarProps> = ({ isSticky }) => {
+const Topbar: React.FC<TopbarProps> = ({isSticky}) => {
   const topbarRef = useRef<HTMLDivElement>(null);
 
   return (

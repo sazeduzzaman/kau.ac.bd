@@ -20,45 +20,64 @@ interface OfficerCardProps {
 export default function OfficerCard({ officer }: OfficerCardProps) {
   return (
     <motion.div
-      className="relative w-full max-w-sm overflow-hidden transition border border-gray-200 rounded-xl group hover:shadow-xl"
-      initial={{ opacity: 0, y: 30 }}
+      className="relative w-full max-w-sm overflow-hidden transition-shadow duration-300 shadow-lg cursor-pointer rounded-xl group hover:shadow-xl"
+      initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0.5 }}
     >
       {/* Image */}
-      <div className="relative mb-4 overflow-hidden rounded-xl">
-        <img
+      <div className="relative overflow-hidden rounded-xl">
+        <motion.img
           src={officer.image}
           alt={officer.name}
-          className="object-cover object-center w-full transition-transform duration-300 ease-in-out transform group-hover:scale-105"
+          className="object-cover object-center w-full transition-transform duration-500 ease-in-out h-80 group-hover:scale-105 group-hover:rotate-1"
         />
-        <div className="absolute inset-0 flex items-end justify-center p-6 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-[#438aba]/70 to-transparent group-hover:opacity-100">
+
+        {/* Contact Overlay */}
+        <motion.div
+          className="absolute inset-0 flex items-end justify-center p-6 transition-opacity duration-500 opacity-0 bg-[#438aba]/20 backdrop-blur-sm rounded-xl group-hover:opacity-100"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0 }}
+          whileHover={{ opacity: 1 }}
+        >
           <div className="flex space-x-4">
             <a
               href={`tel:${officer.phone}`}
-              className="p-2 transition-colors bg-white rounded-full text-site-primary hover:bg-site-primary hover:text-white"
+              className="p-3 transition-colors duration-300 rounded-full bg-white/70 backdrop-blur-md text-site-primary hover:bg-gray-600 hover:text-white"
             >
-              <FaPhone />
+              <FaPhone size={18} className="transition-colors duration-300" />
             </a>
             <a
               href={`mailto:${officer.email}`}
-              className="p-2 transition-colors bg-white rounded-full text-site-primary hover:bg-site-primary hover:text-white"
+              className="p-3 transition-colors duration-300 rounded-full bg-white/70 backdrop-blur-md text-site-primary hover:bg-gray-600 hover:text-white"
             >
-              <FaEnvelope />
+              <FaEnvelope
+                size={18}
+                className="transition-colors duration-300"
+              />
             </a>
           </div>
-        </div>
+        </motion.div>
+
+        {/* Badge Ribbon */}
+        {officer.badge && (
+          <motion.span
+            className="absolute px-3 py-1 text-xs font-semibold text-white rounded-full shadow-md top-3 left-3 bg-[#115888] from-[#115888] to-[#438aba]"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            {officer.badge}
+          </motion.span>
+        )}
       </div>
 
-      {/* Details */}
-      <div className="px-2 pb-5 text-center">
-        <h3 className="text-xl font-bold text-gray-800">{officer.name}</h3>
-        <p className="font-medium text-site-primary">{officer.designation}</p>
-       Role {officer.badge && (
-          <span className="inline-block px-3 py-1 mt-2 text-xs font-medium text-teal-700 bg-teal-100 rounded-full">
-            {officer.badge}
-          </span>
-        )}
+      {/* Officer Details */}
+      <div className="px-4 py-5 text-center">
+        <h3 className="text-xl font-bold text-gray-900">{officer.name}</h3>
+        <p className="mt-1 text-sm font-medium text-gray-600">
+          {officer.designation}
+        </p>
       </div>
     </motion.div>
   );

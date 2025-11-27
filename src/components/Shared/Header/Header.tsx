@@ -20,7 +20,6 @@ const Header: React.FC = () => {
 
   return (
     <header className="w-full z-[9999]">
-
       {/* ⭐ Smooth Topbar Animation */}
       <div
         className={`
