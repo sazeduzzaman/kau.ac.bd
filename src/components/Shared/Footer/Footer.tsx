@@ -29,7 +29,10 @@ const Footer = () => {
 
   const usefulLinks = [
     { label: "Leave Application", href: "/images/pdf/leave-application.pdf" },
-    { label: "খুকৃবি পর্যায়োন্নয়ন আবেদনপত্র ফরম", href: "/images/pdf/পর্যায়োন্নয়নের-আবেদনপত্র.pdf" },
+    {
+      label: "খুকৃবি পর্যায়োন্নয়ন আবেদনপত্র ফরম",
+      href: "/images/pdf/পর্যায়োন্নয়নের-আবেদনপত্র.pdf",
+    },
     {
       label: "যৌন নিপীড়ন প্রতিরোধকল্পে গঠিত অভিযোগ কমিটি",
       href: "/images/pdf/অভিযোগ-প্রতিকার.pdf",
@@ -66,8 +69,8 @@ const Footer = () => {
                     <FaMapMarkerAlt className="mt-1 text-white" />
                     <p>
                       <strong>Temporary Campus:</strong> <br />
-                      Khulna Agricultural University Daulatpur Collegiate
-                      School, Deyana Daulatpur, Khulna, Bangladesh.
+                      Temporary Office: Khulna Agricultural University 327,
+                      Jashore Road, Goalkhali, Khalishpur, Khulna-9000
                     </p>
                   </div>
                   <div className="flex gap-3">
