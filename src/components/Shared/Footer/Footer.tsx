@@ -66,7 +66,7 @@ const Footer = () => {
                 </h6>
                 <div className="space-y-4 text-sm opacity-90">
                   <div className="flex gap-3">
-                    <FaMapMarkerAlt className="mt-1 text-white" />
+                    <FaMapMarkerAlt className="mt-1 text-white" size={22} />
                     <p>
                       <strong>Temporary Campus:</strong> <br />
                       Temporary Office: Khulna Agricultural University 327,
@@ -76,15 +76,16 @@ const Footer = () => {
                   <div className="flex gap-3">
                     <FaMapMarkerAlt className="mt-1 text-white" />
                     <p>
-                      <strong>Khulna Office:</strong> <br />
-                      House #200 (1st Phase), Road #12, Sonadanga R/A, Khulna.
+                      <strong>অস্থায়ী অফিস:</strong> <br />
+                      খুলনা কৃষি বিশ্ববিদ্যালয় ৩২৭, যশোর রোড, গোয়ালখালী,
+                      খালিশপুর, খুলনা-৯০০০
                     </p>
                   </div>
                   <div className="flex gap-3">
-                    <FaMapMarkerAlt className="mt-1 text-white" />
+                    <FaEnvelope className="mt-1 text-white" />
                     <p>
-                      <strong>Guest House:</strong> <br />
-                      House #495 (1st Floor), Road #32, Mohakhali DOHS, Dhaka.
+                      <strong>Mail:</strong> <br />
+                      registrar@kau.ac.bd
                     </p>
                   </div>
                 </div>
