@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import { Search, Bell } from "lucide-react";
 import NoticeItem from "./NoticeItem";

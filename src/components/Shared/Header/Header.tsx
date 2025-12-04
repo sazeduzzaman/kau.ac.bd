@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Topbar from "./Topbar";
 import Logo from "./Logo";
 import DesktopMenu from "./DesktopMenu";
+import BreakingMarquee from "./BreakingMarquee";
+import NewsSection from "./NewsSection";
 
 const Header: React.FC = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -23,11 +25,11 @@ const Header: React.FC = () => {
       {/* ⭐ Smooth Topbar Animation */}
       <div
         className={`
-          
-          transition-all duration-700 ease-in-out 
-          ${isSticky ? "max-h-0 opacity-0" : "max-h-[48px] opacity-100"}
-        `}
+    transition-all duration-700 ease-in-out 
+    ${isSticky ? "max-h-0 opacity-0" : "max-h-48 opacity-100"}
+  `}
       >
+        <NewsSection />
         <Topbar isSticky={isSticky} />
       </div>
 

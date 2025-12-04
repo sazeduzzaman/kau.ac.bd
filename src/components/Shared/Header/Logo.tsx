@@ -7,7 +7,7 @@ import Image from "next/image";
 const Logo: React.FC = () => {
   return (
     <Link href="/" className="flex items-center gap-3">
-      <div className="relative flex-shrink-0 w-25 h-25 md:w-25 md:h-25">
+      <div className="relative flex-shrink-0 w-22 h-22 md:w-22 md:h-22">
         <Image
           src="/images/logo-main.png"
           alt="Logo"

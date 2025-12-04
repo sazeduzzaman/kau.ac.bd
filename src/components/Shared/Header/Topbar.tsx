@@ -46,67 +46,23 @@ const Topbar: React.FC<TopbarProps> = ({ isSticky }) => {
           {/* APA Link */}
           <div className="flex items-center">
             <Link
-              href="/apa"
+              href="/all-notice"
               className="px-3 pt-[2px] text-white hover:text-black font-normal font-merriweather"
             >
-              APA
+              Notice
             </Link>
             <span className="ps-2">|</span>
           </div>
-          {/* Download Dropdown */}
-          <div className="relative group ">
+          <div className="flex items-center">
             <Link
-              href="#"
-              className="inline-block px-3 pt-[2px] text-white hover:text-black font-normal font-merriweather"
+              href="/news"
+              className="px-3 pt-[2px] text-white hover:text-black font-normal font-merriweather"
             >
-              Download
+              News
             </Link>
-
-            <div className="absolute left-0 z-50 invisible mt-2 text-black transition-all duration-300 bg-white border border-gray-200 rounded shadow-lg opacity-0 w-60 group-hover:opacity-100 group-hover:visible">
-              {/* Dropdown item 1 */}
-              <Link
-                href="/downloads/file1.pdf"
-                className="flex items-center justify-between px-4 py-3 drop-link hover:bg-gray-200 group"
-              >
-                <span>All necessary forms</span>
-                <span className="ml-2 drop-icon">→</span>
-              </Link>
-
-              {/* Dropdown item 2 */}
-              <Link
-                href="/downloads/file2.pdf"
-                className="flex items-center justify-between px-4 py-3 drop-link hover:bg-gray-200 group"
-              >
-                <span>For faculty</span>
-                <span className="ml-2 transition-opacity duration-300 opacity-0 drop-icon group-hover:opacity-100">
-                  →
-                </span>
-              </Link>
-
-              {/* Dropdown item 3 */}
-              <Link
-                href="/downloads/file3.pdf"
-                className="flex items-center justify-between px-4 py-3 drop-link hover:bg-gray-200 group"
-              >
-                <span>For students</span>
-                <span className="ml-2 transition-opacity duration-300 opacity-0 drop-icon group-hover:opacity-100">
-                  →
-                </span>
-              </Link>
-
-              {/* Dropdown item 4 */}
-              <Link
-                href="/downloads/file4.pdf"
-                className="flex items-center justify-between px-4 py-3 drop-link hover:bg-gray-200 group"
-              >
-                <span>For staff</span>
-                <span className="ml-2 transition-opacity duration-300 opacity-0 drop-icon group-hover:opacity-100">
-                  →
-                </span>
-              </Link>
-            </div>
             <span className="ps-2">|</span>
           </div>
+          
           <div className="relative group">
             <Link
               href="#"
@@ -115,39 +71,24 @@ const Topbar: React.FC<TopbarProps> = ({ isSticky }) => {
               KAU Job
             </Link>
 
-            <div className="absolute left-0 z-50 invisible mt-2 text-black transition-all duration-300 bg-white border border-gray-200 rounded shadow-lg opacity-0 w-60 group-hover:opacity-100 group-hover:visible">
-              {/* Dropdown item 1 */}
+            <div className="absolute left-0 z-50 invisible mt-1 transition-all duration-300 bg-white border border-gray-200 rounded shadow-lg opacity-0 w-50 top-full group-hover:visible group-hover:opacity-100">
               <Link
                 target="_blank"
                 href="/images/pdf/Contractual-job-application-form.pdf"
-                className="flex items-center justify-between px-4 py-3 drop-link hover:bg-gray-200 group"
+                className="flex items-center justify-between px-4 py-3 text-black hover:bg-gray-200"
               >
                 <span>Contractual Job</span>
-                <span className="ml-2 drop-icon">→</span>
+                <span className="ml-2">→</span>
               </Link>
 
-              {/* Dropdown item 2 */}
               <Link
                 href="/downloads/file2.pdf"
-                className="flex items-center justify-between px-4 py-3 drop-link hover:bg-gray-200 group"
+                className="flex items-center justify-between px-4 py-3 text-black hover:bg-gray-200"
               >
                 <span>Teacher & Officer</span>
-                <span className="ml-2 transition-opacity duration-300 opacity-0 drop-icon group-hover:opacity-100">
-                  →
-                </span>
+                <span className="ml-2">→</span>
               </Link>
             </div>
-            <span className="ps-2">|</span>
-          </div>
-
-          {/* Login Link */}
-          <div className="flex items-center">
-            <Link
-              href="/auth/login"
-              className="px-3 pt-[2px] text-white hover:text-black font-normal font-merriweather"
-            >
-              LOGIN
-            </Link>
           </div>
         </div>
       </div>

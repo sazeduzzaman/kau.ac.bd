@@ -54,7 +54,6 @@ const shurjo = localFont({
   ],
 });
 
-
 export const metadata: Metadata = {
   title: "খুলনা কৃষি বিশ্ববিদ্যালয় | Khulna Agricultural University",
   description:
@@ -93,9 +92,6 @@ export const metadata: Metadata = {
     creator: "@kau_bd",
   },
 };
-
-
-
 
 export default function RootLayout({
   children,
