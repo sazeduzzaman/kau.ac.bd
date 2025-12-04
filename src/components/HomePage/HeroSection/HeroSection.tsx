@@ -45,12 +45,6 @@ const slides = [
 const HeroSection = () => {
   const [swiperRef, setSwiperRef] = useState<SwiperType | null>(null);
 
-  const breakingNews = [
-    "খুলনা কৃষি বিশ্ববিদ্যালয়ের কর্মকর্তা (চুক্তিভিত্তিক ) নিয়োগ বিজ্ঞপ্তি — সময় বর্ধিতকরণ",
-    "অনুষদভিত্তিক ভর্তি পরীক্ষার সময়সূচী প্রকাশ",
-    "২০২৪-২৫ শিক্ষাবর্ষে স্নাতক ভর্তি নির্দেশিকা প্রকাশিত",
-  ];
-
   return (
     <section className="relative w-full h-[580px] md:h-[680px] overflow-hidden bg-black">
       <Swiper
@@ -90,7 +84,7 @@ const HeroSection = () => {
       </button>
 
       {/* Breaking Marquee */}
-      <BreakingMarquee items={breakingNews} />
+      {/* <BreakingMarquee items={breakingNews} /> */}
     </section>
   );
 };
