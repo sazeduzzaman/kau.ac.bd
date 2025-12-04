@@ -1,7 +1,11 @@
 "use client";
 import BreakingMarquee from "./BreakingMarquee"; // adjust the path if needed
 
-const demoNews = [
+interface MarqueeItem {
+  title: string;
+  href: string;
+}
+const breakingNews: MarqueeItem[] = [
   { title: "New version of React released today!", href: "/news/react-release" },
   { title: "Stock markets hit an all-time high.", href: "/news/stock-market" },
   { title: "Local team wins the championship!", href: "/news/local-team-win" },
@@ -15,7 +19,7 @@ const demoNews = [
 const NewsSection = () => {
   return (
     <section className="">
-      <BreakingMarquee items={demoNews} />
+      <BreakingMarquee items={breakingNews} />
     </section>
   );
 };
