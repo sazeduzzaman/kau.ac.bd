@@ -135,7 +135,7 @@ const menuItems: MenuItemType[] = [
 
 const DesktopMenu: React.FC = () => {
   return (
-    <nav className="hidden py-0 font-sans bg-white lg:block">
+    <nav className="hidden py-0 font-sans lg:block">
       <ul className="flex items-center justify-start h-16 space-x-1 font-medium text-dark font-primary">
         {menuItems.map((item, index) => (
           <MenuItem key={index} item={item} />
