@@ -38,7 +38,7 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ noticesData }) => {
   return (
     <div className="min-h-screen pb-12 font-sans text-gray-800 bg-gray-50">
       {/* Header */}
-      <div className="relative py-20 overflow-hidden text-white bg-gradient-to-r from-emerald-700 to-teal-700">
+      <div className="relative py-20 pt-0 overflow-hidden text-white bg-gradient-to-r from-emerald-700 to-teal-700">
         <div className="absolute top-0 right-0 w-64 h-64 translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10 blur-2xl"></div>
         <div className="absolute bottom-0 left-0 w-48 h-48 -translate-x-1/2 translate-y-1/2 rounded-full bg-emerald-400/20 blur-2xl"></div>
 
@@ -54,10 +54,6 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ noticesData }) => {
               <h1 className="mb-3 text-3xl font-bold tracking-tight md:text-5xl">
                 Notice Board
               </h1>
-              <p className="max-w-2xl text-lg text-emerald-100/90">
-                Stay connected with the latest academic updates, tenders, and
-                official announcements from KAU.
-              </p>
             </div>
             <div className="hidden md:block">
               <div className="px-6 py-4 border bg-white/10 backdrop-blur-md rounded-xl border-white/20">
@@ -112,11 +108,7 @@ const NoticeBoard: React.FC<NoticeBoardProps> = ({ noticesData }) => {
           <div className="divide-y divide-gray-100">
             {filteredNotices.length > 0 ? (
               filteredNotices.map((notice) => (
-                <NoticeItem
-                  key={notice.id}
-                  notice={notice} // <-- passes full notice data including attachments
-                  onClick={() => setSelectedNotice(notice)}
-                />
+                <NoticeItem key={notice.id} notice={notice} />
               ))
             ) : (
               <div className="py-20 text-center text-gray-500 bg-gray-50/50">

@@ -1,36 +1,42 @@
 "use client";
 
 import React from "react";
-import { ChevronRight } from "lucide-react";
+import { Calendar, ChevronRight } from "lucide-react";
 import { Notice } from "@/lib/types/NoticesDataSetTypes/NoticesDataSetTypes"; // import the global type
 import Image from "next/image";
+import Link from "next/link";
 
 interface NoticeItemProps {
-  notice: Notice; // now uses the correct type
-  onClick: (notice: Notice) => void;
+  notice: Notice; // uses the correct type
 }
 
-const NoticeItem: React.FC<NoticeItemProps> = ({ notice, onClick }) => {
+const NoticeItem: React.FC<NoticeItemProps> = ({ notice }) => {
+  const publishDate = new Date(notice.publish_date).toLocaleDateString(
+    "en-GB",
+    {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    }
+  );
   return (
-    <div
-      onClick={() => onClick(notice)}
-      className="relative p-6 transition-all duration-200 bg-white border-l-4 border-transparent cursor-pointer group hover:bg-emerald-50/30 hover:border-emerald-500"
+    <Link
+      href={`/all-notice/${notice.slug}`} // Navigate to details page
+      className="relative block p-6 transition-all duration-200 bg-white border-l-4 border-transparent cursor-pointer group hover:bg-emerald-50/30 hover:border-emerald-500"
     >
       <div className="flex flex-col items-start gap-6 md:flex-row">
-        {/* Date */}
+        {/* Date / Logo */}
         <div className="flex flex-row items-center justify-start flex-shrink-0 w-full gap-3 md:w-24 md:flex-col md:justify-center md:gap-1">
           <div className="flex flex-col items-center justify-center w-12 h-12 p-2 text-center transition-colors border border-gray-200 rounded-lg md:h-auto md:w-full bg-gray-50 group-hover:border-emerald-200 group-hover:bg-white">
-            <span className="mb-1 text-xl font-bold leading-none text-gray-700 transition-colors md:text-2xl group-hover:text-emerald-600">
-              <div className="relative flex-shrink-0 w-15 h-15 md:w-15 md:h-15">
-                <Image
-                  src="/images/logo-main.png"
-                  alt="Logo"
-                  fill
-                  style={{ objectFit: "contain" }}
-                  priority
-                />
-              </div>
-            </span>
+            <div className="relative flex-shrink-0 w-15 h-15 md:w-15 md:h-15">
+              <Image
+                src="/images/logo-main.png"
+                alt="Logo"
+                fill
+                style={{ objectFit: "contain" }}
+                priority
+              />
+            </div>
           </div>
         </div>
 
@@ -61,6 +67,10 @@ const NoticeItem: React.FC<NoticeItemProps> = ({ notice, onClick }) => {
           <h3 className="text-base font-medium leading-snug text-gray-800 transition-colors md:text-lg group-hover:text-emerald-700 line-clamp-2 md:line-clamp-none">
             {notice.title}
           </h3>
+          <div className="flex items-center">
+            <Calendar size={16} />
+            <span className="ps-2">Published: {publishDate}</span>
+          </div>
         </div>
 
         {/* Arrow */}
@@ -70,7 +80,7 @@ const NoticeItem: React.FC<NoticeItemProps> = ({ notice, onClick }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

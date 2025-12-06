@@ -37,7 +37,7 @@ const NewsDetails: React.FC<NewsDetailsProps> = ({ newsData }) => {
     day: "2-digit",
     month: "short",
     year: "numeric",
-  });
+  }); 
 
   return (
     <div className="py-20 bg-white">

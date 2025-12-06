@@ -11,7 +11,7 @@ const FooterAddress = (siteData: any) => {
         <FaMapMarkerAlt className="mt-1 text-white" size={22} />
         <p className="text-md">
           <strong className="text-md">Temporary Campus:</strong> <br />
-          <div className="mt-3">{footerAddressData.en.slice(18)}</div>
+          <span className="mt-3">{footerAddressData.en.slice(18)}</span>
         </p>
       </div>
       <div className="flex gap-3 font-surjo">
@@ -23,7 +23,7 @@ const FooterAddress = (siteData: any) => {
       </div>
       <div className="flex gap-3">
         <p className="text-md">
-          <div className="">{WebsiteMotto}</div>
+          <span className="">{WebsiteMotto}</span>
         </p>
       </div>
     </div>
