@@ -73,7 +73,7 @@ const BreakingMarquee: React.FC<BreakingMarqueeProps> = ({
               >
                 <span className="animate-blink text-site-primary">●</span>
                 {/* <span>{news.title}</span> */}
-                <span>{`/news/${news.href.split("/").pop()}`}</span>
+                <span>{news.title}</span>
               </Link>
             ))}
           </div>
