@@ -2,13 +2,6 @@
 @plugin "daisyui";
 
 :root {
-  /* Fonts */
-  --font-primary: "Roboto_Serif", serif;
-  --font-heading: "Merriweather", serif;
-  --font-secondary: "Space Grotesk", serif;
-  --font-body: "Poppins", sans-serif;
-  --font-surjo: "Shurjo", sans-serif;
-
   --site-primary: #438aba;
   --site-secondary: #8b5e3c;
   --site-accent: #004b49;
@@ -63,7 +56,7 @@ h6 {
   font-family: var(--font-heading);
 }
 .font-surjo {
-  font-family: var(--font-surjo) !important;
+  font-family: var(--font-shurjo) !important;
 }
 .font-poppins {
   font-family: var(--font-body) !important;

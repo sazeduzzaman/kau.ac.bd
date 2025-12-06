@@ -1,5 +1,6 @@
 // app/news/[slug]/page.tsx
 import NewsDetails from "@/components/NewsDetails/NewsDetails";
+import NoDataFound from "@/components/Shared/NoDataFound/NoDataFound";
 import { Metadata } from "next";
 
 interface PageProps {
@@ -7,12 +8,16 @@ interface PageProps {
 }
 
 // Dynamic metadata
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } =await params;
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
 
   try {
     const res = await fetch(
-      `https://admin.kau.khandkershahed.com/api/v1/news/${encodeURIComponent(slug)}`,
+      `https://admin.kau.khandkershahed.com/api/v1/news/${encodeURIComponent(
+        slug
+      )}`,
       { next: { revalidate: 60 } } // optional: ISR
     );
 
@@ -43,15 +48,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function Page({ params }: PageProps) {
-  const { slug } =await params;
+  const { slug } = await params;
 
   try {
     const res = await fetch(
-      `https://admin.kau.khandkershahed.com/api/v1/news/${encodeURIComponent(slug)}`,
+      `https://admin.kau.khandkershahed.com/api/v1/news/${encodeURIComponent(
+        slug
+      )}`,
       { next: { revalidate: 60 } }
     );
 
-    if (!res.ok) return <div>News not found</div>;
+    if (!res.ok) return <NoDataFound message="News not found" />;
 
     const newsData = await res.json();
     const newsItem = newsData?.data?.news;

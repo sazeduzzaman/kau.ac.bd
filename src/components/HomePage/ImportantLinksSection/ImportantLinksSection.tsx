@@ -73,7 +73,7 @@ const ImportantLinksSection = () => {
           <div className="w-32 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-[#fff] to-[#438ABA]" />
         </h2>
 
-        <p className="max-w-2xl mx-auto mb-10 text-center text-gray-600">
+        <p className="max-w-2xl mx-auto mb-10 text-center text-gray-600 font-surjo">
           খুলনা কৃষি বিশ্ববিদ্যালয়ের গুরুত্বপূর্ণ লিংকসমূহ এখানে প্রদান করা হলো।
         </p>
 
@@ -93,7 +93,7 @@ const ImportantLinksSection = () => {
                     className="object-contain w-20 h-20"
                   />
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 ps-5 text-start">
+                <h3 className="text-xl font-bold text-gray-800 ps-5 text-start font-surjo">
                   {box.title}
                 </h3>
               </div>
@@ -105,7 +105,7 @@ const ImportantLinksSection = () => {
                 {box.items.map((item, idx) => (
                   <li
                     key={idx}
-                    className="flex items-start text-gray-600 hover:text-[#0a4d66] transition-colors cursor-pointer text-sm font-medium group/item"
+                    className="flex font-surjo items-start text-gray-600 hover:text-[#0a4d66] transition-colors cursor-pointer group/item"
                   >
                     <span className="mt-[6px] mr-2 w-1.5 h-1.5 bg-[#438ABA] rounded-full transition-all duration-300 group-hover/item:scale-150"></span>
                     {item}

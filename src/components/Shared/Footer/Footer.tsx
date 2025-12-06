@@ -1,10 +1,9 @@
+import { SiteSettingDataset } from "@/lib/apis/SiteInfromationDataSet/SiteInfromationDataSet";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import {
   FaAngleDoubleRight,
   FaEnvelope,
-  FaMapMarkerAlt,
   FaPhoneAlt,
   FaFacebookF,
   FaYoutube,
@@ -12,23 +11,16 @@ import {
   FaLinkedinIn,
   FaInstagram,
 } from "react-icons/fa";
+import FooterAddress from "./FooterAddress";
+import FooterContact from "./FooterContact";
 
-const Footer = () => {
-  const departmentalLinks = [
-    "Business Administration",
-    "Computer Science & Engineering",
-    "Software Engineering",
-    "AI & Data Science",
-    "Electrical & Electronic Engineering",
-    "English",
-    "Journalism & Media Communication",
-    "Law",
-    "Sociology & Anthropology",
-    "Textile Engineering",
-  ];
+export default async function Footer() {
+  const SiteInfoData = await SiteSettingDataset();
+  const SiteData = SiteInfoData.settings;
+
 
   const usefulLinks = [
-    { label: "Leave Application", href: "/images/pdf/leave-application.pdf" },
+    { label: "ছুটির আবেদনপত্র", href: "/images/pdf/leave-application.pdf" },
     {
       label: "খুকৃবি পর্যায়োন্নয়ন আবেদনপত্র ফরম",
       href: "/images/pdf/পর্যায়োন্নয়নের-আবেদনপত্র.pdf",
@@ -37,9 +29,9 @@ const Footer = () => {
       label: "যৌন নিপীড়ন প্রতিরোধকল্পে গঠিত অভিযোগ কমিটি",
       href: "/images/pdf/অভিযোগ-প্রতিকার.pdf",
     },
-    { label: "Tender", href: "/tender-info" },
+    { label: "টেণ্ডার তথ্য", href: "/tender-info" },
     {
-      label: "Ethical Approval Application",
+      label: "নৈতিক অনুমোদন আবেদনপত্র",
       href: "/images/pdf/Ethical-Approval-Application.pdf",
     },
   ];
@@ -58,59 +50,22 @@ const Footer = () => {
         <div className="w-full py-16 backdrop-blur-lg">
           <div className="container px-4 mx-auto md:px-6">
             <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
-              {/* Column 1: Find Us */}
+              {/* Column 1: Departmental Sites */}
+              <div className="p-6 transition-shadow border-white/20 rounded-2xl ">
+                <h6 className="relative inline-block mb-4 font-serif text-xl font-bold">
+                  About KAU
+                  <span className="absolute bottom-0 left-0 w-10 h-[3px] bg-gradient-to-r from-[#fff] to-[#37b46e] rounded-full"></span>
+                </h6>
+                <FooterContact SiteData={SiteData} />
+              </div>
+              {/* Column 2: Find Us */}
               <div className="p-6 transition-shadow border-white/20 rounded-2xl ">
                 <h6 className="relative inline-block mb-4 font-serif text-xl font-bold">
                   Find Us
                   <span className="absolute bottom-0 left-0 w-10 h-[3px] bg-gradient-to-r from-[#fff] to-[#37b46e] rounded-full"></span>
                 </h6>
-                <div className="space-y-4 text-sm opacity-90">
-                  <div className="flex gap-3">
-                    <FaMapMarkerAlt className="mt-1 text-white" size={22} />
-                    <p>
-                      <strong>Temporary Campus:</strong> <br />
-                      Temporary Office: Khulna Agricultural University 327,
-                      Jashore Road, Goalkhali, Khalishpur, Khulna-9000
-                    </p>
-                  </div>
-                  <div className="flex gap-3">
-                    <FaMapMarkerAlt className="mt-1 text-white" />
-                    <p>
-                      <strong>অস্থায়ী অফিস:</strong> <br />
-                      খুলনা কৃষি বিশ্ববিদ্যালয় ৩২৭, যশোর রোড, গোয়ালখালী,
-                      খালিশপুর, খুলনা-৯০০০
-                    </p>
-                  </div>
-                  <div className="flex gap-3">
-                    <FaEnvelope className="mt-1 text-white" />
-                    <p>
-                      <strong>Mail:</strong> <br />
-                      registrar@kau.ac.bd
-                    </p>
-                  </div>
-                </div>
+                <FooterAddress SiteData={SiteData} />
               </div>
-
-              {/* Column 2: Departmental Sites */}
-              <div className="p-6 transition-shadow border-white/20 rounded-2xl ">
-                <h6 className="relative inline-block mb-4 font-serif text-xl font-bold">
-                  Departmental Sites
-                  <span className="absolute bottom-0 left-0 w-10 h-[3px] bg-gradient-to-r from-[#fff] to-[#37b46e] rounded-full"></span>
-                </h6>
-                <ul className="space-y-2 text-sm opacity-90">
-                  {departmentalLinks.map((item, i) => (
-                    <li key={i}>
-                      <Link
-                        href="#"
-                        className="flex items-center gap-2 transition-all hover:text-white hover:translate-x-1"
-                      >
-                        <FaAngleDoubleRight className="text-xs" /> {item}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
               {/* Column 3: Useful Links */}
               <div className="p-6 transition-shadow border-white/20 rounded-2xl ">
                 <h6 className="relative inline-block mb-4 font-serif text-xl font-bold">
@@ -127,10 +82,10 @@ const Footer = () => {
                           href={item.href}
                           target={isPDF ? "_blank" : "_self"}
                           rel={isPDF ? "noopener noreferrer" : ""}
-                          className="flex items-center gap-2 transition-all hover:text-white hover:translate-x-1"
+                          className="flex items-center gap-2 transition-all hover:text-white hover:translate-x-1 font-surjo"
                         >
-                          <FaAngleDoubleRight className="text-xs" />{" "}
-                          {item.label}
+                          <FaAngleDoubleRight className="text-md" />{" "}
+                          <span className="text-lg">{item.label}</span>
                         </Link>
                       </li>
                     );
@@ -202,6 +157,4 @@ const Footer = () => {
       </footer>
     </>
   );
-};
-
-export default Footer;
+}

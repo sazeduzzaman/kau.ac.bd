@@ -6,7 +6,7 @@ import ImportantLinksSection from "@/components/HomePage/ImportantLinksSection/I
 import InfoCardsSection from "@/components/HomePage/InfoCardsSection/InfoCardsSection";
 import KauAtAGlanceSection from "@/components/HomePage/KauAtAGlanceSection/KauAtAGlanceSection";
 import NewsNoticeSection from "@/components/HomePage/NewsNoticeSection/NewsNoticeSection";
-import React from "react";
+
 
 const page = () => {
   return (
