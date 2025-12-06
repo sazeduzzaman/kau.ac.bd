@@ -1,7 +1,5 @@
-import {
-  BreakingNewsApiResponse,
-  BreakingNewsData,
-} from "@/lib/types/BreakingDataSet/BreakingDataSet";
+import { BreakingNewsApiResponse, BreakingNewsData } from "@/lib/types/BreakingDataSet copy/BreakingDataSet";
+
 
 export const BreakingDataSet = async (): Promise<BreakingNewsData[]> => {
   try {

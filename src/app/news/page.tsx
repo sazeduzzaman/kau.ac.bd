@@ -1,14 +1,14 @@
 import AllNews from "@/components/NewsDetails/AllNews";
+import { NewsDataSet } from "@/lib/apis/NewsDataSet/NewsDataSet";
 import React from "react";
 
-const page = () => {
+export default async function Page() {
+  const newsData = await NewsDataSet(); // fetch server-side
   return (
     <div className="p-0 bg-white">
       <div className="container mx-auto">
-        <AllNews />
+        <AllNews newsData={newsData} />
       </div>
     </div>
   );
-};
-
-export default page;
+}
