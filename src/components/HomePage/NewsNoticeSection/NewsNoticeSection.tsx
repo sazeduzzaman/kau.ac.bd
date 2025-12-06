@@ -1,6 +1,4 @@
 import { NewsDataSet } from "@/lib/apis/NewsDataSet/NewsDataSet";
-import { Calendar, FileText } from "lucide-react";
-import Link from "next/link";
 import SomeNews from "./SomeNews";
 import { NoticesDataSet } from "@/lib/apis/NoticesDataSet/NoticesDataSet";
 import SomeNotice from "./SomeNotice";
@@ -10,7 +8,7 @@ export default async function NewsNoticeSection() {
   const newsItems = newsData.slice(0, 3);
   const noticesData = await NoticesDataSet();
 
-
+  
   return (
     <section className="px-4 py-16 font-sans bg-gray-50">
       <div className="mx-auto max-w-7xl">

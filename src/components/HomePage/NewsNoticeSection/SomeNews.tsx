@@ -3,20 +3,7 @@ import React from "react";
 import { Calendar } from "lucide-react";
 import Link from "next/link";
 import { FaEyeSlash } from "react-icons/fa";
-
-// --------------------
-// TypeScript Types
-// --------------------
-export interface NewsItem {
-  id: number;
-  title: string;
-  image?: string;
-  imageUrl?: string;
-  published_at: string;
-  category?: string;
-  read_time?: string;
-  slug: string;
-}
+import { NewsItem } from "@/lib/types/NewsDataSetTypes/NewsDataSetTypes";
 
 interface SomeNewsProps {
   newsData: NewsItem[];

@@ -4,6 +4,7 @@ export interface NewsItem {
   title: string;
   slug: string;
   publish_date: string;
+  published_at: string;
   attachments: string[]; // Always an array
   first_attachment: string; // First file in attachments
   category?: string; // Optional if your API has categories
