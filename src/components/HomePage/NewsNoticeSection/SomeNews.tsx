@@ -86,7 +86,7 @@ const SomeNews: React.FC<SomeNewsProps> = ({ newsData }) => {
                   <Link href={`/news/${featured.slug}`} key={news.id}>
                     <div className="flex items-center overflow-hidden transition bg-white shadow cursor-pointer hover:shadow-md">
                       <img
-                        src={news.image || "/images/news-no-img.png"}
+                        src={news.imageUrl || "/images/news-no-img.png"}
                         alt={news.title || "News image"}
                         className="object-cover w-32 h-32"
                         onError={(e) => {
