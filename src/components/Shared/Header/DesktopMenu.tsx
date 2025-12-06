@@ -91,9 +91,17 @@ const menuItems: MenuItemType[] = [
     label: "Admission",
     href: "#",
     children: [
-      { label: "Undergraduate Programs", href: "/schools" },
-      { label: "Graduate Programs", href: "/admission" },
-      { label: "International Students", href: "/admission" },
+      {
+        label: "Undergraduate Programs",
+        href: "/undergraduate-program",
+        children: [
+          { label: "Syndicate", href: "/syndicate" },
+          { label: "Academic Council", href: "/ug" },
+          { label: "Committees", href: "/pg" },
+        ],
+      },
+      { label: "Graduate Programs", href: "/graduate-program" },
+      { label: "International Students", href: "/international-student" },
     ],
   },
   {
