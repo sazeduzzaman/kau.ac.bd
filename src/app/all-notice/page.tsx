@@ -1,12 +1,8 @@
-import NoticeBoard from '@/components/NoticeBoard/NoticeBoard';
+import NoticeBoard from "@/components/NoticeBoard/NoticeBoard";
+import { NoticesDataSet } from "@/lib/apis/NoticesDataSet/NoticesDataSet";
 
-
-const page = () => {
-    return (
-        <div>
-            <NoticeBoard />
-        </div>
-    );
-};
-
-export default page;
+export default async function Page() {
+  const noticesData = await NoticesDataSet(); // fetch server-side
+  console.log(noticesData, "noticesData");
+  return <NoticeBoard noticesData={noticesData} />;
+}

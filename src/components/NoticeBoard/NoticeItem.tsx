@@ -1,18 +1,12 @@
 "use client";
+
 import React from "react";
 import { ChevronRight } from "lucide-react";
-
-interface Notice {
-  id: number;
-  date: string;
-  title: string;
-  category: string;
-  isNew: boolean;
-  type: string;
-}
+import { Notice } from "@/lib/types/NoticesDataSetTypes/NoticesDataSetTypes"; // import the global type
+import Image from "next/image";
 
 interface NoticeItemProps {
-  notice: Notice;
+  notice: Notice; // now uses the correct type
   onClick: (notice: Notice) => void;
 }
 
@@ -27,15 +21,17 @@ const NoticeItem: React.FC<NoticeItemProps> = ({ notice, onClick }) => {
         <div className="flex flex-row items-center justify-start flex-shrink-0 w-full gap-3 md:w-24 md:flex-col md:justify-center md:gap-1">
           <div className="flex flex-col items-center justify-center w-12 h-12 p-2 text-center transition-colors border border-gray-200 rounded-lg md:h-auto md:w-full bg-gray-50 group-hover:border-emerald-200 group-hover:bg-white">
             <span className="mb-1 text-xl font-bold leading-none text-gray-700 transition-colors md:text-2xl group-hover:text-emerald-600">
-              {notice.date.split(" ")[0]}
-            </span>
-            <span className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider leading-none">
-              {notice.date.split(" ")[1]}
+              <div className="relative flex-shrink-0 w-15 h-15 md:w-15 md:h-15">
+                <Image
+                  src="/images/logo-main.png"
+                  alt="Logo"
+                  fill
+                  style={{ objectFit: "contain" }}
+                  priority
+                />
+              </div>
             </span>
           </div>
-          <span className="hidden mt-1 text-xs text-gray-400 md:block">
-            {notice.date.split(" ")[2]}
-          </span>
         </div>
 
         {/* Content */}

@@ -1,51 +1,27 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
-import Topbar from "./Topbar";
 import Logo from "./Logo";
 import DesktopMenu from "./DesktopMenu";
+import Topbar from "./Topbar";
 import BreakingMarquee from "./BreakingMarquee";
-import NewsSection from "./NewsSection";
+import { BreakingDataSet } from "@/lib/apis/Marquee/MarqueeDataset";
+import { MarqueePropsItem } from "./BreakingMarquee";
 
-const Header: React.FC = () => {
-  const [isSticky, setIsSticky] = useState(false);
+export default async function Header() {
+  // Server-side fetch
+  const newsData = await BreakingDataSet();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const topbarHeight = 36;
-      setIsSticky(window.scrollY > topbarHeight);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const marqueeItems: MarqueePropsItem[] = newsData.map((item) => ({
+    title: item.title,
+    href: item.url ?? "#",
+  }));
 
   return (
     <header className="relative w-full">
-      {/* ⭐ Smooth Topbar Animation */}
-      <div
-        className={`
-    transition-all duration-700 ease-in-out 
-    ${isSticky ? "max-h-0 opacity-0" : "max-h-48 opacity-100"}
-  `}
-      >
-        <NewsSection />
-        <Topbar isSticky={isSticky} />
-      </div>
+      {/* Sticky Topbar + Marquee */}
+      <BreakingMarquee items={marqueeItems} />
+      <Topbar />
 
-      {/* ⭐ Main Navbar */}
-      <div
-        className={`
-          w-full border-b border-green-100
-          transition-all duration-700 ease-in-out
-
-          ${
-            isSticky
-              ? "fixed top-0 left-0 right-0 z-[9999] sticky-menu bg-white/80 backdrop-blur-[6px] shadow-md py-2 translate-y-0"
-              : "relative bg-white shadow-none py-4"
-          }
-        `}
-      >
+      {/* Main Navbar */}
+      <div className="relative w-full py-4 transition-all duration-700 ease-in-out bg-white border-b border-green-100 shadow-none">
         <div className="container flex items-center justify-between mx-auto header-container">
           <Logo />
           <DesktopMenu />
@@ -53,6 +29,4 @@ const Header: React.FC = () => {
       </div>
     </header>
   );
-};
-
-export default Header;
+}

@@ -1,35 +1,80 @@
 "use client";
-import Link from "next/link";
-import { FaBullhorn } from "react-icons/fa";
 
-interface BreakingMarqueeProps {
-  items: { title: string; href: string }[];
+import React, { useRef, useEffect, useState } from "react";
+import Link from "next/link";
+
+export interface MarqueePropsItem {
+  title: string;
+  href: string;
 }
 
-const BreakingMarquee: React.FC<BreakingMarqueeProps> = ({ items }) => {
+interface BreakingMarqueeProps {
+  items: MarqueePropsItem[];
+  speed?: number; // pixels per frame
+}
+
+const BreakingMarquee: React.FC<BreakingMarqueeProps> = ({
+  items,
+  speed = 1,
+}) => {
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState(0);
+  const [marqueeWidth, setMarqueeWidth] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  // Duplicate items for seamless loop
+  const duplicatedItems = [...items, ...items];
+
+  useEffect(() => {
+    if (!marqueeRef.current) return;
+    setMarqueeWidth(marqueeRef.current.scrollWidth / 2);
+  }, [items]);
+
+  useEffect(() => {
+    if (!marqueeWidth) return;
+    let animationFrame: number;
+
+    const step = () => {
+      if (!paused) {
+        setOffset((prev) => (prev + speed >= marqueeWidth ? 0 : prev + speed));
+      }
+      animationFrame = requestAnimationFrame(step);
+    };
+
+    animationFrame = requestAnimationFrame(step);
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [marqueeWidth, paused, speed]);
+
+  if (!items.length) return null;
+
   return (
-    <div className="relative w-full bg-[#0D1117] text-white overflow-hidden">
+    <div
+      className="relative w-full overflow-hidden text-white bg-black"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       <div className="flex items-center">
-        {/* Left Label */}
-        <div className="flex items-center gap-2 px-5 py-3 text-sm font-semibold text-white bg-black shadow-lg breaking-tag">
-          <FaBullhorn className="text-lg" />
-          <span>Breaking News</span>
+        <div className="flex items-center gap-2 px-5 py-2 text-sm font-semibold shadow-lg breaking-tag bg-site-accent ">
+          LATEST NEWS
         </div>
 
-        {/* Marquee Content */}
         <div className="relative flex-1 overflow-hidden">
-          <div className="whitespace-nowrap animate-scroll text-[15px] flex items-center pt-1">
-            {items.map((news, i) =>
-              news.href ? (
-                <Link
-                  key={i}
-                  href={news.href}
-                  className="mx-8 transition-colors cursor-pointer text-white/90 hover:text-site-primary"
-                >
-                  ● {news.title}
-                </Link>
-              ) : null
-            )}
+          <div
+            ref={marqueeRef}
+            className="flex items-center whitespace-nowrap"
+            style={{ transform: `translateX(-${offset}px)` }}
+          >
+            {duplicatedItems.map((news, i) => (
+              <Link
+                key={i}
+                href={news.href}
+                className="flex items-center gap-1 mx-8 text-xs cursor-pointer text-white/90 hover:text-site-primary whitespace-nowrap"
+              >
+                <span className="animate-blink text-site-primary">●</span>
+                <span>{news.title}</span>
+              </Link>
+            ))}
           </div>
         </div>
       </div>

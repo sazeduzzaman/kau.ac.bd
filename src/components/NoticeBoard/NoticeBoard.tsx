@@ -4,88 +4,28 @@ import React, { useState } from "react";
 import { Search, Bell } from "lucide-react";
 import NoticeItem from "./NoticeItem";
 import NoticeModal from "./NoticeModal";
+import { Notice } from "@/lib/types/NoticesDataSetTypes/NoticesDataSetTypes";
 
-const noticesData = [
-  {
-    id: 1,
-    date: "16 Sept 2025",
-    title:
-      "২০২৪-২৫ শিক্ষাবর্ষে ভর্তিকৃত শিক্ষার্থীদের ওরিয়েন্টেশন এবং শিক্ষা কার্যক্রম আগামী ২৪/০৯/২০২৫ তারিখ রোজ বুধবার সকাল ০৯:৩০ ঘটিকায় খুলনা কৃষি বিশ্ববিদ্যালয়ের অস্থায়ী ক্যাম্পাস-১ (দৌলতপুর কলেজিয়েট স্কুল, দেয়ানা, মধ্যপাড়া), দৌলতপুর, খুলনা-৯২০২ এ অনুষ্ঠিত হবে।",
-    category: "Academic",
-    isNew: true,
-    type: "notice",
-  },
-  {
-    id: 2,
-    date: "16 Sept 2025",
-    title:
-      "Tender Notice: Procurement of AC, Computer and Computer related parts (ID: 1151136 , Published Date & Time: September 16, 2025, 10:30 am; Closing Date & Time: September 30, 2025, 12:30 pm)",
-    category: "Tender",
-    isNew: true,
-    type: "pdf",
-  },
-  {
-    id: 3,
-    date: "03 Sept 2025",
-    title: "শিক্ষার্থীদের প্রাতিষ্ঠানিক মেইল প্রদানের নোটিশ ও আবেদন পত্র",
-    category: "General",
-    isNew: false,
-    type: "pdf",
-  },
-  {
-    id: 4,
-    date: "02 Sept 2025",
-    title:
-      "বাংলাদেশ বিশ্ববিদ্যালয় মঞ্জুরী কমিশনের অর্থায়নে পরিচালিত ২০২৫-২০২৬ অর্থবছরের জন্য গবেষণা প্রস্তাবনার আবেদনের doc. file",
-    category: "Research",
-    isNew: false,
-    type: "doc",
-  },
-  {
-    id: 5,
-    date: "02 Sept 2025",
-    title:
-      "বাংলাদেশ বিশ্ববিদ্যালয় মঞ্জুরী কমিশনের অর্থায়নে পরিচালিত ২০২৫-২০২৬ অর্থবছরের জন্য গবেষণা প্রস্তাবনা আহ্বান",
-    category: "Research",
-    isNew: false,
-    type: "pdf",
-  },
-  {
-    id: 6,
-    date: "31 Aug 2025",
-    title:
-      "খুলনা কৃষি বিশ্ববিদ্যালয়ের কর্মকর্তা (সরাসরি) নিয়োগের আবেদন ফরম word file (.doc format) (স্মারক নং ১১৪৭ - সময় বর্ধিতকরণ)",
-    category: "Recruitment",
-    isNew: false,
-    type: "doc",
-  },
-  {
-    id: 7,
-    date: "31 Aug 2025",
-    title:
-      "খুলনা কৃষি বিশ্ববিদ্যালয়ের কর্মকর্তা (চুক্তিভিত্তিক) নিয়োগের আবেদন ফরম word file (.doc format) (স্মারক নং ১১৪৭ - সময় বর্ধিতকরণ)",
-    category: "Recruitment",
-    isNew: false,
-    type: "doc",
-  },
-  {
-    id: 8,
-    date: "31 Aug 2025",
-    title:
-      "খুলনা কৃষি বিশ্ববিদ্যালয়ের কর্মকর্তা (সরাসরি) নিয়োগের আবেদন ফরম, নিয়োগের যোগ্যতা ও অভিজ্ঞতা এবং অন্যান্য শর্তাবলী (স্মারক নং ১১৪৭ - সময় বর্ধিতকরণ)",
-    category: "Recruitment",
-    isNew: false,
-    type: "pdf",
-  },
-];
+interface NoticeBoardProps {
+  noticesData: Notice[];
+}
 
-const categories = ["All", "Academic", "Tender", "Recruitment", "Research"];
-
-const NoticeBoard = () => {
+const NoticeBoard: React.FC<NoticeBoardProps> = ({ noticesData }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedNotice, setSelectedNotice] = useState<any>(null);
+  const [selectedNotice, setSelectedNotice] = useState<Notice | null>(null);
 
+  // Collect unique categories for filter
+  const categories = [
+    "All",
+    ...Array.from(
+      new Set(
+        noticesData.map((n) => n.category).filter((cat): cat is string => !!cat) // Type guard
+      )
+    ),
+  ];
+
+  // Filter notices based on search and category
   const filteredNotices = noticesData.filter((notice) => {
     const matchesSearch = notice.title
       .toLowerCase()
@@ -124,7 +64,9 @@ const NoticeBoard = () => {
                 <div className="mb-1 text-sm font-medium text-emerald-100">
                   Total Notices
                 </div>
-                <div className="text-4xl font-bold text-center">{noticesData.length}</div>
+                <div className="text-4xl font-bold text-center">
+                  {noticesData.length}
+                </div>
               </div>
             </div>
           </div>
@@ -138,11 +80,11 @@ const NoticeBoard = () => {
           <div className="sticky top-0 z-30 p-6 bg-white border-b border-gray-100">
             <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
               <div className="relative w-full lg:w-96 group">
-                <Search className="absolute w-5 h-5 text-gray-400 transition-colors transform -translate-y-1/2 left-3 top-1/2 group-focus-within:text-emerald-500" />
+                <Search className="absolute w-5 h-5 text-gray-400 -translate-y-1/2 left-3 top-1/2" />
                 <input
                   type="text"
                   placeholder="Search notices by title..."
-                  className="w-full py-3 pl-10 pr-4 text-sm transition-all border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 bg-gray-50 focus:bg-white"
+                  className="w-full py-3 pl-10 pr-4 text-sm border border-gray-200 rounded-lg outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 bg-gray-50"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -172,15 +114,12 @@ const NoticeBoard = () => {
               filteredNotices.map((notice) => (
                 <NoticeItem
                   key={notice.id}
-                  notice={notice}
-                  onClick={setSelectedNotice}
+                  notice={notice} // <-- passes full notice data including attachments
+                  onClick={() => setSelectedNotice(notice)}
                 />
               ))
             ) : (
               <div className="py-20 text-center text-gray-500 bg-gray-50/50">
-                <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-white border border-gray-100 rounded-full shadow-sm">
-                  <Search className="w-8 h-8 text-gray-300" />
-                </div>
                 <h3 className="mb-1 text-lg font-medium text-gray-900">
                   No notices found
                 </h3>
@@ -199,11 +138,9 @@ const NoticeBoard = () => {
               </div>
             )}
           </div>
-
-          {/* Pagination Footer */}
-          <div className="flex flex-col items-center justify-between gap-4 p-4 border-t border-gray-100 bg-gray-50 sm:flex-row">
+          {/* <div className="flex flex-col items-center justify-between gap-4 p-4 border-t border-gray-100 bg-gray-50 sm:flex-row">
             <span className="text-xs text-gray-500">
-              Showing {filteredNotices.length} entries
+              Showing {noticesData.length} Notices
             </span>
             <div className="flex gap-2">
               <button className="px-3 py-1.5 rounded-md bg-white border border-gray-200 text-gray-400 text-sm cursor-not-allowed">
@@ -219,27 +156,17 @@ const NoticeBoard = () => {
                 Next
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
       {/* Modal */}
       {selectedNotice && (
         <NoticeModal
-          notice={selectedNotice}
+          notice={selectedNotice} // <-- full notice object
           onClose={() => setSelectedNotice(null)}
         />
       )}
-
-      <style jsx global>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </div>
   );
 };

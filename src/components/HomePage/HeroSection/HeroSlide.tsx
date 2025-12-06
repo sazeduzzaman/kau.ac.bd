@@ -1,4 +1,3 @@
-"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -18,6 +17,7 @@ interface HeroSlideProps {
 
 const HeroSlide: React.FC<HeroSlideProps> = ({ slide }) => {
   return (
+    <>
     <div className="relative w-full h-full">
       {/* Background Image */}
       <div
@@ -63,6 +63,7 @@ const HeroSlide: React.FC<HeroSlideProps> = ({ slide }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

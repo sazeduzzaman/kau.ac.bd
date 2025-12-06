@@ -11,7 +11,7 @@
 
   --site-primary: #438aba;
   --site-secondary: #8b5e3c;
-  --site-accent: #1b7232;
+  --site-accent: #004b49;
   --site-dark: #333333;
   --site-light: #ffffff;
 }
@@ -187,7 +187,6 @@ h6 {
   background-color: transparent !important;
 }
 
-
 @keyframes zoomLoop {
   0% {
     transform: scale(1.1);
@@ -236,6 +235,7 @@ h6 {
     font-size: 12px !important;
   }
 }
+/* Animation */
 
 @keyframes scroll {
   0% {
@@ -252,5 +252,14 @@ h6 {
 
 .animate-scroll:hover {
   animation-play-state: paused;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
 }
 /* Custom Css End */
