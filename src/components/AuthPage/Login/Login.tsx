@@ -60,12 +60,12 @@ export default function Login() {
             <div>
               <label className="flex justify-between mb-1 text-sm font-medium text-gray-700">
                 Password
-                <a
+                <Link
                   href="#"
                   className="text-xs text-site-primary hover:text-indigo-800"
                 >
                   Forgot password?
-                </a>
+                </Link>
               </label>
 
               <div className="relative">

@@ -6,7 +6,7 @@ export const BreakingDataSet = async (): Promise<BreakingNewsData[]> => {
     const response = await fetch(
       "https://admin.kau.khandkershahed.com/api/v1/marquees",
       {
-        next: { revalidate: 60 },
+        next: { revalidate: 1 },
       }
     );
 

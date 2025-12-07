@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Facebook, Twitter, Linkedin, Menu, AlignRight } from "lucide-react";
+import Link from "next/link";
 
 const ChancellorSection = () => {
   return (
@@ -25,15 +26,15 @@ const ChancellorSection = () => {
 
           {/* Bottom: Social Icons */}
           <div className="flex gap-6 mt-auto">
-            <a href="#" className="transition-colors hover:text-blue-200">
+            <Link href="#" className="transition-colors hover:text-blue-200">
               <Facebook className="w-5 h-5 fill-current" />
-            </a>
-            <a href="#" className="transition-colors hover:text-blue-200">
+            </Link>
+            <Link href="#" className="transition-colors hover:text-blue-200">
               <Twitter className="w-5 h-5 fill-current" />
-            </a>
-            <a href="#" className="transition-colors hover:text-blue-200">
+            </Link>
+            <Link href="#" className="transition-colors hover:text-blue-200">
               <Linkedin className="w-5 h-5 fill-current" />
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -42,7 +43,7 @@ const ChancellorSection = () => {
           {/* Header: Menu Icon */}
 
           {/* Content Wrapper */}
-          <div className="flex flex-col justify-center flex-1 pr-8 md:pl-32 lg:pl-48 md:pr-12">
+          <div className="flex flex-col justify-center flex-1 pr-0 md:pl-32 lg:pl-48 md:pr-12">
             <h4 className="mb-6 font-serif text-3xl font-semibold md:text-2xl text-site-primary">
               Message from the Vice Chancellor
             </h4>
@@ -67,12 +68,12 @@ const ChancellorSection = () => {
             </p>
             {/* Button + Social Icons */}
             <div className="flex items-center justify-start gap-5 mt-2">
-              <a
+              <Link
                 href="#"
                 className="inline-flex items-center gap-2 px-6 py-2 font-semibold text-white rounded-full bg-gradient-to-r from-[#438ABA] to-[#346f96] shadow-md hover:shadow-lg transition-all"
               >
                 Read More →
-              </a>
+              </Link>
             </div>
           </div>
         </div>

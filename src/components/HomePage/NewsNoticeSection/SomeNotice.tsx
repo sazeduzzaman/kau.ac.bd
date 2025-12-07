@@ -15,7 +15,7 @@ const SomeNotice = ({ noticesData }: SomeNoticeProps) => {
       </div>
 
       {/* Notice Cards */}
-      <div className="border border-gray-200 rounded shadow-md card h-[795px]">
+      <div className="border border-gray-200 rounded shadow-md card h-[780px]">
         <div className="card-body max-h-[825px] overflow-y-auto px-0 pt-2">
           <div className="p-4 space-y-4 custom-scrollbar">
             {noticesData?.map((notice) => {
@@ -49,15 +49,12 @@ const SomeNotice = ({ noticesData }: SomeNoticeProps) => {
 
                     {/* FILE LINK */}
                     {notice.first_attachment && (
-                      <a
-                        href={notice.first_attachment}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <span
                         className="inline-flex items-center gap-1 mt-1 text-xs text-blue-600 hover:underline"
                       >
                         <FileText size={12} />
                         Download Attachment
-                      </a>
+                      </span>
                     )}
                   </div>
 

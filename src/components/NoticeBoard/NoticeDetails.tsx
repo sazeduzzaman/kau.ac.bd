@@ -2,6 +2,7 @@
 
 import React from "react";
 import { FileText, Calendar } from "lucide-react";
+import Link from "next/link";
 
 interface Notice {
   id: number;
@@ -70,7 +71,7 @@ const NoticeDetails: React.FC<NoticeDetailsProps> = ({
             </h2>
             <div className="flex flex-col gap-3">
               {notice.attachments.map((file, index) => (
-                <a
+                <Link
                   key={index}
                   href={file}
                   target="_blank"
@@ -79,7 +80,7 @@ const NoticeDetails: React.FC<NoticeDetailsProps> = ({
                 >
                   <FileText size={20} />
                   {file.split("/").pop()}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -94,12 +95,12 @@ const NoticeDetails: React.FC<NoticeDetailsProps> = ({
             <ul className="pl-5 space-y-2 list-disc">
               {relatedNotices.map((rel) => (
                 <li key={rel.id}>
-                  <a
+                  <Link
                     href={`/all-notice/${rel.slug}`}
                     className="text-teal-600 hover:underline"
                   >
                     {rel.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

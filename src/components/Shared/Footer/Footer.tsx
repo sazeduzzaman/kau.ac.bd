@@ -106,12 +106,12 @@ export default async function Footer() {
                 <div className="mt-4 space-y-2 text-sm">
                   <div className="flex gap-3">
                     <FaPhoneAlt className="mt-1" />
-                    <a
+                    <Link
                       href="tel:+8809614482482"
                       className="transition-colors hover:text-white"
                     >
                       +880 9614482482
-                    </a>
+                    </Link>
                   </div>
                   <div className="flex gap-3">
                     <FaEnvelope className="mt-1" />

@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaPhone, FaEnvelope } from "react-icons/fa6";
+import Link from "next/link";
 
 interface Officer {
   name: string;
@@ -41,13 +42,13 @@ export default function OfficerCard({ officer }: OfficerCardProps) {
           whileHover={{ opacity: 1 }}
         >
           <div className="flex space-x-4">
-            <a
+            <Link
               href={`tel:${officer.phone}`}
               className="p-3 transition-colors duration-300 rounded-full bg-white/70 backdrop-blur-md text-site-primary hover:bg-gray-600 hover:text-white"
             >
               <FaPhone size={18} className="transition-colors duration-300" />
-            </a>
-            <a
+            </Link>
+            <Link
               href={`mailto:${officer.email}`}
               className="p-3 transition-colors duration-300 rounded-full bg-white/70 backdrop-blur-md text-site-primary hover:bg-gray-600 hover:text-white"
             >
@@ -55,7 +56,7 @@ export default function OfficerCard({ officer }: OfficerCardProps) {
                 size={18}
                 className="transition-colors duration-300"
               />
-            </a>
+            </Link>
           </div>
         </motion.div>
 

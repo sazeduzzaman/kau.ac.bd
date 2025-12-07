@@ -71,8 +71,8 @@ const SomeNews: React.FC<SomeNewsProps> = ({ newsData }) => {
       {/* Latest News */}
       {latestNews.length > 0 && (
         <div className="grid grid-cols-1 gap-6 mt-6 md:grid-cols-1">
-          <div className="border border-gray-200 rounded shadow-md card h-[335px]">
-            <div className="card-body max-h-[302px] overflow-y-auto px-0 py-2">
+          <div className="border border-gray-200 rounded card">
+            <div className="card-body max-h-[270px] overflow-y-auto px-0 pb-1 pt-0">
               {latestNews.map((news) => {
                 const formattedDate = new Date(
                   news.published_at

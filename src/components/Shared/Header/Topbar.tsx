@@ -11,7 +11,7 @@ import {
 
 const Topbar: React.FC = () => {
   return (
-    <div className="text-sm text-white bg-site-primary">
+    <div className="text-sm text-white bg-site-primary top-bar">
       <div className="container flex items-center justify-between py-2 mx-auto">
         {/* Social Icons */}
         <div className="flex space-x-2">

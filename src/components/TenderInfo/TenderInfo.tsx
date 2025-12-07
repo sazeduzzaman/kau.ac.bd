@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ArrowDown, FileText } from "lucide-react";
+import Link from "next/link";
 
 interface Tender {
   slNo: number;
@@ -201,7 +202,7 @@ export default function TenderInfo() {
                     </div>
                   </td>
                   <td className="px-4 py-3 text-center">
-                    <a
+                    <Link
                       href={tender.pdfUrl}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -209,7 +210,7 @@ export default function TenderInfo() {
                       title="Download PDF"
                     >
                       <FileText size={20} />
-                    </a>
+                    </Link>
                   </td>
                 </tr>
               ))}

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const GraduateProgram = () => {
@@ -141,14 +142,14 @@ const GraduateProgram = () => {
         <div className="mb-12 text-center sm:text-left">
           <p className="text-lg text-gray-700">
             For more information about admission visit:{" "}
-            <a
+            <Link
               href="https://acas.edu.bd/"
               target="_blank"
               rel="noopener noreferrer"
               className="ml-1 font-bold underline transition-colors text-info hover:text-site-secondary"
             >
               https://acas.edu.bd/
-            </a>
+            </Link>
           </p>
         </div>
 
@@ -161,14 +162,14 @@ const GraduateProgram = () => {
             Check the detailed admission guidelines and start your application
             today.
           </p>
-          <a
+          <Link
             href="https://acas.edu.bd/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-8 py-4 text-lg font-semibold text-white transition-all duration-500 rounded-full shadow-lg bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 hover:scale-105"
           >
             Visit ACAS Admission Portal
-          </a>
+          </Link>
         </div>
       </div>
     </div>

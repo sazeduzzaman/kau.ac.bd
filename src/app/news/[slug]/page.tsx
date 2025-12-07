@@ -18,7 +18,7 @@ export async function generateMetadata({
       `https://admin.kau.khandkershahed.com/api/v1/news/${encodeURIComponent(
         slug
       )}`,
-      { next: { revalidate: 60 } } // optional: ISR
+      { next: { revalidate: 1 } } // optional: ISR
     );
 
     if (!res.ok) return { title: "News | Not Found" };
@@ -55,7 +55,7 @@ export default async function Page({ params }: PageProps) {
       `https://admin.kau.khandkershahed.com/api/v1/news/${encodeURIComponent(
         slug
       )}`,
-      { next: { revalidate: 60 } }
+      { next: { revalidate: 1 } }
     );
 
     if (!res.ok) return <NoDataFound message="News not found" />;

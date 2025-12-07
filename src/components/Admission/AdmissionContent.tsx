@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+import Link from "next/link";
+import React, { useState } from "react";
 
 interface AdmissionData {
   id: number;
@@ -21,21 +23,31 @@ interface AdmissionContentProps {
 const AdmissionContent: React.FC<AdmissionContentProps> = ({
   admissionItem,
 }) => {
+  const fallbackImg = "/images/Slider-1.jpg";
+
+  const [imgSrc, setImgSrc] = useState(
+    admissionItem.banner_image ? admissionItem.banner_image : fallbackImg
+  );
+
   return (
     <div className="bg-white">
-      <div className="container min-h-screen p-8 mx-auto bg-gray-50">
+      {/* Full width banner */}
+      <div className="w-full">
+        <img
+          src={imgSrc}
+          alt={admissionItem.title}
+          className="object-cover w-full max-h-[420px]"
+          onError={() => setImgSrc(fallbackImg)}
+        />
+      </div>
+
+      {/* Content container */}
+      <div className="container min-h-screen p-8 mx-auto bg-white">
         <h1 className="mb-4 text-3xl font-bold text-site-primary">
           {admissionItem.title}
         </h1>
 
-        {admissionItem.banner_image && (
-          <img
-            src={admissionItem.banner_image}
-            alt={admissionItem.title}
-            className="object-cover w-full mb-6 rounded max-h-64"
-          />
-        )}
-
+        {/* Page HTML content */}
         {admissionItem.content && (
           <div
             className="mb-6 prose text-black max-w-none"
@@ -43,6 +55,7 @@ const AdmissionContent: React.FC<AdmissionContentProps> = ({
           />
         )}
 
+        {/* Meta info */}
         <div className="text-sm text-black">
           {admissionItem.meta_title && (
             <p>
@@ -62,20 +75,21 @@ const AdmissionContent: React.FC<AdmissionContentProps> = ({
           )}
         </div>
 
+        {/* Sub Pages */}
         {admissionItem.children && admissionItem.children.length > 0 && (
           <div className="mt-6">
             <h2 className="mb-2 text-xl font-semibold">Sub Pages</h2>
             <ul className="list-disc list-inside">
               {admissionItem.children.map((child) => (
                 <li key={child.id}>
-                  <a
+                  <Link
                     href={child.external_url || `/admission/${child.slug}`}
                     target={child.external_url ? "_blank" : "_self"}
                     rel={child.external_url ? "noopener noreferrer" : undefined}
                     className="text-site-primary hover:underline"
                   >
                     {child.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -4,6 +4,11 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import AdmissionMenu from "./AdmissionMenu";
+import AboutMenu from "./AboutMenu";
+import AdministrationMenu from "./AdministrationMenu";
+import AcademicMenu from "./AcademicMenu";
+import ResearchMenu from "./ResearchMenu";
+import LifeAtKAUMenu from "./LifeAtKAUMenu";
 
 // Import your submenu components
 
@@ -19,109 +24,38 @@ const DesktopMenu: React.FC = () => {
             href="/"
             className={`px-3 py-2 transition-colors duration-200 ${
               pathname === "/"
-                ? "text-site-secondary border-b-2 border-site-primary"
-                : "text-black hover:text-site-primary"
+                ? "text-site-secondary border-b-2 border-site-primary text-white"
+            : "text-dark hover:bg-site-primary hover:text-[#438aba]"
             }`}
           >
             Home
           </Link>
         </li>
         <li>
-          <AdmissionMenu pathname={pathname} />
-        </li>
-
-        {/* Example static link */}
-        <li>
-          <Link
-            href="/desk"
-            className={`px-3 py-2 transition-colors duration-200 ${
-              pathname === "/desk"
-                ? "text-site-secondary border-b-2 border-site-primary"
-                : "text-black hover:text-site-primary"
-            }`}
-          >
-            Desk
-          </Link>
+          <AboutMenu />
         </li>
         <li>
-          <Link
-            href="/desk"
-            className={`px-3 py-2 transition-colors duration-200 ${
-              pathname === "/desk"
-                ? "text-site-secondary border-b-2 border-site-primary"
-                : "text-black hover:text-site-primary"
-            }`}
-          >
-            Desk
-          </Link>
+          <AdministrationMenu />
+        </li>
+        <li>
+          <AdmissionMenu />
+        </li>
+        <li>
+          <AcademicMenu />
+        </li>
+        <li>
+          <ResearchMenu />
+        </li>
+        <li>
+          <LifeAtKAUMenu />
         </li>
         <li>
           <Link
             href="/desk"
             className={`px-3 py-2 transition-colors duration-200 ${
               pathname === "/desk"
-                ? "text-site-secondary border-b-2 border-site-primary"
-                : "text-black hover:text-site-primary"
-            }`}
-          >
-            Desk
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/desk"
-            className={`px-3 py-2 transition-colors duration-200 ${
-              pathname === "/desk"
-                ? "text-site-secondary border-b-2 border-site-primary"
-                : "text-black hover:text-site-primary"
-            }`}
-          >
-            Desk
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/desk"
-            className={`px-3 py-2 transition-colors duration-200 ${
-              pathname === "/desk"
-                ? "text-site-secondary border-b-2 border-site-primary"
-                : "text-black hover:text-site-primary"
-            }`}
-          >
-            Desk
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/desk"
-            className={`px-3 py-2 transition-colors duration-200 ${
-              pathname === "/desk"
-                ? "text-site-secondary border-b-2 border-site-primary"
-                : "text-black hover:text-site-primary"
-            }`}
-          >
-            Desk
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/desk"
-            className={`px-3 py-2 transition-colors duration-200 ${
-              pathname === "/desk"
-                ? "text-site-secondary border-b-2 border-site-primary"
-                : "text-black hover:text-site-primary"
-            }`}
-          >
-            Desk
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/desk"
-            className={`px-3 py-2 transition-colors duration-200 ${
-              pathname === "/desk"
-                ? "text-site-secondary border-b-2 border-site-primary"
-                : "text-black hover:text-site-primary"
+               ? "text-site-secondary border-b-2 border-site-primary text-white"
+            : "text-dark hover:bg-site-primary hover:text-[#438aba]"
             }`}
           >
             Desk

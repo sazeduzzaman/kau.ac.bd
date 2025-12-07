@@ -60,7 +60,7 @@ const officeTreasurerData: Section[] = [
         phone: "+880 1937 286528",
         email: "ziarul.kau@gmail.com",
         image: "/images/office-profile/man-in-suit-and-tie-no.png",
-      }
+      },
     ],
   },
 ];
@@ -104,14 +104,15 @@ export default function OfficeTreasurer() {
       {/* Tabs */}
       <div className="w-full px-4 py-16 mx-auto max-w-7xl">
         {/* Section Heading */}
-        <div className="relative z-10 max-w-5xl py-10 mx-auto text-center">
+        <div className="relative z-10 max-w-5xl py-10 mx-auto text-center text-black">
           <h1 className="mb-6 text-3xl font-bold md:text-5xl">
             Meet the Treasurer
           </h1>
           <p className="max-w-3xl mx-auto text-lg leading-relaxed capitalize md:text-xl">
-            The Treasurer is responsible for overseeing the organization's <br />
-            financial activities, ensuring proper  accounting practices,<br /> and
-            maintaining accurate financial records.
+            The Treasurer is responsible for overseeing the organization's{" "}
+            <br />
+            financial activities, ensuring proper accounting practices,
+            <br /> and maintaining accurate financial records.
           </p>
         </div>
         <div className="flex justify-center gap-3 mb-12">

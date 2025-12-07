@@ -9,7 +9,7 @@ export const NewsDataSet = async (): Promise<NewsItem[]> => {
     const response = await fetch(
       "https://admin.kau.khandkershahed.com/api/v1/news",
       {
-        next: { revalidate: 60 },
+        next: { revalidate: 1 },
       }
     );
 

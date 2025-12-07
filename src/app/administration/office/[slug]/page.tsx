@@ -1,34 +1,33 @@
-import AdmissionContent from "@/components/Admission/AdmissionContent";
+import AdministrationSectionMembers from "@/components/AdministrationSectionMembers/AdministrationSectionMembers";
 import NoDataFound from "@/components/Shared/NoDataFound/NoDataFound";
 
 interface PageProps {
   params: { slug: string };
 }
 
-// Dynamic metadata
 export default async function Page({ params }: PageProps) {
-  const { slug } = await params;
+  const { slug } =await params;
 
   try {
     const res = await fetch(
-      `https://admin.kau.khandkershahed.com/api/v1/admissions/${encodeURIComponent(
+      `https://admin.kau.khandkershahed.com/api/v1/administration/office/${encodeURIComponent(
         slug
       )}`,
       { next: { revalidate: 1 } }
     );
 
-    if (!res.ok) return <NoDataFound message="News not found" />;
+    if (!res.ok) return <NoDataFound message="Office not found" />;
 
     const admissionData = await res.json();
     const admissionItem = admissionData?.data;
-    console.log(admissionItem, "Admission Items");
+
     return (
       <div>
-        <AdmissionContent admissionItem={admissionItem} />
+        <AdministrationSectionMembers admissionItem={admissionItem} />
       </div>
     );
   } catch (err) {
     console.error(err);
-    return <div>Error loading news</div>;
+    return <div>Error loading office data</div>;
   }
 }
