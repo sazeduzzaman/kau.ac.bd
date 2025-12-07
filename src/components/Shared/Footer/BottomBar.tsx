@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { FaHome, FaUser, FaSearch, FaBars, FaHammer } from "react-icons/fa";
+import { FaHome, FaUser, FaHammer, FaUniversity } from "react-icons/fa";
+import { RiMenuUnfold3Line } from "react-icons/ri";
 import MobileDrawer from "../Header/MobileDrawer";
 import Link from "next/link";
 
@@ -11,21 +12,21 @@ const BottomBar = () => {
   return (
     <>
       {/* Modern Floating Bottom Bar */}
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[94%] bg-white/80 backdrop-blur-md border border-white/30 rounded-3xl shadow-lg lg:hidden">
+      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[94%] bg-site-primary backdrop-blur-md border border-white/30 rounded-3xl shadow-lg lg:hidden">
         <div className="relative flex items-center justify-between px-8 py-3">
           {/* Left Icons */}
           <div className="flex justify-start flex-1 gap-8">
             <button
               onClick={() => setMobileOpen(true)}
-              className="flex flex-col items-center text-sm text-gray-700 transition-all hover:text-site-primary hover:scale-110"
+              className="flex flex-col items-center justify-center px-1 py-1 text-sm text-white transition-all rounded-full hover:text-site-primary hover:scale-110"
             >
-              <FaBars className="mb-1 text-2xl" />
+              <RiMenuUnfold3Line className="text-2xl text-white" />
             </button>
             <Link
-              href="/search"
-              className="flex flex-col items-center text-sm text-gray-700 transition-all hover:text-site-primary hover:scale-110"
+              href="/about"
+              className="flex flex-col items-center justify-center px-1 py-1 text-sm text-white transition-all rounded-full hover:text-site-primary hover:scale-110"
             >
-              <FaSearch className="mb-1 text-2xl" />
+              <FaUniversity className="text-2xl text-white" />
             </Link>
           </div>
 
@@ -41,15 +42,15 @@ const BottomBar = () => {
           <div className="flex justify-end flex-1 gap-8">
             <Link
               href="/profile"
-              className="flex flex-col items-center text-sm text-gray-700 transition-all hover:text-site-primary hover:scale-110"
+              className="flex flex-col items-center justify-center px-1 py-1 text-sm text-white transition-all rounded-full hover:text-site-primary hover:scale-110"
             >
-              <FaUser className="mb-1 text-2xl" />
+              <FaUser className="text-2xl text-white" />
             </Link>
             <Link
               href="/notifications"
-              className="flex flex-col items-center text-sm text-gray-700 transition-all hover:text-site-primary hover:scale-110"
+              className="flex flex-col items-center justify-center px-1 py-1 text-sm text-white transition-all rounded-full hover:text-site-primary hover:scale-110"
             >
-              <FaHammer className="mb-1 text-2xl" />
+              <FaHammer className="text-2xl text-white" />
             </Link>
           </div>
         </div>

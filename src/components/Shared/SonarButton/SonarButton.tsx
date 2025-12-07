@@ -29,7 +29,7 @@ const SonarButton = () => {
 
   return (
     <div
-      className={`fixed bottom-10 right-10 z-50 transition-opacity duration-500 ${
+      className={`fixed bottom-10 right-10 z-50 transition-opacity duration-500 scroll-to-top ${
         isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
@@ -43,7 +43,7 @@ const SonarButton = () => {
         <span className="absolute inline-flex w-full h-full rounded-full opacity-75 bg-site-primary animate-ping"></span>
 
         {/* Static Ring (Radar Grid) */}
-        <span className="absolute inline-flex h-[140%] w-[140%] rounded-full border border-blue-400/30 animate-spin"></span>
+        <span className="absolute inline-flex h-[140%] w-[140%] rounded-full border border-blue-400/30 animate-spin scroll-to-top-box"></span>
 
         {/* --- The Fighter Jet Icon (SVG) --- */}
         <svg

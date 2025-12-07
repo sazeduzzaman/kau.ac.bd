@@ -84,17 +84,21 @@ const AdministrationSectionMembers: React.FC<Props> = ({ admissionItem }) => {
                           <p className="text-gray-600">{member.designation}</p>
                         )}
                         {member.email && (
-                          <p className="text-sm text-gray-500">{member.email}</p>
+                          <p className="text-sm text-gray-500">
+                            {member.email}
+                          </p>
                         )}
                         {member.phone && (
-                          <p className="text-sm text-gray-500">{member.phone}</p>
+                          <p className="text-sm text-gray-500">
+                            {member.phone}
+                          </p>
                         )}
                       </div>
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="flex flex-col items-center justify-center p-8 bg-white border shadow-sm rounded-xl">
+                <div className="flex flex-col items-center justify-center p-8 bg-white border shadow-sm w-60 rounded-xl">
                   <FaUserSlash className="w-12 h-12 mb-4 text-gray-400" />
                   <p className="text-center text-gray-500">
                     No members found in this section.
@@ -104,10 +108,10 @@ const AdministrationSectionMembers: React.FC<Props> = ({ admissionItem }) => {
             </div>
           ))
         ) : (
-          <div className="flex flex-col items-center justify-center w-1/3 p-12 mx-auto bg-white border shadow-md rounded-xl">
-            <FaUserSlash className="w-16 h-16 mb-6 text-gray-400" />
+          <div className="flex flex-col items-center justify-center p-8 mx-auto bg-white border shadow-md w-60 rounded-xl">
+            <FaUserSlash className="w-12 h-12 mb-6 text-gray-400" />
             <p className="text-lg text-center text-gray-500">
-              No sections or members found for this office.
+              No sections or members found.
             </p>
           </div>
         )}
