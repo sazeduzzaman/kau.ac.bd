@@ -21,7 +21,7 @@ export default async function Header() {
       <Topbar />
 
       {/* Main Navbar */}
-      <div className="relative w-full py-4 transition-all duration-700 ease-in-out bg-white border-b border-green-100 shadow-none">
+      <div className="relative w-full py-2 transition-all duration-700 ease-in-out bg-white border-b border-green-100 shadow-none">
         <div className="container flex items-center justify-between mx-auto header-container">
           <Logo />
           <DesktopMenu />

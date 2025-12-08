@@ -1,20 +1,21 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { FaGraduationCap, FaLandmark, FaUserSlash } from "react-icons/fa";
-import { RiBuilding2Fill, RiPresentationFill } from "react-icons/ri";
 
-// Reusable Counter Component
+import React, { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getDynamicIcon } from "@/lib/fontawesome/fontAwesomeHelper";
+import { GlanceSection } from "@/lib/types/HomePageDataTypes/HomePageDataTypes";
+
+// Counter Component
 interface CounterProps {
   end: number;
 }
-
 const Counter: React.FC<CounterProps> = ({ end }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     let start = 0;
-    const duration = 2000; // animation duration in ms
-    const step = Math.ceil(end / (duration / 16)); // 60fps approx
+    const duration = 2000;
+    const step = Math.ceil(end / (duration / 16));
 
     const timer = setInterval(() => {
       start += step;
@@ -31,45 +32,22 @@ const Counter: React.FC<CounterProps> = ({ end }) => {
   return <span>{count.toLocaleString()}</span>;
 };
 
-// Type for each stat item
-interface StatItem {
-  title: string;
-  icon: React.ReactNode;
-  value: number;
+interface KauAtAGlanceSectionProps {
+  glanceData: GlanceSection;
 }
 
-const KauAtAGlanceSection: React.FC = () => {
-  const stats: StatItem[] = [
-    {
-      title: "FACULTIES",
-      icon: <FaLandmark className="w-12 h-12" />,
-      value: 5,
-    },
-    {
-      title: "DEPARTMENTS",
-      icon: <RiBuilding2Fill className="w-12 h-12" />,
-      value: 32,
-    },
-    {
-      title: "TEACHERS",
-      icon: <RiPresentationFill className="w-12 h-12" />,
-      value: 180,
-    },
-    {
-      title: "STUDENTS",
-      icon: <FaGraduationCap className="w-12 h-12" />,
-      value: 2300,
-    },
-    {
-      title: "OFFICER & STAFF",
-      icon: <FaUserSlash className="w-12 h-12" />,
-      value: 350,
-    },
-  ];
+const KauAtAGlanceSection: React.FC<KauAtAGlanceSectionProps> = ({
+  glanceData,
+}) => {
+  const stats = glanceData.items.sort((a, b) => a.position - b.position);
+
+  // Preload all icons once (same pattern as InfoCards)
+  useEffect(() => {
+    stats.forEach((item) => getDynamicIcon(item.icon));
+  }, [stats]);
 
   return (
     <section className="relative px-4 py-20 overflow-hidden">
-      {/* Waving Gradient Background */}
       <div className="absolute inset-0 -z-10">
         <div
           className="w-full h-full animate-wave bg-[length:300%_300%] rounded-lg"
@@ -82,34 +60,43 @@ const KauAtAGlanceSection: React.FC = () => {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
-        <h2 className="mb-16 text-5xl font-bold tracking-wider text-center text-white uppercase md:text-5xl">
-          KAU At A Glance
+        <h2 className="mb-2 text-5xl font-bold tracking-wider text-center text-white uppercase">
+          {glanceData.section_title}
         </h2>
+        <p className="mb-16 text-lg text-center text-white md:text-xl">
+          {glanceData.section_subtitle}
+        </p>
 
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5 md:gap-6">
-          {stats.map((item, index) => (
-            <div
-              key={index}
-              className="relative flex flex-col items-center justify-center h-48 p-6 text-center transition-all duration-300 border rounded-lg cursor-pointer group border-white/30 hover:bg-white hover:scale-105"
-            >
-              <div className="mb-4 text-white group-hover:text-[#438ABA] transition-colors duration-300">
-                {item.icon}
-              </div>
+          {stats.map((item, index) => {
+            const icon = getDynamicIcon(item.icon);
 
-              <h3 className="text-white font-semibold text-sm md:text-base tracking-wide group-hover:text-[#438ABA] transition-colors duration-300 uppercase mb-2">
-                {item.title}
-              </h3>
+            return (
+              <div
+                key={index}
+                className="relative flex flex-col items-center justify-center h-48 p-6 text-center transition-all duration-300 border rounded-lg cursor-pointer group border-white/30 hover:bg-white hover:scale-105"
+              >
+                <div className="mb-4 text-white group-hover:text-[#438ABA] transition-colors duration-300">
+                  <FontAwesomeIcon
+                    icon={icon}
+                    className="w-12 h-12"
+                    style={{ fontSize: "38px" }}
+                  />
+                </div>
 
-              {/* Counter Value */}
-              <div className="text-2xl font-bold text-white group-hover:text-[#438ABA] transition-colors duration-300">
-                <Counter end={item.value} />
+                <h3 className="text-white font-semibold text-sm md:text-base tracking-wide group-hover:text-[#438ABA] transition-colors duration-300 uppercase mb-2">
+                  {item.title}
+                </h3>
+
+                <div className="text-2xl font-bold text-white group-hover:text-[#438ABA] transition-colors duration-300">
+                  <Counter end={Number(item.number)} />
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
-      {/* Wave Animation */}
       <style>
         {`
           @keyframes wave {
