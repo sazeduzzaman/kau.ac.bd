@@ -159,7 +159,7 @@ const DropdownItem: React.FC<{ item: MenuItemType; level?: number }> = ({
           }`}
           style={{
             gridTemplateColumns: item.children!.length > 8 ? "1fr 1fr" : "1fr",
-            width: item.children!.length > 8 ? "16rem" : "12rem", // adjust width for 2-column
+            width: item.children!.length > 8 ? "35rem" : "12rem", // adjust width for 2-column
           }}
         >
           {item.children!.map((child, idx) => (
