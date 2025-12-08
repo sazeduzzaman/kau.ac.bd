@@ -41,7 +41,7 @@ interface Props {
 
 const AdministrationSectionMembers: React.FC<Props> = ({ admissionItem }) => {
   const { office, sections } = admissionItem;
-  
+
   // Define a strong, modern blue gradient
   const primaryGradient = "bg-gradient-to-r from-sky-600 to-cyan-500";
   // The hover shadow color remains for the light theme glow
@@ -49,12 +49,11 @@ const AdministrationSectionMembers: React.FC<Props> = ({ admissionItem }) => {
 
   return (
     // Background: Clean white
-    <div className="py-20 bg-white md:py-28">
+    <div className="py-20 pt-10 bg-white md:py-28 md:pt-10">
       <div className="container px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-        
         {/* Office Title */}
         <header className="mb-20 text-center">
-          <h1 className="mb-4 text-6xl font-extrabold tracking-tighter text-gray-900 sm:text-7xl">
+          <h1 className="mb-4 text-4xl font-extrabold tracking-tighter text-gray-900 sm:text-7xl">
             {office.title}
           </h1>
           {office.description && (
@@ -69,10 +68,12 @@ const AdministrationSectionMembers: React.FC<Props> = ({ admissionItem }) => {
           sections.map((section) => (
             <section key={section.id} className="mb-20">
               {/* Section Title: Bolder, cleaner separator */}
-              <h2 className="relative inline-block mb-12 text-4xl font-bold tracking-tight text-gray-800 group">
+              <h2 className="relative inline-block mb-12 text-2xl font-bold tracking-tight text-gray-800 lg:text-4xl sm:text-2xl group">
                 {section.title}
                 {/* Underline effect */}
-                <span className={`absolute bottom-[-10px] left-0 h-1 w-1/2 ${primaryGradient} rounded-full transition-all duration-300 group-hover:w-full`}></span>
+                <span
+                  className={`absolute bottom-[-10px] left-0 h-1 w-1/2 ${primaryGradient} transition-all duration-300 group-hover:w-full`}
+                ></span>
               </h2>
 
               {/* Members */}
@@ -83,12 +84,14 @@ const AdministrationSectionMembers: React.FC<Props> = ({ admissionItem }) => {
                     // Sleek Card Design: Smoother shadow, border, and modern hover
                     <div
                       key={member.id}
-                      className={`relative flex flex-col items-center p-8 transition-all duration-500 transform bg-white border border-gray-100 rounded-3xl shadow-xl hover:shadow-2xl ${hoverGradient} hover:-translate-y-2`}
+                      className={`relative flex flex-col items-center p-8 transition-all duration-500 transform bg-white border border-gray-100  shadow-sm hover:shadow-2xl ${hoverGradient} hover:-translate-y-2`}
                     >
-                      
                       {/* Optional: Highlight for specific positions (e.g., Head/Chair) */}
-                      {member.position === 'Head' && (
-                        <FaCrown className="absolute w-6 h-6 text-yellow-500 top-4 right-4 animate-pulse" title="Section Head" />
+                      {member.position === "Head" && (
+                        <FaCrown
+                          className="absolute w-6 h-6 text-yellow-500 top-4 right-4 animate-pulse"
+                          title="Section Head"
+                        />
                       )}
 
                       {/* Member Image/Avatar */}
@@ -98,7 +101,7 @@ const AdministrationSectionMembers: React.FC<Props> = ({ admissionItem }) => {
                             src={member.image}
                             alt={member.name}
                             // Image/Avatar Focus: Stronger ring, larger size
-                            className={`object-cover w-32 h-32 p-1 border-4 rounded-full shadow-lg ring-4 ring-offset-2 ring-offset-white ring-cyan-500 ${primaryGradient}`}
+                            className={`object-cover w-32 h-32 p-1 border-4  shadow-lg ring-4 ring-offset-2 ring-offset-white ring-cyan-500 ${primaryGradient}`}
                           />
                         ) : (
                           <div
@@ -124,8 +127,8 @@ const AdministrationSectionMembers: React.FC<Props> = ({ admissionItem }) => {
                         {/* Contact Info: Use icons for clarity */}
                         <div className="pt-4 mt-4 space-y-2 border-t border-gray-100">
                           {member.email && (
-                            <a 
-                              href={`mailto:${member.email}`} 
+                            <a
+                              href={`mailto:${member.email}`}
                               className="flex items-center justify-center text-sm text-gray-600 transition hover:text-sky-500"
                             >
                               <FaEnvelope className="w-4 h-4 mr-2" />
@@ -133,7 +136,7 @@ const AdministrationSectionMembers: React.FC<Props> = ({ admissionItem }) => {
                             </a>
                           )}
                           {member.phone && (
-                            <a 
+                            <a
                               href={`tel:${member.phone}`}
                               className="flex items-center justify-center text-sm text-gray-600 transition hover:text-sky-500"
                             >
@@ -162,7 +165,7 @@ const AdministrationSectionMembers: React.FC<Props> = ({ admissionItem }) => {
           <div className="flex flex-col items-center justify-center max-w-lg p-20 mx-auto shadow-inner bg-gray-50 rounded-2xl">
             <FaUserSlash className="w-20 h-20 mb-6 text-gray-400" />
             <h3 className="mb-2 text-2xl font-semibold text-gray-700">
-                No Data Available
+              No Data Available
             </h3>
             <p className="text-lg text-center text-gray-500">
               The office has no defined sections or members at this time.
