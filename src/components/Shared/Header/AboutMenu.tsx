@@ -54,7 +54,7 @@ const AboutMenu: React.FC = () => {
     >
       {/* Main Dropdown Button */}
       <span
-        className={`flex items-center px-4 py-2 font-medium cursor-pointer transition-all duration-300 rounded-md ${
+        className={`flex items-center px-3 py-2 font-medium cursor-pointer transition-all duration-300 rounded-md ${
           menuItems.some((item) => isActive(item.href))
             ? "text-site-secondary border-b-2 border-site-primary rounded-none"
             : "text-dark hover:bg-site-primary hover:text-[#438aba]"
