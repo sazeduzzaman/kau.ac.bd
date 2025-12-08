@@ -64,7 +64,7 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [
         seo?.og_image
           ? `${process.env.NEXT_PUBLIC_BASE_URL}/${seo.og_image}`
-          : "/default-og.png",
+          : "/images/logo-main.png",
       ],
       locale: "bn_BD",
       type: "website",
@@ -77,14 +77,14 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [
         seo?.og_image
           ? `${process.env.NEXT_PUBLIC_BASE_URL}/${seo.og_image}`
-          : "/default-og.png",
+          : "/images/logo-main.png",
       ],
     },
 
     icons: {
       icon: branding?.favicon
         ? `${process.env.NEXT_PUBLIC_BASE_URL}/${branding.favicon}`
-        : "/favicon.ico",
+        : "/images/logo-main.png",
     },
   };
 }
