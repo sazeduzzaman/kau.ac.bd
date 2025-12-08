@@ -60,7 +60,7 @@ const AdministrationMenu: React.FC = () => {
     >
       {/* Main Button */}
       <span
-        className={`flex items-center px-3 py-2 font-medium cursor-pointer transition-all duration-300 ${
+        className={`flex items-center px-3 py-2 font-semibold text-gray-600 cursor-pointer transition-all duration-300 ${
           menuItems.some(isActive)
             ? "text-site-secondary border-b-2 border-site-primary text-white"
             : "text-dark hover:bg-site-primary hover:text-[#438aba]"

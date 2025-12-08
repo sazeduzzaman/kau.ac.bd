@@ -45,7 +45,7 @@ const LifeAtKAUMenu: React.FC = () => {
       onMouseLeave={() => setOpen(false)}
     >
       <span
-        className={`flex items-center px-3 py-2 font-medium cursor-pointer transition-all duration-300 ${
+        className={`flex items-center px-3 py-2 font-semibold text-gray-600 cursor-pointer transition-all duration-300 ${
           isActive(lifeAtKAUMenu)
             ? "bg-site-primary text-white shadow-md"
             : "text-dark hover:bg-site-primary hover:text-[#438aba]"

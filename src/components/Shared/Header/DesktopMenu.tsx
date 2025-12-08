@@ -22,7 +22,7 @@ const DesktopMenu: React.FC = () => {
         <li>
           <Link
             href="/"
-            className={`px-2 py-2 transition-colors duration-200 ${
+            className={`px-2 py-2 transition-colors duration-200 font-semibold text-gray-600 ${
               pathname === "/"
                 ? "text-site-secondary border-b-2 border-site-primary text-white"
             : "text-dark hover:bg-site-primary hover:text-[#438aba]"
@@ -52,7 +52,7 @@ const DesktopMenu: React.FC = () => {
         <li>
           <Link
             href="/desk"
-            className={`px-3 py-2 transition-colors duration-200 ${
+            className={`px-2 py-2 transition-colors duration-200 font-semibold text-gray-600 ${
               pathname === "/desk"
                ? "text-site-secondary border-b-2 border-site-primary text-white"
             : "text-dark hover:bg-site-primary hover:text-[#438aba]"
