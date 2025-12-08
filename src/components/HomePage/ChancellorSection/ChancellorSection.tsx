@@ -41,18 +41,16 @@ const ChancellorSection: React.FC<ChancellorSectionProps> = ({
               />
             </div>
           </div>
-
           {/* Bottom: Social Icons */}
           <div className="absolute text-white bottom-6 left-6">
             <h3 className="text-2xl font-bold tracking-wide">
-              Prof. Dr. Md. Nazmul Ahsan
+              {vc_name ?? "Prof. Dr. Md. Nazmul Ahsan"}
             </h3>
             <p className="mt-1 text-sm font-normal text-white">
-              Vice-Chancellor, KAU
+              {vc_designation ?? "Vice Chancellor"}
             </p>
           </div>
         </div>
-
         {/* --- Right Column (White Background) --- */}
         <div className="w-full md:w-[65%] bg-white p-8 md:p-16 flex flex-col relative z-0">
           {/* Header: Menu Icon */}
@@ -76,7 +74,6 @@ const ChancellorSection: React.FC<ChancellorSectionProps> = ({
             </div>
           </div>
         </div>
-
         {/* --- The Overlapping Image (Absolute Positioned) --- */}
         <div className="relative md:absolute md:top-1/2 md:left-[35%] md:transform md:-translate-x-1/2 md:-translate-y-1/2 z-10 w-full md:w-[320px] lg:w-[380px] px-8 md:px-0 mb-8 md:mb-0">
           <div className="relative aspect-[3/4] shadow-2xl bg-gray-200">
@@ -86,22 +83,8 @@ const ChancellorSection: React.FC<ChancellorSectionProps> = ({
               fill
               className="object-cover filter grayscale contrast-110" // Grayscale to match reference
             />
-
             {/* Dark Gradient Overlay for Text Readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-
-<<<<<<< HEAD
-=======
-            {/* Name Overlay */}
-            <div className="absolute text-white bottom-6 left-6">
-              <h3 className="text-2xl font-bold tracking-wide">
-                {vc_name ?? "Prof. Dr. Md. Nazmul Ahsan"}
-              </h3>
-              <p className="mt-1 text-sm font-normal text-white">
-                {vc_designation ?? "Vice Chancellor"}
-              </p>
-            </div>
->>>>>>> d79535af183f216de6127a183835d3baba75f586
           </div>
         </div>
       </div>

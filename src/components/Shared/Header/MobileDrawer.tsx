@@ -1,17 +1,16 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import Logo from "./Logo";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-
 import AboutMenuMobile from "./MobileMenus/AboutMenuMobile";
 import AdministrationMenuMobile from "./MobileMenus/AdministrationMenuMobile";
 import AdmissionMenuMobile from "./MobileMenus/AdmissionMenuMobile";
 import AcademicMenuMobile from "./MobileMenus/AcademicMenuMobile";
 import ResearchMenuMobile from "./MobileMenus/ResearchMenuMobile";
 import LifeAtKAUMenuMobile from "./MobileMenus/LifeAtKAUMenuMobile";
+import MobileContact from "./MobileMenus/MobileContact/MobileContact";
+import { useEffect, useState } from "react";
+import { SiteSettingDataset } from "@/lib/apis/SiteInfromationDataSet/SiteInfromationDataSet";
 
 interface MobileDrawerProps {
   isOpen: boolean;
@@ -19,8 +18,17 @@ interface MobileDrawerProps {
 }
 
 const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, closeDrawer }) => {
+  const [siteData, setSiteData] = useState<any>(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const SiteInfoData = await SiteSettingDataset();
+      setSiteData(SiteInfoData.settings);
+    }
+    fetchData();
+  }, []);
   const menuLinkClasses =
-    "flex items-center w-full px-3 py-2 rounded-lg text-black hover:bg-[#498dbd]/20 transition-all duration-300";
+    "flex items-center w-full px-3 py-2 rounded-lg text-black hover:bg-[#498dbd]/20 transition-all duration-300 font-medium";
 
   return (
     <div
@@ -47,7 +55,10 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, closeDrawer }) => {
           {/* Home */}
           <li>
             <Link href="/" onClick={closeDrawer} className={menuLinkClasses}>
-              <MdOutlineKeyboardArrowRight size={25} className="mr-2 font-bold" />
+              <MdOutlineKeyboardArrowRight
+                size={25}
+                className="mr-2 font-bold"
+              />
               <span about="">Home</span>
             </Link>
           </li>
@@ -99,20 +110,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, closeDrawer }) => {
 
           {/* Contact Info */}
           <li className="pt-6 mt-6 border-t border-gray-300">
-            <h4 className="mb-3 text-lg font-semibold text-gray-800">
-              Contact Info
-            </h4>
-            <ul className="space-y-3 text-sm text-gray-700">
-              <li className="flex items-center gap-3">
-                <FaPhoneAlt className="text-[#498dbd]" /> +880 1234 567890
-              </li>
-              <li className="flex items-center gap-3">
-                <FaEnvelope className="text-[#498dbd]" /> info@kau.edu.bd
-              </li>
-              <li className="flex items-center gap-3">
-                <FaMapMarkerAlt className="text-[#498dbd]" /> Khulna, Bangladesh
-              </li>
-            </ul>
+            <MobileContact siteData={siteData} />
           </li>
         </ul>
       </div>
