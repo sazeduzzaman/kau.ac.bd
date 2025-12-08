@@ -111,7 +111,7 @@ const SomeNews: React.FC<SomeNewsProps> = ({ newsData }) => {
               })}
             </div>
 
-            <Link href="/news" className="block">
+            <Link href="/news" className="text-sm font-semibold text-white hover:underline">
               <div className="card-footer">
                 <div className="py-3 text-lg font-bold text-center text-white bg-gradient-to-r from-[#438ABA] to-[#438ABA]">
                   View All News

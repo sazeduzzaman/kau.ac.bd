@@ -58,7 +58,7 @@ const SomeNotice = ({ noticesData }: SomeNoticeProps) => {
       </div>
 
       {/* Notice Cards */}
-      <div className="border border-gray-200 rounded shadow-md card h-[780px]">
+      <div className="border border-gray-200 rounded shadow-md card h-[720px]">
         <div className="card-body max-h-[825px] overflow-y-auto px-0 pt-2">
           <div className="p-4 space-y-4 custom-scrollbar">
             {filteredNotices.length === 0 && (
