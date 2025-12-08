@@ -390,4 +390,30 @@ h6 {
 .animate-blink {
   animation: blink 1s infinite;
 }
+
+/* Animation for hero Slider  text*/
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeUp {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+/* Optional delay utilities */
+.delay-150 {
+  animation-delay: 0.15s;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
 /* Custom Css End */
