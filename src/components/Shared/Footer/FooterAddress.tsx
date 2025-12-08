@@ -3,7 +3,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 const FooterAddress = ({ SiteData }: any) => {
   const addressEn = SiteData.contact.addresses[0].address;
   const addressbn = SiteData.contact.addresses[1].address;
-  const WebsiteMotto = SiteData.site_motto;
+  // const WebsiteMotto = SiteData.site_motto;
   return (
     <div className="space-y-4 text-sm opacity-90">
       <div className="flex gap-3">
@@ -20,9 +20,9 @@ const FooterAddress = ({ SiteData }: any) => {
           <span className="mt-1">{addressbn.slice(13)}</span>
         </span>
       </div>
-      <div className="flex gap-3">
+      {/* <div className="flex gap-3">
         <span className="text-md">{WebsiteMotto}</span>
-      </div>
+      </div> */}
     </div>
   );
 };
