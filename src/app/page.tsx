@@ -2,7 +2,7 @@ import AboutSummitSection from "@/components/HomePage/AboutSummitSection/AboutSu
 import ChancellorSection from "@/components/HomePage/ChancellorSection/ChancellorSection";
 import FacultySection from "@/components/HomePage/FacultySection/FacultySection";
 import HeroSection from "@/components/HomePage/HeroSection/HeroSection";
-import ImportantLinksSection from "@/components/HomePage/ImportantLinksSection/ImportantLinksSection";
+// import ImportantLinksSection from "@/components/HomePage/ImportantLinksSection/ImportantLinksSection";
 import InfoCardsSection from "@/components/HomePage/InfoCardsSection/InfoCardsSection";
 import KauAtAGlanceSection from "@/components/HomePage/KauAtAGlanceSection/KauAtAGlanceSection";
 import NewsNoticeSection from "@/components/HomePage/NewsNoticeSection/NewsNoticeSection";
@@ -25,7 +25,7 @@ export default async function Page() {
       <FacultySection facultyData={facultyData}/>
       <KauAtAGlanceSection glanceData={glanceData}/>
       <AboutSummitSection aboutData={aboutData}/>
-      <ImportantLinksSection />
+      {/* <ImportantLinksSection /> */}
     </>
   );
 }

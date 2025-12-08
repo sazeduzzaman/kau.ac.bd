@@ -21,12 +21,22 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, closeDrawer }) => {
   const [siteData, setSiteData] = useState<any>(null);
 
   useEffect(() => {
-    async function fetchData() {
+  async function fetchData() {
+    try {
       const SiteInfoData = await SiteSettingDataset();
-      setSiteData(SiteInfoData.settings);
+      if (SiteInfoData?.settings) {
+        setSiteData(SiteInfoData.settings);
+      } else {
+        setSiteData(null); // fallback
+      }
+    } catch (err) {
+      console.error("Failed to fetch site settings:", err);
+      setSiteData(null);
     }
-    fetchData();
-  }, []);
+  }
+  fetchData();
+}, []);
+
   const menuLinkClasses =
     "flex items-center w-full px-3 py-2 rounded-lg text-black hover:bg-[#498dbd]/20 transition-all duration-300 font-medium";
 

@@ -10,7 +10,7 @@ import SonarButton from "@/components/Shared/SonarButton/SonarButton";
 
 import { SiteSettingDataset } from "@/lib/apis/SiteInfromationDataSet/SiteInfromationDataSet";
 
-import "@/lib/fontawesome/dynamicFontAwesome"; 
+import "@/lib/fontawesome/dynamicFontAwesome";
 
 // ========================= FONTS =========================
 
@@ -82,8 +82,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
 
     icons: {
-      icon: branding?.favicon
-        ? `${process.env.NEXT_PUBLIC_BASE_URL}/${branding.favicon}`
+      icon: branding?.site_favicon
+        ? `${process.env.NEXT_PUBLIC_BASE_URL}/${branding.site_favicon}`
         : "/images/logo-main.png",
     },
   };

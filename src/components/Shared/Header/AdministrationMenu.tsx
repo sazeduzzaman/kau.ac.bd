@@ -92,7 +92,10 @@ const AdministrationMenu: React.FC = () => {
   );
 };
 
-const DropdownItem: React.FC<{ item: MenuItemType }> = ({ item }) => {
+const DropdownItem: React.FC<{ item: MenuItemType; level?: number }> = ({
+  item,
+  level = 1,
+}) => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const hasChildren = !!item.children?.length;
@@ -101,31 +104,51 @@ const DropdownItem: React.FC<{ item: MenuItemType }> = ({ item }) => {
     pathname === item.href ||
     (item.children?.some((child) => isActive(child)) ?? false);
 
+  const content = (
+    <>
+      {item.label}
+      {hasChildren ? (
+        <FaChevronDown
+          className={`ml-2 text-xs transition-transform duration-200 ${
+            open ? "-rotate-90" : ""
+          }`}
+        />
+      ) : (
+        <FaArrowRight className="ml-2 text-xs text-gray-400" />
+      )}
+    </>
+  );
+
   return (
     <li
       className="relative"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <Link
-        href={item.href}
-        className={`flex justify-between items-center px-4 py-3 text-sm transition-all duration-200 w-full ${
-          isActive(item) || open
-            ? "bg-site-primary text-white shadow-md"
-            : "text-dark hover:bg-site-primary hover:text-white"
-        }`}
-      >
-        {item.label}
-        {hasChildren ? (
-          <FaChevronDown
-            className={`ml-2 text-xs transition-transform duration-200 ${
-              open ? "-rotate-90" : ""
-            }`}
-          />
-        ) : (
-          <FaArrowRight className="ml-2 text-xs text-gray-400" />
-        )}
-      </Link>
+      {level === 1 ? (
+        // First-level submenu not clickable
+        <span
+          className={`flex justify-between items-center px-4 py-3 text-sm transition-all duration-200 w-full cursor-default ${
+            isActive(item) || open
+              ? "bg-site-primary text-white shadow-md"
+              : "text-dark hover:bg-site-primary hover:text-white"
+          }`}
+        >
+          {content}
+        </span>
+      ) : (
+        // Sub-submenu clickable
+        <Link
+          href={item.href}
+          className={`flex justify-between items-center px-4 py-3 text-sm transition-all duration-200 w-full ${
+            isActive(item) || open
+              ? "bg-site-primary text-white shadow-md"
+              : "text-dark hover:bg-site-primary hover:text-white"
+          }`}
+        >
+          {content}
+        </Link>
+      )}
 
       {hasChildren && (
         <ul
@@ -133,13 +156,14 @@ const DropdownItem: React.FC<{ item: MenuItemType }> = ({ item }) => {
             open
               ? "opacity-100 visible translate-x-0"
               : "opacity-0 invisible -translate-x-2"
-          } ${item.children!.length > 8 ? "w-100" : "w-50"}`}
+          }`}
           style={{
-            gridTemplateColumns: item.children!.length > 8 ? "1fr 1fr" : "1fr", // 2 columns if more than 8 items
+            gridTemplateColumns: item.children!.length > 8 ? "1fr 1fr" : "1fr",
+            width: item.children!.length > 8 ? "16rem" : "12rem", // adjust width for 2-column
           }}
         >
           {item.children!.map((child, idx) => (
-            <DropdownItem key={idx} item={child} />
+            <DropdownItem key={idx} item={child} level={level + 1} />
           ))}
         </ul>
       )}

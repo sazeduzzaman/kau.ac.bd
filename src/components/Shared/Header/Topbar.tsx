@@ -1,31 +1,43 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaTwitter,
-} from "react-icons/fa6";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getDynamicIcon } from "@/lib/fontawesome/fontAwesomeHelper";
 
-const Topbar: React.FC = () => {
+interface TopbarProps {
+  SiteInfoData?: any;
+}
+
+const Topbar: React.FC<TopbarProps> = ({ SiteInfoData }) => {
+  const socialLinks = SiteInfoData?.settings?.social_links ?? [];
+
+  // Preload all social icons into the FA library
+  useEffect(() => {
+    socialLinks.forEach((item: any) => getDynamicIcon(item.icon_class));
+  }, [socialLinks]);
+
   return (
     <div className="text-sm text-white bg-site-primary top-bar">
       <div className="container flex items-center justify-between py-2 mx-auto">
         {/* Social Icons */}
         <div className="flex space-x-2">
-          {[FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn].map(
-            (Icon, idx) => (
+          {socialLinks.map((item: any, index: number) => {
+            const icon = getDynamicIcon(item.icon_class); // returns [prefix, iconName]
+            if (!icon || !item.url) return null;
+
+            return (
               <Link
-                key={idx}
-                href="#"
+                key={index}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center w-8 h-8 transition-colors duration-300 rounded-full bg-white/10 hover:bg-white/20"
               >
-                <Icon className="text-white" size={14} />
+                <FontAwesomeIcon icon={icon} className="text-white" />
               </Link>
-            )
-          )}
+            );
+          })}
         </div>
 
         {/* Right Links */}

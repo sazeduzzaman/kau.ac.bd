@@ -92,7 +92,10 @@ interface DropdownItemProps {
   item: MenuItemType;
 }
 
-const DropdownItem: React.FC<DropdownItemProps> = ({ item }) => {
+const DropdownItem: React.FC<DropdownItemProps & { level?: number }> = ({
+  item,
+  level = 1,
+}) => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const hasChildren: boolean = !!item.children?.length;
@@ -102,35 +105,53 @@ const DropdownItem: React.FC<DropdownItemProps> = ({ item }) => {
     item.children?.some((child) => isActive(child)) ||
     false;
 
+  const content = (
+    <>
+      {item.label}
+      {hasChildren ? (
+        <FaChevronDown
+          className={`ml-2 text-xs transition-transform duration-200 ${
+            open ? "-rotate-90" : ""
+          }`}
+        />
+      ) : (
+        <FaArrowRight className="ml-2 text-xs text-gray-400" />
+      )}
+    </>
+  );
+
   return (
     <li
       className="relative"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <Link
-        href={item.href}
-        target={item.external ? "_blank" : "_self"}
-        rel={item.external ? "noopener noreferrer" : undefined}
-        className={`flex justify-between items-center px-4 py-3 text-sm transition-all duration-200  w-full ${
-          isActive(item) || open
-            ? "bg-site-primary text-white shadow-md"
-            : "text-black hover:bg-site-primary hover:text-[#438aba]"
-        }`}
-      >
-        {item.label}
-        {hasChildren ? (
-          // Show dropdown chevron if there are children
-          <FaChevronDown
-            className={`ml-2 text-xs transition-transform duration-200 ${
-              open ? "-rotate-90" : ""
-            }`}
-          />
-        ) : (
-          // Show long arrow → if no children
-          <FaArrowRight className="ml-2 text-xs text-gray-400" />
-        )}
-      </Link>
+      {level === 1 ? (
+        // First-level submenu is not clickable
+        <span
+          className={`flex justify-between items-center px-4 py-3 text-sm transition-all duration-200 w-full cursor-default ${
+            isActive(item) || open
+              ? "bg-site-primary text-white shadow-md"
+              : "text-black hover:bg-site-primary hover:text-[#438aba]"
+          }`}
+        >
+          {content}
+        </span>
+      ) : (
+        // Sub-submenu is clickable
+        <Link
+          href={item.href}
+          target={item.external ? "_blank" : "_self"}
+          rel={item.external ? "noopener noreferrer" : undefined}
+          className={`flex justify-between items-center px-4 py-3 text-sm transition-all duration-200 w-full ${
+            isActive(item) || open
+              ? "bg-site-primary text-white shadow-md"
+              : "text-black hover:bg-site-primary hover:text-[#438aba]"
+          }`}
+        >
+          {content}
+        </Link>
+      )}
 
       {/* Nested children */}
       {hasChildren && (
@@ -142,12 +163,13 @@ const DropdownItem: React.FC<DropdownItemProps> = ({ item }) => {
           }`}
         >
           {item.children!.map((child, idx) => (
-            <DropdownItem key={idx} item={child} />
+            <DropdownItem key={idx} item={child} level={level + 1} />
           ))}
         </ul>
       )}
     </li>
   );
 };
+
 
 export default AdmissionMenu;

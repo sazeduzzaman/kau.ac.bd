@@ -1,16 +1,16 @@
 import { FaMapMarkerAlt } from "react-icons/fa";
 
 const FooterAddress = ({ SiteData }: any) => {
-  const WebsiteMotto = SiteData?.site_motto ?? "Not found";
-  const addressEn = SiteData.contact.addresses.temporary_campus.en;
-  const addressbn = SiteData.contact.addresses.temporary_campus.bn;
+  const addressEn = SiteData.contact.addresses[0].address;
+  const addressbn = SiteData.contact.addresses[1].address;
+  const WebsiteMotto = SiteData.site_motto;
   return (
     <div className="space-y-4 text-sm opacity-90">
       <div className="flex gap-3">
         <FaMapMarkerAlt className="mt-1 text-white" size={22} />
         <span className="text-md">
           <strong>Temporary Campus:</strong> <br />
-          <span className="mt-1">{addressEn.slice(18)}</span>
+          <span className="mt-1">{addressEn}</span>
         </span>
       </div>
       <div className="flex gap-3 font-surjo">

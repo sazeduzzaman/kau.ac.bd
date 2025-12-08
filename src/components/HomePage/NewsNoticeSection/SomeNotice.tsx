@@ -95,15 +95,9 @@ const SomeNotice = ({ noticesData }: SomeNoticeProps) => {
                     <p className="text-sm font-medium leading-snug text-gray-800 hover:text-[#00695c]">
                       {notice.title}
                     </p>
-
-                    {notice.first_attachment && (
-                      <span className="inline-flex items-center gap-1 mt-1 text-xs text-blue-600 hover:underline">
-                        <FileText size={12} />
-                        Download Attachment
-                      </span>
-                    )}
-                    <br />
-                    <span className="text-site-primary">{notice.category}</span>
+                    <span className="text-site-primary font-merriweather">
+                      {notice.category}
+                    </span>
                   </div>
 
                   <div className="p-2 text-red-600 rounded-full bg-red-50">

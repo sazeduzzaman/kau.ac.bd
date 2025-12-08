@@ -2,61 +2,54 @@
 
 import React, { useState } from "react";
 import { FaHome, FaUser, FaHammer, FaUniversity } from "react-icons/fa";
+import { AiFillNotification, AiTwotoneNotification } from "react-icons/ai";
 import { RiMenuUnfold3Line } from "react-icons/ri";
 import MobileDrawer from "../Header/MobileDrawer";
 import Link from "next/link";
+import { FaRegNewspaper } from "react-icons/fa6";
 
 const BottomBar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const iconClass =
+    "text-2xl text-white transition-transform duration-200 group-hover:scale-110";
+  const labelClass =
+    "text-xs text-white mt-1 group-hover:text-[#37b46e] transition-colors";
+  const buttonClass =
+    "flex flex-col items-center justify-center w-16 py-1 rounded-full group";
+
   return (
     <>
-      {/* Modern Floating Bottom Bar */}
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[94%] bg-site-primary backdrop-blur-md border border-white/30 rounded-3xl shadow-lg lg:hidden">
-        <div className="relative flex items-center justify-between px-8 py-3">
-          {/* Left Icons */}
-          <div className="flex justify-start flex-1 gap-8">
-            <button
-              onClick={() => setMobileOpen(true)}
-              className="flex flex-col items-center justify-center px-1 py-1 text-sm text-white transition-all rounded-full hover:text-site-primary hover:scale-110"
-            >
-              <RiMenuUnfold3Line className="text-2xl text-white" />
-            </button>
-            <Link
-              href="/about"
-              className="flex flex-col items-center justify-center px-1 py-1 text-sm text-white transition-all rounded-full hover:text-site-primary hover:scale-110"
-            >
-              <FaUniversity className="text-2xl text-white" />
-            </Link>
-          </div>
-
-          {/* Center Home */}
-          <Link
-            href="/"
-            className="absolute flex items-center justify-center w-16 h-16 transition-transform -translate-x-1/2 rounded-full shadow-xl -top-6 left-1/2 bg-site-primary hover:scale-110"
-          >
-            <FaHome className="text-3xl text-white" />
+      {/* Floating Bottom Bar */}
+      <div className="fixed bottom-3 left-1/2 -translate-x-1/2 w-[95%] max-w-lg bg-site-primary backdrop-blur-md border border-white/30 shadow-lg rounded-xl lg:hidden z-50">
+        <div className="flex items-center justify-around py-2">
+          {/* Home */}
+          <Link href="/" className={buttonClass}>
+            <FaHome className={iconClass} />
+            <span className={labelClass}>Home</span>
           </Link>
 
-          {/* Right Icons */}
-          <div className="flex justify-end flex-1 gap-8">
-            <Link
-              href="/profile"
-              className="flex flex-col items-center justify-center px-1 py-1 text-sm text-white transition-all rounded-full hover:text-site-primary hover:scale-110"
-            >
-              <FaUser className="text-2xl text-white" />
-            </Link>
-            <Link
-              href="/notifications"
-              className="flex flex-col items-center justify-center px-1 py-1 text-sm text-white transition-all rounded-full hover:text-site-primary hover:scale-110"
-            >
-              <FaHammer className="text-2xl text-white" />
-            </Link>
-          </div>
+          {/* Menu Drawer */}
+          <button onClick={() => setMobileOpen(true)} className={buttonClass}>
+            <RiMenuUnfold3Line className={iconClass} />
+            <span className={labelClass}>Menu</span>
+          </button>
+
+          {/* About/News */}
+          <Link href="/about" className={buttonClass}>
+            <FaRegNewspaper className={iconClass} />
+            <span className={labelClass}>News</span>
+          </Link>
+
+          {/* Notifications / Notice */}
+          <Link href="/notifications" className={buttonClass}>
+            <AiTwotoneNotification className={iconClass} />
+            <span className={labelClass}>Notice</span>
+          </Link>
         </div>
       </div>
 
-      {/* Drawer */}
+      {/* Mobile Drawer */}
       <MobileDrawer
         isOpen={mobileOpen}
         closeDrawer={() => setMobileOpen(false)}

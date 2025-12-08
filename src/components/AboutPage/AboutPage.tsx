@@ -43,7 +43,7 @@ const AboutPage: React.FC<AboutPageResponse> = ({ aboutItem }) => {
       : "/images/skyblue-footer-bg.png";
 
   return (
-    <div className="min-h-screen font-sans bg-slate-50 text-slate-800">
+    <div className=" bg-slate-50 text-slate-800">
       {/* Hero Section with Background Image Overlay */}
       <div
         className="relative px-4 py-16 text-white bg-emerald-900 sm:px-6 lg:px-8"
@@ -97,7 +97,7 @@ const AboutPage: React.FC<AboutPageResponse> = ({ aboutItem }) => {
         </div>
 
         {/* Future Expansion Card */}
-        <div className="p-8 mt-10 border bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl border-emerald-100">
+        {/* <div className="p-8 mt-10 border bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl border-emerald-100">
           <h3 className="mb-3 text-xl font-bold text-site-primary">
             Future Expansion
           </h3>
@@ -119,7 +119,7 @@ const AboutPage: React.FC<AboutPageResponse> = ({ aboutItem }) => {
             Note: The university is preparing to offer Master of Science (M.S.)
             and Doctor of Philosophy (Ph.D.) degrees in the near future.
           </p>
-        </div>
+        </div> */}
       </main>
     </div>
   );

@@ -59,9 +59,9 @@ const NoticeDetails: React.FC<NoticeDetailsProps> = ({
         </div>
 
         {/* Notice Body */}
-        <div className="p-6 text-base leading-relaxed text-gray-800 whitespace-pre-line bg-white rounded-lg shadow-md">
+        {/* <div className="p-6 text-base leading-relaxed text-gray-800 whitespace-pre-line bg-white rounded-lg shadow-md">
           {notice.body ?? "No body found"}
-        </div>
+        </div> */}
 
         {/* Attachments */}
         {notice.attachments && notice.attachments.length > 0 && (

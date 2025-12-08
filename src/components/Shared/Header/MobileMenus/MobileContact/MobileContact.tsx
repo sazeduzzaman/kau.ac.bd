@@ -2,13 +2,10 @@ import Link from "next/link";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 const MobileContact = ({ siteData }: any) => {
-  const infoEmail = siteData?.contact?.info_email;
-  const PrimaryEmail = siteData?.contact?.primary_email;
-  const PrimaryPhone = siteData?.contact?.primary_phone;
-
-  const addressEn = siteData?.contact?.addresses?.temporary_campus?.en
-    ? siteData.contact.addresses.temporary_campus.en.slice(18)
-    : "Not found";
+  const infoEmail = siteData?.contact?.emails[0]?.email;
+  const PrimaryEmail = siteData?.contact?.emails[1]?.email;
+  const PrimaryPhone = siteData?.contact?.phones[0]?.phone;
+  const addressEn = siteData?.contact?.addresses[0].address;
 
   return (
     <div>
