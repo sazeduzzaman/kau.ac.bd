@@ -5,6 +5,7 @@ export interface SettingsResponse {
 
 export interface Settings {
   website_name: string;
+  website_name_bn : string;
   site_title: string;
   site_motto: string;
   footer_description: string;

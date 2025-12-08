@@ -42,7 +42,7 @@ const SomeNotice = ({ noticesData }: SomeNoticeProps) => {
               key={cat}
               onClick={() => setActiveCategory(cat)}
               className={`
-          flex-1 px-4 py-3 text-sm font-semibold text-center transition-all duration-300
+          flex-1 px-4 lg:py-3 py-2 text-sm font-semibold text-center transition-all duration-300
           border-r border-gray-200 last:border-r-0
           ${
             activeCategory === cat

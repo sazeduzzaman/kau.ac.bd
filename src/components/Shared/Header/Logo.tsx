@@ -20,7 +20,7 @@ const Logo: React.FC<{ SiteInfoData?: any }> = ({ SiteInfoData }) => {
       </div>
       <div className="flex flex-col leading-tight logo-container">
         <h1 className="text-lg md:text-[35px] font-extrabold text-site-primary font-surjo">
-          খুলনা কৃষি বিশ্ববিদ্যালয়
+          {siteNameDataEn?.website_name_bn}
         </h1>
         <h1 className="text-sm md:text-[20px] text-site-secondary font-semibold">
           {siteNameDataEn?.website_name ?? "Khulna Agricultural University"}
