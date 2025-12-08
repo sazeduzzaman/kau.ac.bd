@@ -25,7 +25,7 @@ const DesktopMenu: React.FC = () => {
             className={`px-3 py-2 transition-colors duration-200 ${
               pathname === "/"
                 ? "text-site-secondary border-b-2 border-site-primary text-white"
-            : "text-dark hover:bg-site-primary hover:text-[#438aba]"
+                : "text-dark hover:bg-site-primary hover:text-[#438aba]"
             }`}
           >
             Home
@@ -54,8 +54,8 @@ const DesktopMenu: React.FC = () => {
             href="/desk"
             className={`px-3 py-2 transition-colors duration-200 ${
               pathname === "/desk"
-               ? "text-site-secondary border-b-2 border-site-primary text-white"
-            : "text-dark hover:bg-site-primary hover:text-[#438aba]"
+                ? "text-site-secondary border-b-2 border-site-primary text-white"
+                : "text-dark hover:bg-site-primary hover:text-[#438aba]"
             }`}
           >
             Desk

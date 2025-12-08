@@ -23,23 +23,19 @@ interface AdmissionContentProps {
 const AdmissionContent: React.FC<AdmissionContentProps> = ({
   admissionItem,
 }) => {
-  const fallbackImg = "/images/Slider-1.jpg";
-
-  const [imgSrc, setImgSrc] = useState(
-    admissionItem.banner_image ? admissionItem.banner_image : fallbackImg
-  );
-
+  const [showImage, setShowImage] = useState(true);
   return (
     <div className="bg-white">
-      {/* Full width banner */}
-      <div className="w-full">
-        <img
-          src={imgSrc}
-          alt={admissionItem.title}
-          className="object-cover w-full max-h-[420px]"
-          onError={() => setImgSrc(fallbackImg)}
-        />
-      </div>
+      {showImage && admissionItem.banner_image && (
+        <div className="w-full">
+          <img
+            src={admissionItem.banner_image}
+            alt={admissionItem.title}
+            className="object-cover w-full max-h-[420px]"
+            onError={() => setShowImage(false)} // HIDE entire block if broken
+          />
+        </div>
+      )}
 
       {/* Content container */}
       <div className="container min-h-screen p-8 mx-auto bg-white">
@@ -50,7 +46,7 @@ const AdmissionContent: React.FC<AdmissionContentProps> = ({
         {/* Page HTML content */}
         {admissionItem.content && (
           <div
-            className="mb-6 prose text-black max-w-none"
+            className="mb-6 text-black content-style"
             dangerouslySetInnerHTML={{ __html: admissionItem.content }}
           />
         )}

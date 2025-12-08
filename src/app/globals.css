@@ -196,6 +196,34 @@ h6 {
   animation: zoomLoop 12s ease-in-out infinite;
 }
 
+/* For Text Editor */
+.content-style * {
+  all: revert; /* restores browser default styling */
+}
+
+/* Optional: small improvements */
+.content-style img {
+  max-width: 100%;
+  height: auto;
+}
+
+.content-style table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.content-style table,
+.content-style th,
+.content-style td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.content-style th {
+  background-color: var(--site-primary);
+  color: white;
+}
+/* For Text Editor End*/
 @media screen and (max-width: 1366px) {
   .menu-link-title {
     font-size: 16px !important;
@@ -230,7 +258,7 @@ h6 {
   .scroll-to-top {
     bottom: 100px;
   }
-  .scroll-to-top  button{
+  .scroll-to-top button {
     width: 50px !important;
     height: 50px !important;
   }

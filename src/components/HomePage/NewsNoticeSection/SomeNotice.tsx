@@ -1,12 +1,32 @@
+"use client";
 import { Notice } from "@/lib/types/NoticesDataSetTypes/NoticesDataSetTypes";
 import { FileText } from "lucide-react";
 import Link from "next/link";
+import { useState, useMemo } from "react";
 
 interface SomeNoticeProps {
   noticesData: Notice[];
 }
 
 const SomeNotice = ({ noticesData }: SomeNoticeProps) => {
+  // Extract unique categories
+  const categories = useMemo(() => {
+    const all = ["All"];
+    const unique = Array.from(
+      new Set(noticesData.map((n) => n.category || ""))
+    );
+    return [...all, ...unique];
+  }, [noticesData]);
+
+  // Selected tab
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  // Filtered Notices
+  const filteredNotices = useMemo(() => {
+    if (activeCategory === "All") return noticesData;
+    return noticesData.filter((n) => n.category === activeCategory);
+  }, [activeCategory, noticesData]);
+
   return (
     <div className="col-span-1 overflow-hidden">
       {/* Header */}
@@ -14,11 +34,40 @@ const SomeNotice = ({ noticesData }: SomeNoticeProps) => {
         Notice Board
       </div>
 
+      {/* Category Tabs – full width, auto-adjust */}
+      <div className="w-full bg-gray-300">
+        <div className="flex w-full p-2">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`
+          flex-1 px-4 py-3 text-sm font-semibold text-center transition-all duration-300
+          border-r border-gray-200 last:border-r-0
+          ${
+            activeCategory === cat
+              ? "bg-gradient-to-r from-[#00695c] to-[#004d40] text-white shadow-md"
+              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+          }
+        `}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* Notice Cards */}
       <div className="border border-gray-200 rounded shadow-md card h-[780px]">
         <div className="card-body max-h-[825px] overflow-y-auto px-0 pt-2">
           <div className="p-4 space-y-4 custom-scrollbar">
-            {noticesData?.map((notice) => {
+            {filteredNotices.length === 0 && (
+              <p className="py-10 text-center text-gray-500">
+                No notices found.
+              </p>
+            )}
+
+            {filteredNotices.map((notice) => {
               const date = new Date(notice.publish_date);
               const day = date.getDate().toString().padStart(2, "0");
               const month = date
@@ -47,15 +96,14 @@ const SomeNotice = ({ noticesData }: SomeNoticeProps) => {
                       {notice.title}
                     </p>
 
-                    {/* FILE LINK */}
                     {notice.first_attachment && (
-                      <span
-                        className="inline-flex items-center gap-1 mt-1 text-xs text-blue-600 hover:underline"
-                      >
+                      <span className="inline-flex items-center gap-1 mt-1 text-xs text-blue-600 hover:underline">
                         <FileText size={12} />
                         Download Attachment
                       </span>
                     )}
+                    <br />
+                    <span className="text-site-primary">{notice.category}</span>
                   </div>
 
                   <div className="p-2 text-red-600 rounded-full bg-red-50">
@@ -68,16 +116,16 @@ const SomeNotice = ({ noticesData }: SomeNoticeProps) => {
         </div>
 
         {/* Footer */}
-        <div className="card-footer">
-          <div className="py-3 text-lg font-bold text-center text-white bg-gradient-to-r from-[#00695c] to-[#004d40]">
-            <Link
-              href="/all-notice"
-              className="text-sm font-semibold text-white hover:underline"
-            >
+        <Link
+          href="/all-notice"
+          className="text-sm font-semibold text-white hover:underline"
+        >
+          <div className="card-footer">
+            <div className="py-3 text-lg font-bold text-center text-white bg-gradient-to-r from-[#00695c] to-[#004d40]">
               View All Notices
-            </Link>
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ export default async function NewsNoticeSection() {
   const newsItems = newsData.slice(0, 3);
   const noticesData = await NoticesDataSet();
 
-  
+  console.log(noticesData, "noticesData")
   return (
     <section className="px-4 py-16 font-sans bg-gray-50">
       <div className="mx-auto max-w-7xl">

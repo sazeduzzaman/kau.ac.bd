@@ -1,9 +1,17 @@
 "use client";
 
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
 import Logo from "./Logo";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+
+import AboutMenuMobile from "./MobileMenus/AboutMenuMobile";
+import AdministrationMenuMobile from "./MobileMenus/AdministrationMenuMobile";
+import AdmissionMenuMobile from "./MobileMenus/AdmissionMenuMobile";
+import AcademicMenuMobile from "./MobileMenus/AcademicMenuMobile";
+import ResearchMenuMobile from "./MobileMenus/ResearchMenuMobile";
+import LifeAtKAUMenuMobile from "./MobileMenus/LifeAtKAUMenuMobile";
 
 interface MobileDrawerProps {
   isOpen: boolean;
@@ -11,138 +19,103 @@ interface MobileDrawerProps {
 }
 
 const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, closeDrawer }) => {
+  const menuLinkClasses =
+    "flex items-center w-full px-3 py-2 rounded-lg text-black hover:bg-[#498dbd]/20 transition-all duration-300";
+
   return (
     <div
       className={`fixed top-0 left-0 h-full w-full z-50 transform transition-transform duration-500 ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       }`}
-      style={{
-        backdropFilter: "blur(20px)",
-      }}
+      style={{ backdropFilter: "blur(20px)" }}
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 shadow-lg bg-white/70 backdrop-blur-md">
+      <div className="flex items-center justify-between p-4 border-b border-gray-200 shadow-md bg-white/80 backdrop-blur-md">
         <Logo />
         <button
           onClick={closeDrawer}
+          aria-label="Close Menu"
           className="text-2xl text-gray-800 hover:text-[#498dbd] transition-colors duration-300"
         >
           ✕
         </button>
       </div>
 
-      {/* Menu */}
-      <ul className="flex flex-col h-full p-4 space-y-2 bg-white/70 backdrop-blur-md">
-        <li>
-          <Link
-            href="/"
-            className="block px-3 py-2 rounded-lg text-gray-800 hover:bg-gradient-to-r hover:from-[#498dbd]/20 hover:to-[#346f96]/20 transition-all duration-300"
-          >
-            Home
-          </Link>
-        </li>
+      {/* Drawer Content */}
+      <div className="h-[calc(100%-64px)] overflow-y-auto bg-white/80 backdrop-blur-md">
+        <ul className="flex flex-col p-4 space-y-2 text-black">
+          {/* Home */}
+          <li>
+            <Link href="/" onClick={closeDrawer} className={menuLinkClasses}>
+              <MdOutlineKeyboardArrowRight size={25} className="mr-2 font-bold" />
+              <span about="">Home</span>
+            </Link>
+          </li>
 
-        <li>
-          <details className="group">
-            <summary className="px-3 py-2 rounded-lg cursor-pointer text-gray-800 hover:bg-gradient-to-r hover:from-[#498dbd]/20 hover:to-[#346f96]/20 transition-all duration-300">
-              Service
-            </summary>
-            <ul className="flex flex-col pl-4 mt-1 space-y-1">
-              <li>
-                <details className="group">
-                  <summary className="px-3 py-2 rounded-lg cursor-pointer text-gray-800 hover:bg-gradient-to-r hover:from-[#498dbd]/20 hover:to-[#346f96]/20 transition-all duration-300">
-                    Category 1
-                  </summary>
-                  <ul className="flex flex-col pl-4 mt-1 space-y-1">
-                    <li>
-                      <details className="group">
-                        <summary className="px-3 py-2 rounded-lg cursor-pointer text-gray-800 hover:bg-gradient-to-r hover:from-[#498dbd]/20 hover:to-[#346f96]/20 transition-all duration-300">
-                          Subcategory 1
-                        </summary>
-                        <ul className="flex flex-col pl-4 mt-1 space-y-1">
-                          <li>
-                            <Link
-                              href="/"
-                              className="block px-3 py-2 rounded-lg text-gray-800 hover:bg-[#498dbd]/20 transition-colors duration-300"
-                            >
-                              Sub Subcategory 1
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              href="/"
-                              className="block px-3 py-2 rounded-lg text-gray-800 hover:bg-[#498dbd]/20 transition-colors duration-300"
-                            >
-                              Sub Subcategory 2
-                            </Link>
-                          </li>
-                        </ul>
-                      </details>
-                    </li>
-                    <li>
-                      <Link
-                        href="/"
-                        className="block px-3 py-2 rounded-lg text-gray-800 hover:bg-[#498dbd]/20 transition-colors duration-300"
-                      >
-                        Subcategory 2
-                      </Link>
-                    </li>
-                  </ul>
-                </details>
+          {/* Dynamic Menus */}
+          <li>
+            <AboutMenuMobile isMobile={true} closeDrawer={closeDrawer} />
+          </li>
+          <li>
+            <AdministrationMenuMobile
+              isMobile={true}
+              closeDrawer={closeDrawer}
+            />
+          </li>
+          <li>
+            <AdmissionMenuMobile isMobile={true} closeDrawer={closeDrawer} />
+          </li>
+          <li>
+            <AcademicMenuMobile isMobile={true} closeDrawer={closeDrawer} />
+          </li>
+          <li>
+            <ResearchMenuMobile isMobile={true} closeDrawer={closeDrawer} />
+          </li>
+          <li>
+            <LifeAtKAUMenuMobile isMobile={true} closeDrawer={closeDrawer} />
+          </li>
+
+          {/* Static Pages */}
+          <li>
+            <Link
+              href="/desk"
+              onClick={closeDrawer}
+              className={menuLinkClasses}
+            >
+              <MdOutlineKeyboardArrowRight size={25} className="mr-2" />
+              Desk
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/contact"
+              onClick={closeDrawer}
+              className={menuLinkClasses}
+            >
+              <MdOutlineKeyboardArrowRight size={25} className="mr-2" />
+              Contact
+            </Link>
+          </li>
+
+          {/* Contact Info */}
+          <li className="pt-6 mt-6 border-t border-gray-300">
+            <h4 className="mb-3 text-lg font-semibold text-gray-800">
+              Contact Info
+            </h4>
+            <ul className="space-y-3 text-sm text-gray-700">
+              <li className="flex items-center gap-3">
+                <FaPhoneAlt className="text-[#498dbd]" /> +880 1234 567890
               </li>
-              <li>
-                <Link
-                  href="/"
-                  className="block px-3 py-2 rounded-lg text-gray-800 hover:bg-[#498dbd]/20 transition-colors duration-300"
-                >
-                  Category 2
-                </Link>
+              <li className="flex items-center gap-3">
+                <FaEnvelope className="text-[#498dbd]" /> info@kau.edu.bd
+              </li>
+              <li className="flex items-center gap-3">
+                <FaMapMarkerAlt className="text-[#498dbd]" /> Khulna, Bangladesh
               </li>
             </ul>
-          </details>
-        </li>
-
-        <li>
-          <Link
-            href="/about"
-            className="block px-3 py-2 rounded-lg text-gray-800 hover:bg-[#498dbd]/20 transition-colors duration-300"
-          >
-            About
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/contact"
-            className="block px-3 py-2 rounded-lg text-gray-800 hover:bg-[#498dbd]/20 transition-colors duration-300"
-          >
-            Contact
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/apply"
-            className="block px-3 py-2 rounded-lg text-gray-800 hover:bg-gradient-to-r hover:from-[#498dbd]/20 hover:to-[#346f96]/20 transition-all duration-300"
-          >
-            Apply
-          </Link>
-        </li>
-
-        {/* Contact Info at Bottom */}
-        <div className="pt-4 mt-20 border-t border-gray-300">
-          <h4 className="mb-2 font-semibold text-gray-700">Contact Info</h4>
-          <ul className="flex flex-col space-y-2 text-sm text-gray-600">
-            <li className="flex items-center gap-2">
-              <FaPhoneAlt className="text-[#498dbd]" /> +880 1234 567890
-            </li>
-            <li className="flex items-center gap-2">
-              <FaEnvelope className="text-[#498dbd]" /> info@kau.edu.bd
-            </li>
-            <li className="flex items-center gap-2">
-              <FaMapMarkerAlt className="text-[#498dbd]" /> Khulna, Bangladesh
-            </li>
-          </ul>
-        </div>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

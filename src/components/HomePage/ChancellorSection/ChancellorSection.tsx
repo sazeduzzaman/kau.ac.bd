@@ -25,16 +25,13 @@ const ChancellorSection = () => {
           </div>
 
           {/* Bottom: Social Icons */}
-          <div className="flex gap-6 mt-auto">
-            <Link href="#" className="transition-colors hover:text-blue-200">
-              <Facebook className="w-5 h-5 fill-current" />
-            </Link>
-            <Link href="#" className="transition-colors hover:text-blue-200">
-              <Twitter className="w-5 h-5 fill-current" />
-            </Link>
-            <Link href="#" className="transition-colors hover:text-blue-200">
-              <Linkedin className="w-5 h-5 fill-current" />
-            </Link>
+          <div className="absolute text-white bottom-6 left-6">
+            <h3 className="text-2xl font-bold tracking-wide">
+              Prof. Dr. Md. Nazmul Ahsan
+            </h3>
+            <p className="mt-1 text-sm font-normal text-white">
+              Vice-Chancellor, KAU
+            </p>
           </div>
         </div>
 
@@ -91,15 +88,6 @@ const ChancellorSection = () => {
             {/* Dark Gradient Overlay for Text Readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
 
-            {/* Name Overlay */}
-            <div className="absolute text-white bottom-6 left-6">
-              <h3 className="text-2xl font-bold tracking-wide">
-                Prof. Dr. Md. Nazmul Ahsan
-              </h3>
-              <p className="mt-1 text-sm font-normal text-white">
-                Vice-Chancellor, KAU
-              </p>
-            </div>
           </div>
         </div>
       </div>
