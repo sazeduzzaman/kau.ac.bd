@@ -18,9 +18,6 @@ export default async function NewsNoticeSection() {
             Latest News & Notices
           </h2>
           <div className="w-32 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-[#fff] to-[#438ABA]" />
-          <p className="pt-3 leading-tight text-black font-poppins">
-            Stay updated with the latest happenings and important announcements
-          </p>
         </div>
         {/* ------- NEW MODERN LAYOUT ------- */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">

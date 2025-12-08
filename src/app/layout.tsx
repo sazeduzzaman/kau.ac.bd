@@ -10,6 +10,8 @@ import SonarButton from "@/components/Shared/SonarButton/SonarButton";
 
 import { SiteSettingDataset } from "@/lib/apis/SiteInfromationDataSet/SiteInfromationDataSet";
 
+import "@/lib/fontawesome/dynamicFontAwesome"; 
+
 // ========================= FONTS =========================
 
 const spaceGrotesk = Space_Grotesk({

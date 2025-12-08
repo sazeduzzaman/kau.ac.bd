@@ -10,7 +10,9 @@ import {
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const FacultySection = () => {
+const FacultySection = (facultyData: any) => {
+  const sectionTitle = facultyData.facultyData.section_title
+  const sectionSubTitle = facultyData.facultyData.section_subtitle
   const faculties = [
     {
       title: "Veterinary, Animal and Biomedical Sciences",
@@ -72,7 +74,8 @@ const FacultySection = () => {
           transition={{ duration: 0.8 }}
           className="text-5xl font-extrabold text-site-primary md:text-5xl"
         >
-          Faculties of KAU
+          {/* Faculties of KAU */}
+          {sectionTitle}
           <div className="w-32 h-1 mx-auto mt-3 rounded-full bg-gradient-to-r from-[#fff] to-[#438ABA]" />
         </motion.h2>
         <motion.p
@@ -82,8 +85,7 @@ const FacultySection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="pt-3 leading-tight text-black font-poppins"
         >
-          Explore our diverse faculties, each dedicated to excellence in their
-          respective fields.
+          {sectionSubTitle}
         </motion.p>
 
         {/* Faculty Cards */}

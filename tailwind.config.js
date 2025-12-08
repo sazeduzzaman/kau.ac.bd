@@ -15,4 +15,7 @@ module.exports = {
     },
   },
   plugins: [],
+  experimental: {
+    optimizeUniversalDefaults: true, // sometimes reduces CSS warnings
+  },
 };

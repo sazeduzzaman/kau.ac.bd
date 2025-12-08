@@ -9,44 +9,20 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import BreakingMarquee from "@/components/Shared/Header/BreakingMarquee";
 import HeroSlide from "./HeroSlide";
+import { Banner } from "@/lib/types/HomePageDataTypes/HomePageDataTypes";
 
-const slides = [
-  {
-    id: 1,
-    title: "Shaping the Future of Agriculture",
-    subtitle:
-      "KAU empowers the next generation of innovators through research, sustainability, and modern agricultural technologies.",
-    buttonText: "Explore Programs",
-    buttonLink: "#",
-    image: "/images/Slider-1.jpg",
-  },
-  {
-    id: 2,
-    title: "Education for a Stronger Tomorrow",
-    subtitle:
-      "From smart farming to agri-entrepreneurship — we prepare students to lead a changing world.",
-    buttonText: "Discover Departments",
-    image: "/images/work-4.png",
-    buttonLink: "#",
-  },
-  // {
-  //   id: 3,
-  //   title: "Research That Drives Real Impact",
-  //   subtitle:
-  //     "Our researchers and students work together to build climate-resilient agriculture for a sustainable future.",
-  //   buttonText: "Learn About Research",
-  //   buttonLink: "#",
-  //   image: "/images/work-5.webp",
-  // },
-];
+interface HeroSectionProps {
+  bannersData: Banner[];
+}
 
-const HeroSection = () => {
+const HeroSection: React.FC<HeroSectionProps> = ({ bannersData }) => {
   const [swiperRef, setSwiperRef] = useState<SwiperType | null>(null);
 
+  if (!bannersData || bannersData.length === 0) return null; // Handle empty case
+
   return (
-    <section className="relative w-full h-[580px] md:h-[680px] overflow-hidden bg-black">
+    <section className="relative w-full h-[580px] md:h-[680px] overflow-hidden bg-black group">
       <Swiper
         modules={[Autoplay, Pagination]}
         onSwiper={setSwiperRef}
@@ -62,9 +38,18 @@ const HeroSection = () => {
         }}
         className="h-full"
       >
-        {slides.map((slide) => (
-          <SwiperSlide key={slide.id}>
-            <HeroSlide slide={slide} />
+        {bannersData.map((banner) => (
+          <SwiperSlide key={banner.id}>
+            <HeroSlide
+              slide={{
+                id: banner.id,
+                title: banner.title,
+                subtitle: banner.subtitle,
+                buttonText: banner.button_text,
+                buttonLink: banner.button_url,
+                image: banner.image_url || "/images/Slider-1.jpg", // fallback image
+              }}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -82,9 +67,6 @@ const HeroSection = () => {
       >
         <FaArrowRight size={16} />
       </button>
-
-      {/* Breaking Marquee */}
-      {/* <BreakingMarquee items={breakingNews} /> */}
     </section>
   );
 };

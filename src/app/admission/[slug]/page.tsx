@@ -21,7 +21,6 @@ export default async function Page({ params }: PageProps) {
 
     const admissionData = await res.json();
     const admissionItem = admissionData?.data;
-    console.log(admissionItem, "Admission Items");
     return (
       <div>
         <AdmissionContent admissionItem={admissionItem} />

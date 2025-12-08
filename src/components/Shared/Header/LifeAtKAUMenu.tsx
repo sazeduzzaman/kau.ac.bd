@@ -15,7 +15,7 @@ const lifeAtKAUMenu: MenuItem = {
   label: "Life at KAU",
   href: "#",
   children: [
-    { label: "Students' Dormitory", href: "/schools" },
+    { label: "Students' Dormitory", href: "#" },
     { label: "Teachers' Residence", href: "#" },
     { label: "TSC", href: "#" },
     { label: "Transport", href: "#" },

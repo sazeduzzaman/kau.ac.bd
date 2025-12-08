@@ -21,7 +21,6 @@ export default async function Page({ params }: PageProps) {
 
     const noticeData = await res.json();
     const noticeItem = noticeData?.data?.notice;
-    console.log(noticeItem, "noticeItem");
     return (
       <div>
         <NoticeDetails notice={noticeItem} />

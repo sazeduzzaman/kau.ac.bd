@@ -54,7 +54,7 @@ const AcademicMenu: React.FC = () => {
       <span
         className={`flex items-center px-4 py-2 font-medium cursor-pointer transition-all duration-300 ${
           isActive(academicMenu)
-            ? "text-site-secondary border-b-2 border-site-primary text-white"
+            ? "text-site-secondary border-b-2 border-site-primary rounded-none"
             : "text-dark hover:bg-site-primary hover:text-[#438aba]"
         }`}
       >

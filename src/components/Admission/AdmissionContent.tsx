@@ -1,4 +1,5 @@
 "use client";
+import HtmlRenderer from "@/lib/HtmlRenderer/HtmlRenderer";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -42,38 +43,13 @@ const AdmissionContent: React.FC<AdmissionContentProps> = ({
       </div>
 
       {/* Content container */}
-      <div className="container min-h-screen p-8 mx-auto bg-white">
+      <div className="container p-8 mx-auto bg-white">
         <h1 className="mb-4 text-3xl font-bold text-site-primary">
           {admissionItem.title}
         </h1>
-
-        {/* Page HTML content */}
         {admissionItem.content && (
-          <div
-            className="mb-6 prose text-black max-w-none"
-            dangerouslySetInnerHTML={{ __html: admissionItem.content }}
-          />
+          <HtmlRenderer content={admissionItem.content} />
         )}
-
-        {/* Meta info */}
-        <div className="text-sm text-black">
-          {admissionItem.meta_title && (
-            <p>
-              <strong>Meta Title:</strong> {admissionItem.meta_title}
-            </p>
-          )}
-          {admissionItem.meta_tags && (
-            <p>
-              <strong>Meta Tags:</strong> {admissionItem.meta_tags}
-            </p>
-          )}
-          {admissionItem.meta_description && (
-            <p>
-              <strong>Meta Description:</strong>{" "}
-              {admissionItem.meta_description}
-            </p>
-          )}
-        </div>
 
         {/* Sub Pages */}
         {admissionItem.children && admissionItem.children.length > 0 && (
