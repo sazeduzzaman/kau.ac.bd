@@ -42,6 +42,8 @@ html {
 }
 
 body {
+  overflow-x: hidden;
+  overflow-y: auto;
   scrollbar-width: auto;
   scrollbar-color: var(--site-primary) transparent;
   font-family: var(--font-body) !important;

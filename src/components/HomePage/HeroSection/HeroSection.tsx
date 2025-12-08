@@ -47,7 +47,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ bannersData }) => {
                 subtitle: banner.subtitle,
                 buttonText: banner.button_text,
                 buttonLink: banner.button_url,
-                image: banner.image_url || "/images/Slider-1.jpg", // fallback image
+                image: banner.image_url || "",
               }}
             />
           </SwiperSlide>
