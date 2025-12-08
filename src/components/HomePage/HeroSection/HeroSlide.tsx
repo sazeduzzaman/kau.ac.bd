@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import HeroButton from "@/utils/HeroButton";
 
 interface Slide {
   id: number;
@@ -57,23 +58,7 @@ const HeroSlide: React.FC<HeroSlideProps> = ({ slide }) => {
           </p>
 
           {/* Button */}
-          {slide.buttonText && slide.buttonLink && (
-            <div
-              className={`mt-8 transition-all duration-700 delay-300 ${
-                mounted
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
-            >
-              <Link
-                href={slide.buttonLink}
-                className="inline-flex items-center gap-2 px-6 py-2 font-normal text-white rounded-full
-               bg-gradient-to-r from-[#438ABA] to-[#346f96] shadow-md hover:shadow-lg transition-all"
-              >
-                {slide.buttonText} <span className="ps-2">→</span>
-              </Link>
-            </div>
-          )}
+          {slide.buttonText && slide.buttonLink && <HeroButton slide={slide} />}
         </div>
       </div>
     </div>
