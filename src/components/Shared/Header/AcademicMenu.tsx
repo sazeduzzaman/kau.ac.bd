@@ -19,18 +19,26 @@ const academicMenu: MenuItem = {
       label: "Faculty",
       href: "#",
       children: [
-        { label: "Veterinary, Animal and Biomedical Sciences", href: "#" },
-        { label: "Agriculture", href: "#" },
-        { label: "Fisheries & Oceans Sciences", href: "#" },
-        { label: "Agricultural Economics & Agribusiness Studies", href: "#" },
-        { label: "Agricultural Engineering & Technology", href: "#" },
-        { label: "Institutes", href: "#" },
+        {
+          label: "Veterinary, Animal and Biomedical Sciences",
+          href: "/faculties/veterinary-animal-biomedical",
+        },
+        { label: "Agriculture", href: "/faculties/agriculture" },
+        {
+          label: "Fisheries & Oceans Sciences",
+          href: "/faculties/fisheries-oceans",
+        },
       ],
     },
     {
       label: "Institutes",
       href: "#",
-      children: [{ label: "Graduate Training Institute", href: "#" }],
+      children: [
+        {
+          label: "Graduate Training Institute",
+          href: "/faculties/graduate-training-institute",
+        },
+      ],
     },
   ],
 };
@@ -39,7 +47,6 @@ const AcademicMenu: React.FC = () => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  // Recursive check if item or any child is active
   const isActive = (item: MenuItem): boolean =>
     pathname === item.href ||
     (item.children?.some((child) => isActive(child)) ?? false);
@@ -50,12 +57,9 @@ const AcademicMenu: React.FC = () => {
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      {/* Main Menu Button */}
       <span
-        className={`flex items-center px-3 py-2 font-semibold text-gray-600 cursor-pointer transition-all duration-300 ${
-          isActive(academicMenu)
-            ? "text-site-secondary border-b-2 border-site-primary rounded-none"
-            : "text-dark hover:bg-site-primary hover:text-[#438aba]"
+        className={`flex items-center px-3 py-2 font-semibold text-black cursor-pointer transition-all duration-300 ${
+          isActive(academicMenu) ? "text-yellow-300" : ""
         }`}
       >
         {academicMenu.label}
@@ -66,13 +70,10 @@ const AcademicMenu: React.FC = () => {
         />
       </span>
 
-      {/* Dropdown */}
       {academicMenu.children?.length && (
         <ul
           className={`absolute top-full left-0 bg-white shadow-lg py-0 transition-all duration-300 z-50 w-60 ml-[1px] ${
-            open
-              ? "opacity-100 visible translate-y-0"
-              : "opacity-0 invisible -translate-y-2"
+            open ? "opacity-100 visible" : "opacity-0 invisible -translate-y-2"
           }`}
         >
           {academicMenu.children.map((item, index) => (
@@ -91,7 +92,6 @@ const RecursiveMenuItem: React.FC<{ item: MenuItem; pathname: string }> = ({
   const [open, setOpen] = useState(false);
   const hasChildren = !!item.children?.length;
 
-  // Recursive active check
   const isActive = (item: MenuItem): boolean =>
     pathname === item.href ||
     (item.children?.some((child) => isActive(child)) ?? false);
@@ -102,25 +102,31 @@ const RecursiveMenuItem: React.FC<{ item: MenuItem; pathname: string }> = ({
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <Link
-        href={item.href}
-        className={`flex justify-between items-center px-4 py-3 text-sm w-full transition-all duration-300 ${
-          isActive(item) || open
-            ? "bg-site-primary text-white shadow-md"
-            : "text-dark hover:bg-site-primary hover:text-white"
-        }`}
-      >
-        {item.label}
-        {hasChildren ? (
+      {hasChildren ? (
+        <div
+          className={`flex justify-between items-center px-4 py-2 cursor-pointer ${
+            isActive(item)
+              ? "bg-blue-500 text-white"
+              : "text-gray-700 hover:bg-blue-500 hover:text-white"
+          }`}
+        >
+          {item.label}
           <FaChevronDown
-            className={`ml-2 text-xs transition-transform duration-300 ease-in-out ${
-              open ? "-rotate-90 text-white" : ""
+            className={`ml-2 text-xs transition-transform duration-300 ${
+              open ? "-rotate-90" : ""
             }`}
           />
-        ) : (
-          <FaArrowRight className="ml-2 text-xs text-gray-400" />
-        )}
-      </Link>
+        </div>
+      ) : (
+        <Link
+          href={item.href}
+          className={`block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white ${
+            isActive(item) ? "bg-blue-500 text-white" : ""
+          }`}
+        >
+          {item.label}
+        </Link>
+      )}
 
       {hasChildren && (
         <ul

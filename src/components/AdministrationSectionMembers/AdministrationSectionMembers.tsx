@@ -151,9 +151,9 @@ const AdministrationSectionMembers: React.FC<Props> = ({ admissionItem }) => {
                 </div>
               ) : (
                 // Empty State for Section
-                <div className="flex flex-col items-center justify-center w-full p-12 mx-auto shadow-inner bg-gray-50 rounded-2xl">
-                  <FaUserSlash className="w-16 h-16 mb-4 text-gray-400" />
-                  <p className="text-lg font-medium text-center text-gray-500">
+                <div className="flex flex-col items-center justify-center w-full max-w-md p-6 mx-auto shadow-inner sm:p-12 bg-gray-50 rounded-2xl">
+                  <FaUserSlash className="w-12 h-12 mb-4 text-gray-400 sm:w-16 sm:h-16" />
+                  <p className="text-base font-medium text-center text-gray-500 sm:text-lg">
                     No members have been assigned to this section yet.
                   </p>
                 </div>
@@ -162,12 +162,12 @@ const AdministrationSectionMembers: React.FC<Props> = ({ admissionItem }) => {
           ))
         ) : (
           // Empty State for Office
-          <div className="flex flex-col items-center justify-center max-w-lg p-20 mx-auto shadow-inner bg-gray-50 rounded-2xl">
-            <FaUserSlash className="w-20 h-20 mb-6 text-gray-400" />
-            <h3 className="mb-2 text-2xl font-semibold text-gray-700">
+          <div className="flex flex-col items-center justify-center w-full max-w-md p-6 mx-auto shadow-inner sm:max-w-lg sm:p-20 bg-gray-50 rounded-2xl">
+            <FaUserSlash className="w-16 h-16 mb-4 text-gray-400 sm:w-20 sm:h-20 sm:mb-6" />
+            <h3 className="mb-2 text-xl font-semibold text-center text-gray-700 sm:text-2xl">
               No Data Available
             </h3>
-            <p className="text-lg text-center text-gray-500">
+            <p className="text-base text-center text-gray-500 sm:text-lg">
               The office has no defined sections or members at this time.
             </p>
           </div>
