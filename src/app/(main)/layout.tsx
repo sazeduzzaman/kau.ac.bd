@@ -30,8 +30,8 @@ const shurjo = localFont({
   variable: "--font-shurjo",
   display: "swap",
   src: [
-    { path: "./Font/Shurjo/Shurjo-bold.ttf", weight: "700" },
-    { path: "./Font/Shurjo/Shurjo-Regular.ttf", weight: "400" },
+    { path: "../Font/Shurjo/Shurjo-bold.ttf", weight: "700" },
+    { path: "../Font/Shurjo/Shurjo-Regular.ttf", weight: "400" },
   ],
 });
 
