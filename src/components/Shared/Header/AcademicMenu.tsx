@@ -1,55 +1,47 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaChevronDown, FaArrowRight } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 
-interface MenuItem {
-  label: string;
-  href: string;
-  children?: MenuItem[];
+interface SiteItem {
+  id: number;
+  name: string;
+  slug: string;
+  base_url: string;
 }
 
-const academicMenu: MenuItem = {
-  label: "Academics",
-  href: "#",
-  children: [
-    {
-      label: "Faculty",
-      href: "#",
-      children: [
-        {
-          label: "Veterinary, Animal and Biomedical Sciences",
-          href: "/faculties/veterinary-animal-biomedical",
-        },
-        { label: "Agriculture", href: "/faculties/agriculture" },
-        {
-          label: "Fisheries & Oceans Sciences",
-          href: "/faculties/fisheries-oceans",
-        },
-      ],
-    },
-    {
-      label: "Institutes",
-      href: "#",
-      children: [
-        {
-          label: "Graduate Training Institute",
-          href: "/faculties/graduate-training-institute",
-        },
-      ],
-    },
-  ],
-};
+interface GroupItem {
+  id: number;
+  title: string;
+  slug: string;
+  sites: SiteItem[];
+}
 
 const AcademicMenu: React.FC = () => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [groups, setGroups] = useState<GroupItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const isActive = (item: MenuItem): boolean =>
-    pathname === item.href ||
-    (item.children?.some((child) => isActive(child)) ?? false);
+  const fetchMenu = async () => {
+    try {
+      const res = await fetch(
+        "https://admin.kau.khandkershahed.com/api/v1/academics/sites"
+      );
+      const data = await res.json();
+      setGroups(data.groups || []);
+    } catch (err) {
+      console.error("Menu Fetch Error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMenu();
+  }, []);
 
   return (
     <div
@@ -57,12 +49,15 @@ const AcademicMenu: React.FC = () => {
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
+      {/* Main Menu Button */}
       <span
-        className={`flex items-center px-3 py-2 font-semibold text-black cursor-pointer transition-all duration-300 ${
-          isActive(academicMenu) ? "text-yellow-300" : ""
+        className={`flex items-center px-3 py-2 font-semibold cursor-pointer transition-all duration-300 ${
+          open
+            ? "text-site-secondary border-b-2 border-site-primary"
+            : "text-dark hover:bg-site-primary hover:text-[#438aba]"
         }`}
       >
-        {academicMenu.label}
+        Academics
         <FaChevronDown
           className={`ml-2 text-xs transition-transform duration-300 ${
             open ? "-rotate-90" : ""
@@ -70,31 +65,36 @@ const AcademicMenu: React.FC = () => {
         />
       </span>
 
-      {academicMenu.children?.length && (
-        <ul
-          className={`absolute top-full left-0 bg-white shadow-lg py-0 transition-all duration-300 z-50 w-60 ml-[1px] ${
-            open ? "opacity-100 visible" : "opacity-0 invisible -translate-y-2"
-          }`}
-        >
-          {academicMenu.children.map((item, index) => (
-            <RecursiveMenuItem key={index} item={item} pathname={pathname} />
+      {/* Dropdown */}
+      <ul
+        className={`absolute top-full left-0 bg-white shadow-lg py-0 w-60 z-50 ml-[1px] transition-all duration-300 ${
+          open
+            ? "opacity-100 visible translate-y-0"
+            : "opacity-0 invisible -translate-y-2"
+        }`}
+      >
+        {loading && (
+          <li className="px-4 py-3 text-sm text-gray-500">Loading...</li>
+        )}
+
+        {!loading &&
+          groups.map((group) => (
+            <RecursiveGroup key={group.id} group={group} pathname={pathname} />
           ))}
-        </ul>
-      )}
+      </ul>
     </div>
   );
 };
 
-const RecursiveMenuItem: React.FC<{ item: MenuItem; pathname: string }> = ({
-  item,
+const RecursiveGroup = ({
+  group,
   pathname,
+}: {
+  group: GroupItem;
+  pathname: string;
 }) => {
   const [open, setOpen] = useState(false);
-  const hasChildren = !!item.children?.length;
-
-  const isActive = (item: MenuItem): boolean =>
-    pathname === item.href ||
-    (item.children?.some((child) => isActive(child)) ?? false);
+  const hasSites = group.sites.length > 0;
 
   return (
     <li
@@ -102,43 +102,69 @@ const RecursiveMenuItem: React.FC<{ item: MenuItem; pathname: string }> = ({
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      {hasChildren ? (
-        <div
-          className={`flex justify-between items-center px-4 py-2 cursor-pointer ${
-            isActive(item)
-              ? "bg-blue-500 text-white"
-              : "text-gray-700 hover:bg-blue-500 hover:text-white"
-          }`}
-        >
-          {item.label}
+      {/* GROUP TITLE (unclickable) */}
+      <span
+        className={`flex justify-between items-center px-4 py-3 text-sm cursor-pointer transition-all duration-300 
+          ${
+            open
+              ? "bg-site-primary text-white shadow-md"
+              : "text-dark hover:bg-site-primary hover:text-white"
+          }
+        `}
+      >
+        {group.title}
+
+        {hasSites ? (
           <FaChevronDown
-            className={`ml-2 text-xs transition-transform duration-300 ${
-              open ? "-rotate-90" : ""
+            className={`ml-2 text-xs transition-transform duration-200 ${
+              open
+                ? "-rotate-90 text-white"
+                : "text-gray-500 group-hover:text-white"
             }`}
           />
-        </div>
-      ) : (
-        <Link
-          href={item.href}
-          className={`block px-4 py-2 text-gray-700 hover:bg-blue-500 hover:text-white ${
-            isActive(item) ? "bg-blue-500 text-white" : ""
-          }`}
-        >
-          {item.label}
-        </Link>
-      )}
+        ) : (
+          <FaArrowRight className="ml-2 text-xs text-gray-400" />
+        )}
+      </span>
 
-      {hasChildren && (
+      {/* SUB-MENU (sites) */}
+      {hasSites && (
         <ul
-          className={`absolute top-0 left-full bg-white shadow-lg py-0 transition-all duration-300 z-50 ml-[1px] w-60 ${
-            open
-              ? "opacity-100 visible translate-x-0"
-              : "opacity-0 invisible -translate-x-2"
-          }`}
+          className={`absolute top-0 left-full bg-white shadow-lg py-0 ml-[1px] w-60 transition-all duration-300 z-50 
+            ${
+              open
+                ? "opacity-100 visible translate-x-0"
+                : "opacity-0 invisible -translate-x-2"
+            }
+          `}
         >
-          {item.children!.map((child, index) => (
-            <RecursiveMenuItem key={index} item={child} pathname={pathname} />
-          ))}
+          {group.sites.map((site) => {
+            const isActive = pathname === site.base_url;
+
+            return (
+              <Link
+                key={site.id}
+                href={site.base_url}
+                className={`flex justify-between items-center px-4 py-3 text-sm transition-all duration-300 
+                  ${
+                    isActive
+                      ? "bg-site-primary text-white shadow-md"
+                      : "text-black hover:bg-[#438aba] hover:text-white"
+                  }
+                `}
+              >
+                {site.name}
+
+                {/* Right arrow like AdmissionMenu */}
+                <FaArrowRight
+                  className={`ml-2 text-xs transition-all duration-200 
+                    ${
+                      isActive ? "text-white" : "text-gray-400 hover:text-white"
+                    }`}
+                />
+              </Link>
+            );
+          })}
         </ul>
       )}
     </li>
