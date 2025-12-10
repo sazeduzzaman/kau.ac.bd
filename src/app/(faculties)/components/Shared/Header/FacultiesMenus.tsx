@@ -78,7 +78,8 @@ const FacultiesMenus = () => {
       normalizedPathname === normalizedHref ||
       (item.children &&
         item.children.some(
-          (child) => normalizedPathname === normalizePath(`/${slug}${child.route}`)
+          (child) =>
+            normalizedPathname === normalizePath(`/${slug}${child.route}`)
         ));
 
     return (
@@ -87,7 +88,7 @@ const FacultiesMenus = () => {
           href={href}
           className={`px-2 py-1 transition-colors ${
             isActive
-              ? "border-b-2 border-primary text-primary font-semibold"
+              ? "border-b-2 border-[#438aba] text-site-primary font-semibold"
               : "text-black hover:text-primary"
           }`}
         >
@@ -108,7 +109,7 @@ const FacultiesMenus = () => {
                     href={childHref}
                     className={`block px-4 py-2 whitespace-nowrap ${
                       childActive
-                        ? "text-primary font-semibold"
+                        ? "text-site-primary font-semibold"
                         : "text-black hover:text-primary"
                     }`}
                   >
@@ -123,7 +124,9 @@ const FacultiesMenus = () => {
     );
   };
 
-  return <ul className="flex space-x-4">{data.navigation.map(renderMenuItem)}</ul>;
+  return (
+    <ul className="flex space-x-4">{data.navigation.map(renderMenuItem)}</ul>
+  );
 };
 
 export default FacultiesMenus;
