@@ -1,28 +1,44 @@
-import DepartmentsGrid from "../components/FacultyHomePage/DepartmentsGrid";
+import DepartmentCard from "../components/FacultyHomePage/DepartmentsGrid";
 import FacultyHero from "../components/FacultyHomePage/FacultyHero";
 
-// app/(faculties)/faculties/[slug]/page.tsx
 interface Props {
   params: { slug: string };
 }
 
-// If you need async (e.g., fetch data), mark the function async
 export default async function FacultyPage({ params }: Props) {
-  const { slug } = await params; // NO await here
+  const { slug } = await params;
 
-  // Example: fetch data if needed
-  // const data = await fetch(`https://api.example.com/faculties/${slug}`).then(res => res.json());
+  // Fetch data on the server
+  const res = await fetch(
+    `https://admin.kau.khandkershahed.com/api/v1/academics/sites/${slug}/departments-and-staff`,
+    { cache: "no-store" } // ensures fresh data
+  );
 
+  const data = await res.json();
+  const departments = data.departments;
+
+  // Extract site name and potentially slug name for the subtitle
+  const siteName = data.site?.name || "Faculty/Site Name";
+  const slugName = slug;
+
+  // Fetch data on the server
+  const resPage = await fetch(
+    `https://admin.kau.khandkershahed.com/api/v1/academics/sites/${slug}/pages`,
+    { cache: "no-store" } // ensures fresh data
+  );
+  const dataPage = await resPage.json();
+  const homePageData = dataPage.pages[0];
   return (
-    <>
-      <FacultyHero />
-      <DepartmentsGrid />
-      <div className="container mx-auto">
-        <div className="py-20 text-center text-black">
-          <h1 className="text-3xl font-bold">{slug}</h1>
-          <p>Details about {slug} faculty go here.</p>
-        </div>
+    <div className="text-black">
+      {/* Component Sections */}
+      <div className="">
+        <FacultyHero homePageData={homePageData} />
+        {/* Pass the slug/site name as basePath if DepartmentCard needs it for linking */}
+        <DepartmentCard
+          departments={departments}
+          basePath={`/${slug}/departments`}
+        />
       </div>
-    </>
+    </div>
   );
 }

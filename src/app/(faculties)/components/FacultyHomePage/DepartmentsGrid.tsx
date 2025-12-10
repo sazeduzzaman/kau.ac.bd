@@ -1,149 +1,103 @@
 "use client";
-import React, { useState } from "react";
 
-// Department data
-const departments = [
-  {
-    name: "Anatomy and Histology",
-    description: "Study of the structure of animals and tissues.",
-    link: "#",
-  },
-  {
-    name: "Physiology",
-    description:
-      "Focuses on the mechanical, physical, and biochemical functions of animals.",
-    link: "#",
-  },
-  {
-    name: "Pharmacology and Toxicology",
-    description:
-      "Welcome to the website of the Department of Pharmacology and Toxicology of KAU",
-    link: "#",
-  },
-  {
-    name: "Microbiology and Public Health",
-    description: "Covers infectious diseases and community animal health.",
-    link: "#",
-  },
-  {
-    name: "Livestock Production and Management",
-    description: "Practical and scientific aspects of farm animal production.",
-    link: "#",
-  },
-  {
-    name: "Pathology",
-    description: "The study and diagnosis of animal diseases.",
-    link: "#",
-  },
-  {
-    name: "Parasitology",
-    description:
-      "Study of animal parasites, their hosts, and the relationship between them.",
-    link: "#",
-  },
-  {
-    name: "Genetics and Animal Breeding",
-    description:
-      "Principles of inheritance and selection for improved animal traits.",
-    link: "#",
-  },
-  {
-    name: "Dairy Science",
-    description:
-      "Management and processing related to dairy animals and products.",
-    link: "#",
-  },
-  {
-    name: "Poultry Science",
-    description:
-      "Science and management of domestic fowl, including chickens and turkeys.",
-    link: "#",
-  },
-  {
-    name: "Epidemiology and Preventive Medicine",
-    description: "Study of disease patterns and methods to prevent them.",
-    link: "#",
-  },
-  {
-    name: "Animal Nutrition",
-    description:
-      "The science of feed, nutrient requirements, and diet formulation for animals.",
-    link: "#",
-  },
-  {
-    name: "Medicine",
-    description: "Diagnosis and non-surgical treatment of animal illnesses.",
-    link: "#",
-  },
-  {
-    name: "Surgery",
-    description:
-      "Surgical procedures for treating animal injuries and diseases.",
-    link: "#",
-  },
-  {
-    name: "Theriogenology",
-    description: "Animal reproduction and obstetrics.",
-    link: "#",
-  },
-];
+import React from "react";
+import Link from "next/link";
+import { RiHomeOfficeFill } from "react-icons/ri";
 
-// Single Department Card
-const DepartmentCard = ({ dept }: any) => {
-  const [isHovered, setIsHovered] = useState(false);
+// ✅ Define Department interface
+export interface Department {
+  id: number;
+  title: string;
+  short_code?: string;
+  slug: string;
+  description: string | null;
+  position?: number;
+  link?: string; // Use this for the actual link if provided by the API
+}
+
+// ✅ Props interface for the component
+interface DepartmentCardProps {
+  departments: Department[];
+  // Assuming a base path for department links if `dept.link` is not available
+  basePath?: string;
+}
+
+const DepartmentCard: React.FC<DepartmentCardProps> = ({
+  departments,
+  basePath = "/departments",
+}) => {
+  if (!departments || departments.length === 0) {
+    return (
+      <div className="my-10 text-center text-gray-500">
+        No departments found.
+      </div>
+    );
+  }
 
   return (
-    <div
-      className="relative bg-site-primary rounded-2xl p-6 shadow-lg min-h-[180px] cursor-pointer overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onFocus={() => setIsHovered(true)}
-      onBlur={() => setIsHovered(false)}
-    >
-      <div className="flex items-center justify-center h-full ">
-        <h3
-          className={`text-lg font-semibold text-white text-center font-merriweather transition-opacity duration-300 ${
-            isHovered ? "opacity-0" : "opacity-100"
-          }`}
-        >
-          {dept.name}
-        </h3>
-      </div>
+    <div className="py-20">
+      <div className="container px-4 mx-auto sm:px-6 lg:px-8">
+        {/* Section Title - Modern and center-aligned */}
+        <div className="mb-12 text-center">
+          <p className="text-lg font-semibold text-[#438aba] uppercase tracking-wider">
+            Academic Excellence
+          </p>
+          <h1 className="mt-2 text-5xl font-extrabold text-gray-900">
+            Our Departments
+          </h1>
+        </div>
 
-      {/* Hover Overlay */}
-      <div
-        className={`absolute inset-0 bg-green-50/90 p-6 flex flex-col justify-center items-center text-center transition-all duration-300 ease-in-out ${
-          isHovered ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
-        }`}
-      >
-        <p className="mb-4 text-sm font-medium text-gray-700">
-          {dept.description}
-        </p>
-        <a
-          href={dept.link}
-          className="transition-all btn btn-sm btn-success hover:bg-green-600"
-        >
-          View Details
-        </a>
+        {/* Departments Grid */}
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {departments.map((dept) => {
+            // Determine the final link: use dept.link if available, otherwise construct from slug
+            const deptLink = dept.link || `${basePath}/${dept.slug}`;
+
+            return (
+              <div
+                key={dept.id}
+                className="group relative flex flex-col p-6 bg-white shadow-lg rounded-xl overflow-hidden transition-all duration-500 ease-in-out hover:shadow-2xl hover:-translate-y-1 hover:border-b-4 hover:border-[#438aba]"
+              >
+                {/* Icon/Visual Element */}
+                <div className="flex items-center justify-start mb-4">
+                  <RiHomeOfficeFill className="h-8 w-8 text-[#438aba] group-hover:text-white transition duration-300" />
+                  {dept.short_code && (
+                    <span className="ml-3 px-3 py-1 text-xs font-semibold uppercase tracking-wider bg-gray-100 text-gray-600 rounded-full group-hover:bg-white group-hover:text-[#438aba] transition duration-300">
+                      {dept.short_code}
+                    </span>
+                  )}
+                </div>
+
+                {/* Title and Description */}
+                <h2 className="mb-2 text-2xl font-bold text-gray-800 group-hover:text-[#438aba] transition duration-300">
+                  {dept.title}
+                </h2>
+
+                <p className="flex-grow mb-4 text-sm text-gray-500 group-hover:text-gray-600">
+                  {dept.description
+                    ? `${dept.description.substring(0, 100)}...`
+                    : "A dedicated department offering quality education and research in its field."}
+                </p>
+
+                {/* View Details Button/Link */}
+                <div className="pt-4 mt-4 border-t border-gray-100">
+                  <Link
+                    href={deptLink}
+                    className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg text-white bg-[#438aba] shadow-md transition-colors duration-300hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-[#438aba] focus:ring-offset-2"
+                  >
+                    View Details
+                    <span aria-hidden="true" className="ml-1 text-lg">
+                      →
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
 };
 
-// Departments Grid
-const DepartmentsGrid = () => {
-  return (
-    <div className="container px-4 py-12 mx-auto">
-      <h2 className="mb-12 text-4xl font-bold text-center text-gray-800">
-        Departments
-      </h2>
-      <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
-        {departments.map((dept, index) => (
-          <DepartmentCard key={index} dept={dept} />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default DepartmentsGrid;
+export default DepartmentCard;

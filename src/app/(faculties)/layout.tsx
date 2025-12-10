@@ -1,8 +1,10 @@
-import "@/app/(main)/globals.css"; // adjust path if needed
-import FacultiesHeader from "./components/Shared/Header/FacultiesHeader";
-import FacultiesFooter from "./components/Shared/Footer/FacultiesFooter";
+// app/[slug]/layout.tsx
+import "@/app/(main)/globals.css";
+import { ReactNode } from "react";
 import localFont from "next/font/local";
 import { Space_Grotesk, Poppins } from "next/font/google";
+import FacultiesHeader from "./components/Shared/Header/FacultiesHeader";
+import FacultiesFooter from "./components/Shared/Footer/FacultiesFooter";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-heading",
@@ -20,12 +22,16 @@ const shurjo = localFont({
   variable: "--font-shurjo",
   display: "swap",
   src: [
-    { path: "../Font/Shurjo/Shurjo-bold.ttf", weight: "700" },
     { path: "../Font/Shurjo/Shurjo-Regular.ttf", weight: "400" },
+    { path: "../Font/Shurjo/Shurjo-bold.ttf", weight: "700" },
   ],
 });
 
-export default function FacultiesRootLayout({
+interface FacultyLayout {
+  children: ReactNode;
+}
+
+export default function FacultyLayout({
   children,
 }: {
   children: React.ReactNode;

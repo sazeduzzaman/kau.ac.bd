@@ -7,7 +7,7 @@ import Logo from "@/components/Shared/Header/Logo";
 import Topbar from "@/components/Shared/Header/Topbar";
 import { BreakingDataSet } from "@/lib/apis/Marquee/MarqueeDataset";
 import { SiteSettingDataset } from "@/lib/apis/SiteInfromationDataSet/SiteInfromationDataSet";
-import Link from "next/link";
+import FacultiesMenus from "./FacultiesMenus";
 
 export default async function FacultiesHeader() {
   // Server-side fetch
@@ -20,13 +20,12 @@ export default async function FacultiesHeader() {
   }));
   return (
     <header className="relative w-full">
-      {/* Sticky Topbar + Marquee */}
       <BreakingMarquee items={marqueeItems} />
       <Topbar SiteInfoData={SiteInfoData} />
       <div className="relative w-full py-2 transition-all duration-700 ease-in-out bg-white border-b border-green-100 shadow-none">
         <div className="container flex items-center justify-between mx-auto header-container">
           <Logo SiteInfoData={SiteInfoData} />
-          <span className="font-semibold text-black"> Menu</span>
+          <FacultiesMenus />
         </div>
       </div>
     </header>

@@ -98,9 +98,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${spaceGrotesk.variable} ${shurjo.variable} ${roboto.variable} antialiased`}
-      >
+      <body className={`${spaceGrotesk.variable} ${shurjo.variable} ${roboto.variable} antialiased`}>
         <Header />
         {children}
         <SonarButton />
