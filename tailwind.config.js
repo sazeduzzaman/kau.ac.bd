@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
+  images: {
+    domains: ['admin.kau.khandkershahed.com'], // add your API domain
+  },
   theme: {
     extend: {
       keyframes: {
