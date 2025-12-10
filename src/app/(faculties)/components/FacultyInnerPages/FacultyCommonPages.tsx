@@ -113,7 +113,7 @@ const FacultyCommonPages: React.FC<FacultyCommonPagesProps> = ({
       {/* Render departments section only if is_department_boxes is true */}
       {is_department_boxes && <FacultyDepertmentPage slug={slug} />}
     </div>
-  );
+  );  
 };
 
 export default FacultyCommonPages;
