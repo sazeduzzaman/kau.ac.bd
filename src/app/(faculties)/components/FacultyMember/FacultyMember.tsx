@@ -1,15 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-// Assuming you have a standard icon library setup (like react-icons)
-// Since you are using raw strings for icons, I'll keep the current logic but
-// recommend integrating a library like Font Awesome or Lucide for better icons.
-// For demonstration, I will use placeholder icons.
-import { Mail, Phone, Globe } from "lucide-react"; // Importing some icons for links
+import { Mail, Phone, Globe, User, BookOpen } from "lucide-react";
 import NoDataFound from "@/components/Shared/NoDataFound/NoDataFound";
 import Loading from "../../[slug]/loading";
 
-// --- Type Definitions (Kept the same) ---
+// --- Type Definitions ---
 interface StaffMemberLink {
   icon: string;
   url: string;
@@ -28,7 +24,7 @@ interface StaffMember {
 
 interface StaffGroup {
   id: number;
-  title: string; // section title
+  title: string;
   position: number;
   members: StaffMember[];
 }
@@ -36,7 +32,7 @@ interface StaffGroup {
 interface DepartmentStaff {
   department_id: number;
   department_title: string;
-  slug: string; // department slug
+  slug: string;
   groups: StaffGroup[];
 }
 
@@ -47,75 +43,110 @@ interface StaffApiResponse {
 }
 
 interface FacultyMemberProps {
-  slug: string; // main slug, e.g., vabs
-  childSlug: string; // department slug, e.g., administration-vabs
+  slug: string;
+  childSlug: string;
 }
 // --- End Type Definitions ---
 
-// Helper component for the individual member card
+// --- Individual Staff Card ---
 const StaffCard: React.FC<{ member: StaffMember }> = ({ member }) => {
-  // Helper function to determine which icon to show
   const getLinkIcon = (link: StaffMemberLink) => {
-    if (link.icon.includes("envelope") || link.url.startsWith("mailto:")) {
-      return <Mail className="w-4 h-4 text-gray-500" />;
-    }
-    if (link.icon.includes("phone") || link.url.startsWith("tel:")) {
-      return <Phone className="w-4 h-4 text-gray-500" />;
-    } // Default for other links (e.g., personal website, social media)
-    return <Globe className="w-4 h-4 text-gray-500" />;
+    if (link.icon.includes("envelope") || link.url.startsWith("mailto:"))
+      return <Mail className="w-4 h-4 text-indigo-500" />;
+    if (link.icon.includes("phone") || link.url.startsWith("tel:"))
+      return <Phone className="w-4 h-4 text-indigo-500" />;
+    if (
+      link.icon.includes("book") ||
+      link.url.includes("scholar") ||
+      link.url.includes("researchgate")
+    )
+      return <BookOpen className="w-4 h-4 text-indigo-500" />;
+    return <Globe className="w-4 h-4 text-indigo-500" />;
+  };
+
+  const getLinkText = (url: string): string => {
+    if (url.startsWith("mailto:")) return "Email Address";
+    if (url.startsWith("tel:")) return "Call Now";
+    if (url.includes("linkedin")) return "LinkedIn";
+    if (url.includes("researchgate")) return "Research";
+    if (url.includes("scholar")) return "Scholar";
+    const hostname = new URL(url).hostname;
+    return hostname.replace(/^www\./, "").split(".")[0];
+  };
+
+  const filteredLinks = member.links.filter(
+    (link) =>
+      link.url &&
+      (link.url.startsWith("mailto:") ||
+        link.url.startsWith("tel:") ||
+        link.url.includes("linkedin") ||
+        link.url.includes("researchgate") ||
+        link.url.includes("scholar"))
+  );
+
+  const getDesignationStyle = (designation: string) => {
+    const lower = designation.toLowerCase();
+    if (lower.includes("professor")) return "bg-indigo-100/50 text-indigo-800";
+    if (lower.includes("lecturer")) return "bg-purple-100/50 text-purple-800";
+    if (lower.includes("officer") || lower.includes("staff"))
+      return "bg-gray-100/50 text-gray-700";
+    return "bg-blue-100/50 text-blue-800";
   };
 
   return (
-    <div
-      key={member.id}
-      className="flex flex-col items-center p-6 text-center transition-all duration-300 transform bg-white border border-gray-100 shadow-lg rounded-xl hover:shadow-2xl hover:-translate-y-1"
-    >
-      {/* Image Section with Modern Border/Ring */}{" "}
-      <div className="relative mb-4">
-        {" "}
+    <div className="flex flex-col items-center text-center bg-white shadow-lg rounded-2xl transition duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.01] border border-gray-100">
+      {/* Image */}
+      <div className="relative">
         <img
           src={member.image}
           alt={member.name}
-          className="object-cover border-4 rounded-full w-28 h-28 border-indigo-500/50 ring-4 ring-indigo-100"
+          className="object-cover w-full h-full rounded-2xl"
           onError={(e) => {
-            e.currentTarget.src = "https://via.placeholder.com/150"; // Fallback image
+            e.currentTarget.src = "/images/no-profile.avif";
+            e.currentTarget.className =
+              "object-cover w-full h-full p-1 bg-gray-50";
           }}
-        />{" "}
+        />
       </div>
-      {/* Info Section */}{" "}
-      <h3 className="mb-1 text-xl font-bold text-gray-900">{member.name}</h3>{" "}
-      <p className="mb-4 font-medium text-indigo-600 text-md">
-        {member.designation}
-      </p>
-      {/* Links Section */}{" "}
-      <div className="flex flex-col w-full mt-auto space-y-2">
-        {" "}
-        {member.links.length > 0 ? (
-          member.links.map((link, idx) => (
-            <a
-              key={idx}
-              href={link.url}
-              className="flex items-center justify-center p-2 text-sm text-gray-600 transition duration-150 rounded-lg bg-indigo-50 hover:bg-indigo-100"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {getLinkIcon(link)}{" "}
-              <span className="ml-2 truncate">
-                {" "}
-                {link.url.replace(/(mailto:|tel:|https?:\/\/)/, "")}{" "}
-              </span>{" "}
-            </a>
-          ))
-        ) : (
-          <p className="text-sm italic text-gray-400">
-            Contact info unavailable
-          </p>
-        )}{" "}
-      </div>{" "}
+      <div className="p-6 ">
+        {/* Name & Designation */}
+        <h3 className="mb-1 text-xl font-bold leading-snug text-gray-900">
+          {member.name}
+        </h3>
+        <p
+          className={`inline-block py-1 px-3 mb-5 text-xs font-medium rounded-full ${getDesignationStyle(
+            member.designation
+          )}`}
+        >
+          {member.designation}
+        </p>
+        {/* Links */}
+        <div className="flex justify-center w-full gap-3">
+          {filteredLinks.length > 0 ? (
+            filteredLinks.slice(0, 3).map((link, idx) => (
+              <a
+                key={idx}
+                href={link.url}
+                className="flex items-center justify-center w-10 h-10 text-gray-700 transition duration-150 rounded-full bg-indigo-50 hover:bg-indigo-100 hover:text-indigo-700"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={getLinkText(link.url)}
+              >
+                {getLinkIcon(link)}
+              </a>
+            ))
+          ) : (
+            <div className="flex items-center justify-center gap-1 text-sm italic text-gray-400">
+              <User className="w-4 h-4" /> Contact info unavailable
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
 
+// --- Main Faculty Component ---
 const FacultyMember: React.FC<FacultyMemberProps> = ({ slug, childSlug }) => {
   const [staffData, setStaffData] = useState<DepartmentStaff | null>(null);
   const [loading, setLoading] = useState(true);
@@ -128,17 +159,13 @@ const FacultyMember: React.FC<FacultyMemberProps> = ({ slug, childSlug }) => {
         const res = await fetch(
           `https://admin.kau.khandkershahed.com/api/v1/academics/sites/${slug}/departments-and-staff`
         );
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        const data: StaffApiResponse = await res.json(); // Match the department slug with childSlug
-
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        const data: StaffApiResponse = await res.json();
         const department = data.staff.find((dept) => dept.slug === childSlug);
-
         setStaffData(department || null);
       } catch (err) {
         console.error("Failed to fetch staff data:", err);
-        setStaffData(null); // Set to null on failure
+        setStaffData(null);
       } finally {
         setLoading(false);
       }
@@ -150,35 +177,43 @@ const FacultyMember: React.FC<FacultyMemberProps> = ({ slug, childSlug }) => {
   if (loading) return <Loading />;
   if (!staffData)
     return (
-      <NoDataFound message="Oops! The page you are looking for does not exist. It might have been removed or is temporarily unavailable." />
+      <div className="pt-24 pb-16 bg-gray-50">
+        <NoDataFound
+          message={`No staff data found for department: ${childSlug}. Please check the API source.`}
+        />
+      </div>
     );
 
   return (
-    <div className="container px-4 py-8 mx-auto">
-      <div className="space-y-12">
-        <h1 className="pb-3 text-4xl font-extrabold text-gray-900 border-b-4 border-indigo-500">
-          {staffData.department_title} Staff{" "}
-        </h1>{" "}
-        {staffData.groups
-          .sort((a, b) => (a.position || 0) - (b.position || 0))
-          .map((group) => (
-            <div key={group.id} className="space-y-6">
-              {/* Group / Section Title */}{" "}
-              <h2 className="pl-3 text-3xl font-bold text-indigo-700 border-l-4 border-indigo-500">
-                {group.title}{" "}
-              </h2>
-              {/* Members Grid */}{" "}
-              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {" "}
-                {group.members
-                  .sort((a, b) => (a.position || 0) - (b.position || 0))
-                  .map((member) => (
-                    <StaffCard key={member.id} member={member} />
-                  ))}{" "}
-              </div>{" "}
-            </div>
-          ))}{" "}
-      </div>{" "}
+    <div className="py-16 bg-gray-50/70 sm:py-24">
+      <div className="container px-4 mx-auto max-w-7xl">
+        <div className="space-y-16">
+          <h1 className="relative pb-4 text-5xl font-extrabold leading-tight text-center text-gray-900">
+            {staffData.department_title} Staff & Members
+            <span className="block w-24 h-1 mx-auto mt-2 bg-indigo-600 rounded-full"></span>
+          </h1>
+
+          {staffData.groups
+            .sort((a, b) => (a.position || 0) - (b.position || 0))
+            .map((group) => (
+              <div key={group.id} className="mb-10">
+                {/* --- FLEX WRAPPER FOR PERFECT CENTERING --- */}
+                <div className="flex flex-wrap justify-center gap-10">
+                  {group.members
+                    .sort((a, b) => (a.position || 0) - (b.position || 0))
+                    .map((member) => (
+                      <div
+                        key={member.id}
+                        className="w-full sm:w-[45%] lg:w-[30%] xl:w-[22%] max-w-sm"
+                      >
+                        <StaffCard member={member} />
+                      </div>
+                    ))}
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
     </div>
   );
 };
