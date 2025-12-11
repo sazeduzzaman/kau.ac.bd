@@ -78,7 +78,7 @@ const SomeNotice = ({ noticesData }: SomeNoticeProps) => {
               return (
                 <Link
                   key={notice.id}
-                  href={`/all-notice/${notice.slug}`}
+                  href={`/all-notice/${notice?.slug}`}
                   className="flex items-center gap-4 p-3 transition border border-gray-200 cursor-pointer bg-gray-50 hover:bg-teal-50/50"
                 >
                   {/* DATE BOX */}

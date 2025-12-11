@@ -96,7 +96,7 @@ const NoticeDetails: React.FC<NoticeDetailsProps> = ({
               {relatedNotices.map((rel) => (
                 <li key={rel.id}>
                   <Link
-                    href={`/all-notice/${rel.slug}`}
+                    href={`/all-notice/${rel?.slug}`}
                     className="text-teal-600 hover:underline"
                   >
                     {rel.title}

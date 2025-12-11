@@ -44,7 +44,7 @@ const InfoCardsSection: React.FC<InfoCardsSectionProps> = ({ exploreData }) => {
               return card.url ? (
                 <Link
                   key={card.position}
-                  href={card.url}
+                  href={card?.url}
                   className="relative flex flex-col items-center p-0 overflow-hidden text-center transition-all duration-500 rounded-lg cursor-pointer bg-white/20 backdrop-blur-md group"
                 >
                   <div className="relative flex flex-col items-center justify-center w-full h-48 text-center transition-all duration-300 border rounded-lg border-white/30 hover:bg-white hover:scale-105">

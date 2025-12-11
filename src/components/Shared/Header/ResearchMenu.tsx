@@ -93,7 +93,7 @@ const RecursiveMenuItem: React.FC<{ item: MenuItem; pathname: string }> = ({
       onMouseLeave={() => setOpen(false)}
     >
       <Link
-        href={item.href}
+        href={item?.href}
         className={`flex justify-between items-center px-4 py-3 text-sm w-full  transition-all duration-300 ${
           isActive(item)
             ? "bg-site-primary text-white shadow-md"

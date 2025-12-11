@@ -139,28 +139,28 @@ const RecursiveGroup = ({
           `}
         >
           {group.sites.map((site) => {
-            const isActive = pathname === site.base_url;
+            const url = site?.slug ? `/${site.slug}` : "#";
+            const isActive = pathname === url;
 
             return (
               <Link
                 key={site.id}
-                href={site.base_url}
-                className={`flex justify-between items-center px-4 py-3 text-sm transition-all duration-300 
-                  ${
-                    isActive
-                      ? "bg-site-primary text-white shadow-md"
-                      : "text-black hover:bg-[#438aba] hover:text-white"
-                  }
-                `}
+                href={url}
+                target="_blank"
+                className={`flex justify-between items-center px-4 py-3 text-sm transition-all duration-300 ${
+                  isActive
+                    ? "bg-site-primary text-white shadow-md"
+                    : "text-black hover:bg-[#438aba] hover:text-white"
+                }`}
               >
                 {site.name}
 
-                {/* Right arrow like AdmissionMenu */}
                 <FaArrowRight
-                  className={`ml-2 text-xs transition-all duration-200 
-                    ${
-                      isActive ? "text-white" : "text-gray-400 hover:text-white"
-                    }`}
+                  className={`ml-2 text-xs ${
+                    isActive
+                      ? "text-white"
+                      : "text-gray-400 group-hover:text-white"
+                  }`}
                 />
               </Link>
             );

@@ -29,7 +29,7 @@ const SomeNews: React.FC<SomeNewsProps> = ({ newsData }) => {
   return (
     <div className="col-span-1">
       {/* Featured News */}
-      <Link href={`/news/${featured.slug}`}>
+      <Link href={`/news/${featured?.slug}`}>
         <div className="relative flex flex-col overflow-hidden transition-all bg-white rounded-none shadow-sm hover:shadow-lg">
           <img
             src={featured.imageUrl || "/images/news-no-img.png"}
@@ -83,7 +83,7 @@ const SomeNews: React.FC<SomeNewsProps> = ({ newsData }) => {
                 });
 
                 return (
-                  <Link href={`/news/${featured.slug}`} key={news.id}>
+                  <Link href={`/news/${featured?.slug}`} key={news.id}>
                     <div className="flex items-center overflow-hidden transition bg-white shadow cursor-pointer hover:shadow-md">
                       <img
                         src={news.imageUrl || "/images/news-no-img.png"}

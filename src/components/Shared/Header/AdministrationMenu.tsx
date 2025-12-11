@@ -33,7 +33,7 @@ const AdministrationMenu: React.FC = () => {
             children: Array.isArray(item.offices)
               ? item.offices.map((office: any) => ({
                   label: office.title || "Untitled",
-                  href: `/administration/office/${office.slug}`,
+                  href: `/administration/office/${office?.slug}`,
                 }))
               : [],
           }));
@@ -139,7 +139,7 @@ const DropdownItem: React.FC<{ item: MenuItemType; level?: number }> = ({
       ) : (
         // Sub-submenu clickable
         <Link
-          href={item.href}
+          href={item?.href}
           className={`flex justify-between items-center px-4 py-3 text-sm transition-all duration-200 w-full ${
             isActive(item) || open
               ? "bg-site-primary text-white shadow-md"

@@ -21,7 +21,7 @@ const NoticeItem: React.FC<NoticeItemProps> = ({ notice }) => {
   );
   return (
     <Link
-      href={`/all-notice/${notice.slug}`} // Navigate to details page
+      href={`/all-notice/${notice?.slug}`} // Navigate to details page
       className="relative block p-6 transition-all duration-200 bg-white border-l-4 border-transparent cursor-pointer group hover:bg-emerald-50/30 hover:border-emerald-500"
     >
       <div className="flex flex-col items-start gap-6 md:flex-row">

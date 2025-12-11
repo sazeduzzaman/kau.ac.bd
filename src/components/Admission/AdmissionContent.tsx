@@ -55,7 +55,7 @@ const AdmissionContent: React.FC<AdmissionContentProps> = ({
               {admissionItem.children.map((child) => (
                 <li key={child.id}>
                   <Link
-                    href={child.external_url || `/admission/${child.slug}`}
+                    href={child?.external_url || `/admission/${child.slug}`}
                     target={child.external_url ? "_blank" : "_self"}
                     rel={child.external_url ? "noopener noreferrer" : undefined}
                     className="text-site-primary hover:underline"

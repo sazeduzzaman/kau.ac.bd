@@ -15,8 +15,8 @@ export default async function FacultiesHeader() {
   const SiteInfoData = await SiteSettingDataset();
 
   const marqueeItems: MarqueePropsItem[] = newsData.map((item) => ({
-    title: item.title,
-    href: item.url ?? "#",
+    title: item?.title,
+    href: item?.url ?? "#",
   }));
   return (
     <header className="relative w-full">

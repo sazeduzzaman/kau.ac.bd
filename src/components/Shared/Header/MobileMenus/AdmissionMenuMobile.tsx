@@ -47,7 +47,7 @@ const AdmissionMenuMobile: React.FC<AdmissionMenuProps> = ({
     href:
       item.type === "external" && item.external_url
         ? item.external_url
-        : `/admission/${item.slug}`,
+        : `/admission/${item?.slug}`,
     external: item.type === "external",
     children: item.children?.map((c: any) => mapItem(c)) || [],
   });
@@ -71,7 +71,7 @@ const AdmissionMenuMobile: React.FC<AdmissionMenuProps> = ({
             </details>
           ) : (
             <Link
-              href={item.href}
+              href={item?.href}
               target={item.external ? "_blank" : "_self"}
               rel={item.external ? "noopener noreferrer" : undefined}
               onClick={closeDrawer}

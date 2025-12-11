@@ -8,36 +8,54 @@ interface Props {
 export default async function FacultyPage({ params }: Props) {
   const { slug } = await params;
 
-  // Fetch data on the server
+  // -----------------------------
+  // Fetch Departments and Staff
+  // -----------------------------
   const res = await fetch(
     `https://admin.kau.khandkershahed.com/api/v1/academics/sites/${slug}/departments-and-staff`,
-    { cache: "no-store" } // ensures fresh data
+    { cache: "no-store" }
   );
-
-  const data = await res.json();
-  const departments = data.departments;
-
-  // Extract site name and potentially slug name for the subtitle
-  const siteName = data.site?.name || "Faculty/Site Name";
-  const slugName = slug;
-
-  // Fetch data on the server
+  const departmentData = await res.json();
+  const departments = departmentData?.departments || [];
+  const departmentsStuff = departmentData?.staff || [];
+  console.log(departmentsStuff, "departmentsStuff");
+  // -----------------------------
+  // Fetch Pages
+  // -----------------------------
   const resPage = await fetch(
     `https://admin.kau.khandkershahed.com/api/v1/academics/sites/${slug}/pages`,
-    { cache: "no-store" } // ensures fresh data
+    { cache: "no-store" }
   );
   const dataPage = await resPage.json();
-  const homePageData = dataPage.pages[0];
+
+  // Safe check – pages exists & is array
+  const pages = Array.isArray(dataPage?.pages) ? dataPage.pages : [];
+
+  // -----------------------------
+  // Find Home Page
+  // -----------------------------
+  const homePage = pages.find((p: any) => p.is_home === true);
+
   return (
     <div className="text-black">
-      {/* Component Sections */}
-      <div className="">
-        <FacultyHero homePageData={homePageData} />
-        {/* Pass the slug/site name as basePath if DepartmentCard needs it for linking */}
-        <DepartmentCard
-          departments={departments}
-          basePath={`/${slug}/departments`}
-        />
+      <div>
+        {/* -----------------------------
+            ✔ Show Hero ONLY if home page exists
+           ----------------------------- */}
+        {homePage && <FacultyHero homePageData={homePage} />}
+
+        {/* -----------------------------
+            ✔ Show Departments ONLY if:
+              - home page exists
+              - is_department_boxes === true
+              - departments list exists
+           ----------------------------- */}
+        {homePage?.is_department_boxes === true && departments.length > 0 && (
+          <DepartmentCard
+            departments={departments}
+            basePath={`/${slug}/departments`}
+          />
+        )}
       </div>
     </div>
   );

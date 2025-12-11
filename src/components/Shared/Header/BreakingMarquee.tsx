@@ -68,7 +68,7 @@ const BreakingMarquee: React.FC<BreakingMarqueeProps> = ({
             {duplicatedItems.map((news, i) => (
               <Link
                 key={i}
-                href={`/news/${news.href.split("/").pop()}`}
+                href={`/news/${news?.href.split("/").pop()}`}
                 className="flex items-center gap-1 mx-8 text-xs cursor-pointer text-white/90 hover:text-site-primary whitespace-nowrap"
               >
                 <span className="animate-blink text-site-primary">●</span>

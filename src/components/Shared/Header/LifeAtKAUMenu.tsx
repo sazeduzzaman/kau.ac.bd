@@ -70,14 +70,14 @@ const LifeAtKAUMenu: React.FC = () => {
           {lifeAtKAUMenu.children.map((item, index) => (
             <li key={index}>
               <Link
-                href={item.href}
+                href={item?.href}
                 className={`flex justify-between items-center px-4 py-3 text-sm w-full transition-all duration-300 ${
                   isActive(item)
                     ? "bg-site-primary text-white shadow-md"
                     : "text-dark hover:bg-[#438aba] hover:text-white hover:shadow-md"
                 }`}
               >
-                {item.label}
+                {item?.label}
                 <FaArrowRight className="ml-2 text-xs text-gray-400" />
               </Link>
             </li>

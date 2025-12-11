@@ -29,7 +29,7 @@ const Topbar: React.FC<TopbarProps> = ({ SiteInfoData }) => {
             return (
               <Link
                 key={index}
-                href={item.url}
+                href={item?.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center w-8 h-8 transition-colors duration-300 rounded-full bg-white/10 hover:bg-white/20"

@@ -42,7 +42,7 @@ const AdmissionMenu: React.FC = () => {
     href:
       item.type === "external" && item.external_url
         ? item.external_url
-        : `/admission/${item.slug}`,
+        : `/admission/${item?.slug}`,
     external: item.type === "external",
     children: item.children?.map((c: any) => mapItem(c)) || [],
   });
@@ -140,7 +140,7 @@ const DropdownItem: React.FC<DropdownItemProps & { level?: number }> = ({
       ) : (
         // Sub-submenu is clickable
         <Link
-          href={item.href}
+          href={item?.href}
           target={item.external ? "_blank" : "_self"}
           rel={item.external ? "noopener noreferrer" : undefined}
           className={`flex justify-between items-center px-4 py-3 text-sm transition-all duration-200 w-full ${

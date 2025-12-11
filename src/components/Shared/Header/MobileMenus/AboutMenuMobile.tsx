@@ -48,7 +48,7 @@ const AboutMenuMobile: React.FC<AboutMenuProps> = ({
         {aboutMenu.children?.map((item, index) => (
           <li key={index}>
             <Link
-              href={item.href}
+              href={item?.href}
               onClick={closeDrawer}
               className="block px-3 py-2 rounded-lg text-black hover:bg-[#498dbd]/20 transition-colors duration-300"
             >

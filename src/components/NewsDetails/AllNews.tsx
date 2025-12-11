@@ -30,7 +30,7 @@ const AllNews: React.FC<AllNewsProps> = ({ newsData }) => {
         {newsData.map((news) => (
           <Link
             key={news.id}
-            href={`/news/${news.slug}`}
+            href={`/news/${news?.slug}`}
             className="block overflow-hidden transition-transform transform bg-white rounded-lg shadow-lg group hover:-translate-y-1 hover:shadow-2xl"
           >
             <div className="relative w-full h-48 overflow-hidden">
