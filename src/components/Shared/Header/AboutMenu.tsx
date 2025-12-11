@@ -29,8 +29,8 @@ const AboutMenu: React.FC = () => {
             .sort((a: any, b: any) => a.position - b.position)
             .map((item: any) => ({
               label: item.menu_label || item.title,
-              href: `/about/${item?.slug}`, // Dynamic href
-              slug: item?.slug, // Keep slug handy
+              href: `/about/${item.slug}`, // Dynamic href
+              slug: item.slug, // Keep slug handy
             }));
 
           setMenuItems(mapped);
@@ -54,8 +54,8 @@ const AboutMenu: React.FC = () => {
     >
       {/* Main Dropdown Button */}
       <span
-        className={`flex items-center px-3 py-2 font-semibold text-gray-600 cursor-pointer transition-all duration-300 rounded-md ${
-          menuItems.some((item) => isActive(item?.href))
+        className={`flex items-center px-3 py-2 font-semibold text-gray-600 cursor-pointer transition-all duration-300 ${
+          menuItems.some((item) => isActive(item.href))
             ? "text-site-secondary border-b-2 border-site-primary rounded-none"
             : "text-dark hover:bg-site-primary hover:text-[#438aba]"
         }`}
@@ -76,14 +76,14 @@ const AboutMenu: React.FC = () => {
           {menuItems.map((item, index) => (
             <li key={index}>
               <Link
-                href={`/about/${item?.slug}`} // Use slug here for dynamic route
+                href={`/about/${item.slug}`} // Use slug here for dynamic route
                 className={`flex justify-between items-center px-4 py-3 text-sm transition-all duration-200 w-full ${
-                  isActive(item?.href)
+                  isActive(item.href)
                     ? "bg-site-primary text-white shadow-md"
-                    : "text-black hover:bg-site-primary hover:text-[#438aba]"
+                    : "text-black hover:bg-[#438aba] hover:text-white"
                 }`}
               >
-                {item?.label}
+                {item.label}
                 <FaArrowRight className="ml-2 text-xs text-gray-400" />
               </Link>
             </li>

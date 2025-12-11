@@ -17,7 +17,7 @@ export default async function FacultyPage({ params }: Props) {
   );
   const departmentData = await res.json();
   const departments = departmentData?.departments || [];
-  const departmentsStuff = departmentData?.staff || [];
+
   // -----------------------------
   // Fetch Pages
   // -----------------------------
@@ -26,36 +26,21 @@ export default async function FacultyPage({ params }: Props) {
     { cache: "no-store" }
   );
   const dataPage = await resPage.json();
-
-  // Safe check – pages exists & is array
   const pages = Array.isArray(dataPage?.pages) ? dataPage.pages : [];
 
   // -----------------------------
   // Find Home Page
   // -----------------------------
-  const homePage = pages.find((p: any) => p.is_home === true);
+  const homePage = pages.find((p: any) => p.is_home);
+
+  const showDepartments = homePage?.is_department_boxes && departments.length > 0;
 
   return (
     <div className="text-black">
-      <div>
-        {/* -----------------------------
-            ✔ Show Hero ONLY if home page exists
-           ----------------------------- */}
-        {homePage && <FacultyHero homePageData={homePage} />}
-
-        {/* -----------------------------
-            ✔ Show Departments ONLY if:
-              - home page exists
-              - is_department_boxes === true
-              - departments list exists
-           ----------------------------- */}
-        {homePage?.is_department_boxes === true && departments.length > 0 && (
-          <DepartmentCard
-            departments={departments}
-            basePath={`/${slug}/departments`}
-          />
-        )}
-      </div>
+      {homePage && <FacultyHero homePageData={homePage} />}
+      {showDepartments && (
+        <DepartmentCard departments={departments} basePath={`/${slug}/departments`} />
+      )}
     </div>
   );
 }

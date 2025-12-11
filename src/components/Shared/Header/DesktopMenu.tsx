@@ -55,11 +55,11 @@ const DesktopMenu: React.FC = () => {
         {/* Desk */}
         <li>
           <Link
-            href="/desk"
+            href="#"
             className={`${baseClasses} ${
               pathname === "/desk"
                 ? "border-b-2 border-site-primary text-site-secondary"
-                : "text-dark hover:bg-site-primary hover:text-[#438aba]"
+                : "text-gray-600 hover:bg-site-primary hover:text-[#438aba]"
             }`}
           >
             Desk

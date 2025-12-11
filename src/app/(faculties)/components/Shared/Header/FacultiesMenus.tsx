@@ -19,7 +19,6 @@ interface ApiData {
   pages: any[];
 }
 
-// Normalize URL for active detection
 const normalizePath = (path: string) =>
   path.endsWith("/") ? path.slice(0, -1) : path;
 
@@ -55,61 +54,61 @@ const FacultiesMenus = () => {
   if (loading) return <div>Loading navigation...</div>;
   if (!data?.navigation || data.navigation.length === 0) return null;
 
-  // Build link using page_slug
   const buildHref = (item: NavigationItem) => {
     if (!item.page_slug && !item.slug) return "#";
-
-    // Home page should link to /{slug}
     if (item.page_slug === "home") return `/${slug}`;
-
-    // Normal pages: /{slug}/{page_slug} (fallback to slug)
     return `/${slug}/${item.page_slug || item.slug}`;
   };
 
-  // Recursive render for menu + children
   const renderMenuItem = (item: NavigationItem, index: number) => {
     const href = buildHref(item);
-
     const isActive =
       normalizedPathname === normalizePath(href) ||
       (item.children &&
         item.children.some(
-          (child) => normalizedPathname === normalizePath(buildHref(child))
+          (child) =>
+            normalizedPathname ===
+            normalizePath(
+              `/${slug}/${item.page_slug || item.slug}/${child.slug}/staff`
+            )
         ));
 
     return (
-      <li key={index} className="relative group">
+      <li key={index} className="relative group font-merriweather">
         <Link
           href={href}
-          className={`px-3 py-2 block rounded-md transition-colors ${
+          className={`flex items-center px-3 py-2 font-semibold text-gray-600 cursor-pointer transition-all duration-300 ${
             isActive
-              ? "text-site-primary font-semibold border-b-2 border-site-primary"
-              : "text-gray-700 hover:text-site-primary"
+              ? "text-site-secondary border-b-2 border-[#8b5e3c]"
+              : "text-gray-600 hover:bg-site-primary hover:text-[#438aba] "
           }`}
         >
           <div className="flex items-center gap-1">
             {item.label}
-            {item.children?.length ? <span className="text-xs">▼</span> : null}
+            {item.children?.length ? (
+              <span
+                className={`ml-1 text-xs transition-transform duration-200 group-hover:rotate-180`}
+              >
+                ▼
+              </span>
+            ) : null}
           </div>
         </Link>
 
         {item.children && item.children.length > 0 && (
-          <ul className="absolute left-0 hidden mt-1 bg-white text-black shadow-lg rounded-md group-hover:block min-w-[180px] z-50">
+          <ul className="absolute left-0 z-50 w-48 mt-2 transition-all duration-200 origin-top scale-95 bg-white shadow-lg opacity-0 group-hover:opacity-100 group-hover:scale-100">
             {item.children
               .sort((a, b) => (a.position || 0) - (b.position || 0))
-              .map((child, index) => {
-                // ✅ Submenu route:
-                // /slug/pageslug/childslug/staff
+              .map((child, idx) => {
                 const parentSegment = item.page_slug || item.slug;
                 const href = `/${slug}/${parentSegment}/${child.slug}/staff`;
-
                 const isChildActive =
                   normalizedPathname === normalizePath(href);
 
                 return (
                   <li
-                    key={index}
-                    className={`px-4 py-2 hover:bg-gray-100 ${
+                    key={idx}
+                    className={`px-4 py-2 text-gray-700 hover:bg-[#438aba] hover:text-white transition-colors duration-200  ${
                       isChildActive ? "bg-site-primary text-white" : ""
                     }`}
                   >
