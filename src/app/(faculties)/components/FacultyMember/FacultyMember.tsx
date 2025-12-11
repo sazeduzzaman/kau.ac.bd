@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Mail, Phone, Globe, User, BookOpen } from "lucide-react";
 import NoDataFound from "@/components/Shared/NoDataFound/NoDataFound";
 import Loading from "../../[slug]/loading";
+import Link from "next/link";
 
 // --- Type Definitions ---
 interface StaffMemberLink {
@@ -104,7 +105,7 @@ const StaffCard: React.FC<{ member: StaffMember }> = ({ member }) => {
           onError={(e) => {
             e.currentTarget.src = "/images/no-profile.avif";
             e.currentTarget.className =
-              "object-cover w-full h-full p-1 bg-gray-50";
+              "object-cover w-full h-full p-1";
           }}
         />
       </div>
@@ -124,7 +125,7 @@ const StaffCard: React.FC<{ member: StaffMember }> = ({ member }) => {
         <div className="flex justify-center w-full gap-3">
           {filteredLinks.length > 0 ? (
             filteredLinks.slice(0, 3).map((link, idx) => (
-              <a
+              <Link
                 key={idx}
                 href={link.url}
                 className="flex items-center justify-center w-10 h-10 text-gray-700 transition duration-150 rounded-full bg-indigo-50 hover:bg-indigo-100 hover:text-indigo-700"
@@ -133,7 +134,7 @@ const StaffCard: React.FC<{ member: StaffMember }> = ({ member }) => {
                 aria-label={getLinkText(link.url)}
               >
                 {getLinkIcon(link)}
-              </a>
+              </Link>
             ))
           ) : (
             <div className="flex items-center justify-center gap-1 text-sm italic text-gray-400">
