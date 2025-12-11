@@ -68,7 +68,7 @@ const FacultyInnerPages: React.FC<FacultyDepartmentProps> = ({
   if (!activePage) return <NoDataFound />;
 
   return (
-    <div className="container py-10 mx-auto">
+    <div className="container px-6 py-10 mx-auto ">
       <FacultyCommonPages activePage={activePage} slug={slug} />
     </div>
   );

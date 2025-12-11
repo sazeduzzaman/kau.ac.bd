@@ -8,7 +8,15 @@ export default async function Page({ params }: StaffPageProps) {
   const { slug, childSlug } = await params;
 
   return (
-    <div className="">
+    <div
+      className="w-full min-h-screen"
+      style={{
+        backgroundImage: 'url("/images/facultybg.png")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <FacultyMember slug={slug} childSlug={childSlug} />
     </div>
   );

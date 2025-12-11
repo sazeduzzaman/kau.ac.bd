@@ -32,15 +32,28 @@ export default async function FacultyPage({ params }: Props) {
   // Find Home Page
   // -----------------------------
   const homePage = pages.find((p: any) => p.is_home);
-
-  const showDepartments = homePage?.is_department_boxes && departments.length > 0;
+  const showDepartments =
+    homePage?.is_department_boxes && departments.length > 0;
 
   return (
-    <div className="text-black">
-      {homePage && <FacultyHero homePageData={homePage} />}
-      {showDepartments && (
-        <DepartmentCard departments={departments} basePath={`/${slug}/departments`} />
-      )}
+    <div
+      className="w-full min-h-screen"
+      style={{
+        backgroundImage: 'url("/images/facultybg-3.png")',
+        backgroundSize: "container",
+        backgroundPosition: "center",
+        backgroundRepeat: "repeat",
+      }}
+    >
+      <div className="">
+        {homePage && <FacultyHero homePageData={homePage} />}
+        {showDepartments && (
+          <DepartmentCard
+            departments={departments}
+            basePath={`/${slug}/departments`}
+          />
+        )}
+      </div>
     </div>
   );
 }

@@ -56,7 +56,7 @@ const FacultyCommonPages: React.FC<FacultyCommonPagesProps> = ({
     : null;
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       {/* ========== Banner ========== */}
       {(bannerTitle || banner_image || banner_button) && (
         <div className="relative container mx-auto mt-5 rounded-2xl overflow-hidden h-[45vh] md:h-[60vh] lg:h-[70vh] shadow-xl">
@@ -103,7 +103,7 @@ const FacultyCommonPages: React.FC<FacultyCommonPagesProps> = ({
 
       {/* ========== Content Section ========== */}
       {contentWithIds ? (
-        <section className="container py-12 mx-auto">
+        <section className="container px-12 py-12 mx-auto bg-white shadow-sm rounded-3xl">
           <div className="prose prose-lg max-w-none">
             <HtmlRenderer content={contentWithIds} />
           </div>

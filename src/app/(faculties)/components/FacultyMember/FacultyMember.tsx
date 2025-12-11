@@ -144,22 +144,28 @@ const FacultyMember: React.FC<FacultyMemberProps> = ({ slug, childSlug }) => {
     return (
       <div
         key={member.id}
-        className="flex flex-col items-center text-center bg-white shadow-lg rounded-2xl transition duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.01] border border-gray-100 w-full sm:w-[45%] lg:w-[30%] xl:w-[22%] max-w-sm"
+        className="group flex flex-col items-center text-center bg-site-primary shadow-lg rounded-2xl transition duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.01] border-gray-100 
+  w-full sm:w-[48%] lg:w-[23%] xl:w-[22%] max-w-sm"
       >
         {/* Image */}
-        <div className="relative w-full h-64">
+        <div
+          key={member.id}
+          className=" flex flex-col items-center text-center z-10 pt-10 bg-site-primary rounded-2xl transition duration-300 ease-in-out  hover:scale-[1.01]  "
+        >
           <img
             src={member?.image || "/images/no-profile.avif"}
             alt={member?.name}
-            className="object-cover w-full h-full rounded-2xl"
+            style={{ marginBottom: "-40px" }}
+            className="object-cover transition-transform duration-300 rounded-full shadow-lg w-30 h-30 ring-4 ring-sky-600 group-hover:scale-110"
             onError={(e) => {
               e.currentTarget.src = "/images/no-profile.avif";
-              e.currentTarget.className = "object-cover w-full h-full p-1";
+              e.currentTarget.className =
+                "object-cover transition-transform duration-300 rounded-full shadow-lg w-30 h-30 ring-4 ring-sky-600 group-hover:scale-110";
             }}
           />
         </div>
 
-        <div className="p-6">
+        <div className="w-full h-full p-6 bg-gray-100 pt-15 rounded-b-2xl">
           <h3 className="mb-1 text-xl font-bold leading-snug text-gray-900">
             {member?.name}
           </h3>
@@ -210,7 +216,7 @@ const FacultyMember: React.FC<FacultyMemberProps> = ({ slug, childSlug }) => {
   return (
     <div className="py-16 bg-gray-50/70 sm:py-24">
       <div className="container px-4 mx-auto max-w-7xl">
-        <h1 className="relative pb-4 text-5xl font-extrabold leading-tight text-center text-gray-900">
+        <h1 className="relative w-2/4 pb-4 mx-auto text-5xl font-extrabold leading-tight text-center text-gray-900">
           {staffData.department_title} Staff & Members
           <span className="block w-24 h-1 mx-auto mt-2 bg-indigo-600 rounded-full"></span>
         </h1>
@@ -218,7 +224,7 @@ const FacultyMember: React.FC<FacultyMemberProps> = ({ slug, childSlug }) => {
         {staffData.groups
           .sort((a, b) => (a.position || 0) - (b.position || 0))
           .map((group) => (
-            <div key={group.id} className="mb-10">
+            <div key={group.id} className="mt-10 mb-10">
               <div className="flex flex-wrap justify-center gap-10">
                 {group.members
                   .sort((a, b) => (a.position || 0) - (b.position || 0))

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FaChevronDown } from "react-icons/fa";
+import { FaC } from "react-icons/fa6";
 
 interface NavigationItem {
   id: number;
@@ -89,7 +91,7 @@ const FacultiesMenus = () => {
               <span
                 className={`ml-1 text-xs transition-transform duration-200 group-hover:rotate-180`}
               >
-                ▼
+                <FaChevronDown />
               </span>
             ) : null}
           </div>
@@ -106,14 +108,15 @@ const FacultiesMenus = () => {
                   normalizedPathname === normalizePath(href);
 
                 return (
-                  <li
-                    key={idx}
-                    className={`px-4 py-2 text-gray-700 hover:bg-[#438aba] hover:text-white transition-colors duration-200  ${
-                      isChildActive ? "bg-site-primary text-white" : ""
-                    }`}
-                  >
-                    <Link href={href}>{child.label}</Link>
-                  </li>
+                  <Link href={href} key={idx}>
+                    <li
+                      className={`px-4 py-2 text-gray-700 hover:bg-[#438aba] hover:text-white text-sm font-medium font-stretch-50% transition-colors duration-200  ${
+                        isChildActive ? "bg-site-primary text-white" : ""
+                      }`}
+                    >
+                      {child.label}
+                    </li>
+                  </Link>
                 );
               })}
           </ul>
