@@ -104,8 +104,7 @@ const StaffCard: React.FC<{ member: StaffMember }> = ({ member }) => {
           className="object-cover w-full h-full rounded-2xl"
           onError={(e) => {
             e.currentTarget.src = "/images/no-profile.avif";
-            e.currentTarget.className =
-              "object-cover w-full h-full p-1";
+            e.currentTarget.className = "object-cover w-full h-full p-1";
           }}
         />
       </div>
@@ -178,11 +177,9 @@ const FacultyMember: React.FC<FacultyMemberProps> = ({ slug, childSlug }) => {
   if (loading) return <Loading />;
   if (!staffData)
     return (
-      <div className="pt-24 pb-16 bg-gray-50">
-        <NoDataFound
-          message={`No staff data found for department: ${childSlug}. Please check the API source.`}
-        />
-      </div>
+      <NoDataFound
+        message={`No data found for ${childSlug}. Please Go back.`}
+      />
     );
 
   return (
