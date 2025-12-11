@@ -216,8 +216,8 @@ const FacultyMember: React.FC<FacultyMemberProps> = ({ slug, childSlug }) => {
   return (
     <div className="py-16 bg-gray-50/70 sm:py-24">
       <div className="container px-4 mx-auto max-w-7xl">
-        <h1 className="relative w-2/4 pb-4 mx-auto text-5xl font-extrabold leading-tight text-center text-gray-900">
-          {staffData.department_title} Staff & Members
+        <h1 className="relative pb-4 mx-auto text-5xl font-extrabold leading-tight text-center text-gray-900 capitalize w-100">
+          {staffData.department_title}
           <span className="block w-24 h-1 mx-auto mt-2 bg-indigo-600 rounded-full"></span>
         </h1>
 

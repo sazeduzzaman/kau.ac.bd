@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
-import { FaC } from "react-icons/fa6";
 
 interface NavigationItem {
   id: number;
@@ -82,23 +81,21 @@ const FacultiesMenus = () => {
           className={`flex items-center px-3 py-2 font-semibold text-gray-600 cursor-pointer transition-all duration-300 ${
             isActive
               ? "text-site-secondary border-b-2 border-[#8b5e3c]"
-              : "text-gray-600 hover:bg-site-primary hover:text-[#438aba] "
+              : "text-gray-600 hover:bg-site-primary hover:text-[#438aba]"
           }`}
         >
           <div className="flex items-center gap-1">
             {item.label}
             {item.children?.length ? (
-              <span
-                className={`ml-1 text-xs transition-transform duration-200 group-hover:rotate-180`}
-              >
-                <FaChevronDown />
+              <span className="ml-1 text-xs transition-transform duration-200 group-hover:-rotate-0">
+                <FaChevronDown className="" />
               </span>
             ) : null}
           </div>
         </Link>
 
         {item.children && item.children.length > 0 && (
-          <ul className="absolute left-0 z-50 w-48 mt-2 transition-all duration-200 origin-top scale-95 bg-white shadow-lg opacity-0 group-hover:opacity-100 group-hover:scale-100">
+          <ul className="absolute z-50 w-48 mt-2 transition-all duration-200 origin-top scale-95 bg-white shadow-lg opacity-0 right-0-0 group-hover:opacity-100 group-hover:scale-100">
             {item.children
               .sort((a, b) => (a.position || 0) - (b.position || 0))
               .map((child, idx) => {
@@ -108,10 +105,16 @@ const FacultiesMenus = () => {
                   normalizedPathname === normalizePath(href);
 
                 return (
-                  <Link href={href} key={idx}>
+                  <Link
+                    href={href}
+                    key={idx}
+                    className="flex items-center p-0 font-semibold text-gray-600 transition-all cursor-pointer duration-30"
+                  >
                     <li
-                      className={`px-4 py-2 text-gray-700 hover:bg-[#438aba] hover:text-white text-sm font-medium font-stretch-50% transition-colors duration-200  ${
-                        isChildActive ? "bg-site-primary text-white" : ""
+                      className={`px-4 py-2 text-gray-700 hover:bg-[#438aba] hover:text-white text-sm font-medium transition-colors duration-200 ${
+                        isChildActive
+                          ? "text-site-secondary border-b-2 border-[#8b5e3c]"
+                          : "text-gray-600 hover:bg-site-primary hover:text-[#438aba]"
                       }`}
                     >
                       {child.label}
@@ -125,9 +128,24 @@ const FacultiesMenus = () => {
     );
   };
 
+  // Split into first 5 items + rest
+  const mainItems = data.navigation.slice(0, 5);
+  const moreItems = data.navigation.slice(5);
+
   return (
-    <ul className="flex space-x-4 font-medium">
-      {data.navigation.map(renderMenuItem)}
+    <ul className="relative flex space-x-4 font-medium">
+      {mainItems.map(renderMenuItem)}
+
+      {moreItems.length > 0 && (
+        <li className="relative group">
+          <span className="flex items-center font-semibold font-merriweather px-3 py-2 text-gray-600 cursor-pointer transition-all duration-300 hover:bg-site-primary hover:text-[#438aba]">
+            More <FaChevronDown className="ml-1" size={12} />
+          </span>
+          <ul className="absolute left-0 z-50 w-48 mt-2 transition-all duration-200 origin-top scale-95 bg-white shadow-lg opacity-0 group-hover:opacity-100 group-hover:scale-100">
+            {moreItems.map(renderMenuItem)}
+          </ul>
+        </li>
+      )}
     </ul>
   );
 };

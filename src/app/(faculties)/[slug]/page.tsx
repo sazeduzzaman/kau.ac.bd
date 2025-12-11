@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default async function FacultyPage({ params }: Props) {
-  const { slug } = await params;
+  const { slug } =await params;
 
   // -----------------------------
   // Fetch Departments and Staff

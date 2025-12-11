@@ -75,28 +75,30 @@ const FacultyCommonPages: React.FC<FacultyCommonPagesProps> = ({
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
 
-          {/* Banner Text */}
-          <div className="absolute inset-0 flex flex-col items-center justify-end px-6 pb-12 text-center">
-            {bannerTitle && (
-              <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-6xl lg:text-7xl drop-shadow-xl">
-                {bannerTitle}
-              </h1>
-            )}
+          <div className="">
+            {/* Banner Text */}
+            <div className="absolute inset-0 flex flex-col items-center justify-end px-6 pb-12 text-center">
+              {bannerTitle && (
+                <h1 className="w-2/4 text-4xl font-extrabold tracking-tight text-white md:text-6xl lg:text-7xl drop-shadow-xl">
+                  {bannerTitle}
+                </h1>
+              )}
 
-            {bannerSubtitle && (
-              <p className="max-w-4xl mt-4 text-lg font-light leading-relaxed text-white/90 md:text-xl">
-                {bannerSubtitle}
-              </p>
-            )}
+              {bannerSubtitle && (
+                <p className="w-2/4 mt-4 text-lg font-light leading-relaxed text-white/90 md:text-xl">
+                  {bannerSubtitle}
+                </p>
+              )}
 
-            {banner_button && banner_button_url && (
-              <a
-                href={banner_button_url}
-                className="inline-block px-10 py-3 mt-8 text-lg font-bold text-black bg-white rounded-full shadow-2xl hover:bg-gray-100 hover:shadow-inner transform hover:scale-[1.02] transition-all duration-300"
-              >
-                {banner_button}
-              </a>
-            )}
+              {banner_button && banner_button_url && (
+                <a
+                  href={banner_button_url}
+                  className="inline-block px-10 py-3 mt-8 text-lg font-bold text-black bg-white rounded-full shadow-2xl hover:bg-gray-100 hover:shadow-inner transform hover:scale-[1.02] transition-all duration-300"
+                >
+                  {banner_button}
+                </a>
+              )}
+            </div>
           </div>
         </div>
       )}
