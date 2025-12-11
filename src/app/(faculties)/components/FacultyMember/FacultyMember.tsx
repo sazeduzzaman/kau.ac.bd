@@ -6,6 +6,8 @@ import React, { useEffect, useState } from "react";
 // recommend integrating a library like Font Awesome or Lucide for better icons.
 // For demonstration, I will use placeholder icons.
 import { Mail, Phone, Globe } from "lucide-react"; // Importing some icons for links
+import NoDataFound from "@/components/Shared/NoDataFound/NoDataFound";
+import Loading from "../../[slug]/loading";
 
 // --- Type Definitions (Kept the same) ---
 interface StaffMemberLink {
@@ -145,18 +147,10 @@ const FacultyMember: React.FC<FacultyMemberProps> = ({ slug, childSlug }) => {
     fetchData();
   }, [slug, childSlug]);
 
-  if (loading)
-    return (
-      <div className="flex items-center justify-center h-48">
-        <div className="w-16 h-16 border-t-2 border-b-2 border-indigo-500 rounded-full animate-spin"></div>
-        <span className="ml-4 text-lg text-gray-600">Loading staff...</span>
-      </div>
-    );
+  if (loading) return <Loading />;
   if (!staffData)
     return (
-      <div className="p-10 text-xl text-center text-red-500 rounded-lg bg-red-50">
-        No staff found for this department, or an error occurred.
-      </div>
+      <NoDataFound message="Oops! The page you are looking for does not exist. It might have been removed or is temporarily unavailable." />
     );
 
   return (

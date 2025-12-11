@@ -2,11 +2,12 @@
 
 import React from "react";
 import Image from "next/image";
+import HtmlRenderer from "@/lib/HtmlRenderer/HtmlRenderer";
 import FacultyDepertmentPage from "./FacultyDepertmentPage";
 
 interface FacultyCommonPagesProps {
-  activePage: {
-    title?: string; // <- optional
+  activePage?: {
+    title?: string;
     subtitle?: string;
     content?: string;
     banner_image?: string;
@@ -23,6 +24,9 @@ const FacultyCommonPages: React.FC<FacultyCommonPagesProps> = ({
   activePage,
   slug,
 }) => {
+  // ❌ If no page data, render nothing
+  if (!activePage) return null;
+
   const {
     title,
     subtitle,
@@ -35,85 +39,81 @@ const FacultyCommonPages: React.FC<FacultyCommonPagesProps> = ({
     is_department_boxes,
   } = activePage;
 
-  const finalBannerTitle = banner_title || title;
+  const bannerTitle = banner_title || title || "";
+  const bannerSubtitle = banner_subtitle || subtitle || "";
 
-  // Add unique IDs to <h2> tags for smooth scroll
+  // Generate IDs for H2 headings for smooth scrolling
   const contentWithIds = content
-    ? content.replace(
-        /<h2[^>]*>([\s\S]*?)<\/h2>/gi,
-        (match, heading, index) => {
-          const id = heading
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, "-")
-            .replace(/^-|-$/g, "");
-          return `<h2 id="${id || `section-${index}`}">${heading}</h2>`;
-        }
-      )
-    : "";
+    ? content.replace(/<h2[^>]*>(.*?)<\/h2>/gi, (match, heading, index) => {
+        const id = heading
+          .toLowerCase()
+          .replace(/<\/?[^>]+(>|$)/g, "") // remove nested tags
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "");
+
+        return `<h2 id="${id || `section-${index}`}">${heading}</h2>`;
+      })
+    : null;
 
   return (
     <div className="w-full">
-      {/* Banner */}
-      {banner_image ? (
-        <div className="relative w-full h-[40vh] md:h-[55vh] lg:h-[60vh] mb-12 overflow-hidden rounded-2xl">
-          <Image
-            src={banner_image}
-            alt={finalBannerTitle || ""}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center transition duration-500 ease-in-out transform hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+      {/* ========== Banner ========== */}
+      {(bannerTitle || banner_image || banner_button) && (
+        <div className="relative container mx-auto mt-5 rounded-2xl overflow-hidden h-[45vh] md:h-[60vh] lg:h-[70vh] shadow-xl">
+          {/* Banner Image */}
+          {banner_image && (
+            <Image
+              src={banner_image}
+              alt={bannerTitle || "Banner Image"}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center transition-all duration-500 ease-in-out transform hover:scale-105"
+            />
+          )}
 
-          <div className="absolute inset-0 flex flex-col items-start justify-end px-4 pb-10 text-white md:px-12">
-            <h1 className="text-4xl font-extrabold tracking-tight md:text-6xl lg:text-7xl drop-shadow-lg">
-              {finalBannerTitle}
-            </h1>
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
 
-            {banner_subtitle && (
-              <p className="max-w-4xl mt-3 text-lg font-light leading-relaxed text-white/90 md:text-xl">
-                {banner_subtitle}
+          {/* Banner Text */}
+          <div className="absolute inset-0 flex flex-col items-center justify-end px-6 pb-12 text-center">
+            {bannerTitle && (
+              <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-6xl lg:text-7xl drop-shadow-xl">
+                {bannerTitle}
+              </h1>
+            )}
+
+            {bannerSubtitle && (
+              <p className="max-w-4xl mt-4 text-lg font-light leading-relaxed text-white/90 md:text-xl">
+                {bannerSubtitle}
               </p>
             )}
 
-            {banner_button && (
+            {banner_button && banner_button_url && (
               <a
-                href={banner_button_url || "#"}
-                className="inline-block px-8 py-3 mt-6 text-lg font-bold text-[#438aba] transition-all duration-300 bg-white rounded-full shadow-2xl hover:bg-gray-100 hover:shadow-inner transform hover:scale-[1.02]"
+                href={banner_button_url}
+                className="inline-block px-10 py-3 mt-8 text-lg font-bold text-black bg-white rounded-full shadow-2xl hover:bg-gray-100 hover:shadow-inner transform hover:scale-[1.02] transition-all duration-300"
               >
                 {banner_button}
               </a>
             )}
           </div>
         </div>
-      ) : (
-        <header className="pt-4 mb-10">
-          <h1 className="text-4xl font-extrabold text-black">
-            {finalBannerTitle}
-          </h1>
-          {subtitle && (
-            <p className="mt-2 text-xl font-light text-gray-600">{subtitle}</p>
-          )}
-        </header>
       )}
 
-      {/* Main Content */}
-      {content ? (
-        <div
-          className="prose lg:prose-xl max-w-none text-gray-800 prose-h2:text-[#438aba] prose-h2:font-extrabold prose-h2:mt-10 prose-h2:border-b prose-h2:pb-2 prose-h2:border-[#438aba]/20 prose-h2:scroll-mt-32 prose-p:leading-relaxed prose-img:rounded-xl prose-img:shadow-lg prose-ul:list-disc prose-li:text-gray-700"
-          dangerouslySetInnerHTML={{ __html: contentWithIds }}
-        />
-      ) : (
-        <p className="py-12 mt-12 text-xl text-center text-gray-500 border-t border-gray-200">
-          No content is currently available for this page.
-        </p>
-      )}
+      {/* ========== Content Section ========== */}
+      {contentWithIds ? (
+        <section className="container py-12 mx-auto">
+          <div className="prose prose-lg max-w-none">
+            <HtmlRenderer content={contentWithIds} />
+          </div>
+        </section>
+      ) : null}
 
-      {/* Render departments section only if is_department_boxes is true */}
+      {/* ========== Departments Section ========== */}
       {is_department_boxes && <FacultyDepertmentPage slug={slug} />}
     </div>
-  );  
+  );
 };
 
 export default FacultyCommonPages;
