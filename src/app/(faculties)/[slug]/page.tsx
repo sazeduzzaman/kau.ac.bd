@@ -18,7 +18,6 @@ export default async function FacultyPage({ params }: Props) {
   const departmentData = await res.json();
   const departments = departmentData?.departments || [];
   const departmentsStuff = departmentData?.staff || [];
-  console.log(departmentsStuff, "departmentsStuff");
   // -----------------------------
   // Fetch Pages
   // -----------------------------

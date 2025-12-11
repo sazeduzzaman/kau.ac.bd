@@ -7,6 +7,14 @@ interface AboutSectionProps {
   aboutData: AboutSection;
 }
 const AboutUniversitySection: React.FC<AboutSectionProps> = ({ aboutData }) => {
+  const aboutImage = aboutData.images;
+  const imageClasses = [
+    "relative w-full h-64 overflow-hidden md:h-96 rounded-2xl group", // Image 1 - Tall
+    "relative w-full h-48 overflow-hidden md:h-64 rounded-2xl group md:mb-8", // Image 2 - Medium
+    "relative w-full h-32 overflow-hidden md:h-48 rounded-2xl group", // Image 3 - Short
+    "relative w-full h-48 overflow-hidden md:h-72 rounded-2xl group md:mb-4", // Image 4 - Medium
+    "relative w-full h-64 col-span-2 overflow-hidden md:h-96 rounded-2xl group md:col-span-1", // Image 5 - Tall
+  ];
   return (
     <section className="relative w-full bg-[#fff]  py-20 px-4 md:px-8 overflow-hidden font-sans">
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -62,56 +70,18 @@ const AboutUniversitySection: React.FC<AboutSectionProps> = ({ aboutData }) => {
           </div>
 
           {/* Image Grid */}
+
           <div className="grid items-end grid-cols-2 gap-4 md:grid-cols-5">
-            {/* Image 1 - Tall */}
-            <div className="relative w-full h-64 overflow-hidden md:h-96 rounded-2xl group">
-              <Image
-                src="/images/work-1.jpg"
-                alt="University Campus Students"
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-
-            {/* Image 2 - Medium */}
-            <div className="relative w-full h-48 overflow-hidden md:h-64 rounded-2xl group md:mb-8">
-              <Image
-                src="/images/work-3.png"
-                alt="University Hallway"
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-
-            {/* Image 3 - Short (Center under circle) */}
-            <div className="relative w-full h-32 overflow-hidden md:h-48 rounded-2xl group">
-              <Image
-                src="/images/work-2.jpg"
-                alt="Research Lab"
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-
-            {/* Image 4 - Medium */}
-            <div className="relative w-full h-48 overflow-hidden md:h-72 rounded-2xl group md:mb-4">
-              <Image
-                src="/images/work-4.png"
-                alt="Auditorium"
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-
-            {/* Image 5 - Tall */}
-            <div className="relative w-full h-64 col-span-2 overflow-hidden md:h-96 rounded-2xl group md:col-span-1">
-              <Image
-                src="/images/work-5.webp"
-                alt="Graduation"
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
+            {aboutImage?.map((img, index) => (
+              <div key={index} className={imageClasses[index]}>
+                <Image
+                  src={img}
+                  alt={`About image ${index + 1}`}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
