@@ -11,22 +11,48 @@ export default async function FacultyPage({ params }: Props) {
   // -----------------------------
   // Fetch Departments and Staff
   // -----------------------------
-  const res = await fetch(
+  const depRes = await fetch(
     `https://admin.kau.khandkershahed.com/api/v1/academics/sites/${slug}/departments-and-staff`,
     { cache: "no-store" }
   );
-  const departmentData = await res.json();
-  const departments = departmentData?.departments || [];
+
+  let departmentData: any = {};
+  if (!depRes.ok) {
+    console.error("Departments API returned:", await depRes.text());
+  } else {
+    try {
+      departmentData = await depRes.json();
+    } catch (err) {
+      console.error("JSON Parse Error (Departments):", err);
+      console.error("Server returned:", await depRes.text());
+    }
+  }
+
+  const departments = Array.isArray(departmentData?.departments)
+    ? departmentData.departments
+    : [];
 
   // -----------------------------
   // Fetch Pages
   // -----------------------------
-  const resPage = await fetch(
+  const pageRes = await fetch(
     `https://admin.kau.khandkershahed.com/api/v1/academics/sites/${slug}/pages`,
     { cache: "no-store" }
   );
-  const dataPage = await resPage.json();
-  const pages = Array.isArray(dataPage?.pages) ? dataPage.pages : [];
+
+  let pageData: any = {};
+  if (!pageRes.ok) {
+    console.error("Pages API returned:", await pageRes.text());
+  } else {
+    try {
+      pageData = await pageRes.json();
+    } catch (err) {
+      console.error("JSON Parse Error (Pages):", err);
+      console.error("Server returned:", await pageRes.text());
+    }
+  }
+
+  const pages = Array.isArray(pageData?.pages) ? pageData.pages : [];
 
   // -----------------------------
   // Find Home Page
@@ -45,7 +71,7 @@ export default async function FacultyPage({ params }: Props) {
         backgroundRepeat: "repeat",
       }}
     >
-      <div className="">
+      <div>
         {homePage && <FacultyHero homePageData={homePage} />}
         {showDepartments && (
           <DepartmentCard

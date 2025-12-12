@@ -17,7 +17,7 @@ export default async function Page({ params }: PageProps) {
       { next: { revalidate: 1 } }
     );
 
-    if (!res.ok) return <NoDataFound message="News not found" />;
+    if (!res.ok) return <NoDataFound />;
 
     const noticeData = await res.json();
     const noticeItem = noticeData?.data?.notice;

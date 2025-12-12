@@ -16,7 +16,7 @@ export default async function Page({ params }: PageProps) {
       { next: { revalidate: 1 } }
     );
 
-    if (!res.ok) return <NoDataFound message="Office not found" />;
+    if (!res.ok) return <NoDataFound/>;
 
     const aboutData = await res.json();
     const aboutItem = aboutData?.page;
