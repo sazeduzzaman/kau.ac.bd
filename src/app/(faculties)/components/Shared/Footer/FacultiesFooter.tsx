@@ -2,7 +2,7 @@ import FooterAddress from "@/components/Shared/Footer/FooterAddress";
 import FooterBottom from "@/components/Shared/Footer/FooterBottom";
 import FooterContact from "@/components/Shared/Footer/FooterContact";
 import FooterContactPerson from "@/components/Shared/Footer/FooterContactPerson";
-import { FooterDataSet } from "@/lib/apis/FooterDataSet/FooterDataSet";
+import { fetchFooterData } from "@/lib/apis/FooterDataSet/FooterDataSet";
 import { SiteSettingDataset } from "@/lib/apis/SiteInfromationDataSet/SiteInfromationDataSet";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,8 +11,9 @@ import { FaAngleRight } from "react-icons/fa";
 // app/(faculties)/faculties/components/Footer.tsx
 export default async function FacultiesFooter() {
   const SiteInfoData = await SiteSettingDataset();
-  const FooterData = await FooterDataSet();
   const SiteData = SiteInfoData.settings;
+  const footerData = await fetchFooterData(); // ✅ returns FooterData
+
   return (
     <>
       <footer className="relative text-white footer-bg-secondary">
@@ -155,7 +156,7 @@ export default async function FacultiesFooter() {
           </div>
         </div>
       </footer>
-      <FooterBottom FooterData={FooterData} />
+      <FooterBottom footerData={footerData} />
     </>
   );
 }
