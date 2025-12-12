@@ -13,15 +13,15 @@ import {
 } from "react-icons/fa";
 import FooterAddress from "./FooterAddress";
 import FooterContact from "./FooterContact";
-import { FooterDataSet } from "@/lib/apis/FooterDataSet/FooterDataSet";
 import FooterContactPerson from "./FooterContactPerson";
 import FooterLinks from "./FooterLinks";
 import FooterBottom from "./FooterBottom";
+import { fetchFooterData } from "@/lib/apis/FooterDataSet/FooterDataSet";
 
 export default async function Footer() {
   const SiteInfoData = await SiteSettingDataset();
-  const FooterData = await FooterDataSet();
   const SiteData = SiteInfoData.settings;
+  const footerData = await fetchFooterData(); // ✅ returns FooterData
 
   return (
     <>
@@ -67,7 +67,7 @@ export default async function Footer() {
           </div>
         </div>
       </footer>
-      <FooterBottom FooterData={FooterData} />
+      <FooterBottom footerData={footerData} />
     </>
   );
 }

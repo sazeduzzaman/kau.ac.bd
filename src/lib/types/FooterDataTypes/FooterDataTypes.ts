@@ -1,12 +1,12 @@
 // Type for individual footer link
-interface FooterLink {
+export interface FooterLink {
   title: string;
   url: string;
   order: number;
 }
 
 // Type for contact person
-interface ContactPerson {
+export interface ContactPerson {
   name: string;
   designation: string;
   email: string;
@@ -14,32 +14,32 @@ interface ContactPerson {
 }
 
 // Type for emails
-interface FooterEmail {
+export interface FooterEmail {
   title: string;
   email: string;
 }
 
 // Type for phone numbers
-interface FooterPhone {
+export interface FooterPhone {
   title: string;
   phone: string;
 }
 
 // Type for addresses
-interface FooterAddress {
+export interface FooterAddress {
   title: string;
   address: string;
 }
 
 // Type for social links
-interface SocialLink {
+export interface SocialLink {
   icon_class: string;
   url: string;
   order: number;
 }
 
 // Main Footer type
-interface FooterData {
+export interface FooterData {
   footer_description: string;
   footer_links: FooterLink[];
   contact_person: ContactPerson[];
@@ -51,4 +51,10 @@ interface FooterData {
   developer_text: string;
   developer_link: string;
   website_url: string;
+}
+
+// API Response type
+export interface FooterAPIResponse {
+  success: boolean;
+  data: FooterData;
 }
