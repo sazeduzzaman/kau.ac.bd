@@ -11,7 +11,6 @@ export const config = {
     "/dashboard/:path*",
     "/user/:path*",
     "/admin/:path*",
-    "/auth/login",
     "/events/details/:slug/ticket",
   ],
 };

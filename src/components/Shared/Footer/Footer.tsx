@@ -57,7 +57,7 @@ export default async function Footer() {
           </div>
         </div>
       </footer>
-      <FooterBottom footerData={footerData.data} />
+      <FooterBottom footerData={footerData} />
     </>
   );
 }

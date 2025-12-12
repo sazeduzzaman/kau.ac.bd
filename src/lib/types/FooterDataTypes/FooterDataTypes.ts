@@ -55,6 +55,17 @@ export interface FooterData {
 
 // API Response type
 export interface FooterAPIResponse {
+  footer_description: string;
+  footer_links: FooterLink[];
+  contact_person: ContactPerson[];
+  emails   : FooterEmail[],
+  phone    : FooterPhone[], 
+  addresses : FooterAddress[], 
+  social_links : SocialLink[],
+  copyright_text : string 
+  developer_text : string
+  developer_link : string
+  website_url: string;
   success: boolean;
   data: FooterData;
 }
