@@ -4,7 +4,7 @@ import React from "react";
 import { FaHeart } from "react-icons/fa";
 
 interface FooterBottomProps {
-  footerData: FooterData; // lowercase
+  footerData: FooterData;
 }
 
 const FooterBottom: React.FC<FooterBottomProps> = ({ footerData }) => {

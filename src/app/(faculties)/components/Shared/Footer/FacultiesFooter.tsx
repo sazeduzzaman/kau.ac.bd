@@ -156,7 +156,7 @@ export default async function FacultiesFooter() {
           </div>
         </div>
       </footer>
-      <FooterBottom footerData={footerData} />
+      <FooterBottom footerData={footerData.data} />
     </>
   );
 }

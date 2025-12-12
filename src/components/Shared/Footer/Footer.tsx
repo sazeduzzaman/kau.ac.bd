@@ -1,16 +1,6 @@
 import { SiteSettingDataset } from "@/lib/apis/SiteInfromationDataSet/SiteInfromationDataSet";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  FaAngleDoubleRight,
-  FaEnvelope,
-  FaPhoneAlt,
-  FaFacebookF,
-  FaYoutube,
-  FaTwitter,
-  FaLinkedinIn,
-  FaInstagram,
-} from "react-icons/fa";
 import FooterAddress from "./FooterAddress";
 import FooterContact from "./FooterContact";
 import FooterContactPerson from "./FooterContactPerson";
@@ -20,8 +10,8 @@ import { fetchFooterData } from "@/lib/apis/FooterDataSet/FooterDataSet";
 
 export default async function Footer() {
   const SiteInfoData = await SiteSettingDataset();
+  const footerData = await fetchFooterData();
   const SiteData = SiteInfoData.settings;
-  const footerData = await fetchFooterData(); // ✅ returns FooterData
 
   return (
     <>
@@ -67,7 +57,7 @@ export default async function Footer() {
           </div>
         </div>
       </footer>
-      <FooterBottom footerData={footerData} />
+      <FooterBottom footerData={footerData.data} />
     </>
   );
 }
