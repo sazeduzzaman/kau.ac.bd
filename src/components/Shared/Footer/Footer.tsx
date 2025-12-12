@@ -12,7 +12,6 @@ export default async function Footer() {
   const SiteInfoData = await SiteSettingDataset();
   const footerData = await fetchFooterData();
   const SiteData = SiteInfoData.settings;
-
   return (
     <>
       <footer className="relative text-white footer-bg-secondary">
@@ -57,7 +56,7 @@ export default async function Footer() {
           </div>
         </div>
       </footer>
-      <FooterBottom footerData={footerData} />
+      <FooterBottom/>
     </>
   );
 }
