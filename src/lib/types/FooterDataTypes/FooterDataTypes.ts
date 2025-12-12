@@ -1,50 +1,54 @@
-export interface FooterData {
-  footer_description: string;
-  footer_links: FooterLink[];
-  contact_person: ContactPerson[];
-  emails: EmailItem[];
-  phone: PhoneItem[];
-  addresses: AddressItem[];
-  social_links: SocialLink[];
-  copyright_text: string;
-  developer_text: string;
-  developer_link: string;
-  website_url: string;
-}
-
-export interface FooterLink {
+// Type for individual footer link
+interface FooterLink {
   title: string;
   url: string;
+  order: number;
 }
 
-export interface ContactPerson {
+// Type for contact person
+interface ContactPerson {
   name: string;
   designation: string;
   email: string;
   phone: string;
 }
 
-export interface EmailItem {
+// Type for emails
+interface FooterEmail {
   title: string;
   email: string;
 }
 
-export interface PhoneItem {
+// Type for phone numbers
+interface FooterPhone {
   title: string;
   phone: string;
 }
 
-export interface AddressItem {
+// Type for addresses
+interface FooterAddress {
   title: string;
   address: string;
 }
 
-export interface SocialLink {
+// Type for social links
+interface SocialLink {
   icon_class: string;
   url: string;
+  order: number;
 }
 
-export interface FooterAPIResponse {
-  success: boolean;
-  data: FooterData;
+// Main Footer type
+interface FooterData {
+  footer_description: string;
+  footer_links: FooterLink[];
+  contact_person: ContactPerson[];
+  emails: FooterEmail[];
+  phone: FooterPhone[];
+  addresses: FooterAddress[];
+  social_links: SocialLink[];
+  copyright_text: string;
+  developer_text: string;
+  developer_link: string;
+  website_url: string;
 }

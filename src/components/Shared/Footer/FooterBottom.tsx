@@ -67,7 +67,7 @@ const FooterBottom: React.FC<FooterBottomProps> = ({ FooterData }) => {
               href="/policy"
               className="transition duration-200 hover:text-white hover:underline"
             >
-             Policy
+              Policy
             </Link>
 
             {/* Optional: Privacy Policy Link */}
@@ -75,7 +75,7 @@ const FooterBottom: React.FC<FooterBottomProps> = ({ FooterData }) => {
               href="/terms"
               className="transition duration-200 hover:text-white hover:underline"
             >
-             Terms
+              Terms
             </Link>
           </div>
         </div>
