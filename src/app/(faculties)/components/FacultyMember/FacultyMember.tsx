@@ -106,7 +106,6 @@ const FacultyMember: React.FC<FacultyMemberProps> = ({ slug, childSlug }) => {
   if (!staffData)
     return (
       <NoDataFound
-        message={`No staff data found for department: ${childSlug}. Please check the API source.`}
       />
     );
 
