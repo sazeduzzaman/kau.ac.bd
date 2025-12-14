@@ -23,7 +23,7 @@ const FacultyHero = ({ homePageData }: any) => {
     <>
       {/* Hero Section */}
       {(bannerTitle || banner_image || banner_button) && (
-        <div className="relative container bg-white mx-auto mt-5 rounded-2xl overflow-hidden h-[45vh] md:h-[60vh] lg:h-[70vh] shadow-xl">
+        <div className="relative container bg-white mx-auto pt-5 rounded-2xl overflow-hidden h-[45vh] md:h-[60vh] lg:h-[70vh] shadow-xl">
           {/* Banner Image */}
           {banner_image && (
             <Image

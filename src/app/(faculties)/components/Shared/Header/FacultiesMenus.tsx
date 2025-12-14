@@ -113,7 +113,7 @@ const FacultiesMenus = () => {
                     <li
                       className={`px-4 py-2 text-gray-700 hover:bg-[#438aba] hover:text-white text-sm font-medium transition-colors duration-200 ${
                         isChildActive
-                          ? "text-site-secondary border-b-2 border-[#8b5e3c]"
+                          ? "text-white border-b-2 bg-[#438aba]"
                           : "text-gray-600 hover:bg-site-primary hover:text-[#438aba]"
                       }`}
                     >
@@ -129,8 +129,8 @@ const FacultiesMenus = () => {
   };
 
   // Split into first 5 items + rest
-  const mainItems = data.navigation.slice(0, 5);
-  const moreItems = data.navigation.slice(5);
+  const mainItems = data.navigation.slice(0, 7);
+  const moreItems = data.navigation.slice(7);
 
   return (
     <ul className="relative flex space-x-4 font-medium">

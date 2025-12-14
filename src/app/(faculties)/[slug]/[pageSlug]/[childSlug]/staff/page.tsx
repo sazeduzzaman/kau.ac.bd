@@ -1,11 +1,11 @@
 import FacultyMember from "@/app/(faculties)/components/FacultyMember/FacultyMember";
 
 interface StaffPageProps {
-  params: { slug: string; parentSlug: string; childSlug: string };
+  params: { slug: string; pageSlug: string; childSlug: string };
 }
 
 export default async function Page({ params }: StaffPageProps) {
-  const { slug, childSlug } = await params;
+  const { slug, childSlug, pageSlug } = await params;
 
   return (
     <div
@@ -17,7 +17,7 @@ export default async function Page({ params }: StaffPageProps) {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <FacultyMember slug={slug} childSlug={childSlug} />
+      <FacultyMember slug={slug} childSlug={childSlug} pageSlug={pageSlug} />
     </div>
   );
 }
