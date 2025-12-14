@@ -15,12 +15,12 @@ interface NavigationItem {
 }
 
 interface ApiData {
-  site: any;
+  site: any ;
   navigation: NavigationItem[];
   pages: any[];
 }
 
-const normalizePath = (path: string) =>
+const normalizePath = (path: string) => 
   path.endsWith("/") ? path.slice(0, -1) : path;
 
 const FacultiesMenus = () => {
