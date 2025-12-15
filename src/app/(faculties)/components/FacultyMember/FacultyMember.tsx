@@ -122,12 +122,11 @@ const FacultyMember: React.FC<FacultyMemberProps> = ({
   };
 
   /* ================= STAFF CARD ================= */
-  const renderStaffCard = (member: StaffMember, index: number) => {
+  const renderStaffCard = (member: StaffMember) => {
     const links = Array.isArray(member.links) ? member.links : [];
 
     return (
       <div
-        key={index}
         onClick={() =>
           router.push(`/${slug}/${pageSlug}/${childSlug}/${member.uuid}`)
         }
