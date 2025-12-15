@@ -15,12 +15,12 @@ interface NavigationItem {
 }
 
 interface ApiData {
-  site: any ;
+  site: any;
   navigation: NavigationItem[];
   pages: any[];
 }
 
-const normalizePath = (path: string) => 
+const normalizePath = (path: string) =>
   path.endsWith("/") ? path.slice(0, -1) : path;
 
 const FacultiesMenus = () => {
@@ -111,7 +111,7 @@ const FacultiesMenus = () => {
                     className="flex items-center p-0 font-semibold text-gray-600 transition-all cursor-pointer duration-30"
                   >
                     <li
-                      className={`px-4 py-2 text-gray-700 hover:bg-[#438aba] hover:text-white text-sm font-medium transition-colors duration-200 ${
+                      className={`px-4 py-2 text-gray-700 hover:bg-[#438aba] w-full hover:text-white text-sm font-medium transition-colors duration-200 ${
                         isChildActive
                           ? "text-white border-b-2 bg-[#438aba]"
                           : "text-gray-600 hover:bg-site-primary hover:text-[#438aba]"

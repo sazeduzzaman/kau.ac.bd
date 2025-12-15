@@ -1,140 +1,255 @@
 "use client";
-import React, { useState } from "react";
-import { FaPhoneAlt, FaEnvelope, FaLinkedin, FaGoogle } from "react-icons/fa";
 
-const MemberDetails = () => {
-  const [activeTab, setActiveTab] = useState("Scholarship");
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
-  const tabs = [
-    "Home",
-    "Education",
-    "Experience",
-    "Publications",
-    "Scholarship",
-    "Research",
-    "Teaching",
-    "Student Corner",
-  ];
+/* Only fields that can become tabs */
+const TAB_FIELDS = new Set([
+  "bio",
+  "education",
+  "experience",
+  "scholarship",
+  "research_interest",
+  "research",
+  "teaching",
+  "publications",
+]);
 
+/* Convert key to label */
+const labelFromKey = (key: string) =>
+  key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+
+const MemberDetails = ({ slug, childSlug, id }: any) => {
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState<string>("");
+  const [activeSubTab, setActiveSubTab] = useState<string>("");
+
+  const apiUrl = `https://admin.kau.khandkershahed.com/api/v1/${slug}/${childSlug}/${id}`;
+
+  /* ---------------- Fetch Data ---------------- */
+  useEffect(() => {
+    const fetchMember = async () => {
+      try {
+        const res = await fetch(apiUrl);
+        const json = await res.json();
+        setData(json);
+
+        const member = json?.member || {};
+        const firstTab = Object.keys(member).find((k) => TAB_FIELDS.has(k));
+        if (firstTab) setActiveTab(firstTab);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMember();
+  }, [apiUrl]);
+
+  /* Reset sub-tab when main tab changes */
+  useEffect(() => {
+    setActiveSubTab("");
+  }, [activeTab]);
+
+  if (loading) {
+    return <div className="py-10 text-center">Loading...</div>;
+  }
+
+  const member = data?.member || {};
+
+  /* ---------------- Dynamic Tabs ---------------- */
+  const tabs = Object.keys(member).filter((key) => TAB_FIELDS.has(key));
+
+  const noData = (
+  <div className="flex flex-col items-center justify-center py-10 space-y-4">
+    <img
+      src="/images/no-data-found.png"
+      alt="No data found"
+      className="h-auto w-100 opacity-80"
+    />
+  </div>
+);
+
+
+  /* ---------------- Card UI ---------------- */
+  const DataCard = ({ item }: { item: any }) => (
+    <div className="p-4 bg-white border shadow-sm rounded-xl">
+      <h4 className="font-semibold text-gray-800">{item.title}</h4>
+
+      {item.journal_or_conference_name && (
+        <p className="pt-4 text-sm text-gray-600">
+          {item.journal_or_conference_name}
+        </p>
+      )}
+
+      {item.year && (
+        <p className="mt-3 text-xs text-white border-0 badge bg-sky-600">
+          Year: {item.year}
+        </p>
+      )}
+    </div>
+  );
+
+  /* ---------------- Render Content ---------------- */
   const renderContent = () => {
-    switch (activeTab) {
-      case "Scholarship":
-        return (
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-900">
-              Scholarship & Awards
-            </h2>
-            <ul className="space-y-1 text-gray-700 list-disc list-inside">
-              <li>MONBUKAGAKUSHO Scholarships</li>
-              {/* Add more items here */}
-            </ul>
-          </div>
-        );
-      case "Home":
-        return null;
-      default:
-        return (
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-900">{activeTab}</h2>
-            <p className="text-gray-700">
-              Content for {activeTab} will go here...
-            </p>
-          </div>
-        );
+    const value = member[activeTab];
+
+    if (!value) return noData;
+
+    /* STRING / TEXT */
+    if (typeof value === "string") {
+      return <div className="text-gray-700 whitespace-pre-line">{value}</div>;
     }
+
+    /* OBJECT (ex: publications) */
+    if (typeof value === "object" && !Array.isArray(value)) {
+      const subTabs = Object.keys(value);
+      if (!subTabs.length) return noData;
+
+      const currentSubTab = activeSubTab || subTabs[0];
+      const subData = value[currentSubTab];
+
+      return (
+        <>
+          {/* Sub Tabs */}
+          <div className="flex items-center justify-center gap-3 mb-6 border-b">
+            {subTabs.map((sub) => (
+              <button
+                key={sub}
+                onClick={() => setActiveSubTab(sub)}
+                className={` px-4 py-2 -mb-0.5 text-sm font-medium capitalize transition
+                  ${
+                    currentSubTab === sub
+                      ? "border-b-2 border-sky-600 text-sky-600"
+                      : "text-gray-500 hover:text-sky-600"
+                  }`}
+              >
+                {labelFromKey(sub)}
+              </button>
+            ))}
+          </div>
+
+          {/* Sub Tab Content */}
+          {Array.isArray(subData) && subData.length ? (
+            <div className="grid gap-4 md:grid-cols-2">
+              {subData.map((item: any, i: number) => (
+                <DataCard key={i} item={item} />
+              ))}
+            </div>
+          ) : (
+            noData
+          )}
+        </>
+      );
+    }
+
+    return noData;
   };
 
+  /* ---------------- UI ---------------- */
   return (
-    <div className="container p-6 mx-auto space-y-12">
-      {/* Profile Card */}
-      <div className="flex flex-col items-center p-6 bg-white/70 backdrop-blur-md shadow-sm md:flex-row md:items-start rounded-3xl md:space-x-10 transition-transform transform hover:scale-[1.01] duration-300">
-        <div className="flex-shrink-0">
+    <div className="container p-6 mx-auto mt-5 space-y-12">
+      {/* Profile */}
+      <div className="relative flex flex-col items-center gap-6 p-8 overflow-hidden text-black border shadow-lg bg-white/80 backdrop-blur-xl md:flex-row md:items-center md:gap-10 rounded-3xl border-sky-100">
+        {/* Decorative gradient */}
+        <div className="absolute w-64 h-64 rounded-full -top-20 -right-20 bg-sky-200/40 blur-3xl" />
+
+        {/* Profile Image */}
+        <div className="relative shrink-0">
           <img
-            src="/images/408.jpg"
-            alt="Dr. Md. Mahbub Hasan"
-            className="object-cover border-4 border-white shadow-sm rounded-2xl w-36 h-36 md:w-44 md:h-44"
+            src={member.image || "/images/no-profile.avif"}
+            alt={member.name}
+            className="object-cover w-40 h-40 transition-transform duration-300 shadow-md rounded-2xl ring-4 ring-sky-500 hover:scale-105"
           />
         </div>
 
-        <div className="flex-1 mt-6 md:mt-0">
-          <h1 className="text-3xl font-extrabold text-gray-900">
-            Dr. Md. Mahbub Hasan
+        {/* Info */}
+        <div className="relative z-10 flex-1 space-y-2 text-center md:text-left">
+          <h1 className="text-3xl font-extrabold text-site-primary">
+            {member.name}
           </h1>
-          <p className="mb-4 text-lg font-semibold text-sky-600">
-            Professor
+
+          <p className="text-lg font-semibold text-sky-600">
+            {member.designation}
           </p>
 
-          <div className="flex flex-col gap-3 mb-4 sm:flex-row sm:space-x-6">
-            <p className="flex items-center gap-3 text-gray-700">
-              <FaPhoneAlt className="w-8 h-8 p-2 text-white rounded-full shadow-md bg-sky-600" />
-              +880-41-769468-313
-            </p>
-            <p className="flex items-center gap-3 text-gray-700">
-              <FaPhoneAlt className="w-8 h-8 p-2 text-white rounded-full shadow-md bg-sky-600" />
-              +8801719505777
-            </p>
-            <p className="flex items-center gap-3 text-gray-700">
-              <FaEnvelope className="w-8 h-8 p-2 text-white rounded-full shadow-md bg-sky-600" />
-              <a
-                href="mailto:mahbub01@eee.kuet.ac.bd"
-                className="text-gray-800 hover:underline"
-              >
-                mahbub01@eee.kuet.ac.bd
-              </a>
-            </p>
+          <div className="space-y-2">
+            {member.phone && (
+              <p className="flex items-center justify-center gap-3 md:justify-start text-site-primary">
+                <span className="p-2 rounded-full bg-sky-100 text-sky-600">
+                  <FaPhoneAlt />
+                </span>
+                <Link href={`tel:${member.phone}`} className="hover:underline">
+                  {member.phone}
+                </Link>
+              </p>
+            )}
+
+            {member.email && (
+              <p className="flex items-center justify-center gap-3 md:justify-start text-site-primary">
+                <span className="p-2 rounded-full bg-sky-100 text-sky-600">
+                  <FaEnvelope />
+                </span>
+                <Link
+                  href={`mailto:${member.email}`}
+                  className="hover:underline"
+                >
+                  {member.email}
+                </Link>
+              </p>
+            )}
+
+            {member.address && (
+              <p className="flex items-center justify-center gap-3 md:justify-start text-site-primary">
+                <span className="p-2 rounded-full bg-sky-100 text-sky-600">
+                  📍
+                </span>
+                <span>{member.address}</span>
+              </p>
+            )}
           </div>
 
-          <p className="mb-2 text-gray-600">
-            <span className="font-semibold text-sky-600">Address:</span>{" "}
-            KUET, Bangladesh
+          <p className="text-sm font-medium tracking-wide text-gray-600 ">
+            Khulna Agricultural University
           </p>
-          <p className="mb-4 text-gray-700">
-            <span className="font-semibold text-sky-600">
-              Research Interest:
-            </span>{" "}
-            Analysis of short time spectra of the natural signal: Optical
-            Interferometry
-          </p>
+        </div>
 
-          <div className="flex gap-4">
-            <a
-              href="#"
-              className="p-3 text-white transition-transform duration-300 rounded-full shadow-lg bg-gradient-to-tr from-red-500 to-yellow-400 hover:scale-110"
-            >
-              <FaGoogle />
-            </a>
-            <a
-              href="#"
-              className="p-3 text-white transition-transform duration-300 rounded-full shadow-lg bg-gradient-to-tr from-blue-500 to-sky-600 hover:scale-110"
-            >
-              <FaLinkedin />
-            </a>
-          </div>
+        {/* University Logo */}
+        <div className="relative shrink-0">
+          <img
+            src="/images/logo-main.png"
+            alt="Khulna Agricultural University"
+            className="h-20 transition opacity-90 grayscale hover:grayscale-0"
+          />
         </div>
       </div>
 
-      {/* Tabs Navigation */}
-      <div className="pb-0 mb-0 bg-gray-200 border-b border-gray-200">
+      {/* Tabs */}
+      <div className="pb-0 mb-0 border-b border-gray-200 bg-sky-200">
         <nav className="flex w-full flex-nowrap">
-          {tabs.map((tab) => (
+          {tabs.map((key) => (
             <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`flex-1 text-center px-4 py-5 text-sm font-medium transition-colors duration-200 rounded-t-md ${
-                activeTab === tab
-                  ? "bg-sky-600 text-white shadow"
-                  : "text-gray-600 hover:text-sky-600 hover:bg-gray-100"
-              }`}
+              key={key}
+              onClick={() => setActiveTab(key)}
+              className={`flex-1 text-center px-4 py-5 text-sm font-medium transition-colors duration-200 rounded-t-md
+                ${
+                  activeTab === key
+                    ? "bg-sky-600 text-white shadow"
+                    : "text-gray-600 hover:text-sky-600 hover:bg-gray-100"
+                }`}
             >
-              {tab}
+              {labelFromKey(key)}
             </button>
           ))}
         </nav>
       </div>
 
-      {/* Dynamic Content */}
-      <div className="p-6 transition-all duration-300 shadow-lg bg-white/70 backdrop-blur-md rounded-3xl hover:shadow-sm">
-        {activeTab !== "Home" && renderContent()}
+      {/* Content */}
+      <div className="p-6 mb-10 bg-gray-100 shadow rounded-b-3xl rounded-top-0">
+        {renderContent()}
       </div>
     </div>
   );

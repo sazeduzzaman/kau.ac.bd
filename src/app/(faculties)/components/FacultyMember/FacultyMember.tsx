@@ -17,6 +17,7 @@ interface StaffMemberLink {
 
 interface StaffMember {
   id: number;
+  uuid: string;
   name: string;
   designation: string;
   email: string;
@@ -121,14 +122,14 @@ const FacultyMember: React.FC<FacultyMemberProps> = ({
   };
 
   /* ================= STAFF CARD ================= */
-  const renderStaffCard = (member: StaffMember, groupId: number) => {
+  const renderStaffCard = (member: StaffMember, index: number) => {
     const links = Array.isArray(member.links) ? member.links : [];
 
     return (
       <div
-        key={member.id}
+        key={index}
         onClick={() =>
-          router.push(`/${slug}/${pageSlug}/${childSlug}/${groupId}`)
+          router.push(`/${slug}/${pageSlug}/${childSlug}/${member.uuid}`)
         }
         className="group w-full sm:w-[48%] lg:w-[23%] xl:w-[22%] max-w-sm cursor-pointer"
       >
@@ -163,9 +164,9 @@ const FacultyMember: React.FC<FacultyMemberProps> = ({
               onClick={(e) => e.stopPropagation()} // prevent card click
             >
               {links.length ? (
-                links.map((link, i) => (
+                links.map((link, index) => (
                   <Link
-                    key={i}
+                    key={index}
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -205,12 +206,12 @@ const FacultyMember: React.FC<FacultyMemberProps> = ({
 
         {staffData.groups
           .sort((a, b) => a.position - b.position)
-          .map((group) => (
-            <div key={group.id} className="mb-14">
+          .map((group, index) => (
+            <div key={index} className="mb-14">
               <div className="flex flex-wrap justify-center gap-10">
                 {group.members
                   .sort((a, b) => a.position - b.position)
-                  .map((member) => renderStaffCard(member, group.id))}
+                  .map((member) => renderStaffCard(member))}
               </div>
             </div>
           ))}

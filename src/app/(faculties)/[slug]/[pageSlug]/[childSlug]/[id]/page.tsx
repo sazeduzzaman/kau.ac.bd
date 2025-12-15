@@ -1,12 +1,12 @@
 import MemberDetails from "@/app/(faculties)/components/FacultyMember/MemberDetails/MemberDetails";
 
 interface StaffPageProps {
-  params: { slug: string; pageSlug: string; childSlug: string; id: number };
+  params: { slug: string; pageSlug: string; childSlug: string; id: string };
 }
 
 export default async function Page({ params }: StaffPageProps) {
   const { slug, childSlug, pageSlug, id } = await params;
-
+  console.log(id, "member dataasdad");
   return (
     <div
       className="w-full min-h-screen"
@@ -17,13 +17,7 @@ export default async function Page({ params }: StaffPageProps) {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* <div className="text-black">
-        SLUG: {slug} <br />
-        PAGE SLUG: {pageSlug} <br />
-        CHILD SLUG: {childSlug} <br />
-        ID: {id}
-      </div> */}
-      <MemberDetails />
+      <MemberDetails slug={slug} childSlug={childSlug} id={id} />
     </div>
   );
 }
