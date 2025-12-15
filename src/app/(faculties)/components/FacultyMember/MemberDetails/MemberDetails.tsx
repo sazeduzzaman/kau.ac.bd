@@ -64,34 +64,52 @@ const MemberDetails = ({ slug, childSlug, id }: any) => {
   const tabs = Object.keys(member).filter((key) => TAB_FIELDS.has(key));
 
   const noData = (
-  <div className="flex flex-col items-center justify-center py-10 space-y-4">
-    <img
-      src="/images/no-data-found.png"
-      alt="No data found"
-      className="h-auto w-100 opacity-80"
-    />
-  </div>
-);
-
-
-  /* ---------------- Card UI ---------------- */
-  const DataCard = ({ item }: { item: any }) => (
-    <div className="p-4 bg-white border shadow-sm rounded-xl">
-      <h4 className="font-semibold text-gray-800">{item.title}</h4>
-
-      {item.journal_or_conference_name && (
-        <p className="pt-4 text-sm text-gray-600">
-          {item.journal_or_conference_name}
-        </p>
-      )}
-
-      {item.year && (
-        <p className="mt-3 text-xs text-white border-0 badge bg-sky-600">
-          Year: {item.year}
-        </p>
-      )}
+    <div className="flex flex-col items-center justify-center py-10 space-y-4">
+      <img
+        src="/images/no-data-found.png"
+        alt="No data found"
+        className="h-auto w-100 opacity-80"
+      />
     </div>
   );
+
+  /* ---------------- Card UI ---------------- */
+  const DataCard = ({ item }: { item: any }) => {
+    const CardContent = (
+      <div className="flex flex-col justify-between h-full p-4 transition bg-white border shadow-sm rounded-xl hover:shadow-md">
+        <h4 className="font-semibold text-gray-800">{item.title}</h4>
+
+        {item.journal_or_conference_name && (
+          <p className="pt-3 text-sm text-gray-600">
+            {item.journal_or_conference_name}
+          </p>
+        )}
+
+        {item.year && (
+          <span className="inline-block pt-1 mt-3 text-xs text-white border-0 badge bg-sky-600">
+            Year: {item.year}
+          </span>
+        )}
+      </div>
+    );
+
+    /* If URL exists → clickable */
+    if (item?.url) {
+      return (
+        <Link
+          href={item.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block h-full"
+        >
+          {CardContent}
+        </Link>
+      );
+    }
+
+    /* No URL → non-clickable */
+    return <div className="h-full">{CardContent}</div>;
+  };
 
   /* ---------------- Render Content ---------------- */
   const renderContent = () => {
@@ -115,7 +133,7 @@ const MemberDetails = ({ slug, childSlug, id }: any) => {
       return (
         <>
           {/* Sub Tabs */}
-          <div className="flex items-center justify-center gap-3 mb-6 border-b">
+          <div className="flex items-center justify-center gap-3 mb-6 border-b border-sky-600">
             {subTabs.map((sub) => (
               <button
                 key={sub}
@@ -123,7 +141,7 @@ const MemberDetails = ({ slug, childSlug, id }: any) => {
                 className={` px-4 py-2 -mb-0.5 text-sm font-medium capitalize transition
                   ${
                     currentSubTab === sub
-                      ? "border-b-2 border-sky-600 text-sky-600"
+                      ? "border-b-3 border-sky-600 text-sky-600 "
                       : "text-gray-500 hover:text-sky-600"
                   }`}
               >
@@ -140,7 +158,13 @@ const MemberDetails = ({ slug, childSlug, id }: any) => {
               ))}
             </div>
           ) : (
-            noData
+            <div className="flex flex-col items-center justify-center py-10 space-y-4">
+              <img
+                src="/images/no-data-found.png"
+                alt="No data found"
+                className="h-auto w-100 opacity-80"
+              />
+            </div>
           )}
         </>
       );
