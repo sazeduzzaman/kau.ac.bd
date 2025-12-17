@@ -41,12 +41,41 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Option 1: Basic approach */
 body {
   overflow-x: hidden !important;
   overflow-y: auto;
   scrollbar-width: auto;
   scrollbar-color: var(--site-primary) transparent;
   font-family: var(--font-body) !important;
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* Option 2: More comprehensive approach */
+body {
+  overflow-x: hidden !important;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
+  scrollbar-width: auto;
+  scrollbar-color: var(--site-primary) transparent;
+  font-family: var(--font-body) !important;
+}
+
+/* Also add this to prevent any container from causing overflow */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Optional: Apply to all elements to be extra safe */
+* {
+  box-sizing: border-box;
 }
 
 h1,

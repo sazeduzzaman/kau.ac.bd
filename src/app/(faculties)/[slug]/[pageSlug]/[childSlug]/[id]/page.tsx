@@ -6,7 +6,7 @@ interface StaffPageProps {
 
 export default async function Page({ params }: StaffPageProps) {
   const { slug, childSlug, pageSlug, id } = await params;
-  console.log(id, "member dataasdad");
+ 
   return (
     <div
       className="w-full min-h-screen"

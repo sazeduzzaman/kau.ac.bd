@@ -14,7 +14,8 @@ import LifeAtKAUMenu from "./LifeAtKAUMenu";
 const DesktopMenu: React.FC = () => {
   const pathname = usePathname();
 
-  const baseClasses = "px-2 py-2 transition-colors duration-200 font-semibold";
+  // Responsive font sizes: smaller on smaller screens
+  const baseClasses = "px-2 py-2 transition-colors duration-200 font-semibold text-xs lg:text-sm xl:text-sm 2xl:text-base";
 
   return (
     <nav className="hidden font-sans lg:block">
@@ -50,20 +51,6 @@ const DesktopMenu: React.FC = () => {
         </li>
         <li>
           <LifeAtKAUMenu />
-        </li>
-
-        {/* Desk */}
-        <li>
-          <Link
-            href="#"
-            className={`${baseClasses} ${
-              pathname === "/desk"
-                ? "border-b-2 border-site-primary text-site-secondary"
-                : "text-gray-600 hover:bg-site-primary hover:text-[#438aba]"
-            }`}
-          >
-            Desk
-          </Link>
         </li>
       </ul>
     </nav>

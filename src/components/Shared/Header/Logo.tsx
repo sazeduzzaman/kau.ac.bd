@@ -7,9 +7,10 @@ import Image from "next/image";
 const Logo: React.FC<{ SiteInfoData?: any }> = ({ SiteInfoData }) => {
   const siteNameDataEn = SiteInfoData?.settings;
   const siteBrandData = SiteInfoData?.settings?.branding;
+  
   return (
     <Link href="/" className="flex items-center gap-3">
-      <div className="relative flex-shrink-0 w-22 h-22 md:w-22 md:h-22">
+      <div className="relative shrink-0 w-22 h-22 md:w-22 md:h-22">
         <Image
           src={siteBrandData?.site_logo_white ?? "/images/logo-main.png"}
           alt="Logo"
@@ -20,7 +21,7 @@ const Logo: React.FC<{ SiteInfoData?: any }> = ({ SiteInfoData }) => {
       </div>
       <div className="flex flex-col leading-tight logo-container">
         <h1 className="text-lg md:text-[35px] font-extrabold text-site-primary font-surjo">
-          {siteNameDataEn?.website_name_bn}
+          {siteNameDataEn?.website_name_bn ?? "খুলনা কৃষি বিদ্যালয়"}
         </h1>
         <h1 className="text-sm md:text-[20px] text-site-secondary font-semibold">
           {siteNameDataEn?.website_name ?? "Khulna Agricultural University"}

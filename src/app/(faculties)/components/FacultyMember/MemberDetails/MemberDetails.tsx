@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope, FaChevronDown } from "react-icons/fa";
 
 /* Only fields that can become tabs */
 const TAB_FIELDS = new Set([
@@ -25,6 +25,7 @@ const MemberDetails = ({ slug, childSlug, id }: any) => {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<string>("");
   const [activeSubTab, setActiveSubTab] = useState<string>("");
+  const [isMobileTabOpen, setIsMobileTabOpen] = useState(false);
 
   const apiUrl = `https://admin.kau.khandkershahed.com/api/v1/${slug}/${childSlug}/${id}`;
 
@@ -54,8 +55,17 @@ const MemberDetails = ({ slug, childSlug, id }: any) => {
     setActiveSubTab("");
   }, [activeTab]);
 
+  const handleTabSelect = (tab: string) => {
+    setActiveTab(tab);
+    setIsMobileTabOpen(false);
+  };
+
   if (loading) {
-    return <div className="py-10 text-center">Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="text-lg text-gray-600">Loading...</div>
+      </div>
+    );
   }
 
   const member = data?.member || {};
@@ -64,29 +74,32 @@ const MemberDetails = ({ slug, childSlug, id }: any) => {
   const tabs = Object.keys(member).filter((key) => TAB_FIELDS.has(key));
 
   const noData = (
-    <div className="flex flex-col items-center justify-center py-10 space-y-4">
+    <div className="flex flex-col items-center justify-center py-8 space-y-3 md:py-10 md:space-y-4">
       <img
         src="/images/no-data-found.png"
         alt="No data found"
-        className="h-auto w-100 opacity-80"
+        className="w-48 h-auto opacity-80 md:w-64"
       />
+      <p className="text-sm text-gray-500 md:text-base">No data available</p>
     </div>
   );
 
   /* ---------------- Card UI ---------------- */
   const DataCard = ({ item }: { item: any }) => {
     const CardContent = (
-      <div className="flex flex-col justify-between h-full p-4 transition bg-white border shadow-sm rounded-xl hover:shadow-md">
-        <h4 className="font-semibold text-gray-800">{item.title}</h4>
+      <div className="flex flex-col justify-between h-full p-3 transition bg-white border rounded-lg shadow-sm md:p-4 md:rounded-xl hover:shadow-md">
+        <h4 className="text-sm font-semibold text-gray-800 md:text-base line-clamp-2">
+          {item.title}
+        </h4>
 
         {item.journal_or_conference_name && (
-          <p className="pt-3 text-sm text-gray-600">
+          <p className="pt-2 text-xs text-gray-600 md:pt-3 md:text-sm line-clamp-2">
             {item.journal_or_conference_name}
           </p>
         )}
 
         {item.year && (
-          <span className="inline-block pt-1 mt-3 text-xs text-white border-0 badge bg-sky-600">
+          <span className="inline-block pt-1 mt-2 text-xs text-white border-0 badge bg-sky-600 md:mt-3">
             Year: {item.year}
           </span>
         )}
@@ -119,7 +132,11 @@ const MemberDetails = ({ slug, childSlug, id }: any) => {
 
     /* STRING / TEXT */
     if (typeof value === "string") {
-      return <div className="text-gray-700 whitespace-pre-line">{value}</div>;
+      return (
+        <div className="text-sm text-gray-700 whitespace-pre-line md:text-base">
+          {value}
+        </div>
+      );
     }
 
     /* OBJECT (ex: publications) */
@@ -133,15 +150,15 @@ const MemberDetails = ({ slug, childSlug, id }: any) => {
       return (
         <>
           {/* Sub Tabs */}
-          <div className="flex items-center justify-center gap-3 mb-6 border-b border-sky-600">
+          <div className="flex flex-wrap items-center justify-center gap-1 mb-4 border-b border-sky-600 md:gap-3 md:mb-6">
             {subTabs.map((sub) => (
               <button
                 key={sub}
                 onClick={() => setActiveSubTab(sub)}
-                className={` px-4 py-2 -mb-0.5 text-sm font-medium capitalize transition
+                className={`px-2 py-1.5 text-xs font-medium capitalize transition md:px-4 md:py-2 md:text-sm -mb-0.5
                   ${
                     currentSubTab === sub
-                      ? "border-b-3 border-sky-600 text-sky-600 "
+                      ? "border-b-2 md:border-b-3 border-sky-600 text-sky-600"
                       : "text-gray-500 hover:text-sky-600"
                   }`}
               >
@@ -152,18 +169,21 @@ const MemberDetails = ({ slug, childSlug, id }: any) => {
 
           {/* Sub Tab Content */}
           {Array.isArray(subData) && subData.length ? (
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
               {subData.map((item: any, i: number) => (
                 <DataCard key={i} item={item} />
               ))}
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center py-10 space-y-4">
+            <div className="flex flex-col items-center justify-center py-8 space-y-3 md:py-10 md:space-y-4">
               <img
                 src="/images/no-data-found.png"
                 alt="No data found"
-                className="h-auto w-100 opacity-80"
+                className="w-48 h-auto opacity-80 md:w-64"
               />
+              <p className="text-sm text-gray-500 md:text-base">
+                No data available
+              </p>
             </div>
           )}
         </>
@@ -173,53 +193,64 @@ const MemberDetails = ({ slug, childSlug, id }: any) => {
     return noData;
   };
 
-  /* ---------------- UI ---------------- */
+  // Get the active tab label
+  const activeTabLabel = activeTab ? labelFromKey(activeTab) : "Select Tab";
+
   return (
-    <div className="container p-6 mx-auto mt-5 space-y-12">
+    <div className="container px-3 mx-auto mt-3 space-y-6 md:px-6 md:mt-5 md:space-y-12">
       {/* Profile */}
-      <div className="relative flex flex-col items-center gap-6 p-8 overflow-hidden text-black border shadow-lg bg-white/80 backdrop-blur-xl md:flex-row md:items-center md:gap-10 rounded-3xl border-sky-100">
+      <div className="relative flex flex-col items-center gap-4 p-4 overflow-hidden text-black border shadow-md bg-white/80 backdrop-blur-xl md:flex-row md:items-center md:gap-6 md:p-8 rounded-2xl md:rounded-3xl border-sky-100">
         {/* Decorative gradient */}
-        <div className="absolute w-64 h-64 rounded-full -top-20 -right-20 bg-sky-200/40 blur-3xl" />
+        <div className="absolute hidden w-64 h-64 rounded-full -top-20 -right-20 bg-sky-200/40 blur-3xl md:block" />
 
         {/* Profile Image */}
         <div className="relative shrink-0">
           <img
             src={member.image || "/images/no-profile.avif"}
             alt={member.name}
-            className="object-cover w-40 h-40 transition-transform duration-300 shadow-md rounded-2xl ring-4 ring-sky-500 hover:scale-105"
+            className="object-cover w-32 h-32 transition-transform duration-300 shadow-md md:w-40 md:h-40 rounded-xl md:rounded-2xl ring-2 md:ring-4 ring-sky-500 hover:scale-105"
           />
         </div>
 
         {/* Info */}
         <div className="relative z-10 flex-1 space-y-2 text-center md:text-left">
-          <h1 className="text-3xl font-extrabold text-site-primary">
+          <h1 className="text-xl font-extrabold text-site-primary md:text-2xl lg:text-3xl">
             {member.name}
           </h1>
 
-          <p className="text-lg font-semibold text-sky-600">
+          <p className="text-base font-semibold text-sky-600 md:text-lg">
             {member.designation}
           </p>
 
-          <div className="space-y-2">
+          <div className="space-y-1 md:space-y-2">
             {member.phone && (
-              <p className="flex items-center justify-center gap-3 md:justify-start text-site-primary">
-                <span className="p-2 rounded-full bg-sky-100 text-sky-600">
-                  <FaPhoneAlt />
+              <p className="flex flex-col items-center gap-2 sm:flex-row md:justify-start text-site-primary">
+                <span className="flex items-center gap-2">
+                  <span className="p-1.5 rounded-full bg-sky-100 text-sky-600 md:p-2">
+                    <FaPhoneAlt className="text-sm md:text-base" />
+                  </span>
+                  <span className="text-sm md:text-base">Phone:</span>
                 </span>
-                <Link href={`tel:${member.phone}`} className="hover:underline">
+                <Link
+                  href={`tel:${member.phone}`}
+                  className="text-sm hover:underline md:text-base"
+                >
                   {member.phone}
                 </Link>
               </p>
             )}
 
             {member.email && (
-              <p className="flex items-center justify-center gap-3 md:justify-start text-site-primary">
-                <span className="p-2 rounded-full bg-sky-100 text-sky-600">
-                  <FaEnvelope />
+              <p className="flex flex-col items-center gap-2 sm:flex-row md:justify-start text-site-primary">
+                <span className="flex items-center gap-2">
+                  <span className="p-1.5 rounded-full bg-sky-100 text-sky-600 md:p-2">
+                    <FaEnvelope className="text-sm md:text-base" />
+                  </span>
+                  <span className="text-sm md:text-base">Email:</span>
                 </span>
                 <Link
                   href={`mailto:${member.email}`}
-                  className="hover:underline"
+                  className="text-sm break-all hover:underline md:text-base"
                 >
                   {member.email}
                 </Link>
@@ -227,32 +258,72 @@ const MemberDetails = ({ slug, childSlug, id }: any) => {
             )}
 
             {member.address && (
-              <p className="flex items-center justify-center gap-3 md:justify-start text-site-primary">
-                <span className="p-2 rounded-full bg-sky-100 text-sky-600">
-                  📍
+              <p className="flex flex-col items-center gap-2 sm:flex-row md:justify-start text-site-primary">
+                <span className="flex items-center gap-2">
+                  <span className="p-1.5 rounded-full bg-sky-100 text-sky-600 md:p-2">
+                    📍
+                  </span>
+                  <span className="text-sm md:text-base">Address:</span>
                 </span>
-                <span>{member.address}</span>
+                <span className="text-sm md:text-base">{member.address}</span>
               </p>
             )}
           </div>
 
-          <p className="text-sm font-medium tracking-wide text-gray-600 ">
+          <p className="text-xs font-medium tracking-wide text-gray-600 md:text-sm">
             Khulna Agricultural University
           </p>
         </div>
 
         {/* University Logo */}
-        <div className="relative shrink-0">
+        <div className="relative mt-2 shrink-0 md:mt-0">
           <img
             src="/images/logo-main.png"
             alt="Khulna Agricultural University"
-            className="h-20 transition opacity-90 grayscale hover:grayscale-0"
+            className="h-16 transition opacity-90 grayscale hover:grayscale-0 md:h-20"
           />
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="pb-0 mb-0 border-b border-gray-200 bg-sky-200">
+      {/* Tabs - Mobile Dropdown */}
+      <div className="md:hidden">
+        <div className="relative">
+          <button
+            onClick={() => setIsMobileTabOpen(!isMobileTabOpen)}
+            className="flex items-center justify-between w-full px-4 py-3 text-sm font-medium text-white transition bg-sky-600 rounded-t-md hover:bg-sky-700"
+          >
+            <span>{activeTabLabel}</span>
+            <FaChevronDown
+              className={`ml-2 transition-transform duration-200 ${
+                isMobileTabOpen ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+
+          {/* Dropdown Menu */}
+          {isMobileTabOpen && (
+            <div className="absolute left-0 right-0 z-50 mt-1 overflow-hidden bg-white border border-gray-200 shadow-lg rounded-b-md">
+              {tabs.map((key) => (
+                <button
+                  key={key}
+                  onClick={() => handleTabSelect(key)}
+                  className={`block w-full px-4 py-3 text-left text-sm transition-colors
+                    ${
+                      activeTab === key
+                        ? "bg-sky-100 text-sky-600 font-semibold"
+                        : "text-gray-700 hover:bg-gray-50"
+                    }`}
+                >
+                  {labelFromKey(key)}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Tabs - Desktop */}
+      <div className="hidden pb-0 mb-0 border-b border-gray-200 bg-sky-200 md:block">
         <nav className="flex w-full flex-nowrap">
           {tabs.map((key) => (
             <button
@@ -272,7 +343,7 @@ const MemberDetails = ({ slug, childSlug, id }: any) => {
       </div>
 
       {/* Content */}
-      <div className="p-6 mb-10 bg-gray-100 shadow rounded-b-3xl rounded-top-0">
+      <div className="p-3 mb-6 bg-gray-100 rounded-t-none shadow rounded-xl md:p-6 md:mb-10 md:rounded-b-3xl">
         {renderContent()}
       </div>
     </div>

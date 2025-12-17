@@ -23,47 +23,77 @@ const FacultyHero = ({ homePageData }: any) => {
     <>
       {/* Hero Section */}
       {(bannerTitle || banner_image || banner_button) && (
-        <div className="relative container bg-white mx-auto pt-5 rounded-2xl overflow-hidden h-[45vh] md:h-[60vh] lg:h-[70vh] shadow-xl">
-          {/* Banner Image */}
-          {banner_image && (
-            <Image
-              src={banner_image}
-              alt={bannerTitle || "Banner Image"}
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-              className="object-cover object-center transition duration-500 ease-in-out transform hover:scale-105"
-            />
+  <div className={`container mx-auto pt-5 ${
+    banner_image 
+      ? 'relative rounded-2xl overflow-hidden h-[45vh] md:h-[60vh] lg:h-[70vh] shadow-xl' 
+      : ''
+  }`}>
+    {banner_image ? (
+      <>
+        {/* Banner Image with overlay */}
+        <Image
+          src={banner_image}
+          alt={bannerTitle || "Banner Image"}
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+          className="object-cover object-center transition duration-500 ease-in-out transform hover:scale-105"
+        />
+
+        {/* Gradient Overlay - only shown with image */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
+
+        {/* Content with white text for image background */}
+        <div className="absolute inset-0 flex flex-col items-center justify-end px-6 pb-12 text-center">
+          {bannerTitle && (
+            <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-6xl lg:text-7xl drop-shadow-xl">
+              {bannerTitle}
+            </h1>
           )}
 
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
+          {bannerSubtitle && (
+            <p className="max-w-4xl mt-4 text-lg font-light leading-relaxed text-white/90 md:text-xl">
+              {bannerSubtitle}
+            </p>
+          )}
 
-          {/* Content */}
-          <div className="absolute inset-0 flex flex-col items-center justify-end px-6 pb-12 text-center">
-            {bannerTitle && (
-              <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-6xl lg:text-7xl drop-shadow-xl">
-                {bannerTitle}
-              </h1>
-            )}
-
-            {bannerSubtitle && (
-              <p className="max-w-4xl mt-4 text-lg font-light leading-relaxed text-white/90 md:text-xl">
-                {bannerSubtitle}
-              </p>
-            )}
-
-            {banner_button && banner_button_url && (
-              <a
-                href={banner_button_url}
-                className="inline-block px-10 py-3 mt-8 text-lg font-bold text-black transition-all duration-300 bg-white rounded-full shadow-2xl hover:bg-gray-100 hover:shadow-inner transform hover:scale-[1.02]"
-              >
-                {banner_button}
-              </a>
-            )}
-          </div>
+          {banner_button && banner_button_url && (
+            <a
+              href={banner_button_url}
+              className="inline-block px-10 py-3 mt-8 text-lg font-bold text-black transition-all duration-300 bg-white rounded-full shadow-2xl hover:bg-gray-100 hover:shadow-inner transform hover:scale-[1.02]"
+            >
+              {banner_button}
+            </a>
+          )}
         </div>
-      )}
+      </>
+    ) : (
+      // No image - just show content without any special styling
+      <div className="text-center">
+        {bannerTitle && (
+          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
+            {bannerTitle}
+          </h1>
+        )}
+
+        {bannerSubtitle && (
+          <p className="max-w-4xl mx-auto mt-4 text-lg font-light leading-relaxed text-gray-600 md:text-xl">
+            {bannerSubtitle}
+          </p>
+        )}
+
+        {banner_button && banner_button_url && (
+          <a
+            href={banner_button_url}
+            className="inline-block px-8 py-3 mt-6 text-lg font-bold text-white transition-all duration-300 bg-blue-600 rounded-full hover:bg-blue-700 transform hover:scale-[1.02]"
+          >
+            {banner_button}
+          </a>
+        )}
+      </div>
+    )}
+  </div>
+)}
 
       {/* Content Section */}
       {content && (

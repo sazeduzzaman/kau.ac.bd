@@ -38,6 +38,30 @@ const LifeAtKAUMenu: React.FC = () => {
 
   const isActive = (item: MenuItem) => pathname === item.href;
 
+  // Function to split children into two columns
+  const splitIntoTwoColumns = (items: MenuItem[]) => {
+    const middleIndex = Math.ceil(items.length / 2);
+    const leftColumn = items.slice(0, middleIndex);
+    const rightColumn = items.slice(middleIndex);
+    return { leftColumn, rightColumn };
+  };
+
+  const renderMenuItem = (item: MenuItem, index: number) => (
+    <li key={index}>
+      <Link
+        href={item?.href}
+        className={`flex justify-between items-center px-4 py-3 text-sm w-full transition-all duration-300 ${
+          isActive(item)
+            ? "bg-site-primary text-white shadow-md"
+            : "text-dark hover:bg-[#438aba] hover:text-white hover:shadow-md"
+        }`}
+      >
+        {item?.label}
+        <FaArrowRight className="ml-2 text-xs text-gray-400" />
+      </Link>
+    </li>
+  );
+
   return (
     <div
       className="relative"
@@ -60,29 +84,44 @@ const LifeAtKAUMenu: React.FC = () => {
       </span>
 
       {lifeAtKAUMenu.children?.length && (
-        <ul
-          className={`absolute top-full left-0 bg-white shadow-lg transition-all duration-300 z-50 w-60 ml-[1px] py-0 ${
+        <div
+          className={`absolute top-full right-0 bg-white shadow-lg transition-all duration-300 z-50 ml-[1px] py-0 ${
             open
               ? "opacity-100 visible translate-y-0"
               : "opacity-0 invisible -translate-y-2"
-          }`}
+          } ${lifeAtKAUMenu.children.length > 6 ? "w-[500px]" : "w-60"}`}
         >
-          {lifeAtKAUMenu.children.map((item, index) => (
-            <li key={index}>
-              <Link
-                href={item?.href}
-                className={`flex justify-between items-center px-4 py-3 text-sm w-full transition-all duration-300 ${
-                  isActive(item)
-                    ? "bg-site-primary text-white shadow-md"
-                    : "text-dark hover:bg-[#438aba] hover:text-white hover:shadow-md"
-                }`}
-              >
-                {item?.label}
-                <FaArrowRight className="ml-2 text-xs text-gray-400" />
-              </Link>
-            </li>
-          ))}
-        </ul>
+          {lifeAtKAUMenu.children.length > 6 ? (
+            // Two column layout for more than 6 items
+            <div className="grid grid-cols-2">
+              <div className="border-r border-gray-100">
+                {(() => {
+                  const { leftColumn } = splitIntoTwoColumns(lifeAtKAUMenu.children);
+                  return (
+                    <ul className="py-0">
+                      {leftColumn.map((item, index) => renderMenuItem(item, index))}
+                    </ul>
+                  );
+                })()}
+              </div>
+              <div>
+                {(() => {
+                  const { rightColumn } = splitIntoTwoColumns(lifeAtKAUMenu.children);
+                  return (
+                    <ul className="py-0">
+                      {rightColumn.map((item, index) => renderMenuItem(item, index))}
+                    </ul>
+                  );
+                })()}
+              </div>
+            </div>
+          ) : (
+            // Single column layout for 6 or fewer items
+            <ul className="py-0">
+              {lifeAtKAUMenu.children.map((item, index) => renderMenuItem(item, index))}
+            </ul>
+          )}
+        </div>
       )}
     </div>
   );
