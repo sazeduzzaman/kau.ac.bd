@@ -31,7 +31,7 @@ const InfoCardsSection: React.FC<InfoCardsSectionProps> = ({ exploreData }) => {
         <div className="text-center mb-14">
           <h2 className="relative inline-block text-5xl font-extrabold text-white">
             {exploreData.section_title}
-            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-28 h-1 rounded-full bg-gradient-to-r from-white to-[#438ABA]" />
+            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-28 h-1 rounded-full bg-linear-to-r from-white to-[#438ABA]" />
           </h2>
         </div>
 

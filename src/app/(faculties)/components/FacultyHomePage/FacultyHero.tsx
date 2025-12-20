@@ -41,7 +41,7 @@ const FacultyHero = ({ homePageData }: any) => {
         />
 
         {/* Gradient Overlay - only shown with image */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/30 to-transparent"></div>
 
         {/* Content with white text for image background */}
         <div className="absolute inset-0 flex flex-col items-center justify-end px-6 pb-12 text-center">

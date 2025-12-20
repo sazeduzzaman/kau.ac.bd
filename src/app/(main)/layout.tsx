@@ -11,6 +11,7 @@ import SonarButton from "@/components/Shared/SonarButton/SonarButton";
 import { SiteSettingDataset } from "@/lib/apis/SiteInfromationDataSet/SiteInfromationDataSet";
 
 import "@/lib/fontawesome/dynamicFontAwesome";
+import DrawerWrapper from "@/components/HomePage/DefaultDrawer/DrawerWrapper";
 
 // ========================= FONTS =========================
 
@@ -98,8 +99,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${spaceGrotesk.variable} ${shurjo.variable} ${roboto.variable} antialiased`}>
+      <body
+        className={`${spaceGrotesk.variable} ${shurjo.variable} ${roboto.variable} antialiased`}
+      >
         <Header />
+        <DrawerWrapper /> {/* Use wrapper instead of direct component */}
         {children}
         <SonarButton />
         <Footer />

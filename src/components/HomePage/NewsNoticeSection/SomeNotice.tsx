@@ -30,7 +30,7 @@ const SomeNotice = ({ noticesData }: SomeNoticeProps) => {
   return (
     <div className="col-span-1 overflow-hidden">
       {/* Header */}
-      <div className="py-3 text-lg font-bold text-center text-white bg-gradient-to-r from-[#00695c] to-[#004d40]">
+      <div className="py-3 text-2xl font-bold  text-center text-white bg-linear-to-r from-[#00695c] to-[#004d40]">
         Notice Board
       </div>
 
@@ -46,7 +46,7 @@ const SomeNotice = ({ noticesData }: SomeNoticeProps) => {
           border-r border-gray-200 last:border-r-0
           ${
             activeCategory === cat
-              ? "bg-gradient-to-r from-[#00695c] to-[#004d40] text-white shadow-md"
+              ? "bg-linear-to-r from-[#00695c] to-[#004d40] text-white shadow-md"
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }
         `}
@@ -115,7 +115,7 @@ const SomeNotice = ({ noticesData }: SomeNoticeProps) => {
           className="text-sm font-semibold text-white hover:underline"
         >
           <div className="card-footer">
-            <div className="py-3 text-lg font-bold text-center text-white bg-gradient-to-r from-[#00695c] to-[#004d40]">
+            <div className="py-3 text-lg font-bold text-center text-white bg-linear-to-r from-[#00695c] to-[#004d40]">
               View All Notices
             </div>
           </div>

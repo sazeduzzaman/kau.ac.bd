@@ -79,7 +79,7 @@ const FacultyCommonPages: React.FC<FacultyCommonPagesProps> = ({
               />
 
               {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/30 to-transparent"></div>
 
               <div className="">
                 {/* Banner Text */}

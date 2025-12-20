@@ -29,24 +29,22 @@ const SomeNews: React.FC<SomeNewsProps> = ({ newsData }) => {
   return (
     <div className="col-span-1">
       {/* Featured News */}
+      <div className="text-center bg-site-primary">
+        <h2 className="py-3 text-2xl font-bold text-white">
+          News & Events
+        </h2>
+      </div>
       <Link href={`/news/${featured?.slug}`}>
         <div className="relative flex flex-col overflow-hidden transition-all bg-white rounded-none shadow-sm hover:shadow-lg">
           <img
             src={featured.imageUrl || "/images/news-no-img.png"}
             alt={featured.title || "Featured news image"}
-            className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+            className="object-cover w-full h-[315px] transition-transform duration-500 group-hover:scale-105"
             onError={(e) => {
               e.currentTarget.onerror = null;
               e.currentTarget.src = "/images/news-no-img.png";
             }}
           />
-
-          {/* {featured.category && (
-          <span className="absolute px-2 py-1 text-xs text-white bg-blue-600 rounded top-2 left-2">
-            {featured.category}
-          </span>
-        )} */}
-
           <div className="p-6">
             <h3 className="text-xl font-bold text-gray-900 hover:text-[#00695c] cursor-pointer transition">
               {featured.title}
@@ -70,7 +68,7 @@ const SomeNews: React.FC<SomeNewsProps> = ({ newsData }) => {
       </Link>
       {/* Latest News */}
       {latestNews.length > 0 && (
-        <div className="grid grid-cols-1 gap-6 mt-6 md:grid-cols-1">
+        <div className="grid grid-cols-1 gap-6 mt-2 md:grid-cols-1">
           <div className="border border-gray-200 rounded card">
             <div className="card-body max-h-[270px] overflow-y-auto px-0 pb-1 pt-0">
               {latestNews.map((news) => {
@@ -113,7 +111,7 @@ const SomeNews: React.FC<SomeNewsProps> = ({ newsData }) => {
 
             <Link href="/news" className="text-sm font-semibold text-white hover:underline">
               <div className="card-footer">
-                <div className="py-3 text-lg font-bold text-center text-white bg-gradient-to-r from-[#438ABA] to-[#438ABA]">
+                <div className="py-3 text-lg font-bold text-center text-white bg-linear-to-r from-[#438ABA] to-[#438ABA]">
                   View All News
                 </div>
               </div>

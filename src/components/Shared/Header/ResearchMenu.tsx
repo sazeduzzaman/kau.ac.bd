@@ -60,7 +60,7 @@ const ResearchMenu: React.FC = () => {
       {/* Dropdown */}
       {researchMenu.children && researchMenu.children.length > 0 && (
         <ul
-          className={`absolute top-full left-0 bg-white shadow-lg py-0 transition-all duration-300 z-50 w-60 ml-[1px]  ${
+          className={`absolute top-full left-0 bg-white shadow-lg py-0 transition-all duration-300 z-50 w-60 ml-px  ${
             open
               ? "opacity-100 visible translate-y-0"
               : "opacity-0 invisible -translate-y-2"
@@ -115,7 +115,7 @@ const RecursiveMenuItem: React.FC<{ item: MenuItem; pathname: string }> = ({
       {/* Nested Submenu */}
       {hasChildren && (
         <ul
-          className={`absolute top-0 left-full bg-white shadow-lg  py-2 transition-all duration-300 z-50 ml-[1px] w-60 py-0 ${
+          className={`absolute top-0 left-full bg-white shadow-lg  py-2 transition-all duration-300 z-50 ml-px w-60 py-0 ${
             open
               ? "opacity-100 visible translate-x-0"
               : "opacity-0 invisible -translate-x-2"

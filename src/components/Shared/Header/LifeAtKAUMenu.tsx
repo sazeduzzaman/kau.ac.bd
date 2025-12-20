@@ -85,7 +85,7 @@ const LifeAtKAUMenu: React.FC = () => {
 
       {lifeAtKAUMenu.children?.length && (
         <div
-          className={`absolute top-full right-0 bg-white shadow-lg transition-all duration-300 z-50 ml-[1px] py-0 ${
+          className={`absolute top-full right-0 bg-white shadow-lg transition-all duration-300 z-50 ml-px py-0 ${
             open
               ? "opacity-100 visible translate-y-0"
               : "opacity-0 invisible -translate-y-2"

@@ -67,16 +67,17 @@ const KauAtAGlanceSection: React.FC<KauAtAGlanceSectionProps> = ({
           {glanceData.section_subtitle}
         </p>
 
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5 md:gap-6">
+        {/* Flexbox container for automatic centering */}
+        <div className="flex flex-wrap justify-center gap-4 md:gap-6">
           {stats.map((item, index) => {
             const icon = getDynamicIcon(item.icon);
 
             return (
               <div
                 key={index}
-                className="relative flex flex-col items-center justify-center h-48 p-6 text-center transition-all duration-300 border rounded-lg cursor-pointer group border-white/30 hover:bg-white hover:scale-105"
+                className="group flex flex-col items-center justify-center w-full max-w-[220px] h-48 p-6 text-center transition-all duration-300 border rounded-lg cursor-pointer border-white/30 hover:bg-white hover:scale-105"
               >
-                <div className="mb-4 text-white group-hover:text-[#438ABA] transition-colors duration-300">
+                <div className="mb-4 text-white  group-hover:text-[#438ABA] transition-colors duration-300">
                   <FontAwesomeIcon
                     icon={icon}
                     className="w-12 h-12"
@@ -88,7 +89,7 @@ const KauAtAGlanceSection: React.FC<KauAtAGlanceSectionProps> = ({
                   {item.title}
                 </h3>
 
-                <div className="text-2xl font-bold text-white group-hover:text-[#438ABA] transition-colors duration-300">
+                <div className="text-2xl font-bold text-white  group-hover:text-[#438ABA] transition-colors duration-300">
                   <Counter end={Number(item.number)} />
                 </div>
               </div>
