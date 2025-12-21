@@ -19,7 +19,7 @@ const DesktopMenu: React.FC = () => {
 
   return (
     <nav className="hidden font-sans lg:block">
-      <ul className="flex items-center justify-start h-16 space-x-1 font-medium text-black font-merriweather">
+      <ul className="flex items-center justify-start h-16 gap-3 space-x-1 font-medium text-black font-merriweather">
         {/* Home */}
         <li>
           <Link
