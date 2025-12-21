@@ -75,7 +75,6 @@ const FacultySection = (facultyData: any) => {
         }
         const data = await response.json();
         setFacultyApiData(data);
-        console.log("API Data:", data);
       } catch (error) {
         console.error("Error fetching faculty data:", error);
         setError("Failed to load faculty data");
@@ -116,7 +115,6 @@ const FacultySection = (facultyData: any) => {
     faculties = facultyApiData.groups[0].sites;
   }
 
-  console.log("Extracted faculties:", faculties);
 
   return (
     <section className="px-4 pt-10 pb-24 bg-linear-to-b from-slate-50 to-white">
