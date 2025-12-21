@@ -67,7 +67,7 @@ const AcademicMenu: React.FC = () => {
 
       {/* Dropdown */}
       <ul
-        className={`absolute top-full left-0 bg-white shadow-lg py-0 w-60 z-50 ml-px transition-all duration-300 ${
+        className={`absolute top-full right-0 bg-white shadow-lg py-0 w-60 z-50 ml-px transition-all duration-300 ${
           open
             ? "opacity-100 visible translate-y-0"
             : "opacity-0 invisible -translate-y-2"
@@ -130,7 +130,7 @@ const RecursiveGroup = ({
       {/* SUB-MENU (sites) */}
       {hasSites && (
         <ul
-          className={`absolute top-0 left-full bg-white shadow-lg py-0 ml-px w-60 transition-all duration-300 z-50 
+          className={`absolute top-0 right-full bg-white shadow-lg py-0 ml-px w-60 transition-all duration-300 z-50 
             ${
               open
                 ? "opacity-100 visible translate-x-0"
