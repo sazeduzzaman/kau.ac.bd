@@ -8,8 +8,8 @@ import AdmissionMenu from "./AdmissionMenu";
 import AboutMenu from "./AboutMenu";
 import AdministrationMenu from "./AdministrationMenu";
 import AcademicMenu from "./AcademicMenu";
-import ResearchMenu from "./ResearchMenu";
-import LifeAtKAUMenu from "./LifeAtKAUMenu";
+// import ResearchMenu from "./ResearchMenu";
+// import LifeAtKAUMenu from "./LifeAtKAUMenu";
 
 const DesktopMenu: React.FC = () => {
   const pathname = usePathname();
@@ -46,12 +46,12 @@ const DesktopMenu: React.FC = () => {
         <li>
           <AcademicMenu />
         </li>
-        <li>
+        {/* <li>
           <ResearchMenu />
         </li>
         <li>
           <LifeAtKAUMenu />
-        </li>
+        </li> */}
       </ul>
     </nav>
   );
