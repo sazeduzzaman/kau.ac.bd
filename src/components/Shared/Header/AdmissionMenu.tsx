@@ -73,7 +73,7 @@ const AdmissionMenu: React.FC = () => {
       {/* Dropdown Menu */}
       {menuItems.length > 0 && (
         <ul
-          className={`absolute top-full left-0 bg-white shadow-lg  py-0 transition-all duration-300 z-50 w-60 ${
+          className={`absolute top-full right-0 bg-white shadow-lg  py-0 transition-all duration-300 z-50 w-60 ${
             open
               ? "opacity-100 visible translate-y-0"
               : "opacity-0 invisible -translate-y-2"
@@ -156,7 +156,7 @@ const DropdownItem: React.FC<DropdownItemProps & { level?: number }> = ({
       {/* Nested children */}
       {hasChildren && (
         <ul
-          className={`absolute top-0 left-full bg-white shadow-lg transition-all duration-300 z-50 py-0 ml-px w-60 ${
+          className={`absolute top-0 right-full bg-white shadow-lg transition-all duration-300 z-50 py-0 ml-px w-60 ${
             open
               ? "opacity-100 visible translate-x-0"
               : "opacity-0 invisible -translate-x-2"

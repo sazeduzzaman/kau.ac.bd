@@ -77,7 +77,7 @@ const AdministrationMenu: React.FC = () => {
       {/* Dropdown */}
       {menuItems.length > 0 && (
         <ul
-          className={`absolute top-full left-0 bg-white shadow-lg py-0 transition-all duration-300 z-50 w-60 ml-px ${
+          className={`absolute top-full right-0 bg-white shadow-lg py-0 transition-all duration-300 z-50 w-60 ml-px ${
             open
               ? "opacity-100 visible translate-y-0"
               : "opacity-0 invisible -translate-y-2"
@@ -152,7 +152,7 @@ const DropdownItem: React.FC<{ item: MenuItemType; level?: number }> = ({
 
       {hasChildren && (
         <ul
-          className={`absolute top-0 left-full bg-white shadow-lg transition-all duration-300 z-50 py-2 ml-px grid gap-2 ${
+          className={`absolute top-0 right-full bg-white shadow-lg transition-all duration-300 z-50 py-2 ml-px grid gap-2 ${
             open
               ? "opacity-100 visible translate-x-0"
               : "opacity-0 invisible -translate-x-2"
