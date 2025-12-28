@@ -3,12 +3,13 @@
 import React from "react";
 import Link from "next/link";
 import { RiHomeOfficeFill } from "react-icons/ri";
+import NoDataFound from "@/components/Shared/NoDataFound/NoDataFound";
 
 export interface Department {
   id: number;
   title: string;
   short_code?: string;
-  slug?: string; // make optional since we may skip if missing
+  slug?: string;
   description?: string | null;
   position?: number;
   link?: string;
@@ -24,11 +25,7 @@ const DepartmentCard: React.FC<DepartmentCardProps> = ({
   basePath = "/departments",
 }) => {
   if (!departments || departments.length === 0) {
-    return (
-      <div className="my-10 text-center text-gray-500">
-        No departments found.
-      </div>
-    );
+    return <NoDataFound />; // <-- use NoData here
   }
 
   return (
@@ -45,7 +42,6 @@ const DepartmentCard: React.FC<DepartmentCardProps> = ({
 
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {departments.map((dept) => {
-            // Only render link if slug or link exists
             const deptLink =
               dept.link || (dept.slug ? `${basePath}/${dept.slug}` : null);
 
@@ -77,19 +73,18 @@ const DepartmentCard: React.FC<DepartmentCardProps> = ({
                   </p>
                 )}
 
-                {deptLink && (
-                  <div className="pt-4 mt-4 border-t border-gray-100">
-                    <Link
-                      href={deptLink}
-                      className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg text-white bg-[#438aba] shadow-md transition-colors duration-300 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-[#438aba] focus:ring-offset-2"
-                    >
-                      View Details
-                      <span aria-hidden="true" className="ml-1 text-lg">
-                        →
-                      </span>
-                    </Link>
-                  </div>
-                )}
+                <div className="pt-4 mt-4 border-t border-gray-100">
+                  <button
+                    disabled
+                    title="No Link Found"
+                    className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-lg text-white bg-[#438aba] shadow-md opacity-50 cursor-not-allowed transition-colors duration-300"
+                  >
+                    View Details
+                    <span aria-hidden="true" className="ml-1 text-lg">
+                      →
+                    </span>
+                  </button>
+                </div>
               </div>
             );
           })}

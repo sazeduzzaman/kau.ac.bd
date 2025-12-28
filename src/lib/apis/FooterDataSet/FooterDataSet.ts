@@ -3,7 +3,7 @@ import { FooterAPIResponse } from "@/lib/types/FooterDataTypes/FooterDataTypes";
 export const fetchFooterData = async (): Promise<FooterAPIResponse> => {
   try {
     const response = await fetch(
-      "https://admin.kau.khandkershahed.com/api/v1/footer",
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/footer`,
       {
         next: { revalidate: 1 },
       }

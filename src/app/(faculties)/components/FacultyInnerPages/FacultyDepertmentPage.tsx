@@ -32,7 +32,7 @@ const FacultyDepartmentPage: React.FC<FacultyDepartmentPageProps> = ({
     const fetchDepartments = async () => {
       try {
         const res = await fetch(
-          `https://admin.kau.khandkershahed.com/api/v1/academics/sites/${slug}/departments-and-staff`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/academics/sites/${slug}/departments-and-staff`
         );
 
         if (!res.ok) throw new Error("Failed to fetch departments");

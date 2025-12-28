@@ -21,7 +21,7 @@ const AdmissionMenu: React.FC = () => {
     const fetchMenu = async () => {
       try {
         const res = await fetch(
-          "https://admin.kau.khandkershahed.com/api/v1/admissions"
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/admissions`
         );
         const data = await res.json();
 

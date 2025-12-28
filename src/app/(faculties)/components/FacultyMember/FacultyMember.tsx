@@ -68,7 +68,7 @@ const FacultyMember: React.FC<FacultyMemberProps> = ({
     const fetchData = async () => {
       try {
         const res = await fetch(
-          `https://admin.kau.khandkershahed.com/api/v1/academics/sites/${slug}/departments-and-staff`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/academics/sites/${slug}/departments-and-staff`
         );
         if (!res.ok) throw new Error("Failed to fetch");
 
@@ -205,12 +205,16 @@ const FacultyMember: React.FC<FacultyMemberProps> = ({
 
         {staffData.groups
           .sort((a, b) => a.position - b.position)
-          .map((group, index) => (
-            <div key={index} className="mb-14">
+          .map((group) => (
+            <div key={group.id} className="mb-14">
               <div className="flex flex-wrap justify-center gap-10">
                 {group.members
                   .sort((a, b) => a.position - b.position)
-                  .map((member) => renderStaffCard(member))}
+                  .map((member, index) => (
+                    <React.Fragment key={index}>
+                      {renderStaffCard(member)}
+                    </React.Fragment>
+                  ))}
               </div>
             </div>
           ))}

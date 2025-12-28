@@ -27,7 +27,7 @@ const MemberDetails = ({ slug, childSlug, id }: any) => {
   const [activeSubTab, setActiveSubTab] = useState<string>("");
   const [isMobileTabOpen, setIsMobileTabOpen] = useState(false);
 
-  const apiUrl = `https://admin.kau.khandkershahed.com/api/v1/${slug}/${childSlug}/${id}`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/${slug}/${childSlug}/${id}`;
 
   /* ---------------- Fetch Data ---------------- */
   useEffect(() => {

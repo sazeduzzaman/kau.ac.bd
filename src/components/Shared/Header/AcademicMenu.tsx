@@ -28,7 +28,7 @@ const AcademicMenu: React.FC = () => {
   const fetchMenu = async () => {
     try {
       const res = await fetch(
-        "https://admin.kau.khandkershahed.com/api/v1/academics/sites"
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/academics/sites`
       );
       const data = await res.json();
       setGroups(data.groups || []);

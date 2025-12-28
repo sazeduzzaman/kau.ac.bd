@@ -20,7 +20,7 @@ const Terms = () => {
     const fetchTerms = async () => {
       try {
         const res = await fetch(
-          "https://admin.kau.khandkershahed.com/api/v1/terms"
+          `${process.env.next_public_api_url}/api/v1/terms`
         );
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         const data: TermsData = await res.json();

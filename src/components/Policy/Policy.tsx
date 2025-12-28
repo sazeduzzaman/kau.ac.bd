@@ -20,7 +20,7 @@ const Policy = () => {
     const fetchTerms = async () => {
       try {
         const res = await fetch(
-          "https://admin.kau.khandkershahed.com/api/v1/policy"
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/policy`
         );
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         const data: TermsData = await res.json();

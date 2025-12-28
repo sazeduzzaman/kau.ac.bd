@@ -1,18 +1,28 @@
 import DepartmentCard from "../components/FacultyHomePage/DepartmentsGrid";
 import FacultyHero from "../components/FacultyHomePage/FacultyHero";
+import type { Metadata } from "next";
 
 interface Props {
   params: { slug: string };
 }
 
+/* -----------------------------
+   PAGE TITLE (SEO)
+----------------------------- */
+// import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Faculty Page",
+  description: "All pages related to a specific faculty",
+};
+
 export default async function FacultyPage({ params }: Props) {
-  const { slug } =await params;
+  const { slug } = await params;
 
   // -----------------------------
   // Fetch Departments and Staff
   // -----------------------------
   const depRes = await fetch(
-    `https://admin.kau.khandkershahed.com/api/v1/academics/sites/${slug}/departments-and-staff`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/academics/sites/${slug}/departments-and-staff`,
     { cache: "no-store" }
   );
 
@@ -36,7 +46,7 @@ export default async function FacultyPage({ params }: Props) {
   // Fetch Pages
   // -----------------------------
   const pageRes = await fetch(
-    `https://admin.kau.khandkershahed.com/api/v1/academics/sites/${slug}/pages`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/academics/sites/${slug}/pages`,
     { cache: "no-store" }
   );
 

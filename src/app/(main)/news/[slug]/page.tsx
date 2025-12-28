@@ -15,7 +15,7 @@ export async function generateMetadata({
 
   try {
     const res = await fetch(
-      `https://admin.kau.khandkershahed.com/api/v1/news/${encodeURIComponent(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/news/${encodeURIComponent(
         slug
       )}`,
       { next: { revalidate: 1 } } // optional: ISR
@@ -52,7 +52,7 @@ export default async function Page({ params }: PageProps) {
 
   try {
     const res = await fetch(
-      `https://admin.kau.khandkershahed.com/api/v1/news/${encodeURIComponent(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/news/${encodeURIComponent(
         slug
       )}`,
       { next: { revalidate: 1 } }

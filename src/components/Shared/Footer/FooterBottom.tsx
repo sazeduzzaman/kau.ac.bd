@@ -32,7 +32,7 @@ const ClientFooterBottom: React.FC = () => {
     setError(null);
     try {
       const res = await fetch(
-        "https://admin.kau.khandkershahed.com/api/v1/footer"
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/footer`
       );
 
       if (!res.ok) {

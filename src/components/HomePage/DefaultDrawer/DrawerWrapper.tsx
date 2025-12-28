@@ -25,7 +25,7 @@ const [data, setData] = useState(null);
     const fetchPopupData = async () => {
       try {
         const res = await fetch(
-          "https://admin.kau.khandkershahed.com/api/v1/home-popup"
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/home-popup`
         );
 
         if (!res.ok) {

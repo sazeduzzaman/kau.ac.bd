@@ -11,7 +11,7 @@ export default async function Page({ params }: PageProps) {
 
   try {
     const res = await fetch(
-      `https://admin.kau.khandkershahed.com/api/v1/notices/${encodeURIComponent(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/notices/${encodeURIComponent(
         slug
       )}`,
       { next: { revalidate: 1 } }

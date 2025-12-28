@@ -40,7 +40,7 @@ const FacultiesMenus = () => {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          `https://admin.kau.khandkershahed.com/api/v1/academics/sites/${slug}/pages`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/academics/sites/${slug}/pages`
         );
         const json = await res.json();
         setData(json);

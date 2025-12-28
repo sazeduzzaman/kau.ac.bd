@@ -3,7 +3,7 @@ import { Notice } from "@/lib/types/NoticesDataSetTypes/NoticesDataSetTypes";
 export async function NoticesDataSet(): Promise<Notice[]> {
   try {
     const res = await fetch(
-      "https://admin.kau.khandkershahed.com/api/v1/notice-categories"
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/notice-categories`
     );
 
     if (!res.ok) throw new Error(`Server returned ${res.status}`);

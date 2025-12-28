@@ -80,7 +80,7 @@ const FAQPage: React.FC = () => {
     const fetchFaqs = async () => {
       try {
         const res = await fetch(
-          "https://admin.kau.khandkershahed.com/api/v1/faqs"
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/faqs`
         );
         const data = await res.json();
 

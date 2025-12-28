@@ -68,7 +68,7 @@ const FacultySection = (facultyData: any) => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://admin.kau.khandkershahed.com/api/v1/academics/sites"
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/academics/sites`
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -114,7 +114,6 @@ const FacultySection = (facultyData: any) => {
   if (facultyApiData?.groups?.[0]?.sites) {
     faculties = facultyApiData.groups[0].sites;
   }
-
 
   return (
     <section className="px-4 pt-10 pb-24 bg-linear-to-b from-slate-50 to-white">

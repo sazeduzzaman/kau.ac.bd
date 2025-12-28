@@ -3,7 +3,7 @@ import { HomePageAPIResponse } from "@/lib/types/HomePageDataTypes/HomePageDataT
 export const HomePageDataSet = async (): Promise<HomePageAPIResponse> => {
   try {
     const response = await fetch(
-      "https://admin.kau.khandkershahed.com/api/v1/homepage",
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/homepage`,
       {
         next: { revalidate: 1 },
       }

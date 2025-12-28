@@ -26,7 +26,7 @@ const AdministrationMenuMobile: React.FC<AdministrationMenuProps> = ({
     const fetchMenu = async () => {
       try {
         const res = await fetch(
-          "https://admin.kau.khandkershahed.com/api/v1/administration"
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/administration`
         );
         const data = await res.json();
 

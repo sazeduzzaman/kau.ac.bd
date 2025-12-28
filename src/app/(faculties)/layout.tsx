@@ -5,6 +5,20 @@ import localFont from "next/font/local";
 import { Space_Grotesk, Poppins } from "next/font/google";
 import FacultiesHeader from "./components/Shared/Header/FacultiesHeader";
 import FacultiesFooter from "./components/Shared/Footer/FacultiesFooter";
+/* -----------------------------
+   METADATA (TITLE TEMPLATE)
+----------------------------- */
+/* -----------------------------
+   TYPES
+----------------------------- */
+interface LayoutProps {
+  params: { slug: string };
+  children: ReactNode;
+}
+
+/* -----------------------------
+   DYNAMIC METADATA
+----------------------------- */
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-heading",

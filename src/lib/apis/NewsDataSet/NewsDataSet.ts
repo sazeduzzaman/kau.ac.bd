@@ -7,7 +7,7 @@ import {
 export const NewsDataSet = async (): Promise<NewsItem[]> => {
   try {
     const response = await fetch(
-      "https://admin.kau.khandkershahed.com/api/v1/news",
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/news`,
       {
         next: { revalidate: 1 },
       }
