@@ -1,10 +1,11 @@
-import Login from '@/components/AuthPage/Login/Login';
+// import Login from '@/components/AuthPage/Login/Login';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-            <Login />
+            {/* <Login /> */}
+            asdasd
         </div>
     );
 };
