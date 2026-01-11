@@ -1,27 +1,22 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
+import type { NextConfig } from "next";
 
+const nextConfig: NextConfig = {
+  reactStrictMode: true,
+  reactCompiler: true, // React Compiler optimizations
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "*",
+        hostname: "*", // allows any HTTPS host
       },
     ],
   },
-
-  // This will bypass TypeScript errors
   typescript: {
-    ignoreBuildErrors: true,
+    // Optional: allow prod builds even if there are TS errors
+    ignoreBuildErrors: false,
   },
-
-  // This will bypass ESLint errors (works with type inference)
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-
-  swcMinify: true,
 };
+
+
 
 export default nextConfig;
