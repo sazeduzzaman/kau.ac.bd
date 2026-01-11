@@ -1,6 +1,6 @@
 import AllNews from "@/components/NewsDetails/AllNews";
 import { NewsDataSet } from "@/lib/apis/NewsDataSet/NewsDataSet";
-import React from "react";
+
 
 export default async function Page() {
   const newsData = await NewsDataSet(); // fetch server-side

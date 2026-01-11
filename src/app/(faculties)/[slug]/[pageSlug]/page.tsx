@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import FacultyInnerPages from "../../components/FacultyInnerPages/FacultyInnerPages";
 
 interface Props {
@@ -8,22 +7,24 @@ interface Props {
 /* -----------------------------
    PAGE METADATA (ASYNC)
 ----------------------------- */
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug, pageSlug } = await params;
+/* -----------------------------
+   GENERATE STATIC PARAMS
+----------------------------- */
+export async function generateStaticParams() {
+  // In a real app, you would fetch this from your database/API
+  // const data = await fetch('https://api.yourdomain.com/faculties').then(res => res.json());
 
-  const format = (value?: string) =>
-    value
-      ? value.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
-      : "";
-
-  return {
-    title: `${format(pageSlug)} | ${format(slug)}`,
-  };
+  return [
+    { slug: "engineering", pageSlug: "computer-science" },
+    { slug: "science", pageSlug: "biology" },
+    { slug: "business", pageSlug: "marketing" },
+  ];
 }
 
 /* -----------------------------
    PAGE COMPONENT
 ----------------------------- */
+
 export default async function Page({ params }: Props) {
   const { slug, pageSlug } = await params;
 

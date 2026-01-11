@@ -1,34 +1,29 @@
-import type { Metadata } from "next";
 import FacultyMember from "@/app/(faculties)/components/FacultyMember/FacultyMember";
 
 interface StaffPageProps {
-  params: { slug: string; pageSlug: string; childSlug: string };
+  params: Promise<{ slug: string; pageSlug: string; childSlug: string }>;
 }
 
 /* -----------------------------
-   PAGE METADATA (ASYNC)
+    GENERATE STATIC PARAMS
 ----------------------------- */
-export async function generateMetadata({
-  params,
-}: StaffPageProps): Promise<Metadata> {
-  const { slug, pageSlug, childSlug } = await params;
+export async function generateStaticParams() {
+  // 1. Fetch your data from your database or CMS
+  // This must return an array of all possible URL combinations
+  // Example: if the URL is /engineering/cs/staff, then:
+  // slug = engineering, pageSlug = cs, childSlug = staff
+  
+  // const faculties = await getFacultiesFromDB(); 
 
-  // Example async: you can fetch API here if needed
-  // const res = await fetch(`...`);
-  // const data = await res.json();
-
-  const format = (value?: string) =>
-    value
-      ? value.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
-      : "";
-
-  return {
-    title: `${format(childSlug)} | ${format(pageSlug)} | ${format(slug)}`,
-  };
+  return [
+    { slug: "science", pageSlug: "physics", childSlug: "professors" },
+    { slug: "arts", pageSlug: "history", childSlug: "lecturers" },
+    // Add all your actual paths here
+  ];
 }
 
 /* -----------------------------
-   PAGE COMPONENT
+    PAGE COMPONENT
 ----------------------------- */
 export default async function Page({ params }: StaffPageProps) {
   const { slug, childSlug, pageSlug } = await params;
