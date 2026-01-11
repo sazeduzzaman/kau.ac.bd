@@ -5,7 +5,6 @@ const FooterContact = (siteData: any) => {
   const footerContactData = siteData.SiteData.contact.emails[0]?.email;
   const footerContactData2 = siteData.SiteData.contact.emails[1]?.email;
   const footerContactDataPhone = siteData.SiteData.contact.phones[0]?.phone;
-  console.log(siteData ,"SiteData");
   return (
     <div className="space-y-4 text-sm opacity-90">
       <p className="text-justify">{footerDescription}</p>

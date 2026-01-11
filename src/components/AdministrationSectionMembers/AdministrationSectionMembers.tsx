@@ -108,7 +108,7 @@ const AdministrationSectionMembers: React.FC<Props> = ({ admissionItem }) => {
 
   return (
     <div className="min-h-screen py-12 bg-linear-to-b from-white to-slate-50">
-      <div className="container px-4 mx-auto max-w-7xl">
+      <div className="container px-4 mx-auto max-w-8xl">
         {/* Header */}
         <motion.header
           initial={{ opacity: 0, y: -20 }}

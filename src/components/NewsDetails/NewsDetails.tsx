@@ -20,11 +20,11 @@ interface NewsDetailsProps {
 
 const NewsDetails: React.FC<NewsDetailsProps> = ({ newsData }) => {
   if (!newsData) return <div>Loading...</div>;
-
+console.log(newsData, "newsData details");
   // Fallback image
   const fallback = "/images/no-news-image-2.png";
   const [imgSrc, setImgSrc] = useState(newsData.thumb_image || fallback);
-
+  console.log(newsData, "newsData");
   // Client-only share button
   const ShareButton: React.FC = () => {
     const [copied, setCopied] = useState(false);
@@ -61,11 +61,11 @@ const NewsDetails: React.FC<NewsDetailsProps> = ({ newsData }) => {
       <div className="container p-4 mx-auto font-sans">
         <div className="grid items-start gap-12 lg:grid-cols-2">
           {/* Left Column: Image */}
-          <figure className="relative w-full h-full overflow-hidden shadow-xl rounded-3xl">
+          <figure className="relative w-full h-full overflow-hidden">
             <img
               src={newsData.thumb_image || "/images/no-news-image-2.png"}
               alt={newsData.title}
-              className="object-cover w-full transition-transform duration-500 h-100 hover:scale-105"
+              className="object-cover w-full transition-transform duration-500 rounded-3xl h-100 hover:scale-105"
               onError={(e) => {
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = "/images/no-news-image-2.png";

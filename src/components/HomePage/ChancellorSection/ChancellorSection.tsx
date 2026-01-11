@@ -66,7 +66,7 @@ const ChancellorSection: React.FC<ChancellorSectionProps> = ({
             {/* Button + Social Icons */}
             <div className="flex items-center justify-start gap-5 mt-2">
               <Link
-                href={button_url}
+                href="/about/message-from-the-vice-chancellor"
                 className="inline-flex items-center gap-2 px-6 py-2 font-semibold text-white rounded-full bg-gradient-to-r from-[#438ABA] to-[#346f96] shadow-md hover:shadow-lg transition-all"
               >
                 {button_name ?? "Read More →"} →

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import { NewsItem } from "@/lib/types/NewsDataSetTypes/NewsDataSetTypes";
@@ -7,6 +8,7 @@ interface AllNewsProps {
 }
 
 const AllNews: React.FC<AllNewsProps> = ({ newsData }) => {
+  console.log(newsData, "newsData main");
   if (!newsData || newsData.length === 0) {
     return (
       <div className="min-h-screen px-4 py-12 text-center text-gray-500">
@@ -33,12 +35,16 @@ const AllNews: React.FC<AllNewsProps> = ({ newsData }) => {
           >
             <div className="relative w-full h-48 overflow-hidden">
               <img
-                src={news.imageUrl || "/images/news-no-img.png"} // fallback if undefined
+                src={
+                  news.thumb_image
+                    ? `https://administration.kau.ac.bd/storage/${news.thumb_image}`
+                    : "/images/news-no-img.png"
+                }
                 alt={news.title}
                 className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
                 onError={(e) => {
-                  e.currentTarget.onerror = null; // prevent infinite loop
-                  e.currentTarget.src = "/images/news-no-img.png"; // fallback image
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = "/images/news-no-img.png";
                 }}
               />
               {news.category && (
@@ -47,7 +53,6 @@ const AllNews: React.FC<AllNewsProps> = ({ newsData }) => {
                 </span>
               )}
             </div>
-
             <div className="p-4">
               <h2 className="mb-2 text-lg font-semibold text-gray-900 transition-colors group-hover:text-blue-600">
                 {news.title}

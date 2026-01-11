@@ -11,6 +11,7 @@ export interface NewsItem {
   category?: string; // Optional if your API has categories
   summary?: string; // Optional, for displaying summaries
   imageUrl?: string; // Optional, for displaying images
+  thumb_image?: string; // Optional, for displaying images
 }
 
 // Pagination link (used in API response)

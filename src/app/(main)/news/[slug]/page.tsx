@@ -4,7 +4,7 @@ import NoDataFound from "@/components/Shared/NoDataFound/NoDataFound";
 import { Metadata } from "next";
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 // Dynamic metadata
@@ -12,12 +12,11 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+  const decodedSlug = decodeURIComponent(slug); // Decode the slug
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/news/${encodeURIComponent(
-        slug
-      )}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/news/${decodedSlug}`, // Use decoded slug directly
       { next: { revalidate: 1 } } // optional: ISR
     );
 
@@ -49,16 +48,15 @@ export async function generateMetadata({
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
+  const decodedSlug = decodeURIComponent(slug); // Decode the slug
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/news/${encodeURIComponent(
-        slug
-      )}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/news/${decodedSlug}`, // Use decoded slug directly
       { next: { revalidate: 1 } }
     );
 
-    if (!res.ok) return <NoDataFound  />;
+    if (!res.ok) return <NoDataFound />;
 
     const newsData = await res.json();
     const newsItem = newsData?.data?.news;

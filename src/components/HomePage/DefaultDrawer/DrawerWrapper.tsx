@@ -4,20 +4,23 @@ import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
-// Dynamically import the drawer (client-side only)
+interface HomePopupData {
+  title: string;
+  content: string;
+  button_name: string;
+  button_link: string;
+}
+
 const DefaultDrawer = dynamic(
   () => import("@/components/HomePage/DefaultDrawer/DefaultDrawer"),
-  {
-    ssr: false,
-    loading: () => null,
-  }
+  { ssr: false }
 );
 
 const DrawerWrapper = () => {
   const pathname = usePathname();
-const [data, setData] = useState(null);
-  // Only show drawer on home page
   const isHomePage = pathname === "/";
+
+  const [data, setData] = useState<HomePopupData | null>(null);
 
   useEffect(() => {
     if (!isHomePage) return;
@@ -25,24 +28,33 @@ const [data, setData] = useState(null);
     const fetchPopupData = async () => {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/home-popup`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/home-popup`,
+          { cache: "no-store" }
         );
 
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
+        const result = await res.json();
 
-        const data = await res.json();
-        setData(data);
-      } catch (error) {
-        console.error("Failed to fetch home popup:", error);
+        console.log("POPUP API RESULT:", result); // 🔥 DEBUG
+
+        // ✅ accept direct or nested data
+        const popup = result?.data ?? result;
+
+        if (popup?.title && popup?.content) {
+          setData(popup);
+        } else {
+          setData(null);
+        }
+      } catch (e) {
+        console.error("Popup fetch failed:", e);
+        setData(null);
       }
     };
 
     fetchPopupData();
   }, [isHomePage]);
 
-  if (!isHomePage) return null;
+  // 🔥 ONLY guard that matters
+  if (!isHomePage || !data) return null;
 
   return <DefaultDrawer data={data} />;
 };
